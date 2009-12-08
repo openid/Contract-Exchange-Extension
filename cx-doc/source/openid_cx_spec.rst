@@ -159,16 +159,16 @@ The basic structure of Contract XML is defined as followings:
                 -->
              </ds:Signature>
              <obligations>
-                 <param type="paramter type URL" name="parameter name">value</param>
-                 <param type="paramter type URL" name="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
              </obligations>
         </Party>
         <Party>
              <Id><!-- URI/XRI for the composing party --></Id>
              <Rel>Role of this party in this contract</Rel>
              <obligations>
-                 <param type="paramter type URL" name="parameter name">value</param>
-                 <param type="paramter type URL" name="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
              </obligations>
         </Party>
         <Service>
@@ -244,7 +244,7 @@ The basic structure of Contract XML is defined as followings:
  Notably, ``http://openid.net/srv/cx/1.0/axreq`` MUST be supported 
  by all implementations. 
 
-``/Contract/Party/Obligations/param/@name``
+``/Contract/Party/Obligations/param/@id``
 
  1. Shortcut name of this parameter. 
  {{name}}s in CX Template CAN be replaced by the value of this element.
