@@ -83,6 +83,7 @@ A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis prot
 .. note::
 
    A Contract Template discovery NEEDS to be further discussed.
+   For XRDS, <XRD> of which <Type/> is ``Template URL`` SHOULD be the CX service which a relying party is looking at.
 
 Human Readable Text
 ~~~~~~~~~~~~~~~~~~~
@@ -131,7 +132,7 @@ The default format for ``Contract Exchange`` (CX) document is XML. The non-repud
 CX uses Envelopped Signature defined in xmldsig-core_ . 
 Canonicalization method MUST be Exclusive Canonicalization. 
 
-..note::
+.. note::
   c14n- may have multiple diarects: need to check. 
 
 Original Document and  Counter Signature
@@ -436,38 +437,44 @@ Appendix A.  Parameters
 This specification defines a small set of common parameters that may be generally useful for the contracting purposes.  
 
 ``AX Request``
-- description: Used to convey the data that the requester requests. 
-- type URL: http://opneid.net/srv/cx/1.0#axreq
-- value: Attribute Exchange 1.1 string in tag=value&tag=value format as in X1.1. 
-- Conformance: MUST support. 
+
+ - description: Used to convey the data that the requester requests. 
+ - type URL: http://opneid.net/srv/cx/1.0#axreq
+ - value: Attribute Exchange 1.1 string in tag=value&tag=value format as in X1.1. 
+ - Conformance: MUST support. 
 
 ``Price to be paid by the party``
-- description: The price to be paid to execute this contract. 
-- type URL: http://openid.net/srv/cx/1.0/#price#currency where currency is replaced by the ISO currency code or 'other'
-- value: Decimal string when #currency is ISO code, and anyString when #currency is 'other'
-- Conformance: MUST support
+
+ - description: The price to be paid to execute this contract. 
+ - type URL: http://openid.net/srv/cx/1.0/#price#currency where currency is replaced by the ISO currency code or 'other'
+ - value: Decimal string when #currency is ISO code, and anyString when #currency is 'other'
+ - Conformance: MUST support
 
 ``Maximum Liability assumed by the party``
-- description: The maximum liability assumed by the party  when there was a breach in the contract. 
-- type URL: http://openid.net/srv/cx/1.0/#damageslimit#currency where currency is replaced by the ISO currency code or 'other'
-- value: Decimal string when #currency is ISO code, and anyString when #currency is 'other'
-- Conformance: MUST support
+
+ - description: The maximum liability assumed by the party  when there was a breach in the contract. 
+ - type URL: http://openid.net/srv/cx/1.0/#damageslimit#currency where currency is replaced by the ISO currency code or 'other'
+ - value: Decimal string when #currency is ISO code, and anyString when #currency is 'other'
+ - Conformance: MUST support
 
 ``Contact``
-- description: The address at which the party can be reached at. 
-- type URL: http://openid.net/srv/cx/1.0/#contact
-- value: xs:string
-- Conformance: MUST support
+
+ - description: The address at which the party can be reached at. 
+ - type URL: http://openid.net/srv/cx/1.0/#contact
+ - value: xs:string
+ - Conformance: MUST support
 
 ``Datetime``
-- type URL: http://www.w3.orgg/TR/xmlschema-2/#datetime
-- value: The value defined as xs:dateTime in W3C XML Schema Datatypes specification, and MUST be expressed in UTC form, with no timme zone component (reprsented by the UTC 'Z' timezone). It must not specify the gime instants that corresponds to leap seconds. 
-- Conformance: MUST support. 
+
+ - type URL: http://www.w3.orgg/TR/xmlschema-2/#datetime
+ - value: The value defined as xs:dateTime in W3C XML Schema Datatypes specification, and MUST be expressed in UTC form, with no timme zone component (reprsented by the UTC 'Z' timezone). It must not specify the gime instants that corresponds to leap seconds. 
+ - Conformance: MUST support. 
 
 ``String``
-- type URL: http://www.w3.orgg/TR/xmlschema-2/#string
-- value: UTF-8 string. 
-- Conformance: MUST support. 
+
+ - type URL: http://www.w3.orgg/TR/xmlschema-2/#string
+ - value: UTF-8 string. 
+ - Conformance: MUST support. 
 
 Appendix B.  Examples
 =====================
@@ -607,16 +614,16 @@ Many other terms could be mentioned, especially in specific contexts such as loa
 Normative References
 ====================
 
- [OpenIDAuthentication2.0]   specs@openid.net, OpenID Authentication 2.0, 2007 (TXT, HTML).
- [RFC1421]   Linn, J., Privacy Enhancement for Internet Electronic Mail, RFC 1421.
- [RFC2045]   Freed, N., Borenstein , N., and N. Vaudreuil , 廴ultipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies, RFC 1421.
- [RFC2119]   Bradner, B., Key words for use in RFCs to Indicate Requirement Levels, RFC 2119, 1997.
- [RFC3339]   Klyne, G. and C. Newman, Date and Time on the Internet: Timestamps, RFC 3339.
- [RFC3629]   Yergeau, F., UTF-8, a transformation format of ISO 10646, RFC 3629.
- [X.509]     X.509 : Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks, August 2005.
- [xmldisg-core] XML Signature Syntax and Processing (Second Edition)
- [XRIResolution2.0]  Reed, D. and G. Wachob, Ed., Extensible Resource Identifier (XRI) Resolution Version 2.0, April 2008.
- [Yadis]     Miller, J., Ed., Yadis Specification 1.0, 2005 (PDF, ODT). 
+- [OpenIDAuthentication2.0]   specs@openid.net, OpenID Authentication 2.0, 2007 (TXT, HTML).
+- [RFC1421]   Linn, J., Privacy Enhancement for Internet Electronic Mail, RFC 1421.
+- [RFC2045]   Freed, N., Borenstein , N., and N. Vaudreuil , Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies, RFC 1421.
+- [RFC2119]   Bradner, B., Key words for use in RFCs to Indicate Requirement Levels, RFC 2119, 1997.
+- [RFC3339]   Klyne, G. and C. Newman, Date and Time on the Internet: Timestamps, RFC 3339.
+- [RFC3629]   Yergeau, F., UTF-8, a transformation format of ISO 10646, RFC 3629.
+- [X.509]     X.509 : Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks, August 2005.
+- [xmldisg-core] XML Signature Syntax and Processing (Second Edition)
+- [XRIResolution2.0]  Reed, D. and G. Wachob, Ed., Extensible Resource Identifier (XRI) Resolution Version 2.0, April 2008.
+- [Yadis]     Miller, J., Ed., Yadis Specification 1.0, 2005 (PDF, ODT). 
 
 Authors' Addresses
 ==================
