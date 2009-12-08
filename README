@@ -1,3 +1,18 @@
+About This Project
+==================
+
 This repository is to host (draft) OpenID Contract Exchange Specs and related files. 
 
 Contact =nat (http://xri.net/=nat/+contact) for details. 
+
+
+History 
+=======
+
+2009-12-08
+----------
+
+svn co  http://openid.sakimura.org/prj/svn/cx-doc/trunk cx-doc
+
+by hdknr.com
+
