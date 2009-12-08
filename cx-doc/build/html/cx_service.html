@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CX Service and CX Template &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="index.html" />
+    <link rel="next" title="CX Contract" href="cx_contract.html" />
+    <link rel="prev" title="Contract eXchange" href="cx.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cx_contract.html" title="CX Contract"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cx.html" title="Contract eXchange"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cx-service-and-cx-template">
+<h1>CX Service and CX Template<a class="headerlink" href="#cx-service-and-cx-template" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cx-serivice">
+<h2>CX Serivice<a class="headerlink" href="#cx-serivice" title="Permalink to this headline">¶</a></h2>
+<p>A CX Service is a Web service provided by a service provider.</p>
+<div class="section" id="identifier-and-discovery">
+<h3>Identifier and Discovery<a class="headerlink" href="#identifier-and-discovery" title="Permalink to this headline">¶</a></h3>
+<p>A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider&#8217;s identifier / user identifier.
+XRDS/XRD discovery can be used for OpenID CX protocol.</p>
+<p>CX Template MUST be discoverd as same as a CX Service endpoint.</p>
+</div>
+</div>
+<div class="section" id="what-is-cx-template">
+<h2>What is CX Template ?<a class="headerlink" href="#what-is-cx-template" title="Permalink to this headline">¶</a></h2>
+<p>A CX Template is a document which describes the detail of agreement, waranty, disclamier and other juridistic statement to be enforced not to breached by parties included in a CX Contract. A proposing party MUST include the CX Template in the CX Contract document.</p>
+<p>A CX Template MUST include statements described at <tt class="docutils literal"><span class="pre">Common</span> <span class="pre">Contract</span> <span class="pre">Constructs</span> <span class="pre">Based</span> <span class="pre">on</span> <span class="pre">Typical</span> <span class="pre">Contract</span> <span class="pre">Terms</span></tt>.</p>
+<div class="section" id="getting-cx-template">
+<h3>Getting CX Template<a class="headerlink" href="#getting-cx-template" title="Permalink to this headline">¶</a></h3>
+<p>A CX Template MUST be advertised by a service provider and discoverd by CX Service identifier.
+A CX Tempalte MUST be publicly fetched using HTTP GET protocol.</p>
+</div>
+</div>
+<div class="section" id="cx-template-format">
+<h2>CX Template Format<a class="headerlink" href="#cx-template-format" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="human-readable-text">
+<h3>Human Readable Text<a class="headerlink" href="#human-readable-text" title="Permalink to this headline">¶</a></h3>
+<p>A CX Template MUST be formatted in a human readable text because it MUST be browsed by a User  when he/she want to authorize the CX Contract at a service provider.
+Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.</p>
+</div>
+<div class="section" id="templating">
+<h3>Templating<a class="headerlink" href="#templating" title="Permalink to this headline">¶</a></h3>
+<p>{{service_parameter}} can be used in a CX Template. A service provider can replace those string with the text of correspoinding XML node &lt;service_parameter/&gt; specifiend in CX Contract when the service provider display the content of the contract to the End User before he/she authorizes the contract.</p>
+<p>See more about &lt;service_parameter/&gt; at <a class="reference external" href="cx_contract.html#contract-xml-structure"><em>Contract XML Basic Structure</em></a>,</p>
+</div>
+<div class="section" id="document-digest">
+<h3>Document Digest<a class="headerlink" href="#document-digest" title="Permalink to this headline">¶</a></h3>
+<p>Digest data MUST be provided for a CX Template.  Digest MUST be strong enough. SHA256 is good.</p>
+</div>
+</div>
+<div class="section" id="common-contract-constructs-based-on-typical-contract-terms">
+<h2>Common Contract Constructs Based on Typical Contract Terms<a class="headerlink" href="#common-contract-constructs-based-on-typical-contract-terms" title="Permalink to this headline">¶</a></h2>
+<p>Cardinal nubers associated with each item indicate wheterh the items is &#8220;Optional&#8221;(0 or more) or &#8220;Mandatory&#8221; (1 or more) and whether there might be multiplies of each.
+Note that very few items are required to establish a legally enforceable contract.</p>
+<p>In a court of law, the party seeking to enforce the contract must show that there are following items:</p>
+<ul class="simple">
+<li>offer</li>
+<li>acceptance</li>
+<li>consideration</li>
+<li>parties</li>
+<li>description of goods or services</li>
+<li>quantity of goods or services</li>
+<li>price to be paid in exchange for those goods or services</li>
+</ul>
+<p>The court will also require evidence of assent.</p>
+<div class="section" id="contract-terms">
+<h3>Contract Terms<a class="headerlink" href="#contract-terms" title="Permalink to this headline">¶</a></h3>
+<p>Here are common items that must or may be included in a contract:</p>
+<p><tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Identifier</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., contract or purchase order number</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Parties</span></tt></p>
+<blockquote>
+<p>(2 or more)</p>
+<p>identification may include, for example, legal name, jurisdiction of establishment or registration [ex., “a business corporation organized under the laws of the State of New York” or “company registration no. xyz with the Hamburg Chamber of Commerce and Industry”], place of residence or headquarters.</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Individual</span> <span class="pre">Signatories</span></tt></p>
+<blockquote>
+(2 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Title</span> <span class="pre">or</span> <span class="pre">Capacity</span> <span class="pre">of</span> <span class="pre">Signatories</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">Signature</span></tt></dt>
+<dd>(0 or more)</dd>
+</dl>
+<p><tt class="docutils literal"><span class="pre">Contact</span> <span class="pre">Details</span> <span class="pre">(for</span> <span class="pre">notices)</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>Description of goods, services,</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Actions,</span> <span class="pre">or</span> <span class="pre">Other</span> <span class="pre">Items</span>&nbsp; <span class="pre">to</span> <span class="pre">be</span> <span class="pre">delivered</span></tt></p>
+<blockquote>
+(1 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Quantity</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">Delivered</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>not applicable for all contracts</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Price</span></tt></p>
+<blockquote>
+<p>(1 or more)</p>
+<p>this should include denomination of currency [ex., USD$], description of non-monetary consideration, any formula or external reference for calculation</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span>&nbsp; <span class="pre">other</span> <span class="pre">performance</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Place</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span> <span class="pre">&nbsp;</span> <span class="pre">other</span> <span class="pre">performance</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Definitions</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Conditions</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., performance contingent on certain events, payment contingent on standards of acceptance</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Warranties</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., warranty of non-infringement, warranty of conformance to stated specifications, warranty of legal authority, warranty of insurance coverage</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">to</span> <span class="pre">other</span> <span class="pre">contracts</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., purchase order under a framework agreement</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Term</span> <span class="pre">of</span> <span class="pre">contract</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>may include renewal provisions</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Termination</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Billing</span> <span class="pre">and</span> <span class="pre">payment</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., net 30 days, discounts, late penalties, wire transfers</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Governing</span> <span class="pre">Law</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., English law, Japanese law, law of California, German Civil Code</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Jurisdiction</span> <span class="pre">and</span> <span class="pre">forum</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., courts of general jurisdiction located in New York City</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Waiver</span> <span class="pre">of</span> <span class="pre">Jury</span> <span class="pre">Trial</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Arbitration</span> <span class="pre">/</span> <span class="pre">alternative</span> <span class="pre">dispute</span> <span class="pre">&nbsp;resolution</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., ICC binding arbitration clause, arbitration to be conducted in Geneva, Switzerland</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Merger</span> <span class="pre">clause/</span> <span class="pre">entire</span> <span class="pre">agreement</span></tt></p>
+<blockquote>
+<p>(0 more)</p>
+<p>provision stating that this is the entire agreement between the parties and excluding claims based on statement in advertising or negotiations.</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Survival</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>clauses providing that certain terms, such as indemnification or confidentiality, survive expiration or termination of the contract</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Damages/Limitation</span> <span class="pre">of</span> <span class="pre">Liability</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>provisions on calculation of damages, liquidated damages, limitation or exclusion of certain kinds of damages</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Warranty</span> <span class="pre">disclaimers</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Indemnification</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Third-party</span> <span class="pre">beneficiary</span> <span class="pre">rights</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">of</span> <span class="pre">Parties</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., provisions creating or disclaiming agency or employment relationship</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Confidentiality</span> <span class="pre">/</span> <span class="pre">Nondisclosure</span> <span class="pre">Publicity</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Proprietary</span> <span class="pre">Rights,</span> <span class="pre">Ownership</span> <span class="pre">and</span> <span class="pre">Licensing</span> <span class="pre">of</span> <span class="pre">Intellectual</span> <span class="pre">Property</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Assignment,</span> <span class="pre">Succession,</span> <span class="pre">Delegation</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Legal</span> <span class="pre">and</span> <span class="pre">Regulatory</span> <span class="pre">Compliance</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>ex., licensing obligations, export controls, data protection</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Notice</span> <span class="pre">Requirements</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p><tt class="docutils literal"><span class="pre">Force</span> <span class="pre">Majeure</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>obligations excused or deferred for “Acts of God,” war or civil disorder, trade union actions, etc.</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Counterparts</span> <span class="pre">and</span> <span class="pre">Signatures</span></tt></p>
+<blockquote>
+<p>(0 or more)</p>
+<p>provisions allowing signatures at different times; validity of multiple copies or printouts</p>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Other</span> <span class="pre">Terms</span></tt></p>
+<blockquote>
+(0 or more)</blockquote>
+<p>Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">CX Service and CX Template</a><ul>
+<li><a class="reference external" href="#cx-serivice">CX Serivice</a><ul>
+<li><a class="reference external" href="#identifier-and-discovery">Identifier and Discovery</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#what-is-cx-template">What is CX Template ?</a><ul>
+<li><a class="reference external" href="#getting-cx-template">Getting CX Template</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#cx-template-format">CX Template Format</a><ul>
+<li><a class="reference external" href="#human-readable-text">Human Readable Text</a></li>
+<li><a class="reference external" href="#templating">Templating</a></li>
+<li><a class="reference external" href="#document-digest">Document Digest</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#common-contract-constructs-based-on-typical-contract-terms">Common Contract Constructs Based on Typical Contract Terms</a><ul>
+<li><a class="reference external" href="#contract-terms">Contract Terms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="cx.html"
+                                  title="previous chapter">Contract eXchange</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="cx_contract.html"
+                                  title="next chapter">CX Contract</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/cx_service.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cx_contract.html" title="CX Contract"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cx.html" title="Contract eXchange"
+             >previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

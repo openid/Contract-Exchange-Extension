@@ -1,0 +1,29 @@
+.. cx-doc documentation master file, created by
+   sphinx-quickstart on Tue Nov 24 14:10:43 2009.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+================================
+CX OpenID Binding  Documentation
+================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   cx
+   cx_service
+   cx_contract
+   cx_protocol
+   openid_cx_spec
+   pyxmlsec
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

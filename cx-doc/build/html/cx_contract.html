@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CX Contract &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="index.html" />
+    <link rel="next" title="CX Protocol" href="cx_protocol.html" />
+    <link rel="prev" title="CX Service and CX Template" href="cx_service.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cx_protocol.html" title="CX Protocol"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cx_service.html" title="CX Service and CX Template"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cx-contract">
+<h1>CX Contract<a class="headerlink" href="#cx-contract" title="Permalink to this headline">¶</a></h1>
+<p>A CX Contract is a document to be exchanged between parties included in a contract.</p>
+<div class="section" id="non-repudiative-document">
+<h2>Non-Repudiative Document<a class="headerlink" href="#non-repudiative-document" title="Permalink to this headline">¶</a></h2>
+<p>The default format for <tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Exchange</span></tt> (CX) document is XML. The non-repudiation for the XML document in CX is guaranteed by <tt class="docutils literal"><span class="pre">XML</span> <span class="pre">Signature</span> <span class="pre">Syntax</span> <span class="pre">and</span> <span class="pre">Processing(Second</span> <span class="pre">Edition)</span></tt> (<a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a>).</p>
+<div class="section" id="enveloped-xml-signature">
+<h3>Enveloped XML Signature<a class="headerlink" href="#enveloped-xml-signature" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a> defines following three method to deliver the signature of a XML Document :</p>
+<blockquote>
+<ul>
+<li><p class="first">Detached Signature</p>
+<p>The signature is over content external to the Signature element, and can be identified via a URI or transform. Consequently, the signature is &#8220;detached&#8221; from the content it signs. This definition typically applies to separate data objects, but it also includes the instance where the Signature and data object reside within the same XML document but are sibling elements.</p>
+</li>
+<li><p class="first">Enveloping Signature</p>
+<p>The signature is over content found within an Object element of the signature itself. The Object (or its content) is identified via a Reference (via a URI fragment identifier or transform).</p>
+</li>
+<li><p class="first">Enveloped Signature</p>
+<p>The signature is over the XML content that contains the signature as an element. The content provides the root XML document element. Obviously, enveloped signatures must take care not to include their own value in the calculation of the SignatureValue.</p>
+</li>
+</ul>
+</blockquote>
+<p>CX expected the Enveloped Signature for a XML Signature document.</p>
+<p>Following <a class="reference external" href="pyxmlsec.html#signing-a-xml"><em>Signing a XML</em></a>, the next simple XML text</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!--</span>
+<span class="c">testSignXMerialize()</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;Envelope</span> <span class="na">xmlns=</span><span class="s">&quot;urn:envelope&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Data&gt;</span>
+    Hello, World!
+  <span class="nt">&lt;/Data&gt;</span>
+<span class="nt">&lt;/Envelope&gt;</span>
+</pre></div>
+</div>
+<p>is signed into this XML:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="c">&lt;!--</span>
+<span class="c">testSignXMerialize()</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;Envelope</span> <span class="na">xmlns=</span><span class="s">&quot;urn:envelope&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Data&gt;</span>
+    Hello, World!
+  <span class="nt">&lt;/Data&gt;</span>
+  <span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;SignedInfo&gt;</span>
+      <span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;Reference&gt;</span>
+        <span class="nt">&lt;Transforms&gt;</span>
+          <span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/Transforms&gt;</span>
+        <span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;DigestValue&gt;</span>
+BG5RjqaoAUu661eSbtxYc3T1WqQ=
+        <span class="nt">&lt;/DigestValue&gt;</span>
+      <span class="nt">&lt;/Reference&gt;</span>
+    <span class="nt">&lt;/SignedInfo&gt;</span>
+    <span class="nt">&lt;SignatureValue&gt;</span>
+m5UI5IbVfLYViD6CmRZjW1y6KkPFUt7nrnZmg3ecolhQlRUSTQhE+Kxbg+d2RHrk
+3jvoGBwBUavpUZ9UaHPb5dZgm1SlkB9FPT8Jsz5BZYIJier9yvRvqAPQraXH8BPL
+SUIDqLv4+8+yv2o6g5APzlCEwS7fCpoLtKjj1ZaUNWQ=
+    <span class="nt">&lt;/SignatureValue&gt;</span>
+    <span class="nt">&lt;KeyInfo&gt;</span>
+      <span class="nt">&lt;X509Data&gt;</span>
+        <span class="nt">&lt;X509Certificate&gt;</span>
+MIIB/zCCAWgCCQDdijVcf/XGpDANBgkqhkiG9w0BAQUFADBEMRAwDgYDVQQDEwdy
+cC5kZWIgMRQwEgYDVQQLEwtzeXMucnAuZGViIDENMAsGA1UEChMEc3lzIDELMAkG
+A1UEBhMCSlAwHhcNMDkxMTI2MDcwNzA1WhcNMDkxMjI2MDcwNzA1WjBEMRAwDgYD
+VQQDEwdycC5kZWIgMRQwEgYDVQQLEwtzeXMucnAuZGViIDENMAsGA1UEChMEc3lz
+IDELMAkGA1UEBhMCSlAwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKsL9cpd
+9iOsCHIj8rd54ajkOIcZezGP35ZxdnUxbTA0EL7STYsSdC2qpIS3jcbP2qGCvzJ8
+4ATCjTDRSL2ZH/CjdABlyJOcKj7GOqlyLu2jgkbdE4vye5r9DuJQvYjx4FIZSpBI
+Jwj6bjIH9uL2dthL90zQvoErEEdhsoWu1nmzAgMBAAEwDQYJKoZIhvcNAQEFBQAD
+gYEAEOrwLo0wiTS+0r4p0ra3GsQYWuGzGipEogro6WvVOCRuGck3bT8+Rao9I3ns
+rkqcO6t3eGhFe0mK+rH1UTEu5KweLmhNpddoaUNIIr405jidy1/NSmnFGXfTECA9
+Xm0frXwN9MOJg9okHeCwjwb6Cf9e/Lpoor2w+yaG8vSX3ik=
+        <span class="nt">&lt;/X509Certificate&gt;</span>
+      <span class="nt">&lt;/X509Data&gt;</span>
+    <span class="nt">&lt;/KeyInfo&gt;</span>
+  <span class="nt">&lt;/Signature&gt;</span>
+<span class="nt">&lt;/Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="original-document-and-counter-signature">
+<h3>Original Document and  Counter Signature<a class="headerlink" href="#original-document-and-counter-signature" title="Permalink to this headline">¶</a></h3>
+<p>To be mutually non-repuidative, The CX contract, a returning document from OP to RP, MUST be singed XML form including  the signature of the original CX proposal document in signed XML form initiated by RP.
+The returning document makes counter signature to the original XML document becuase the original XML document MUST be base64-encoded and held at /Contract/Original element.</p>
+</div>
+</div>
+<div class="section" id="contract-xml-basic-structure">
+<span id="contract-xml-structure"></span><h2>Contract XML Basic  Structure<a class="headerlink" href="#contract-xml-basic-structure" title="Permalink to this headline">¶</a></h2>
+<p>The basic structure of Contract XML is defined as followings:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="nt">&lt;Contract&gt;</span>
+    <span class="nt">&lt;Party&gt;</span><span class="c">&lt;!-- URI/XRI for the composing party --&gt;</span><span class="nt">&lt;/Party&gt;</span>
+    <span class="nt">&lt;Id&gt;</span><span class="c">&lt;!-- Document identifier --&gt;</span><span class="nt">&lt;/Id&gt;</span>
+    <span class="nt">&lt;Rel&gt;</span>Relation in this Contract<span class="nt">&lt;/Rel&gt;</span>
+    <span class="nt">&lt;Service&gt;</span>
+        <span class="nt">&lt;Type&gt;</span><span class="c">&lt;!-- CX Servie identfier --&gt;</span><span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;service_parameter&gt;</span><span class="c">&lt;!-- any service parameter for CX Service specified by &lt;Type/&gt; --&gt;</span><span class="nt">&lt;/service_parameter&gt;</span>
+    <span class="nt">&lt;/Service&gt;</span>
+    <span class="nt">&lt;Template&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">        Base64 form of the CX Template for CX Serive. Exists only in proposing Contract.</span>
+<span class="c">        --&gt;</span>
+    <span class="nt">&lt;/Template&gt;</span>
+    <span class="nt">&lt;Original&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">        Original Document.</span>
+<span class="c">        Base64 form of the requested CX Contract XML document. Exists only in repsonding Contract.</span>
+<span class="c">        --&gt;</span>
+    <span class="nt">&lt;/Original&gt;</span>
+    <span class="nt">&lt;Signature&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">        W3C XML Security xmldsig-core ``Enveloped Signature`` element nodes</span>
+<span class="c">        --&gt;</span>
+    <span class="nt">&lt;/Signature&gt;</span>
+<span class="nt">&lt;/Contract&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="composing-party-party-element">
+<h3>Composing Party(Party element)<a class="headerlink" href="#composing-party-party-element" title="Permalink to this headline">¶</a></h3>
+<p>This element is the URI or XRI which sepcifiy the composing party.</p>
+</div>
+<div class="section" id="document-identifier-id-element">
+<h3>Document Identifier (Id element)<a class="headerlink" href="#document-identifier-id-element" title="Permalink to this headline">¶</a></h3>
+<p>This node identifies single Contract XML and the value of this MUST be unique at composing party which is specified by &lt;Party/&gt;.</p>
+</div>
+<div class="section" id="relation-in-this-contract-rel-element">
+<h3>Relation in this Contract(Rel element)<a class="headerlink" href="#relation-in-this-contract-rel-element" title="Permalink to this headline">¶</a></h3>
+<p>This means the type  the party. One of followings:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0#proposer">http://openid.net/srv/cx/1.0#proposer</a></li>
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0#acceptor">http://openid.net/srv/cx/1.0#acceptor</a></li>
+</ul>
+</div>
+<div class="section" id="service-description-service-element-and-its-descendents">
+<h3>Service Description(Service element and its descendents )<a class="headerlink" href="#service-description-service-element-and-its-descendents" title="Permalink to this headline">¶</a></h3>
+<p>This holds paramters to the CX Service endpoint. This node is extensible and freely add any XML node.
+The respnding Contract can hold this element if service provider returns any data value.</p>
+<div class="section" id="service-type-type-element">
+<h4>Service Type(Type element)<a class="headerlink" href="#service-type-type-element" title="Permalink to this headline">¶</a></h4>
+<p>This MUST be a CX Service type URI which describes an actual sevice provided at the CX Service endpoint.</p>
+</div>
+<div class="section" id="service-parameter-service-paramter-element">
+<h4>Service Parameter(service_paramter element)<a class="headerlink" href="#service-parameter-service-paramter-element" title="Permalink to this headline">¶</a></h4>
+<p>Any element can be specified under the &lt;Service/&gt;. Those element&#8217;s values SHOULD be processed by CX Service identified by &lt;Type/&gt;  at the CX Service endpoint.
+Also {{service_parameter}}s in CX Template CAN be replaced by element&#8217;s value at the service provider.</p>
+</div>
+</div>
+<div class="section" id="contract-template-template-element">
+<h3>Contract Template(Template element)<a class="headerlink" href="#contract-template-template-element" title="Permalink to this headline">¶</a></h3>
+<p>CX Template text MUST be base64-encoded and held at here.</p>
+</div>
+<div class="section" id="original-document-original-element">
+<h3>Original Document(Original element)<a class="headerlink" href="#original-document-original-element" title="Permalink to this headline">¶</a></h3>
+<p>The requesting document has no Original element.
+The original requesting XML document MUST be base64-encoded and held at here.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">CX Contract</a><ul>
+<li><a class="reference external" href="#non-repudiative-document">Non-Repudiative Document</a><ul>
+<li><a class="reference external" href="#enveloped-xml-signature">Enveloped XML Signature</a></li>
+<li><a class="reference external" href="#original-document-and-counter-signature">Original Document and  Counter Signature</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#contract-xml-basic-structure">Contract XML Basic  Structure</a><ul>
+<li><a class="reference external" href="#composing-party-party-element">Composing Party(Party element)</a></li>
+<li><a class="reference external" href="#document-identifier-id-element">Document Identifier (Id element)</a></li>
+<li><a class="reference external" href="#relation-in-this-contract-rel-element">Relation in this Contract(Rel element)</a></li>
+<li><a class="reference external" href="#service-description-service-element-and-its-descendents">Service Description(Service element and its descendents )</a><ul>
+<li><a class="reference external" href="#service-type-type-element">Service Type(Type element)</a></li>
+<li><a class="reference external" href="#service-parameter-service-paramter-element">Service Parameter(service_paramter element)</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#contract-template-template-element">Contract Template(Template element)</a></li>
+<li><a class="reference external" href="#original-document-original-element">Original Document(Original element)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="cx_service.html"
+                                  title="previous chapter">CX Service and CX Template</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="cx_protocol.html"
+                                  title="next chapter">CX Protocol</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/cx_contract.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cx_protocol.html" title="CX Protocol"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cx_service.html" title="CX Service and CX Template"
+             >previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1   Contract Exchange Extension 1.0 - Draft 1.6 &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="index.html" />
+    <link rel="next" title="PyXMLSec" href="pyxmlsec.html" />
+    <link rel="prev" title="CX Protocol" href="cx_protocol.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pyxmlsec.html" title="PyXMLSec"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cx_protocol.html" title="CX Protocol"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contract-exchange-extension-1-0-draft-1-6">
+<h1>1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6<a class="headerlink" href="#contract-exchange-extension-1-0-draft-1-6" title="Permalink to this headline">¶</a></h1>
+<div class="contributor container">
+<div class="line-block">
+<div class="line">Nat Sakimura, Nomura Research Institute,Inc.</div>
+<div class="line">Masaki Nishitani, Nomura Research Institute,Inc.</div>
+<div class="line">Hideki Nara, Tact Communications,Inc.</div>
+</div>
+</div>
+<p>Abstract</p>
+<p>This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract.
+Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions.</p>
+<p>As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called &#8220;Artifact&#8221; through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended.</p>
+<div class="section" id="terminology">
+<h2>1.1&nbsp;&nbsp;&nbsp;Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+<p>The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in [RFC2119] (Bradner, S., Key words for use in RFCs to Indicate Requirement Levels, March 1997.).</p>
+<div class="section" id="definitions-and-conventions">
+<h3>1.1.1&nbsp;&nbsp;&nbsp;Definitions and Conventions<a class="headerlink" href="#definitions-and-conventions" title="Permalink to this headline">¶</a></h3>
+<p>All OpenID Contract Exchange messages MUST contain the following extension namespace declaration, as specified in the Extensions section of OpenID-Authentication-2.0:</p>
+<p>The XML Path structure is expressed in a <a class="reference external" href="http://www.w3.org/TR/2007/REC-xpath20-20070123/">XPath</a> notation.</p>
+</div>
+</div>
+<div class="section" id="overview">
+<h2>1.2&nbsp;&nbsp;&nbsp;Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The contract exchange service extension is identified by the URI &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221;. Support of this extension is advertised by having this url in /XRDS/XRD/Service/Type or /XRD/Link/rel.</p>
+<p>For the exchange of the contract, this extension uses Attribute Exchange.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This version of CX expect that AX fetch request can contain &#8220;value&#8221;. This extension is being discussed under <a class="reference external" href="https://openid.pbworks.com/OpenID_Attribute_Exchange_Extention_1_1">the AX 1.1 working group</a>.</p>
+</div>
+<p>The request parameters detailed here MUST be sent using the [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.) extension mechanism.</p>
+</div>
+<div class="section" id="contract-document">
+<h2>1.3&nbsp;&nbsp;&nbsp;Contract Document<a class="headerlink" href="#contract-document" title="Permalink to this headline">¶</a></h2>
+<p>Contract is a document that testifies that the parties involved in have agreed to what is written in it. The workflow for establishing such contract document varies, but in this extension, the following model is taken:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>There are typically 4 actors, A, SA, B, SB, where SA and SB are the designated signatory of A and B respectively.</li>
+<li>Proposer, A,  creates the contract proposal and signs and sends it to the other party.</li>
+<li>B examines the proposal and if it decides to accept, let SB sign it</li>
+<li>A obtains the signed copy of the contract.</li>
+</ol>
+</blockquote>
+<p>Such contract can be used for various purposes not only for online transactions.</p>
+<p>There can be many Contract format: It could be profiled in XML, JSON(<a class="reference external" href="http://tools.ietf.org/html/rfc4627">RFC4627</a>), <a class="reference external" href="http://www.xdi.org/">XDI</a>, etc. In this extension, since XML parser and <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">XML Signature</a> facilities are there for XRD processing, we define a XML contract profile. This section explains semantics of each element. For the normative schema, refer to Appendix A.</p>
+<div class="section" id="contract-template">
+<h3>1.3.1&nbsp;&nbsp;&nbsp;Contract Template<a class="headerlink" href="#contract-template" title="Permalink to this headline">¶</a></h3>
+<p>A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST include the CX Template in the CX Contract document.</p>
+<p>A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis protocol.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A Contract Template discovery NEEDS to be further discussed.
+For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is <tt class="docutils literal"><span class="pre">Template</span> <span class="pre">URL</span></tt> SHOULD be the CX service which a relying party is looking at.</p>
+</div>
+<div class="section" id="human-readable-text">
+<h4>1.3.1.1&nbsp;&nbsp;&nbsp;Human Readable Text<a class="headerlink" href="#human-readable-text" title="Permalink to this headline">¶</a></h4>
+<p>A Contract Template MUST be formatted in a human readable text because it MUST be browsed by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.</p>
+</div>
+<div class="section" id="templating">
+<h4>1.3.1.2&nbsp;&nbsp;&nbsp;Templating<a class="headerlink" href="#templating" title="Permalink to this headline">¶</a></h4>
+<p>A Template variable is in the form <tt class="docutils literal"><span class="pre">{{parameter_name}}</span></tt>.
+Any variable should be replaced by the corresponding value
+defined in the CX contract document, where
+&#64;id is equal to the <tt class="docutils literal"><span class="pre">parameter_name</span></tt>.</p>
+<p>When the provider shows the contract text to the end user
+to obtain the signing authorization,
+the provider should substitute the values into the variables.</p>
+</div>
+<div class="section" id="template-url-and-digest">
+<h4>1.3.1.3&nbsp;&nbsp;&nbsp;Template URL and Digest<a class="headerlink" href="#template-url-and-digest" title="Permalink to this headline">¶</a></h4>
+<p>The digest data for a CX Template  MUST be provided throught the discovery process. The default digest algorithm is SHA256.</p>
+<p>Contract Teplate URL should be in the form of</p>
+<blockquote>
+<a class="reference external" href="http://uri_of_contract_template#digest_algorithm:digest">http://uri_of_contract_template#digest_algorithm:digest</a></blockquote>
+<dl class="docutils">
+<dt>For example:</dt>
+<dd><a class="reference external" href="http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929">http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929</a></dd>
+</dl>
+</div>
+</div>
+<div class="section" id="contract-document-constructs">
+<h3>1.3.2&nbsp;&nbsp;&nbsp;Contract Document Constructs<a class="headerlink" href="#contract-document-constructs" title="Permalink to this headline">¶</a></h3>
+<p>Because the CX protocol can be used for web services for critical business transactions, a CX Contract document SHOULD be a &#8220;legal contract&#8221;  which contains obligations of each parties including the remedy to the cases where it has been breached.</p>
+<div class="section" id="common-contract-constructs">
+<h4>1.3.2.1&nbsp;&nbsp;&nbsp;Common Contract Constructs<a class="headerlink" href="#common-contract-constructs" title="Permalink to this headline">¶</a></h4>
+<p>CX Contracts and CX Templates include common contract contstructs like warranty , disclaimer or other legal and business statements based on the Common Law(Anglo-American Law).</p>
+<p>Examples of common contract construsts used in CX are listed at <cite>Appendix. B&lt;common_contract_constructs&gt;</cite>,</p>
+</div>
+</div>
+<div class="section" id="contract-document-structure">
+<h3>1.3.3&nbsp;&nbsp;&nbsp;Contract Document Structure<a class="headerlink" href="#contract-document-structure" title="Permalink to this headline">¶</a></h3>
+<p>The default format for <tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Exchange</span></tt> (CX) document is XML. The non-repudiation for the XML document in CX is guaranteed by <tt class="docutils literal"><span class="pre">XML</span> <span class="pre">Signature</span> <span class="pre">Syntax</span> <span class="pre">and</span> <span class="pre">Processing(Second</span> <span class="pre">Edition)</span></tt> (<a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a>).</p>
+<p>CX uses Envelopped Signature defined in <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a> .
+Canonicalization method MUST be Exclusive Canonicalization.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">c14n- may have multiple diarects: need to check.</p>
+</div>
+<div class="section" id="original-document-and-counter-signature">
+<h4>1.3.3.1&nbsp;&nbsp;&nbsp;Original Document and  Counter Signature<a class="headerlink" href="#original-document-and-counter-signature" title="Permalink to this headline">¶</a></h4>
+<p>To achieve mutual non-repudiation, the contract document needs to be mutually digitaly signed. In CX, this is achieved through signing the document that includes the original signed proposal in Base 64 format. The specifics will be defined below.</p>
+</div>
+<div class="section" id="contract-xml-basic-structure">
+<h4>1.3.3.2&nbsp;&nbsp;&nbsp;Contract XML Basic Structure<a class="headerlink" href="#contract-xml-basic-structure" title="Permalink to this headline">¶</a></h4>
+<p>The basic structure of Contract XML is defined as followings:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="nt">&lt;Contract&gt;</span>
+    <span class="nt">&lt;Id&gt;</span><span class="c">&lt;!-- Document identifier --&gt;</span><span class="nt">&lt;/Id&gt;</span>
+    <span class="nt">&lt;Type&gt;</span><span class="c">&lt;!-- either proposal or agreement --&gt;</span><span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Datetime&gt;</span><span class="c">&lt;!-- xs:dateTime string --&gt;</span><span class="nt">&lt;/Date&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+         <span class="nt">&lt;Id&gt;</span><span class="c">&lt;!-- URI/XRI for the composing party --&gt;</span><span class="nt">&lt;/Id&gt;</span>
+         <span class="nt">&lt;Rel&gt;</span>Role of this party in this contract<span class="nt">&lt;/Rel&gt;</span>
+         <span class="nt">&lt;ds:Signature&gt;</span>
+           <span class="c">&lt;!--</span>
+<span class="c">            W3C XML Security xmldsig-core ``Enveloped Signature`` element nodes</span>
+<span class="c">            --&gt;</span>
+         <span class="nt">&lt;/ds:Signature&gt;</span>
+         <span class="nt">&lt;obligations&gt;</span>
+             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;paramter type URL&quot;</span> <span class="na">id=</span><span class="s">&quot;parameter name&quot;</span><span class="nt">&gt;</span>value<span class="nt">&lt;/param&gt;</span>
+             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;paramter type URL&quot;</span> <span class="na">id=</span><span class="s">&quot;parameter name&quot;</span><span class="nt">&gt;</span>value<span class="nt">&lt;/param&gt;</span>
+         <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;/Party&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+         <span class="nt">&lt;Id&gt;</span><span class="c">&lt;!-- URI/XRI for the composing party --&gt;</span><span class="nt">&lt;/Id&gt;</span>
+         <span class="nt">&lt;Rel&gt;</span>Role of this party in this contract<span class="nt">&lt;/Rel&gt;</span>
+         <span class="nt">&lt;obligations&gt;</span>
+             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;paramter type URL&quot;</span> <span class="na">id=</span><span class="s">&quot;parameter name&quot;</span><span class="nt">&gt;</span>value<span class="nt">&lt;/param&gt;</span>
+             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;paramter type URL&quot;</span> <span class="na">id=</span><span class="s">&quot;parameter name&quot;</span><span class="nt">&gt;</span>value<span class="nt">&lt;/param&gt;</span>
+         <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;/Party&gt;</span>
+    <span class="nt">&lt;Service&gt;</span>
+         <span class="nt">&lt;Type&gt;</span><span class="c">&lt;!-- Service Type URL of the endpoint--&gt;</span><span class="nt">&lt;/Type&gt;</span>
+         <span class="nt">&lt;URL&gt;</span><span class="c">&lt;!-- Service Endpoint URL --&gt;</span><span class="nt">&lt;/URL&gt;</span>
+    <span class="nt">&lt;/Service&gt;</span>
+    <span class="nt">&lt;TemplateURL&gt;</span><span class="c">&lt;!-- URL of the template including the digest. --&gt;</span><span class="nt">&lt;/TemplateURL&gt;</span>
+    <span class="nt">&lt;Template&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">        Base64 form of the CX Template for CX Serive. Exists only in proposing Contract.</span>
+<span class="c">        --&gt;</span>
+    <span class="nt">&lt;/Template&gt;</span>
+    <span class="nt">&lt;Original&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">        Original Document.</span>
+<span class="c">        Base64 form of the requested CX Contract XML document. Exists only in repsonding Contract.</span>
+<span class="c">        --&gt;</span>
+    <span class="nt">&lt;/Original&gt;</span>
+<span class="nt">&lt;/Contract&gt;</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">/Contract/Id</span></tt></p>
+<blockquote>
+A global unique Identifier of type anyURI that identifies this contracrt.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Type</span></tt></p>
+<blockquote>
+Either <a class="reference external" href="http://openid.net/srv/cx/1.0/#proposal">http://openid.net/srv/cx/1.0/#proposal</a> or
+<a class="reference external" href="http://opeind.net/srv/cx/1.0#agreement">http://opeind.net/srv/cx/1.0#agreement</a></blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/dateTime</span></tt> [Zero or One]</p>
+<blockquote>
+The creation dateTime of this Proposal or Agreement.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party</span></tt></p>
+<blockquote>
+A placeholder for the information related to the party.
+While a proposal may include two or more Parties,
+an Agreement may contain only one.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Id</span></tt></p>
+<blockquote>
+This element is the URI or XRI which sepcifiy the composing party.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Rel</span></tt></p>
+<blockquote>
+Indicates the type of the party. One of followings:</blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0/#proposer">http://openid.net/srv/cx/1.0/#proposer</a></li>
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0/#acceptor">http://openid.net/srv/cx/1.0/#acceptor</a></li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/ds:Signature</span></tt></p>
+<blockquote>
+Signature are applied in the same way as defined in XRD 1.0 &#8220;<a class="reference external" href="http://www.oasis-open.org/apps/group_public/download.php/35274/xrd-1.0-wd10.html#signature">XRD Signature</a>&#8220;.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Obligations</span></tt></p>
+<blockquote>
+Placeholder for specifying the obligation of the party.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Obligations/param</span></tt></p>
+<blockquote>
+0 or more of the parameters that describes a portion of the party&#8217;s
+obligation.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Obligations/param/&#64;type</span></tt></p>
+<blockquote>
+1. Parameter type URL of this particular parameter.
+Some of them are defined in the appendix of this specification.
+Notably, <tt class="docutils literal"><span class="pre">http://openid.net/srv/cx/1.0/axreq</span></tt> MUST be supported
+by all implementations.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Obligations/param/&#64;id</span></tt></p>
+<blockquote>
+1. Shortcut name of this parameter.
+{{parameter_name}}s in CX Template CAN be replaced by the value of this element.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service</span></tt></p>
+<blockquote>
+This holds paramters to the CX Service endpoint. This node is extensible and freely add any XML node.
+The respnding Contract can hold this element if service provider returns any data value.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/Type</span></tt></p>
+<blockquote>
+A CX Service type URI which describes the actual sevice provided at the CX Service endpoint, that in turn describes the Parameters.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/param</span></tt></p>
+<blockquote>
+Parameters that this service supports and does not go into the
+/Contract/Party/Obligation.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Params/param/&#64;type</span></tt></p>
+<blockquote>
+1. Parameter type URL of this particular parameter.
+Some of them are defined in the appendix of this specification.
+Notably, <tt class="docutils literal"><span class="pre">http://openid.net/srv/cx/1.0/#axreq</span></tt> MUST be supported
+by all implementations.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Params/param/&#64;name</span></tt></p>
+<blockquote>
+1. Shortcut name of this parameter.
+{{name}}s in CX Template CAN be replaced by the value of this element.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Template</span></tt></p>
+<blockquote>
+Base64 encoded CX Template text.
+{{name}}s in CX Template is replaced by the value of <a class="reference external" href="mailto:/Contract/Params/&#37;&#52;&#48;name">/Contract/Params/<span>&#64;</span>name</a>.</blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">/Contract/Original</span></tt></dt>
+<dd>0 or 1.
+The requesting document has no Original element.
+The base64-encoded original requesting XML document.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="proposal-and-agreement-validation">
+<h3>1.3.4&nbsp;&nbsp;&nbsp;Proposal and Agreement Validation<a class="headerlink" href="#proposal-and-agreement-validation" title="Permalink to this headline">¶</a></h3>
+<p>Signature for each of Proposal and Agreement should be validated according to <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">XML Signature</a>. The validity of the respective ds:KeyInfo is determined by first obtaining the signed XRD from the Party&#8217;s identity url and perfoming following comparison operation.</p>
+<ul class="simple">
+<li>/XRD/Subject == /Contract/Party/id</li>
+<li>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate == /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate. When there is certificate change in the ds:X509Data, the chain must be checked in the same manner.</li>
+</ul>
+</div>
+<div class="section" id="storage-and-timestamping">
+<h3>1.3.5&nbsp;&nbsp;&nbsp;Storage and Timestamping<a class="headerlink" href="#storage-and-timestamping" title="Permalink to this headline">¶</a></h3>
+<p>The Contract is supposed to act as a proof of agreement in case of dispute arising.
+Since contracta may be  long term documents, there is a risk that are not so relevant in transient processing, such as Algorithm Compromise.</p>
+</div>
+</div>
+<div class="section" id="protocal">
+<h2>1.4&nbsp;&nbsp;&nbsp;Protocal<a class="headerlink" href="#protocal" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="discovery">
+<h3>1.4.1&nbsp;&nbsp;&nbsp;Discovery<a class="headerlink" href="#discovery" title="Permalink to this headline">¶</a></h3>
+<p>Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.). The attribute exchange namespace &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221; MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or /xrd/Link/rel element in the XRD 1.0 discovery document. The discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All of the party involved MUST publish an XRD.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Discussion: RP Discovery needed for contract invalidation, RP Verification by OP, etc. (=nat, 2009-08-12)</p>
+</div>
+</div>
+<div class="section" id="sending-proposal">
+<h3>1.4.2&nbsp;&nbsp;&nbsp;Sending Proposal<a class="headerlink" href="#sending-proposal" title="Permalink to this headline">¶</a></h3>
+<p>CX Proposal document is sent as the parameter of AX fetch request.
+The details of AX fetch request parameters are as follows:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.mode</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;fetch_request&#8221;</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cx</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221; .</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cx</span></tt></p>
+<blockquote>
+REQUIRED. Value: Actual CX proposal document. Base64 encoded.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.required</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8216;cx&#8217; MUST be included in the AX required list.</blockquote>
+</blockquote>
+</div>
+<div class="section" id="writing-aggreement">
+<h3>1.4.3&nbsp;&nbsp;&nbsp;Writing Aggreement<a class="headerlink" href="#writing-aggreement" title="Permalink to this headline">¶</a></h3>
+<p>The end user who has logged into the OP MUST be prompted to browse and agree to the proposal sent from the RP. OP MUST verify if the end user has enough right to authorize the signing before creating the counter sign.</p>
+</div>
+<div class="section" id="receiving-contract">
+<h3>1.4.4&nbsp;&nbsp;&nbsp;Receiving Contract<a class="headerlink" href="#receiving-contract" title="Permalink to this headline">¶</a></h3>
+<p>CX Contract is returned as the value of AX fetch request.
+The details of AX fetch resonse parameters are as follows:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.mode</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;fetch_response&#8221;</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cx</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221; .</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cx</span></tt></p>
+<blockquote>
+REQUIRED. Value: Actual CX proposal document. Base64 encoded.</blockquote>
+</blockquote>
+</div>
+<div class="section" id="encrypting-the-payload">
+<h3>1.4.5&nbsp;&nbsp;&nbsp;Encrypting the payload<a class="headerlink" href="#encrypting-the-payload" title="Permalink to this headline">¶</a></h3>
+<p>Payload can be sent or returned in ecrypted text. In addition to usual AX fetch request and response parameters, the following paramters MUST be sent to enable the decryption of the payload.</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_encoding</span></tt></p>
+<blockquote>
+Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#encoding">http://openid.net/srv/cx/1.0/#encoding</a>&#8220;.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cx_encoding</span></tt></p>
+<blockquote>
+<p>Value: &#8220;Base64&#8221;, &#8220;CBC-256-128-PKCS5_PADDING&#8221;.</p>
+<blockquote>
+If cx_encoding is &#8220;CBC-256-128-PKCS5_PADDING&#8221;, the following parameters are also returned in addition.</blockquote>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_enc_key</span></tt></p>
+<blockquote>
+Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#enc_key">http://openid.net/srv/cx/1.0/#enc_key</a>&#8220;.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cx_enc_key</span></tt></p>
+<blockquote>
+Shared key to encrypt the message in &#8220;Encryption BAse String&#8221; form. This key itself is encrypted asymmetrically with decryptor&#8217;s public key included in the Contract and base 64 encoded.
+Value: base64 string.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_enc_iv</span></tt></p>
+<blockquote>
+Type URI for initialization vector used in a block encryption.
+Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#enc_iv">http://openid.net/srv/cx/1.0/#enc_iv</a>&#8220;.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cx_enc_iv</span></tt></p>
+<blockquote>
+Value: base64 string</blockquote>
+</blockquote>
+</div>
+</div>
+<div class="section" id="security-considerations">
+<h2>1.5&nbsp;&nbsp;&nbsp;Security Considerations<a class="headerlink" href="#security-considerations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="non-repudiation">
+<h3>1.5.1&nbsp;&nbsp;&nbsp;Non-repudiation<a class="headerlink" href="#non-repudiation" title="Permalink to this headline">¶</a></h3>
+<p>Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authenticaion 2.0.</p>
+</div>
+<div class="section" id="man-in-the-middle">
+<h3>1.5.2&nbsp;&nbsp;&nbsp;Man-in-the-middle<a class="headerlink" href="#man-in-the-middle" title="Permalink to this headline">¶</a></h3>
+<p>RP must verify the validity of the OP&#8217;s identity and public key and vice versa.</p>
+</div>
+<div class="section" id="eavesdropping">
+<h3>1.5.3&nbsp;&nbsp;&nbsp;Eavesdropping<a class="headerlink" href="#eavesdropping" title="Permalink to this headline">¶</a></h3>
+<p>When encryption mode is used, the payload is encrypted and only the real recipient can decipher it. Thus, obtaining sensitive data through eavesdropping is very difficult.</p>
+</div>
+<div class="section" id="malicious-providers">
+<h3>1.5.4&nbsp;&nbsp;&nbsp;Malicious Providers<a class="headerlink" href="#malicious-providers" title="Permalink to this headline">¶</a></h3>
+<p>Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.</p>
+</div>
+<div class="section" id="phishing-attack">
+<h3>1.5.5&nbsp;&nbsp;&nbsp;Phishing Attack<a class="headerlink" href="#phishing-attack" title="Permalink to this headline">¶</a></h3>
+<p>Phising attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.</p>
+</div>
+<div class="section" id="private-key-compromise">
+<h3>1.5.6&nbsp;&nbsp;&nbsp;Private key compromise<a class="headerlink" href="#private-key-compromise" title="Permalink to this headline">¶</a></h3>
+<p>In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.</p>
+</div>
+</div>
+<div class="section" id="appendix-a-parameters">
+<h2>1.6&nbsp;&nbsp;&nbsp;Appendix A.  Parameters<a class="headerlink" href="#appendix-a-parameters" title="Permalink to this headline">¶</a></h2>
+<p>This specification defines a small set of common parameters that may be generally useful for the contracting purposes.</p>
+<p><tt class="docutils literal"><span class="pre">AX</span> <span class="pre">Request</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>description: Used to convey the data that the requester requests.</li>
+<li>type URL: <a class="reference external" href="http://opneid.net/srv/cx/1.0#axreq">http://opneid.net/srv/cx/1.0#axreq</a></li>
+<li>value: Attribute Exchange 1.1 string in tag=value&amp;tag=value format as in X1.1.</li>
+<li>Conformance: MUST support.</li>
+</ul>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Price</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">paid</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">party</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>description: The price to be paid to execute this contract.</li>
+<li>type URL: <a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#price#currency where currency is replaced by the ISO currency code or &#8216;other&#8217;</li>
+<li>value: Decimal string when #currency is ISO code, and anyString when #currency is &#8216;other&#8217;</li>
+<li>Conformance: MUST support</li>
+</ul>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Maximum</span> <span class="pre">Liability</span> <span class="pre">assumed</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">party</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>description: The maximum liability assumed by the party  when there was a breach in the contract.</li>
+<li>type URL: <a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#damageslimit#currency where currency is replaced by the ISO currency code or &#8216;other&#8217;</li>
+<li>value: Decimal string when #currency is ISO code, and anyString when #currency is &#8216;other&#8217;</li>
+<li>Conformance: MUST support</li>
+</ul>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Contact</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>description: The address at which the party can be reached at.</li>
+<li>type URL: <a class="reference external" href="http://openid.net/srv/cx/1.0/#contact">http://openid.net/srv/cx/1.0/#contact</a></li>
+<li>value: xs:string</li>
+<li>Conformance: MUST support</li>
+</ul>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">Datetime</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>type URL: <a class="reference external" href="http://www.w3.orgg/TR/xmlschema-2/#datetime">http://www.w3.orgg/TR/xmlschema-2/#datetime</a></li>
+<li>value: The value defined as xs:dateTime in W3C XML Schema Datatypes specification, and MUST be expressed in UTC form, with no timme zone component (reprsented by the UTC &#8216;Z&#8217; timezone). It must not specify the gime instants that corresponds to leap seconds.</li>
+<li>Conformance: MUST support.</li>
+</ul>
+</blockquote>
+<p><tt class="docutils literal"><span class="pre">String</span></tt></p>
+<blockquote>
+<ul class="simple">
+<li>type URL: <a class="reference external" href="http://www.w3.orgg/TR/xmlschema-2/#string">http://www.w3.orgg/TR/xmlschema-2/#string</a></li>
+<li>value: UTF-8 string.</li>
+<li>Conformance: MUST support.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="appendix-b-examples">
+<h2>1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples<a class="headerlink" href="#appendix-b-examples" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="appendix-c-common-contract-constructs-used-in-cx">
+<span id="id1"></span><h2>1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX<a class="headerlink" href="#appendix-c-common-contract-constructs-used-in-cx" title="Permalink to this headline">¶</a></h2>
+<p>Followings are the list of common contract constructs.
+Each contract type should define some of the following
+as data type and utilize it in the template.</p>
+<p><tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Identifier</span></tt></p>
+<blockquote>
+Defined as /Contract/Id in the core.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Parties</span></tt></p>
+<blockquote>
+Stakeholders in a contract. Defined as /Contract/Party.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Individual</span> <span class="pre">Signatories</span></tt></p>
+<blockquote>
+The person who signes on behalf of one of the Party.
+Defined as /Contract/Party/ds:Signature/ds:KeyInfo.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Title</span> <span class="pre">or</span> <span class="pre">Capacity</span> <span class="pre">of</span> <span class="pre">Signatories</span></tt></p>
+<blockquote>
+Signers responsibility.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">Signature</span></tt></p>
+<blockquote>
+Date of Signature.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Contact</span> <span class="pre">Details</span> <span class="pre">(for</span> <span class="pre">notices)</span></tt></p>
+<blockquote>
+The address at which the parties can be contacted.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Actions,</span> <span class="pre">or</span> <span class="pre">Other</span> <span class="pre">Items</span>&nbsp; <span class="pre">to</span> <span class="pre">be</span> <span class="pre">delivered</span></tt></p>
+<blockquote>
+Description of goods, services.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Quantity</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">Delivered</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Price</span></tt></p>
+<blockquote>
+This should include denomination of currency [ex., USD$], description of non-monetary consideration, any formula or external reference for calculation</blockquote>
+<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span>&nbsp; <span class="pre">other</span> <span class="pre">performance</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Place</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span> <span class="pre">other</span> <span class="pre">performance</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Definitions</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Conditions</span></tt></p>
+<blockquote>
+Ex., performance contingent on certain events, payment contingent on standards of acceptance</blockquote>
+<p><tt class="docutils literal"><span class="pre">Warranties</span></tt></p>
+<blockquote>
+Ex., warranty of non-infringement, warranty of conformance to stated specifications, warranty of legal authority, warranty of insurance coverage</blockquote>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">to</span> <span class="pre">other</span> <span class="pre">contracts</span></tt></p>
+<blockquote>
+Ex., purchase order under a framework agreement</blockquote>
+<p><tt class="docutils literal"><span class="pre">Term</span> <span class="pre">of</span> <span class="pre">contract</span></tt></p>
+<blockquote>
+May include renewal provisions</blockquote>
+<p><tt class="docutils literal"><span class="pre">Termination</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Billing</span> <span class="pre">and</span> <span class="pre">payment</span></tt></p>
+<blockquote>
+Ex., net 30 days, discounts, late penalties, wire transfers</blockquote>
+<p><tt class="docutils literal"><span class="pre">Governing</span> <span class="pre">Law</span></tt></p>
+<blockquote>
+Ex., English law, Japanese law, law of California, German Civil Code</blockquote>
+<p><tt class="docutils literal"><span class="pre">Jurisdiction</span> <span class="pre">and</span> <span class="pre">forum</span></tt></p>
+<blockquote>
+Ex., courts of general jurisdiction located in New York City</blockquote>
+<p><tt class="docutils literal"><span class="pre">Waiver</span> <span class="pre">of</span> <span class="pre">Jury</span> <span class="pre">Trial</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Arbitration</span> <span class="pre">/</span> <span class="pre">alternative</span> <span class="pre">dispute</span> <span class="pre">?ゑｿｽresolution</span></tt></p>
+<blockquote>
+Ex., ICC binding arbitration clause, arbitration to be conducted in Geneva, Switzerland</blockquote>
+<p><tt class="docutils literal"><span class="pre">Merger</span> <span class="pre">clause/</span> <span class="pre">entire</span> <span class="pre">agreement</span></tt></p>
+<blockquote>
+Provision stating that this is the entire agreement between the parties and excluding claims based on statement in advertising or negotiations.</blockquote>
+<p><tt class="docutils literal"><span class="pre">Survival</span></tt></p>
+<blockquote>
+Clauses providing that certain terms, such as indemnification or confidentiality, survive expiration or termination of the contract</blockquote>
+<p><tt class="docutils literal"><span class="pre">Damages/Limitation</span> <span class="pre">of</span> <span class="pre">Liability</span></tt></p>
+<blockquote>
+Provisions on calculation of damages, liquidated damages, limitation or exclusion of certain kinds of damages</blockquote>
+<p><tt class="docutils literal"><span class="pre">Warranty</span> <span class="pre">disclaimers</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Indemnification</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Third-party</span> <span class="pre">beneficiary</span> <span class="pre">rights</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">of</span> <span class="pre">Parties</span></tt></p>
+<blockquote>
+Ex., provisions creating or disclaiming agency or employment relationship</blockquote>
+<p><tt class="docutils literal"><span class="pre">Confidentiality</span> <span class="pre">/</span> <span class="pre">Nondisclosure</span> <span class="pre">Publicity</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Proprietary</span> <span class="pre">Rights,</span> <span class="pre">Ownership</span> <span class="pre">and</span> <span class="pre">Licensing</span> <span class="pre">of</span> <span class="pre">Intellectual</span> <span class="pre">Property</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Assignment,</span> <span class="pre">Succession,</span> <span class="pre">Delegation</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Legal</span> <span class="pre">and</span> <span class="pre">Regulatory</span> <span class="pre">Compliance</span></tt></p>
+<blockquote>
+Ex., licensing obligations, export controls, data protection</blockquote>
+<p><tt class="docutils literal"><span class="pre">Notice</span> <span class="pre">Requirements</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Force</span> <span class="pre">Majeure</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Counterparts</span> <span class="pre">and</span> <span class="pre">Signatures</span></tt></p>
+<blockquote>
+Provisions allowing signatures at different times; validity of multiple copies or printouts</blockquote>
+<p><tt class="docutils literal"><span class="pre">Other</span> <span class="pre">Terms</span></tt></p>
+<p>Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.</p>
+</div>
+<div class="section" id="normative-references">
+<h2>1.9&nbsp;&nbsp;&nbsp;Normative References<a class="headerlink" href="#normative-references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>[OpenIDAuthentication2.0]   <a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0, 2007 (TXT, HTML).</li>
+<li>[RFC1421]   Linn, J., Privacy Enhancement for Internet Electronic Mail, RFC 1421.</li>
+<li>[RFC2045]   Freed, N., Borenstein , N., and N. Vaudreuil , Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies, RFC 1421.</li>
+<li>[RFC2119]   Bradner, B., Key words for use in RFCs to Indicate Requirement Levels, RFC 2119, 1997.</li>
+<li>[RFC3339]   Klyne, G. and C. Newman, Date and Time on the Internet: Timestamps, RFC 3339.</li>
+<li>[RFC3629]   Yergeau, F., UTF-8, a transformation format of ISO 10646, RFC 3629.</li>
+<li>[X.509]     X.509 : Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks, August 2005.</li>
+<li>[xmldisg-core] XML Signature Syntax and Processing (Second Edition)</li>
+<li>[XRIResolution2.0]  Reed, D. and G. Wachob, Ed., Extensible Resource Identifier (XRI) Resolution Version 2.0, April 2008.</li>
+<li>[Yadis]     Miller, J., Ed., Yadis Specification 1.0, 2005 (PDF, ODT).</li>
+</ul>
+</div>
+<div class="section" id="authors-addresses">
+<h2>1.10&nbsp;&nbsp;&nbsp;Authors&#8217; Addresses<a class="headerlink" href="#authors-addresses" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<p>Nat Sakimura
+Nomura Research Institute, Ltd.
+Marunouchi Kitaguchi Building, 1-6-5 Marunouchi
+Chiyoda-ku, Tokyo 100-0005
+Japan
+Email:      <a class="reference external" href="mailto:n-sakimura&#37;&#52;&#48;nri&#46;co&#46;jp">n-sakimura<span>&#64;</span>nri<span>&#46;</span>co<span>&#46;</span>jp</a>
+URI:    <a class="reference external" href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></p>
+<p>Masaki Nishitani
+Nomura Research Institute, Ltd.
+Marunouchi Kitaguchi Building, 1-6-5 Marunouchi
+Chiyoda-ku, Tokyo 100-0005
+Japan
+Email:      <a class="reference external" href="mailto:m-nishitani&#37;&#52;&#48;nri&#46;co&#46;jp">m-nishitani<span>&#64;</span>nri<span>&#46;</span>co<span>&#46;</span>jp</a>
+URI:    <a class="reference external" href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></p>
+<p>Hideki Nara
+TACT Communications,Inc
+Cross Side Building , 3-52-1 Sendagaya
+Shibuya-ku, Tokyo 151-0051
+Japan
+Email:      <a class="reference external" href="mailto:hdknr&#37;&#52;&#48;ic-tact&#46;co&#46;jp">hdknr<span>&#64;</span>ic-tact<span>&#46;</span>co<span>&#46;</span>jp</a>
+URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www.ic-tact.co.jp</a></p>
+</blockquote>
+</div>
+<div class="section" id="document-history">
+<h2>1.11&nbsp;&nbsp;&nbsp;Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>2009-08-10T06:48Z Initial Private Release</li>
+<li>2009-08-11T01:48Z Fixed Security Consideration Text. Added Discussion point on invalidation interface.</li>
+<li>2009-08-12T01:48Z Fixed typo &#8220;ax&#8221; to &#8220;cx&#8221; in 1.1. Removed &#8220;Thus&#8221; from 3.3. Fixed 4.4 paragraph. Date Update.</li>
+<li>2009-08-12T15:24Z Added some comments on direct communication.</li>
+<li>2009-11-24T06:48Z Revised and written in reStructuredText for a Sphinx document project</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6</a><ul>
+<li><a class="reference external" href="#terminology">1.1&nbsp;&nbsp;&nbsp;Terminology</a><ul>
+<li><a class="reference external" href="#definitions-and-conventions">1.1.1&nbsp;&nbsp;&nbsp;Definitions and Conventions</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#overview">1.2&nbsp;&nbsp;&nbsp;Overview</a></li>
+<li><a class="reference external" href="#contract-document">1.3&nbsp;&nbsp;&nbsp;Contract Document</a><ul>
+<li><a class="reference external" href="#contract-template">1.3.1&nbsp;&nbsp;&nbsp;Contract Template</a><ul>
+<li><a class="reference external" href="#human-readable-text">1.3.1.1&nbsp;&nbsp;&nbsp;Human Readable Text</a></li>
+<li><a class="reference external" href="#templating">1.3.1.2&nbsp;&nbsp;&nbsp;Templating</a></li>
+<li><a class="reference external" href="#template-url-and-digest">1.3.1.3&nbsp;&nbsp;&nbsp;Template URL and Digest</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#contract-document-constructs">1.3.2&nbsp;&nbsp;&nbsp;Contract Document Constructs</a><ul>
+<li><a class="reference external" href="#common-contract-constructs">1.3.2.1&nbsp;&nbsp;&nbsp;Common Contract Constructs</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#contract-document-structure">1.3.3&nbsp;&nbsp;&nbsp;Contract Document Structure</a><ul>
+<li><a class="reference external" href="#original-document-and-counter-signature">1.3.3.1&nbsp;&nbsp;&nbsp;Original Document and  Counter Signature</a></li>
+<li><a class="reference external" href="#contract-xml-basic-structure">1.3.3.2&nbsp;&nbsp;&nbsp;Contract XML Basic Structure</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#proposal-and-agreement-validation">1.3.4&nbsp;&nbsp;&nbsp;Proposal and Agreement Validation</a></li>
+<li><a class="reference external" href="#storage-and-timestamping">1.3.5&nbsp;&nbsp;&nbsp;Storage and Timestamping</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#protocal">1.4&nbsp;&nbsp;&nbsp;Protocal</a><ul>
+<li><a class="reference external" href="#discovery">1.4.1&nbsp;&nbsp;&nbsp;Discovery</a></li>
+<li><a class="reference external" href="#sending-proposal">1.4.2&nbsp;&nbsp;&nbsp;Sending Proposal</a></li>
+<li><a class="reference external" href="#writing-aggreement">1.4.3&nbsp;&nbsp;&nbsp;Writing Aggreement</a></li>
+<li><a class="reference external" href="#receiving-contract">1.4.4&nbsp;&nbsp;&nbsp;Receiving Contract</a></li>
+<li><a class="reference external" href="#encrypting-the-payload">1.4.5&nbsp;&nbsp;&nbsp;Encrypting the payload</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#security-considerations">1.5&nbsp;&nbsp;&nbsp;Security Considerations</a><ul>
+<li><a class="reference external" href="#non-repudiation">1.5.1&nbsp;&nbsp;&nbsp;Non-repudiation</a></li>
+<li><a class="reference external" href="#man-in-the-middle">1.5.2&nbsp;&nbsp;&nbsp;Man-in-the-middle</a></li>
+<li><a class="reference external" href="#eavesdropping">1.5.3&nbsp;&nbsp;&nbsp;Eavesdropping</a></li>
+<li><a class="reference external" href="#malicious-providers">1.5.4&nbsp;&nbsp;&nbsp;Malicious Providers</a></li>
+<li><a class="reference external" href="#phishing-attack">1.5.5&nbsp;&nbsp;&nbsp;Phishing Attack</a></li>
+<li><a class="reference external" href="#private-key-compromise">1.5.6&nbsp;&nbsp;&nbsp;Private key compromise</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#appendix-a-parameters">1.6&nbsp;&nbsp;&nbsp;Appendix A.  Parameters</a></li>
+<li><a class="reference external" href="#appendix-b-examples">1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples</a></li>
+<li><a class="reference external" href="#appendix-c-common-contract-constructs-used-in-cx">1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX</a></li>
+<li><a class="reference external" href="#normative-references">1.9&nbsp;&nbsp;&nbsp;Normative References</a></li>
+<li><a class="reference external" href="#authors-addresses">1.10&nbsp;&nbsp;&nbsp;Authors&#8217; Addresses</a></li>
+<li><a class="reference external" href="#document-history">1.11&nbsp;&nbsp;&nbsp;Document History</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="cx_protocol.html"
+                                  title="previous chapter">CX Protocol</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="pyxmlsec.html"
+                                  title="next chapter">PyXMLSec</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/openid_cx_spec.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pyxmlsec.html" title="PyXMLSec"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cx_protocol.html" title="CX Protocol"
+             >previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

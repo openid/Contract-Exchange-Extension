@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CX OpenID Binding Documentation &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="" />
+    <link rel="next" title="Contract eXchange" href="cx.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cx.html" title="Contract eXchange"
+             accesskey="N">next</a> |</li>
+        <li><a href="">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cx-openid-binding-documentation">
+<h1>CX OpenID Binding  Documentation<a class="headerlink" href="#cx-openid-binding-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="cx.html">Contract eXchange</a><ul>
+<li class="toctree-l2"><a class="reference external" href="cx.html#cx-contract">CX Contract</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx.html#cx-service">CX Service</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx.html#cx-template">CX Template</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx.html#cx-protocal">CX Protocal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="cx_service.html">CX Service and CX Template</a><ul>
+<li class="toctree-l2"><a class="reference external" href="cx_service.html#cx-serivice">CX Serivice</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_service.html#what-is-cx-template">What is CX Template ?</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_service.html#cx-template-format">CX Template Format</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_service.html#common-contract-constructs-based-on-typical-contract-terms">Common Contract Constructs Based on Typical Contract Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="cx_contract.html">CX Contract</a><ul>
+<li class="toctree-l2"><a class="reference external" href="cx_contract.html#non-repudiative-document">Non-Repudiative Document</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_contract.html#contract-xml-basic-structure">Contract XML Basic  Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="cx_protocol.html">CX Protocol</a><ul>
+<li class="toctree-l2"><a class="reference external" href="cx_protocol.html#discovering-openid-cx-service">Discovering OpenID CX Service</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_protocol.html#exchange-documents-by-openid-ax">Exchange documents by OpenID AX</a></li>
+<li class="toctree-l2"><a class="reference external" href="cx_protocol.html#openid-authentication-artifact-bindings">OpenID Authentication : Artifact Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="openid_cx_spec.html">1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6</a><ul>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#terminology">1.1&nbsp;&nbsp;&nbsp;Terminology</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#overview">1.2&nbsp;&nbsp;&nbsp;Overview</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#contract-document">1.3&nbsp;&nbsp;&nbsp;Contract Document</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#protocal">1.4&nbsp;&nbsp;&nbsp;Protocal</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#security-considerations">1.5&nbsp;&nbsp;&nbsp;Security Considerations</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#appendix-a-parameters">1.6&nbsp;&nbsp;&nbsp;Appendix A.  Parameters</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#appendix-b-examples">1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#appendix-c-common-contract-constructs-used-in-cx">1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#normative-references">1.9&nbsp;&nbsp;&nbsp;Normative References</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#authors-addresses">1.10&nbsp;&nbsp;&nbsp;Authors&#8217; Addresses</a></li>
+<li class="toctree-l2"><a class="reference external" href="openid_cx_spec.html#document-history">1.11&nbsp;&nbsp;&nbsp;Document History</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="pyxmlsec.html">PyXMLSec</a><ul>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#about-pyxmlsec">About PyXMLSec</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#importing-and-initializing-libxml2">Importing and initializing  libxml2</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#importing-and-initializing-pyxmlsec">Importing and initializing PyXMLSec</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#loading-a-x-509-private-key">Loading a X.509 private key</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#signing-a-xml">Signing a XML</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#providing-a-digital-signature-context">Providing a Digital Signature Context</a></li>
+<li class="toctree-l2"><a class="reference external" href="pyxmlsec.html#verifying-a-signed-xml">Verifying a Signed XML</a></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference external" href="modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference external" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">CX OpenID Binding  Documentation</a><ul>
+<li><a class="reference external" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Next topic</h4>
+            <p class="topless"><a href="cx.html"
+                                  title="next chapter">Contract eXchange</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/index.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cx.html" title="Contract eXchange"
+             >next</a> |</li>
+        <li><a href="">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

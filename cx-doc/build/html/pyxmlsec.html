@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyXMLSec &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="index.html" />
+    <link rel="prev" title="1   Contract Exchange Extension 1.0 - Draft 1.6" href="openid_cx_spec.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="openid_cx_spec.html" title="1   Contract Exchange Extension 1.0 - Draft 1.6"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pyxmlsec">
+<h1>PyXMLSec<a class="headerlink" href="#pyxmlsec" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-pyxmlsec">
+<h2>About PyXMLSec<a class="headerlink" href="#about-pyxmlsec" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://pyxmlsec.labs.libre-entreprise.org/">PyXMLSec</a> is a Python binding for XML Security Library(<a class="reference external" href="http://www.aleksey.com/xmlsec/">xmlsec</a>). xmlsec itself depends on <a class="reference external" href="http://xmlsoft.org/">LibXML2</a>.</p>
+</div>
+<div class="section" id="importing-and-initializing-libxml2">
+<h2>Importing and initializing  libxml2<a class="headerlink" href="#importing-and-initializing-libxml2" title="Permalink to this headline">¶</a></h2>
+<p>libxml2 can be imported like following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">libxml2</span>
+</pre></div>
+</div>
+<p>It&#8217;s better to initialize the library:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">libxml2</span><span class="o">.</span><span class="n">initParser</span><span class="p">()</span>
+<span class="n">libxml2</span><span class="o">.</span><span class="n">substituteEntitiesDefault</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="importing-and-initializing-pyxmlsec">
+<h2>Importing and initializing PyXMLSec<a class="headerlink" href="#importing-and-initializing-pyxmlsec" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://pyxmlsec.labs.libre-entreprise.org/">PyXMLSec</a> can be imported like following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">xmlsec</span>
+</pre></div>
+</div>
+<p>It&#8217;s better to initialize the library:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoShutdown</span><span class="p">()</span>
+<span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppShutdown</span><span class="p">()</span>
+<span class="n">xmlsec</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-x-509-private-key">
+<h2>Loading a X.509 private key<a class="headerlink" href="#loading-a-x-509-private-key" title="Permalink to this headline">¶</a></h2>
+<p>To load a PEM formatted  X.509 private key file, this function works:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_load_private_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pri_key_file</span><span class="p">):</span>
+    <span class="n">ret</span><span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppKeyLoad</span><span class="p">(</span><span class="n">pri_key_file</span> <span class="p">,</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataFormatPem</span><span class="p">,</span>
+                              <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="n">pri_key_file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="signing-a-xml">
+<span id="id2"></span><h2>Signing a XML<a class="headerlink" href="#signing-a-xml" title="Permalink to this headline">¶</a></h2>
+<p>To sign a XML and produce Enveloped Signature XML document, following function works:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_sign_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">private_key</span><span class="p">,</span><span class="n">certificate</span><span class="p">,</span><span class="n">src_xml</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Sign a XML</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c"># XML document object from a given string</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">libxml2</span><span class="o">.</span><span class="n">parseDoc</span><span class="p">(</span><span class="n">src_xml</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;UTF-8&#39;</span><span class="p">))</span>
+
+    <span class="c"># create a signature node(Encrpyted Signature mode) : &lt;Signature&gt;</span>
+    <span class="n">signNode</span> <span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">TmplSignature</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">transformExclC14NId</span><span class="p">(),</span>
+                                <span class="n">xmlsec</span><span class="o">.</span><span class="n">transformRsaSha1Id</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">getRootElement</span><span class="p">()</span><span class="o">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">signNode</span><span class="p">)</span>
+
+    <span class="c"># create a reference : &lt;Reference&gt;</span>
+    <span class="n">refNode</span> <span class="o">=</span> <span class="n">signNode</span><span class="o">.</span><span class="n">addReference</span><span class="p">(</span><span class="n">xmlsec</span><span class="o">.</span><span class="n">transformSha1Id</span><span class="p">(),</span>
+                                <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">refNode</span><span class="o">.</span><span class="n">addTransform</span><span class="p">(</span><span class="n">xmlsec</span><span class="o">.</span><span class="n">transformEnvelopedId</span><span class="p">())</span>
+
+    <span class="c"># X.509 node &lt;KeyInfo&gt;</span>
+    <span class="n">keyInfoNode</span> <span class="o">=</span> <span class="n">signNode</span><span class="o">.</span><span class="n">ensureKeyInfo</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">keyInfoNode</span><span class="o">.</span><span class="n">addX509Data</span><span class="p">()</span>
+
+    <span class="c"># Load a private key</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_private_key</span><span class="p">(</span><span class="n">private_key</span><span class="p">)</span>
+
+    <span class="c"># Key and the Certificate loading</span>
+    <span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppKeyCertLoad</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">certificate</span><span class="p">,</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataFormatPem</span><span class="p">)</span>
+
+    <span class="c"># Sign the XML : &lt;SignatureValue&gt; and others...</span>
+    <span class="n">dsig_ctx</span> <span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigCtx</span><span class="p">()</span>
+    <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">signKey</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">signNode</span><span class="p">)</span>
+    <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">doc</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="providing-a-digital-signature-context">
+<h2>Providing a Digital Signature Context<a class="headerlink" href="#providing-a-digital-signature-context" title="Permalink to this headline">¶</a></h2>
+<p>A digital signature context is provided for a given certificate list and used to verify a signed XML.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_create_dsig_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">certs</span><span class="p">):</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeysMngr</span><span class="p">()</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+
+    <span class="k">assert</span><span class="p">(</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppDefaultKeysMngrInit</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">certs</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;loading &quot;</span><span class="p">,</span><span class="n">c</span> <span class="p">,</span> <span class="s">&quot;as a certificate to Key Manager...&quot;</span>
+        <span class="k">assert</span><span class="p">(</span> <span class="n">manager</span><span class="o">.</span><span class="n">certLoad</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataFormatPem</span><span class="p">,</span>
+                     <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataTypeTrusted</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigCtx</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verifying-a-signed-xml">
+<h2>Verifying a Signed XML<a class="headerlink" href="#verifying-a-signed-xml" title="Permalink to this headline">¶</a></h2>
+<p>To verify a signed XML , following function works:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_verify_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">signed_xml_text</span><span class="p">,</span><span class="n">tmp_certfile</span><span class="o">=</span><span class="s">&#39;/tmp/temp_cert.pem&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Verify a signed XML</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c"># Load XML</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">libxml2</span><span class="o">.</span><span class="n">parseDoc</span><span class="p">(</span><span class="n">signed_xml_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;UTF-8&#39;</span><span class="p">))</span>
+
+    <span class="c"># get &lt;Signature/&gt; node.</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">findNode</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">getRootElement</span><span class="p">(),</span>
+                       <span class="n">xmlsec</span><span class="o">.</span><span class="n">NodeSignature</span><span class="p">,</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigNs</span><span class="p">)</span>
+
+    <span class="c"># create a temporal PEM file exported from &lt;X509Certificate/&gt;.</span>
+    <span class="nb">open</span><span class="p">(</span><span class="n">tmp_certfile</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&#39;-----BEGIN CERTIFICATE-----</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">-----END CERTIFICATE-----</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span>  <span class="p">(</span>
+        <span class="n">xmlsec</span><span class="o">.</span><span class="n">findNode</span><span class="p">(</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">getRootElement</span><span class="p">()</span> <span class="p">,</span> <span class="c">#libxml2.parseDoc(self.signed_xml.encode(&#39;UTF-8&#39;)).getRootElement(),</span>
+            <span class="n">xmlsec</span><span class="o">.</span><span class="n">NodeX509Certificate</span><span class="p">,</span><span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigNs</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        <span class="p">))</span>
+
+    <span class="c"># Create a Digital Signature Context</span>
+    <span class="n">dsig_ctx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_dsig_context</span><span class="p">([</span><span class="n">tmp_certfile</span><span class="p">])</span>
+    <span class="k">assert</span><span class="p">(</span> <span class="n">dsig_ctx</span> <span class="p">)</span>
+
+    <span class="c"># Verify the signature</span>
+    <span class="k">assert</span><span class="p">(</span> <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span> <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigStatusSucceeded</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">PyXMLSec</a><ul>
+<li><a class="reference external" href="#about-pyxmlsec">About PyXMLSec</a></li>
+<li><a class="reference external" href="#importing-and-initializing-libxml2">Importing and initializing  libxml2</a></li>
+<li><a class="reference external" href="#importing-and-initializing-pyxmlsec">Importing and initializing PyXMLSec</a></li>
+<li><a class="reference external" href="#loading-a-x-509-private-key">Loading a X.509 private key</a></li>
+<li><a class="reference external" href="#signing-a-xml">Signing a XML</a></li>
+<li><a class="reference external" href="#providing-a-digital-signature-context">Providing a Digital Signature Context</a></li>
+<li><a class="reference external" href="#verifying-a-signed-xml">Verifying a Signed XML</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="openid_cx_spec.html"
+                                  title="previous chapter">1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/pyxmlsec.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="openid_cx_spec.html" title="1   Contract Exchange Extension 1.0 - Draft 1.6"
+             >previous</a> |</li>
+        <li><a href="index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
