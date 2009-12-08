@@ -93,7 +93,14 @@ A Contract Template MUST be formatted in a human readable text because it MUST b
 Templating 
 ~~~~~~~~~~
 
-Any ``{{param}}`` string, where ``param`` is the name of the parameter, in a Contract Template can be replaced by the text of correspoinding XML node /Contract/Service/param specifiend in CX Contract document when the service provider display the content of the contract to the End User before he/she authorizes the contract.
+A Template variable is in the form ``{{parameter_name}}``. 
+Any variable should be replaced by the corresponding value 
+defined in the CX contract document, where 
+@id is equal to the ``parameter_name``. 
+
+When the provider shows the contract text to the end user 
+to obtain the signing authorization, 
+the provider should substitute the values into the variables.
 
 
 Template URL and Digest
@@ -160,16 +167,16 @@ The basic structure of Contract XML is defined as followings:
                 -->
              </ds:Signature>
              <obligations>
-                 <param type="paramter type URL" name="parameter name">value</param>
-                 <param type="paramter type URL" name="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
              </obligations>
         </Party>
         <Party>
              <Id><!-- URI/XRI for the composing party --></Id>
              <Rel>Role of this party in this contract</Rel>
              <obligations>
-                 <param type="paramter type URL" name="parameter name">value</param>
-                 <param type="paramter type URL" name="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
+                 <param type="paramter type URL" id="parameter name">value</param>
              </obligations>
         </Party>
         <Service>
@@ -245,10 +252,10 @@ The basic structure of Contract XML is defined as followings:
  Notably, ``http://openid.net/srv/cx/1.0/axreq`` MUST be supported 
  by all implementations. 
 
-``/Contract/Party/Obligations/param/@name``
+``/Contract/Party/Obligations/param/@id``
 
  1. Shortcut name of this parameter. 
- {{name}}s in CX Template CAN be replaced by the value of this element.
+ {{parameter_name}}s in CX Template CAN be replaced by the value of this element.
 
 ``/Contract/Service``
 
