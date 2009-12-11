@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Contract id="43f3b0e0e66611dea8bc0800272c981e">
+<Contract id="742955dce66911de9c140800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
-    <Datetime>2009-12-12T00:02:56+9:00</Datetime>
+    <Datetime>2009-12-12T00:25:46+9:00</Datetime>
     <Party>
         <URL>http://netshop.com</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
@@ -9,7 +9,38 @@
             <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
             <param type="http://cxop.net/cx/payment/title" id="title">Python Books</param>
         </obligations>
-    </Party>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+<SignedInfo>
+<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<Reference>
+<Transforms>
+<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</Transforms>
+<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<DigestValue>SpZS9PIH9TpbNqiWZZ2kWRisR9s=</DigestValue>
+</Reference>
+</SignedInfo>
+<SignatureValue>ZapZ25lcDQG2a8Tsct+86tjnz1wS0cYUSbWhQsPZXKsvwv6ModkhMPni1s5Q2keQ
+HZkPVMiswmaKqgu6w0DjAKWDi/S3g4AxPqK1DKkKRRdpjzGfAVtgJ4vtXF7yExs2
+q9dkHDYZ+bgln96zZ/IspXoQ29MrB9Ih/8tsYQkc/mw=</SignatureValue>
+<KeyInfo>
+<X509Data>
+<X509Certificate>MIICEzCCAXwCCQDMqL4WuBeJCTANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxMTE1MjU0NloXDTEwMDExMDE1MjU0
+NlowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
+AQEFAAOBjQAwgYkCgYEA/W47rVyZqYMIPYgAmvzC7rEPKmQj7a6XiLgJqgsTAsNH
+Z/XeyaU616Q4a1cM0Dvl5IESWw2aDREh69d/G9wWePb9BWNvdO38M3k+rYeLjnlM
+oQtx1roFZTZsm1JpRp1+m7RTcMYEgvLdf+hpdmAhIUEi3APeXREVKYelexRk6qUC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCA732RfgV64WGPzBwBDKX74l4aX4UIIpcF
+HWWGPhIPiH4RcZ86icVNsaY+XNPiJdY+09JVtJG0Z3HtPg1dvWrWV8Y077Wgd9NM
+Wg1UsX/DPs6weYx2xfuXR3EUbCuqdDIqyZV0bju4jqt6ihqlrHLS4XrYVBr+yWU6
+HsQBjA/njA==</X509Certificate>
+</X509Data>
+</KeyInfo>
+</Signature></Party>
     <Party>
         <Id>=hdknr</Id>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
@@ -43,35 +74,4 @@ VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
 dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
 CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 </Template>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-<SignedInfo>
-<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
-<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-<Reference>
-<Transforms>
-<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-</Transforms>
-<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>074YgFqCwVJ82Kt3yqisAaZnDxA=</DigestValue>
-</Reference>
-</SignedInfo>
-<SignatureValue>CAwfE/SBGT+WDAea8rD1Smvlto5yUSItJQBF5I7KUjKkfZWd1uG1iHPgwlcEo2dH
-fFPxrLs5lgPIkkHERXj2EqgJm6w3hd1ywU8hYLXAZdnEg8WqUu6mKFYbW5ZmHatI
-vnzRROUpDF6WtpbYHgmzmA7IOF3LLcogZyDVnnjH5xw=</SignatureValue>
-<KeyInfo>
-<X509Data>
-<X509Certificate>MIICEzCCAXwCCQDLa8V3U7iJ4DANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
-ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
-BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxMTE1MDI1N1oXDTEwMDExMDE1MDI1
-N1owTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
-cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
-AQEFAAOBjQAwgYkCgYEA5IDM4S37Kr2B8Ri6MBIigCffRlawcrrLVLXuXboIRROT
-j+GmY6axb+gO7pUWdQAt2rvTQlyH4CMTnT9cOm6hvmVZt1GzGRLhKiHwBvIiLjmg
-ej1KDimS0Pmq9RY7pDgoovNcD5NOfKzOLEZ0lGl9b+CLO+zOHbqnb6Z4sxWxb40C
-AwEAATANBgkqhkiG9w0BAQUFAAOBgQDEbVrTaDBCXibXZMvjd90t+pYlSnNNKmji
-+ZHeQObYxFgGtIV1Yki9ZJfRP8wfYHX90qjv678pJQtHwlDoyOBnSGzqMTJgCF/v
-lb+PbiU0OFEX5sc/Wv79SQozqPTRsJrOnixkus2fCtQDKr255B0NestFttDN/wXG
-KL0Db5lKBQ==</X509Certificate>
-</X509Data>
-</KeyInfo>
-</Signature></Contract>
+</Contract>

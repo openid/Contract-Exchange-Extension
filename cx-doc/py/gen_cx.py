@@ -45,7 +45,7 @@ from myxmlsec import XmlSec
 
 x=XmlSec()
 rp=rsa.generate('netshop.com')
-doc=x.sign_xml( rp.prikey,rp.cert , PROPOSAL)
+doc=x.sign_xml( rp.prikey,rp.cert , PROPOSAL, xpath='//Contract/Party')
 
 doc.saveFile('../xml/sample_proposal.xml')
 
@@ -69,6 +69,6 @@ CONTRACT=u'''<?xml version="1.0" encoding="UTF-8" ?>
 
 x=XmlSec()
 op=rsa.generate('cxop.net')
-doc=x.sign_xml( op.prikey,op.cert , CONTRACT)
+doc=x.sign_xml( op.prikey,op.cert , CONTRACT,xpath='//Contract/Party')
 
 doc.saveFile('../xml/sample_contract.xml')

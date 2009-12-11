@@ -30,7 +30,7 @@ class XmlSec(object):
         ret.setName(pri_key_file)
         return ret
 
-    def sign_xml(self,private_key,certificate,src_xml,at_child=False):
+    def sign_xml(self,private_key,certificate,src_xml,xpath="",at_child=False):
         '''
         Sign a XML 
         '''
@@ -43,7 +43,12 @@ class XmlSec(object):
                                     xmlsec.transformRsaSha1Id(), None)
 
 
-        signing_node = doc.getRootElement().firstElementChild()  if at_child else doc.getRootElement()
+        if len(xpath)>0:
+            s=doc.xpathEval( xpath )
+            signing_node = s[0]
+        else:
+            signing_node = doc.getRootElement().firstElementChild()  if at_child else doc.getRootElement()
+
         signing_node.addChild(signNode)
 
         # create a reference : <Reference>
