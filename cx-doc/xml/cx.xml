@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Contract>
+    <Id>
+    </Id>
+    <Type>
+    </Type>
+    <Datetime>
+    </Datetime>
+    <Party>
+        <Id>
+        </Id>
+        <Rel>
+        </Rel>
+        <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        </Signature>
+        <obligations>
+            <param type="" id="">value</param>
+            <param type="" id="">value</param>
+        </obligations>
+    </Party>
+    <Party>
+        <Id>
+        </Id>
+        <Rel>
+        </Rel>
+        <obligations>
+            <param type="" id="">value</param>
+            <param type="" id="">value</param>
+        </obligations>
+    </Party>
+    <Service>
+        <Type>
+        </Type>
+        <URL>
+        </URL>
+    </Service>
+    <TemplateURL>
+    </TemplateURL>
+    <Template>
+    </Template>
+    <Original>
+    </Original>
+</Contract>

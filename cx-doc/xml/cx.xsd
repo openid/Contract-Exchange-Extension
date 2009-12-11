@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig.xsd"/>
+  <xs:element name="Contract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Id"/>
+        <xs:element ref="Type"/>
+        <xs:element ref="Datetime"/>
+        <xs:element maxOccurs="unbounded" ref="Party"/>
+        <xs:element ref="Service"/>
+        <xs:element ref="TemplateURL"/>
+        <xs:element ref="Template"/>
+        <xs:element ref="Original"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Datetime">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Party">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Id"/>
+        <xs:element ref="Rel"/>
+        <xs:element minOccurs="0" ref="xmldsig:Signature"/>
+        <xs:element ref="obligations"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rel">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="obligations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="param"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="param">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attribute name="id" use="required"/>
+          <xs:attribute name="type" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Service">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Type"/>
+        <xs:element ref="URL"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="URL">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="TemplateURL">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Template">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Original">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Id">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Type">
+    <xs:complexType/>
+  </xs:element>
+</xs:schema>
