@@ -1,0 +1,8 @@
+*.pyc
+dist
+/build/doctrees/
+.svn
+*.com
+*.deb
+*.net
+
