@@ -4,7 +4,6 @@
   <xs:element name="Contract">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Id"/>
         <xs:element ref="Type"/>
         <xs:element ref="Datetime"/>
         <xs:element maxOccurs="unbounded" ref="Party"/>
@@ -13,6 +12,7 @@
         <xs:element ref="Template"/>
         <xs:element ref="Original"/>
       </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="Datetime">
@@ -21,7 +21,7 @@
   <xs:element name="Party">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Id"/>
+        <xs:element ref="URL"/>
         <xs:element ref="Rel"/>
         <xs:element minOccurs="0" ref="xmldsig:Signature"/>
         <xs:element ref="obligations"/>
@@ -56,9 +56,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="URL">
-    <xs:complexType/>
-  </xs:element>
   <xs:element name="TemplateURL">
     <xs:complexType/>
   </xs:element>
@@ -68,10 +65,10 @@
   <xs:element name="Original">
     <xs:complexType/>
   </xs:element>
-  <xs:element name="Id">
+  <xs:element name="Type">
     <xs:complexType/>
   </xs:element>
-  <xs:element name="Type">
+  <xs:element name="URL">
     <xs:complexType/>
   </xs:element>
 </xs:schema>

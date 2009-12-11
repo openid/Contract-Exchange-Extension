@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Contract>
-    <Id>
-    </Id>
+<Contract id="unique_identifider">
     <Type>
     </Type>
     <Datetime>
     </Datetime>
     <Party>
-        <Id>
-        </Id>
+        <URL></URL>
         <Rel>
         </Rel>
         <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
@@ -19,8 +16,7 @@
         </obligations>
     </Party>
     <Party>
-        <Id>
-        </Id>
+        <URL></URL>
         <Rel>
         </Rel>
         <obligations>
