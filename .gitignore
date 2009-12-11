@@ -1,6 +1,6 @@
 *.pyc
 dist
-/build/doctrees/
+doctrees
 .svn
 *.com
 *.deb
