@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Contract>
-    <Id>52a012cae65f11de9c480800272c981e</Id>
+<Contract id="43f3b0e0e66611dea8bc0800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
-    <Datetime>2009-12-11T23:13:15+9:00</Datetime>
+    <Datetime>2009-12-12T00:02:56+9:00</Datetime>
     <Party>
-        <Id>http://netshop.com</Id>
+        <URL>http://netshop.com</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations>
             <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
@@ -53,26 +52,26 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
 </Transforms>
 <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>XM8LQdRFoJ/WmjF+8AW0slguJ3w=</DigestValue>
+<DigestValue>074YgFqCwVJ82Kt3yqisAaZnDxA=</DigestValue>
 </Reference>
 </SignedInfo>
-<SignatureValue>qfKL0TXVBSG8gSG1pCKYF9kQgVoao4NbLja2yo1WkHyRu7lZ86xA5coNSZcdaRd5
-qiG7F/IcYIIKhcP9e3C+3BB0IYUhX4o9lxEF5rIuarGPoouIsB1qG31b1tPkSDFT
-FJ4WEQUznmC3opnpldnOAibjSaWUzcmzXwArsRLm/J8=</SignatureValue>
+<SignatureValue>CAwfE/SBGT+WDAea8rD1Smvlto5yUSItJQBF5I7KUjKkfZWd1uG1iHPgwlcEo2dH
+fFPxrLs5lgPIkkHERXj2EqgJm6w3hd1ywU8hYLXAZdnEg8WqUu6mKFYbW5ZmHatI
+vnzRROUpDF6WtpbYHgmzmA7IOF3LLcogZyDVnnjH5xw=</SignatureValue>
 <KeyInfo>
 <X509Data>
-<X509Certificate>MIICEzCCAXwCCQDwrogDLFw5RjANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+<X509Certificate>MIICEzCCAXwCCQDLa8V3U7iJ4DANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
 ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
-BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxMTE0MTMxNVoXDTEwMDExMDE0MTMx
-NVowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxMTE1MDI1N1oXDTEwMDExMDE1MDI1
+N1owTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
 cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
-AQEFAAOBjQAwgYkCgYEAuhobHfD8e0PZNjic0+1EmJu/u/usC9TaCcXy6y9Pcy6Y
-8UKHED+k3nS2XXxQVP1Lg8peqPmtSiT0eHZVlEtz/Cjx+m6palvqwq6COIWX0SFs
-sHNM3PepUaeZOSb5wBMsFQA4aKk59sOG66TlGOOuE9cv7PRxWLpKAFaMAVXBZM0C
-AwEAATANBgkqhkiG9w0BAQUFAAOBgQBaCvj15/ZrCAeL1gMdP43d09lufYq6f4xZ
-UFk4hTDTdiyQhTeGcik+oyf2Qd/JYPAYLy5Bs1NWUhQYVNeKVH8XdWJkEQ5QyUer
-FbxjWhoZNm2OcADSEqnW0iJ4LKmRv3sPbZiXfUxNAj4g197q5sO41GsKhqNVihO4
-KWxxDkeW3Q==</X509Certificate>
+AQEFAAOBjQAwgYkCgYEA5IDM4S37Kr2B8Ri6MBIigCffRlawcrrLVLXuXboIRROT
+j+GmY6axb+gO7pUWdQAt2rvTQlyH4CMTnT9cOm6hvmVZt1GzGRLhKiHwBvIiLjmg
+ej1KDimS0Pmq9RY7pDgoovNcD5NOfKzOLEZ0lGl9b+CLO+zOHbqnb6Z4sxWxb40C
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQDEbVrTaDBCXibXZMvjd90t+pYlSnNNKmji
++ZHeQObYxFgGtIV1Yki9ZJfRP8wfYHX90qjv678pJQtHwlDoyOBnSGzqMTJgCF/v
+lb+PbiU0OFEX5sc/Wv79SQozqPTRsJrOnixkus2fCtQDKr255B0NestFttDN/wXG
+KL0Db5lKBQ==</X509Certificate>
 </X509Data>
 </KeyInfo>
 </Signature></Contract>
