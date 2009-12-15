@@ -278,8 +278,8 @@ Here are common items that must or may be included in a contract:
 
 Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.
 
-CX Contract Templdate Sample
-============================
+CX Contract Template Sample
+===========================
 
 .. code-block:: rst
 
