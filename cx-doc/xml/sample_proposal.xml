@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Contract id="742955dce66911de9c140800272c981e">
+<Contract id="e4bf53a8e97211de93e00800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
-    <Datetime>2009-12-12T00:25:46+9:00</Datetime>
+    <Datetime>2009-12-15T21:10:54+9:00</Datetime>
     <Party>
         <URL>http://netshop.com</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
@@ -18,31 +18,31 @@
 <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
 </Transforms>
 <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>SpZS9PIH9TpbNqiWZZ2kWRisR9s=</DigestValue>
+<DigestValue>vSS75vnUZ/OIAkkEGr4qUjr9O2c=</DigestValue>
 </Reference>
 </SignedInfo>
-<SignatureValue>ZapZ25lcDQG2a8Tsct+86tjnz1wS0cYUSbWhQsPZXKsvwv6ModkhMPni1s5Q2keQ
-HZkPVMiswmaKqgu6w0DjAKWDi/S3g4AxPqK1DKkKRRdpjzGfAVtgJ4vtXF7yExs2
-q9dkHDYZ+bgln96zZ/IspXoQ29MrB9Ih/8tsYQkc/mw=</SignatureValue>
+<SignatureValue>gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
+V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
+oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=</SignatureValue>
 <KeyInfo>
 <X509Data>
-<X509Certificate>MIICEzCCAXwCCQDMqL4WuBeJCTANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+<X509Certificate>MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
 ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
-BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxMTE1MjU0NloXDTEwMDExMDE1MjU0
-NlowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
+NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
 cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
-AQEFAAOBjQAwgYkCgYEA/W47rVyZqYMIPYgAmvzC7rEPKmQj7a6XiLgJqgsTAsNH
-Z/XeyaU616Q4a1cM0Dvl5IESWw2aDREh69d/G9wWePb9BWNvdO38M3k+rYeLjnlM
-oQtx1roFZTZsm1JpRp1+m7RTcMYEgvLdf+hpdmAhIUEi3APeXREVKYelexRk6qUC
-AwEAATANBgkqhkiG9w0BAQUFAAOBgQCA732RfgV64WGPzBwBDKX74l4aX4UIIpcF
-HWWGPhIPiH4RcZ86icVNsaY+XNPiJdY+09JVtJG0Z3HtPg1dvWrWV8Y077Wgd9NM
-Wg1UsX/DPs6weYx2xfuXR3EUbCuqdDIqyZV0bju4jqt6ihqlrHLS4XrYVBr+yWU6
-HsQBjA/njA==</X509Certificate>
+AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
+X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
+wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
+IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
+MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
+uFAx2HjGzA==</X509Certificate>
 </X509Data>
 </KeyInfo>
 </Signature></Party>
     <Party>
-        <Id>=hdknr</Id>
+        <URL>=hdknr</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations/>
     </Party>

@@ -5,7 +5,12 @@ import hashlib
 from certs import rsa
 import uuid
 import time
+from optparse import OptionParser
 
+opt = OptionParser()
+opt.add_option("-n","--no-sign" ,action="store_false",dest="sign",default=True,help="no signature")
+(options,args) = opt.parse_args()
+print "options.sign =",options.sign
 
 _template='../xml/cx-sample-template.rst'
 
@@ -27,7 +32,7 @@ PROPOSAL=u'''<?xml version="1.0" encoding="UTF-8" ?>
         </obligations>
     </Party>
     <Party>
-        <Id>=hdknr</Id>
+        <URL>=hdknr</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations/>
     </Party>
@@ -45,8 +50,7 @@ from myxmlsec import XmlSec
 
 x=XmlSec()
 rp=rsa.generate('netshop.com')
-doc=x.sign_xml( rp.prikey,rp.cert , PROPOSAL, xpath='//Contract/Party')
-
+doc=x.sign_xml( rp.prikey,rp.cert , PROPOSAL, xpath='//Contract/Party' ,sign=options.sign)
 doc.saveFile('../xml/sample_proposal.xml')
 
 
@@ -69,6 +73,5 @@ CONTRACT=u'''<?xml version="1.0" encoding="UTF-8" ?>
 
 x=XmlSec()
 op=rsa.generate('cxop.net')
-doc=x.sign_xml( op.prikey,op.cert , CONTRACT,xpath='//Contract/Party')
-
+doc=x.sign_xml( op.prikey,op.cert , CONTRACT,xpath='//Contract/Party' ,sign=options.sign)
 doc.saveFile('../xml/sample_contract.xml')

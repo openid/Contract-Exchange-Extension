@@ -30,13 +30,15 @@ class XmlSec(object):
         ret.setName(pri_key_file)
         return ret
 
-    def sign_xml(self,private_key,certificate,src_xml,xpath="",at_child=False):
+    def sign_xml(self,private_key,certificate,src_xml,xpath="",at_child=False,sign=True):
         '''
         Sign a XML 
         '''
 
         # XML document object from a given string
         doc = libxml2.parseDoc(src_xml.encode('UTF-8'))
+        if sign == False:
+            return doc
 
         # create a signature node(Encrpyted Signature mode) : <Signature>
         signNode = xmlsec.TmplSignature(doc, xmlsec.transformExclC14NId(),
