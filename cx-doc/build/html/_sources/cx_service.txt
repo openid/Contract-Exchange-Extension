@@ -33,6 +33,17 @@ Getting CX Template
 A CX Template MUST be advertised by a service provider and discoverd by CX Service identifier.
 A CX Tempalte MUST be publicly fetched using HTTP GET protocol.
 
+The digest data of a CX Template  MUST be provided throught the discovery process. The default digest algorithm is SHA256.
+
+Contract Template URL should be in the form of
+
+  http://uri_of_contract_template#digest_algorithm:digest
+
+For example:
+  http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929
+
+
+
 CX Template Format
 ==================
 
@@ -53,6 +64,7 @@ Document Digest
 ---------------
 
 Digest data MUST be provided for a CX Template.  Digest MUST be strong enough. SHA256 is good.
+This disgest data is specified to fetch the template document itself.
 
 Common Contract Constructs Based on Typical Contract Terms
 ==========================================================
@@ -266,3 +278,53 @@ Here are common items that must or may be included in a contract:
 
 Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.
 
+CX Contract Templdate Sample
+============================
+
+.. code-block:: rst
+
+    ===========================
+    INTERNET PAYMMENT AGREEMENT
+    ===========================
+    
+    Whereas {{end_user}} pays for the services provided by {{service_provider}} at the {{ op_provoder}}'s payment service.
+    
+     1.   {{end_user}} must pay to {{ op_provider}} until the day specified in the "Credit Card Payment Agreement" between {{ op_provider}} and
+          {{end_user}}}. Both of them must follow all warranties and disclaimer writtern on the agreement.
+    
+    
+     2.   {{service_provider}} must be paid by {{ op_provider }} based on the "Digital Payment Service Agreement" between {{ op_provider }}
+          and {{ service_provider }}. Both of them must follow all warranties and disclaimer  writtern on the agreement.
+    
+     3.   {{service_provider}} must digitally sign the agreement based on this document.
+    
+     4.   {{op_provider}} must digitally sign the agreement based on this document on the behalf of {{ end_user }}.
+    
+    {{service_provider}}
+    --------------------
+    
+     By:      {{proposer_signatory}}
+    
+     Title:   {{proposer_title}}
+    
+     Date:    {{now}}
+    
+    {{end_user}}
+    ------------
+    
+     By:      {{end_user}}
+    
+     Title:   {{end_user_title}}
+    
+     Date:    {{now}}
+    
+    
+    {{op_provider}}
+    ---------------
+    
+     By:      {{acceptor_signatory}}
+    
+     Title:   {{acceptor_title}}
+    
+     Date:    {{now}}
+    

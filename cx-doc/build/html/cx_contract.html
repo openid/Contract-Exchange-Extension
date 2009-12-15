@@ -137,73 +137,329 @@ The returning document makes counter signature to the original XML document becu
 </div>
 <div class="section" id="contract-xml-basic-structure">
 <span id="contract-xml-structure"></span><h2>Contract XML Basic  Structure<a class="headerlink" href="#contract-xml-basic-structure" title="Permalink to this headline">¶</a></h2>
-<p>The basic structure of Contract XML is defined as followings:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
-<span class="nt">&lt;Contract&gt;</span>
-    <span class="nt">&lt;Party&gt;</span><span class="c">&lt;!-- URI/XRI for the composing party --&gt;</span><span class="nt">&lt;/Party&gt;</span>
-    <span class="nt">&lt;Id&gt;</span><span class="c">&lt;!-- Document identifier --&gt;</span><span class="nt">&lt;/Id&gt;</span>
-    <span class="nt">&lt;Rel&gt;</span>Relation in this Contract<span class="nt">&lt;/Rel&gt;</span>
+<div class="section" id="proposal-sample">
+<h3>Proposal Sample<a class="headerlink" href="#proposal-sample" title="Permalink to this headline">¶</a></h3>
+<p>A sample Contract XML Proposal looks like followings:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e4bf53a8e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#proposal<span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://netshop.com<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/totalamount&quot;</span> <span class="na">id=</span><span class="s">&quot;taotalamount&quot;</span><span class="nt">&gt;</span>500.0<span class="nt">&lt;/param&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/title&quot;</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Python Books<span class="nt">&lt;/param&gt;</span>
+        <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;SignedInfo&gt;</span>
+<span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Reference&gt;</span>
+<span class="nt">&lt;Transforms&gt;</span>
+<span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Transforms&gt;</span>
+<span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;DigestValue&gt;</span>vSS75vnUZ/OIAkkEGr4qUjr9O2c=<span class="nt">&lt;/DigestValue&gt;</span>
+<span class="nt">&lt;/Reference&gt;</span>
+<span class="nt">&lt;/SignedInfo&gt;</span>
+<span class="nt">&lt;SignatureValue&gt;</span>gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
+V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
+oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=<span class="nt">&lt;/SignatureValue&gt;</span>
+<span class="nt">&lt;KeyInfo&gt;</span>
+<span class="nt">&lt;X509Data&gt;</span>
+<span class="nt">&lt;X509Certificate&gt;</span>MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
+NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
+AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
+X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
+wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
+IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
+MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
+uFAx2HjGzA==<span class="nt">&lt;/X509Certificate&gt;</span>
+<span class="nt">&lt;/X509Data&gt;</span>
+<span class="nt">&lt;/KeyInfo&gt;</span>
+<span class="nt">&lt;/Signature&gt;&lt;/Party&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>=hdknr<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations/&gt;</span>
+    <span class="nt">&lt;/Party&gt;</span>
     <span class="nt">&lt;Service&gt;</span>
-        <span class="nt">&lt;Type&gt;</span><span class="c">&lt;!-- CX Servie identfier --&gt;</span><span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;service_parameter&gt;</span><span class="c">&lt;!-- any service parameter for CX Service specified by &lt;Type/&gt; --&gt;</span><span class="nt">&lt;/service_parameter&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://cxop.net/openid/<span class="nt">&lt;/URL&gt;</span>
     <span class="nt">&lt;/Service&gt;</span>
-    <span class="nt">&lt;Template&gt;</span>
-        <span class="c">&lt;!--</span>
-<span class="c">        Base64 form of the CX Template for CX Serive. Exists only in proposing Contract.</span>
-<span class="c">        --&gt;</span>
-    <span class="nt">&lt;/Template&gt;</span>
-    <span class="nt">&lt;Original&gt;</span>
-        <span class="c">&lt;!--</span>
-<span class="c">        Original Document.</span>
-<span class="c">        Base64 form of the requested CX Contract XML document. Exists only in repsonding Contract.</span>
-<span class="c">        --&gt;</span>
-    <span class="nt">&lt;/Original&gt;</span>
-    <span class="nt">&lt;Signature&gt;</span>
-        <span class="c">&lt;!--</span>
-<span class="c">        W3C XML Security xmldsig-core ``Enveloped Signature`` element nodes</span>
-<span class="c">        --&gt;</span>
-    <span class="nt">&lt;/Signature&gt;</span>
+    <span class="nt">&lt;TemplateURL&gt;</span>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c<span class="nt">&lt;/TemplateURL&gt;</span>
+    <span class="nt">&lt;Template&gt;</span>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
+IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
+b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
+dCBwYXkgdG8ge3sgb3BfcHJvdmlkZXJ9fSB1bnRpbCB0aGUgZGF5IHNwZWNpZmllZCBpbiB0aGUg
+IkNyZWRpdCBDYXJkIFBheW1lbnQgQWdyZWVtZW50IiBiZXR3ZWVuIHt7IG9wX3Byb3ZpZGVyfX0g
+YW5kIAogICAgICB7e2VuZF91c2VyfX19LiBCb3RoIG9mIHRoZW0gbXVzdCBmb2xsb3cgYWxsIHdh
+cnJhbnRpZXMgYW5kIGRpc2NsYWltZXIgd3JpdHRlcm4gb24gdGhlIGFncmVlbWVudC4KCgogMi4g
+ICB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBtdXN0IGJlIHBhaWQgYnkge3sgb3BfcHJvdmlkZXIgfX0g
+YmFzZWQgb24gdGhlICJEaWdpdGFsIFBheW1lbnQgU2VydmljZSBBZ3JlZW1lbnQiIGJldHdlZW4g
+e3sgb3BfcHJvdmlkZXIgfX0KICAgICAgYW5kIHt7IHNlcnZpY2VfcHJvdmlkZXIgfX0uIEJvdGgg
+b2YgdGhlbSBtdXN0IGZvbGxvdyBhbGwgd2FycmFudGllcyBhbmQgZGlzY2xhaW1lciAgd3JpdHRl
+cm4gb24gdGhlIGFncmVlbWVudC4KCiAzLiAgIHt7c2VydmljZV9wcm92aWRlcn19IG11c3QgZGln
+aXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBvbiB0aGlzIGRvY3VtZW50LgoKIDQuICAg
+e3tvcF9wcm92aWRlcn19IG11c3QgZGlnaXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBv
+biB0aGlzIGRvY3VtZW50IG9uIHRoZSBiZWhhbGYgb2Yge3sgZW5kX3VzZXIgfX0uCgp7e3NlcnZp
+Y2VfcHJvdmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0tLS0tLQoKIEJ5OiAgICAgIHt7cHJvcG9zZXJf
+c2lnbmF0b3J5fX0KCiBUaXRsZTogICB7e3Byb3Bvc2VyX3RpdGxlfX0KCiBEYXRlOiAgICB7e25v
+d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
+VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
+dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
+CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
+<span class="nt">&lt;/Template&gt;</span>
 <span class="nt">&lt;/Contract&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="composing-party-party-element">
-<h3>Composing Party(Party element)<a class="headerlink" href="#composing-party-party-element" title="Permalink to this headline">¶</a></h3>
-<p>This element is the URI or XRI which sepcifiy the composing party.</p>
 </div>
-<div class="section" id="document-identifier-id-element">
-<h3>Document Identifier (Id element)<a class="headerlink" href="#document-identifier-id-element" title="Permalink to this headline">¶</a></h3>
-<p>This node identifies single Contract XML and the value of this MUST be unique at composing party which is specified by &lt;Party/&gt;.</p>
+<div class="section" id="contract-sample">
+<h3>Contract Sample<a class="headerlink" href="#contract-sample" title="Permalink to this headline">¶</a></h3>
+<p>Also a sample Contract XML Contract looks like followings:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e5279de6e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#contract<span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://cxop.net<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#acceptor<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/statuscode&quot;</span> <span class="na">id=</span><span class="s">&quot;statuscode&quot;</span><span class="nt">&gt;</span>200<span class="nt">&lt;/param&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/description&quot;</span> <span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/param&gt;</span>
+        <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;SignedInfo&gt;</span>
+<span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Reference&gt;</span>
+<span class="nt">&lt;Transforms&gt;</span>
+<span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Transforms&gt;</span>
+<span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;DigestValue&gt;</span>qjE64vEk/1X6ZAoetneAeg8cYOY=<span class="nt">&lt;/DigestValue&gt;</span>
+<span class="nt">&lt;/Reference&gt;</span>
+<span class="nt">&lt;/SignedInfo&gt;</span>
+<span class="nt">&lt;SignatureValue&gt;</span>IbqKT6o2pe/iSiNKA1JtQoUkCiEnMjZERbFBBaOgD6EmsyK2tIhwwHWGuAq0uAea
+kZVrCfeVw2Yck9RTk3f1zoqJVkmBcJOanuzshrh02hqtjp3wEEAwp4iXB/32qcEc
+scaV1iubMjI1abxHmzkhyDNZdTQ/fsuu1yTRhZcI3WU=<span class="nt">&lt;/SignatureValue&gt;</span>
+<span class="nt">&lt;KeyInfo&gt;</span>
+<span class="nt">&lt;X509Data&gt;</span>
+<span class="nt">&lt;X509Certificate&gt;</span>MIICBzCCAXACCQCfVmQZ3hrYvTANBgkqhkiG9w0BAQUFADBIMRIwEAYDVQQDEwlj
+eG9wLm5ldCAxFjAUBgNVBAsTDXN5cy5jeG9wLm5ldCAxDTALBgNVBAoTBHN5cyAx
+CzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NVoXDTEwMDExNDEyMTA1NVowSDES
+MBAGA1UEAxMJY3hvcC5uZXQgMRYwFAYDVQQLEw1zeXMuY3hvcC5uZXQgMQ0wCwYD
+VQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
+gYEAtNk+qHH/luZjt0IQEck6jjANJ2fQLG5oOyF80C/PA5sStoc6LLgh0VosDp/S
+ixTCuTs3NRk+9NtA0Ej0f9Z9sUgNTS9ybyY3QbMDn+rAbo+MZqXnyKeqt98O0SEr
+W2HB5Ucmk0pc20mS5GuJt3J3E6KIh3seWwINZfio3g3AcgECAwEAATANBgkqhkiG
+9w0BAQUFAAOBgQCI+Ztcpy+M2eW+fSm5JyS5YQm32ZFtyK6EtKLP4z5mqM9i+zvq
+i1Po7/KkpuVqCPjR/qmjplwgZj+7yDeecE8GsO1D6p07eaInF7GQr5wenI6O25c/
+FfUYATTzJCfDJDJy7mJDlZq9WIjXBV07ymAnV30HXObgauqyPYlHp6JH4g==<span class="nt">&lt;/X509Certificate&gt;</span>
+<span class="nt">&lt;/X509Data&gt;</span>
+<span class="nt">&lt;/KeyInfo&gt;</span>
+<span class="nt">&lt;/Signature&gt;&lt;/Party&gt;</span>
+    <span class="nt">&lt;Original&gt;</span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbnRyYWN0IGlkPSJlNGJm
+NTNhOGU5NzIxMWRlOTNlMDA4MDAyNzJjOTgxZSI+CiAgICA8VHlwZT5odHRwOi8vb3BlbmlkLm5l
+dC9zcnYvY3gvMS4wLyNwcm9wb3NhbDwvVHlwZT4KICAgIDxEYXRldGltZT4yMDA5LTEyLTE1VDIx
+OjEwOjU0Kzk6MDA8L0RhdGV0aW1lPgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+aHR0cDovL25l
+dHNob3AuY29tPC9VUkw+CiAgICAgICAgPFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4w
+LyNwcm9wb3NlcjwvUmVsPgogICAgICAgIDxvYmxpZ2F0aW9ucz4KICAgICAgICAgICAgPHBhcmFt
+IHR5cGU9Imh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50L3RvdGFsYW1vdW50IiBpZD0idGFvdGFs
+YW1vdW50Ij41MDAuMDwvcGFyYW0+CiAgICAgICAgICAgIDxwYXJhbSB0eXBlPSJodHRwOi8vY3hv
+cC5uZXQvY3gvcGF5bWVudC90aXRsZSIgaWQ9InRpdGxlIj5QeXRob24gQm9va3M8L3BhcmFtPgog
+ICAgICAgIDwvb2JsaWdhdGlvbnM+CiAgICA8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3Lncz
+Lm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0
+aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+
+CjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
+bGRzaWcjcnNhLXNoYTEiLz4KPFJlZmVyZW5jZT4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxn
+b3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25h
+dHVyZSIvPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3
+LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIvPgo8RGlnZXN0VmFsdWU+dlNTNzV2blVaL09J
+QWtrRUdyNHFVanI5TzJjPTwvRGlnZXN0VmFsdWU+CjwvUmVmZXJlbmNlPgo8L1NpZ25lZEluZm8+
+CjxTaWduYXR1cmVWYWx1ZT5nemZWVVJWR2xLVjdVQ2E3a2orVHlIckhVL1FtUERTRHc4NXpQemp2
+Ky9xUHBBUXMrMlJlcGZvWkNmQnFXRTFIClYxYmwzMDdDR1BEQmxsZzRXZDNJVlpWaUlubTRqMWQy
+OC9NMUJBNDVZSmREMkJPaGxrZjZsYUZJNWxLWHdRUWUKb0VnU0RaLzZsbC8rczFyQ1U2V2ZaSzMw
+eDJlYWE2aitaTTluanNvc0F5RT08L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRh
+Pgo8WDUwOUNlcnRpZmljYXRlPk1JSUNFekNDQVh3Q0NRREZHTDIyMm54RXFEQU5CZ2txaGtpRzl3
+MEJBUVVGQURCT01SVXdFd1lEVlFRREV3eHUKWlhSemFHOXdMbU52YlNBeEdUQVhCZ05WQkFzVEVI
+TjVjeTV1WlhSemFHOXdMbU52YlNBeERUQUxCZ05WQkFvVApCSE41Y3lBeEN6QUpCZ05WQkFZVEFr
+cFFNQjRYRFRBNU1USXhOVEV5TVRBMU5Gb1hEVEV3TURFeE5ERXlNVEExCk5Gb3dUakVWTUJNR0Ex
+VUVBeE1NYm1WMGMyaHZjQzVqYjIwZ01Sa3dGd1lEVlFRTEV4QnplWE11Ym1WMGMyaHYKY0M1amIy
+MGdNUTB3Q3dZRFZRUUtFd1J6ZVhNZ01Rc3dDUVlEVlFRR0V3SktVRENCbnpBTkJna3Foa2lHOXcw
+QgpBUUVGQUFPQmpRQXdnWWtDZ1lFQXRzRkRwZjhJWVUwR0hwU1pNTTBQZ1daN0FOdmJudXF2Mmhh
+aUNtWXZWanEzClg4THB3YjhSWlk5VE41bmNrdUFlUWNObFRoOGxMNkJ6M3YvbWd3dkdMdU01N3JM
+dDRSajljYlFmRjhWNVQrb1YKd094c0xuUUI5S0pIem4yMVk1TGRwVmdHcGRDdlQ2aDhVdHc5KzhF
+SG92UmQySURvMmcxTW4yTnVMWk5QMTNNQwpBd0VBQVRBTkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FD
+ZCtldDlSOGZEdUdIM2p5dzl4RWdCRjczZnMvMDZVKytYCkl5SnlGR0RRTklaZjJpS202WkpTempD
+Q1Fzb1JVbHU3NE5QMzRQQXEzUmNQZTlnNitNcE40NUo1MWRsQUcyWG0KTVordTNxYVRhQU0yUEJE
+U1pNMFNBYTVBZU9aM3c1M25hb0lIUlFqUkhUVFdFY3JZOVBRYXRIYWpxK0RlNUlaZwp1RkF4Mkhq
+R3pBPT08L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVy
+ZT48L1BhcnR5PgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+PWhka25yPC9VUkw+CiAgICAgICAg
+PFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4wLyNwcm9wb3NlcjwvUmVsPgogICAgICAg
+IDxvYmxpZ2F0aW9ucy8+CiAgICA8L1BhcnR5PgogICAgPFNlcnZpY2U+CiAgICAgICAgPFR5cGU+
+aHR0cDovL2N4b3AubmV0L2N4L3BheW1lbnQjc2hhMjU2OjQwZWE3MjU3NjllNjIyMTkwOGYwODY3
+NTAxNGNmZjFiMTNlODM5OWE1ZWI1NTU1YzIxNjg3ZDQ4N2RhMGI2NmM8L1R5cGU+CiAgICAgICAg
+PFVSTD5odHRwOi8vY3hvcC5uZXQvb3BlbmlkLzwvVVJMPgogICAgPC9TZXJ2aWNlPgogICAgPFRl
+bXBsYXRlVVJMPmh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50I3NoYTI1Njo0MGVhNzI1NzY5ZTYy
+MjE5MDhmMDg2NzUwMTRjZmYxYjEzZTgzOTlhNWViNTU1NWMyMTY4N2Q0ODdkYTBiNjZjPC9UZW1w
+bGF0ZVVSTD4KICAgIDxUZW1wbGF0ZT5QVDA5UFQwOVBUMDlQVDA5UFQwOVBUMDlQVDA5UFQwOVBU
+MDlDa2xPVkVWU1RrVlVJRkJCV1UxTlJVNVVJRUZIVWtWRlRVVk9WQW85ClBUMDlQVDA5UFQwOVBU
+MDlQVDA5UFQwOVBUMDlQVDA5UFQwS0NsZG9aWEpsWVhNZ2UzdGxibVJmZFhObGNuMTlJSEJoZVhN
+Z1ptOXkKSUhSb1pTQnpaWEoyYVdObGN5QndjbTkyYVdSbFpDQmllU0I3ZTNObGNuWnBZMlZmY0hK
+dmRtbGtaWEo5ZlNCaGRDQjBhR1VnZTNzZwpiM0JmY0hKdmRtOWtaWEo5ZlNkeklIQmhlVzFsYm5R
+Z2MyVnlkbWxqWlM0Z0Nnb2dNUzRnSUNCN2UyVnVaRjkxYzJWeWZYMGdiWFZ6CmRDQndZWGtnZEc4
+Z2Uzc2diM0JmY0hKdmRtbGtaWEo5ZlNCMWJuUnBiQ0IwYUdVZ1pHRjVJSE53WldOcFptbGxaQ0Jw
+YmlCMGFHVWcKSWtOeVpXUnBkQ0JEWVhKa0lGQmhlVzFsYm5RZ1FXZHlaV1Z0Wlc1MElpQmlaWFIz
+WldWdUlIdDdJRzl3WDNCeWIzWnBaR1Z5ZlgwZwpZVzVrSUFvZ0lDQWdJQ0I3ZTJWdVpGOTFjMlZ5
+ZlgxOUxpQkNiM1JvSUc5bUlIUm9aVzBnYlhWemRDQm1iMnhzYjNjZ1lXeHNJSGRoCmNuSmhiblJw
+WlhNZ1lXNWtJR1JwYzJOc1lXbHRaWElnZDNKcGRIUmxjbTRnYjI0Z2RHaGxJR0ZuY21WbGJXVnVk
+QzRLQ2dvZ01pNGcKSUNCN2UzTmxjblpwWTJWZmNISnZkbWxrWlhKOWZTQnRkWE4wSUdKbElIQmhh
+V1FnWW5rZ2Uzc2diM0JmY0hKdmRtbGtaWElnZlgwZwpZbUZ6WldRZ2IyNGdkR2hsSUNKRWFXZHBk
+R0ZzSUZCaGVXMWxiblFnVTJWeWRtbGpaU0JCWjNKbFpXMWxiblFpSUdKbGRIZGxaVzRnCmUzc2di
+M0JmY0hKdmRtbGtaWElnZlgwS0lDQWdJQ0FnWVc1a0lIdDdJSE5sY25acFkyVmZjSEp2ZG1sa1pY
+SWdmWDB1SUVKdmRHZ2cKYjJZZ2RHaGxiU0J0ZFhOMElHWnZiR3h2ZHlCaGJHd2dkMkZ5Y21GdWRH
+bGxjeUJoYm1RZ1pHbHpZMnhoYVcxbGNpQWdkM0pwZEhSbApjbTRnYjI0Z2RHaGxJR0ZuY21WbGJX
+VnVkQzRLQ2lBekxpQWdJSHQ3YzJWeWRtbGpaVjl3Y205MmFXUmxjbjE5SUcxMWMzUWdaR2xuCmFY
+UmhiR3g1SUhOcFoyNGdkR2hsSUdGbmNtVmxiV1Z1ZENCaVlYTmxaQ0J2YmlCMGFHbHpJR1J2WTNW
+dFpXNTBMZ29LSURRdUlDQWcKZTN0dmNGOXdjbTkyYVdSbGNuMTlJRzExYzNRZ1pHbG5hWFJoYkd4
+NUlITnBaMjRnZEdobElHRm5jbVZsYldWdWRDQmlZWE5sWkNCdgpiaUIwYUdseklHUnZZM1Z0Wlc1
+MElHOXVJSFJvWlNCaVpXaGhiR1lnYjJZZ2Uzc2daVzVrWDNWelpYSWdmWDB1Q2dwN2UzTmxjblpw
+ClkyVmZjSEp2ZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFFvS0lFSjVPaUFn
+SUNBZ0lIdDdjSEp2Y0c5elpYSmYKYzJsbmJtRjBiM0o1ZlgwS0NpQlVhWFJzWlRvZ0lDQjdlM0J5
+YjNCdmMyVnlYM1JwZEd4bGZYMEtDaUJFWVhSbE9pQWdJQ0I3ZTI1dgpkMzE5Q2dwN2UyVnVaRjkx
+YzJWeWZYMEtMUzB0TFMwdExTMHRMUzB0Q2dvZ1FuazZJQ0FnSUNBZ2UzdGxibVJmZFhObGNuMTlD
+Z29nClZHbDBiR1U2SUNBZ2UzdGxibVJmZFhObGNsOTBhWFJzWlgxOUNnb2dSR0YwWlRvZ0lDQWdl
+M3R1YjNkOWZRb0tDbnQ3YjNCZmNISnYKZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMEtD
+aUJDZVRvZ0lDQWdJQ0I3ZTJGalkyVndkRzl5WDNOcFoyNWhkRzl5ZVgxOQpDaUFLSUZScGRHeGxP
+aUFnSUh0N1lXTmpaWEIwYjNKZmRHbDBiR1Y5ZlFvZ0lBb2dSR0YwWlRvZ0lDQWdlM3R1YjNkOWZR
+b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
+<span class="nt">&lt;/Original&gt;</span>
+<span class="nt">&lt;/Contract&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="relation-in-this-contract-rel-element">
-<h3>Relation in this Contract(Rel element)<a class="headerlink" href="#relation-in-this-contract-rel-element" title="Permalink to this headline">¶</a></h3>
-<p>This means the type  the party. One of followings:</p>
+</div>
+<div class="section" id="cx-contract-xml-schema">
+<h3>CX Contract XML Schema<a class="headerlink" href="#cx-contract-xml-schema" title="Permalink to this headline">¶</a></h3>
+<p>The followings is the XML Schema for CX Contract XML document:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xs:schema</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span> <span class="na">xmlns:xmldsig=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;xs:import</span> <span class="na">namespace=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span> <span class="na">schemaLocation=</span><span class="s">&quot;http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Contract&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;Party&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Service&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;TemplateURL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Template&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Original&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+     <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Party&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Rel&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;obligations&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">ref=</span><span class="s">&quot;xmldsig:Signature&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Rel&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;obligations&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;param&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;param&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:simpleContent&gt;</span>
+       <span class="nt">&lt;xs:extension</span> <span class="na">base=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/xs:extension&gt;</span>
+     <span class="nt">&lt;/xs:simpleContent&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Service&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;TemplateURL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Original&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>   <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/xs:schema&gt;</span>
+</pre></div>
+</div>
+<p>Eash attribute and element is decribed as following with cardinality:</p>
+<p><tt class="docutils literal"><span class="pre">/Contract/&#64;id</span></tt> [Required]</p>
+<blockquote>
+A global unique Identifier of type string that identifies this contracrt.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Type</span></tt> [One]</p>
+<blockquote>
+Either <a class="reference external" href="http://openid.net/srv/cx/1.0/#proposal">http://openid.net/srv/cx/1.0/#proposal</a> or <a class="reference external" href="http://opeind.net/srv/cx/1.0#agreement">http://opeind.net/srv/cx/1.0#agreement</a></blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/DateTime</span></tt></p>
+<blockquote>
+The creation dateTime of this Proposal or Agreement.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party</span></tt> [Two or More]</p>
+<blockquote>
+A placeholder for the information related to the party.  While a proposal may include two or more Parties, an Agreement may contain only one.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/URL</span></tt> [One]</p>
+<blockquote>
+This element is the URI (or XRI) which sepcifiy the composing party.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/Rel</span></tt> [One]</p>
+<blockquote>
+Indicates the type of the party. One of followings:</blockquote>
 <ul class="simple">
-<li><a class="reference external" href="http://openid.net/srv/cx/1.0#proposer">http://openid.net/srv/cx/1.0#proposer</a></li>
-<li><a class="reference external" href="http://openid.net/srv/cx/1.0#acceptor">http://openid.net/srv/cx/1.0#acceptor</a></li>
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0/#proposer">http://openid.net/srv/cx/1.0/#proposer</a></li>
+<li><a class="reference external" href="http://openid.net/srv/cx/1.0/#acceptor">http://openid.net/srv/cx/1.0/#acceptor</a></li>
 </ul>
-</div>
-<div class="section" id="service-description-service-element-and-its-descendents">
-<h3>Service Description(Service element and its descendents )<a class="headerlink" href="#service-description-service-element-and-its-descendents" title="Permalink to this headline">¶</a></h3>
-<p>This holds paramters to the CX Service endpoint. This node is extensible and freely add any XML node.
-The respnding Contract can hold this element if service provider returns any data value.</p>
-<div class="section" id="service-type-type-element">
-<h4>Service Type(Type element)<a class="headerlink" href="#service-type-type-element" title="Permalink to this headline">¶</a></h4>
-<p>This MUST be a CX Service type URI which describes an actual sevice provided at the CX Service endpoint.</p>
-</div>
-<div class="section" id="service-parameter-service-paramter-element">
-<h4>Service Parameter(service_paramter element)<a class="headerlink" href="#service-parameter-service-paramter-element" title="Permalink to this headline">¶</a></h4>
-<p>Any element can be specified under the &lt;Service/&gt;. Those element&#8217;s values SHOULD be processed by CX Service identified by &lt;Type/&gt;  at the CX Service endpoint.
-Also {{service_parameter}}s in CX Template CAN be replaced by element&#8217;s value at the service provider.</p>
-</div>
-</div>
-<div class="section" id="contract-template-template-element">
-<h3>Contract Template(Template element)<a class="headerlink" href="#contract-template-template-element" title="Permalink to this headline">¶</a></h3>
-<p>CX Template text MUST be base64-encoded and held at here.</p>
-</div>
-<div class="section" id="original-document-original-element">
-<h3>Original Document(Original element)<a class="headerlink" href="#original-document-original-element" title="Permalink to this headline">¶</a></h3>
-<p>The requesting document has no Original element.
-The original requesting XML document MUST be base64-encoded and held at here.</p>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/xmldsig:Signature</span></tt> [One]</p>
+<blockquote>
+Signature are applied in the same way as defined in XRD 1.0 &#8220;<a class="reference external" href="http://www.oasis-open.org/apps/group_public/download.php/35274/xrd-1.0-wd10.html#signature">XRD Signature</a>&#8220;.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations</span></tt> [One]</p>
+<blockquote>
+Placeholder for specifying the obligation of the party.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations/param</span></tt> [Zero or More]</p>
+<blockquote>
+0 or more of the parameters that describes a portion of the party&#8217;s obligation.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations/param/&#64;type</span></tt> [One]</p>
+<blockquote>
+Parameter type URL of this particular parameter.  Some of them are defined in the appendix of this specification.
+Notably, <tt class="docutils literal"><span class="pre">http://openid.net/srv/cx/1.0/axreq</span></tt> MUST be supported by all implementations.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations/param/&#64;id</span></tt> [One]</p>
+<blockquote>
+Shortcut name of this parameter.  {{parameter_name}}s in CX Template CAN be replaced by the value of this element.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/TemplateURL</span></tt> [Zero or One]</p>
+<p>The URL where the CX Contract Template file can be avaiable.</p>
+<p><tt class="docutils literal"><span class="pre">/Contract/Template</span></tt> [Zero or One]</p>
+<blockquote>
+Base64 encoded CX Template text. Template text MUST be in UTF-8 encoding.
+{{name}}s in CX Template is replaced by the value of the element of which the &#64;id is equal to &#8216;name&#8217;.
+Exists only in a proposal.</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Original</span></tt> [Zero or One]</p>
+<blockquote>
+The requesting document has no Original element.
+The base64-encoded original requesting XML document.</blockquote>
 </div>
 </div>
 </div>
@@ -223,16 +479,9 @@ The original requesting XML document MUST be base64-encoded and held at here.</p
 </ul>
 </li>
 <li><a class="reference external" href="#contract-xml-basic-structure">Contract XML Basic  Structure</a><ul>
-<li><a class="reference external" href="#composing-party-party-element">Composing Party(Party element)</a></li>
-<li><a class="reference external" href="#document-identifier-id-element">Document Identifier (Id element)</a></li>
-<li><a class="reference external" href="#relation-in-this-contract-rel-element">Relation in this Contract(Rel element)</a></li>
-<li><a class="reference external" href="#service-description-service-element-and-its-descendents">Service Description(Service element and its descendents )</a><ul>
-<li><a class="reference external" href="#service-type-type-element">Service Type(Type element)</a></li>
-<li><a class="reference external" href="#service-parameter-service-paramter-element">Service Parameter(service_paramter element)</a></li>
-</ul>
-</li>
-<li><a class="reference external" href="#contract-template-template-element">Contract Template(Template element)</a></li>
-<li><a class="reference external" href="#original-document-original-element">Original Document(Original element)</a></li>
+<li><a class="reference external" href="#proposal-sample">Proposal Sample</a></li>
+<li><a class="reference external" href="#contract-sample">Contract Sample</a></li>
+<li><a class="reference external" href="#cx-contract-xml-schema">CX Contract XML Schema</a></li>
 </ul>
 </li>
 </ul>

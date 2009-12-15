@@ -108,7 +108,7 @@ Template URL and Digest
 
 The digest data for a CX Template  MUST be provided throught the discovery process. The default digest algorithm is SHA256.  
 
-Contract Teplate URL should be in the form of 
+Contract Template URL should be in the form of 
 
   http://uri_of_contract_template#digest_algorithm:digest
 
@@ -149,150 +149,11 @@ To achieve mutual non-repudiation, the contract document needs to be mutually di
 Contract XML Basic Structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The basic structure of Contract XML is defined as followings:
+The basic structure of Contract XML is defined as following XML Schema:
 
-.. code-block:: xml 
+.. include:: ../xml/cx.xsd.rst
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <Contract>
-        <Id><!-- Document identifier --></Id>
-        <Type><!-- either proposal or agreement --></Type>
-        <Datetime><!-- xs:dateTime string --></Date>
-        <Party>
-             <Id><!-- URI/XRI for the composing party --></Id>
-             <Rel>Role of this party in this contract</Rel>
-             <ds:Signature>
-               <!--
-                W3C XML Security xmldsig-core ``Enveloped Signature`` element nodes
-                -->
-             </ds:Signature>
-             <obligations>
-                 <param type="paramter type URL" id="parameter name">value</param>
-                 <param type="paramter type URL" id="parameter name">value</param>
-             </obligations>
-        </Party>
-        <Party>
-             <Id><!-- URI/XRI for the composing party --></Id>
-             <Rel>Role of this party in this contract</Rel>
-             <obligations>
-                 <param type="paramter type URL" id="parameter name">value</param>
-                 <param type="paramter type URL" id="parameter name">value</param>
-             </obligations>
-        </Party>
-        <Service>
-             <Type><!-- Service Type URL of the endpoint--></Type>
-             <URL><!-- Service Endpoint URL --></URL>
-        </Service>
-        <TemplateURL><!-- URL of the template including the digest. --></TemplateURL>
-        <Template>
-            <!--
-            Base64 form of the CX Template for CX Serive. Exists only in proposing Contract.    
-            -->
-        </Template>
-        <Original>
-            <!--
-            Original Document.
-            Base64 form of the requested CX Contract XML document. Exists only in repsonding Contract. 
-            -->
-        </Original>
-    </Contract> 
-
-
-
-``/Contract/Id``
-
- A global unique Identifier of type anyURI that identifies this contracrt.
-
-``/Contract/Type``
-
- Either http://openid.net/srv/cx/1.0/#proposal or 
- http://opeind.net/srv/cx/1.0#agreement
-
-``/Contract/dateTime`` [Zero or One]
-
- The creation dateTime of this Proposal or Agreement. 
-
-``/Contract/Party``
-
- A placeholder for the information related to the party. 
- While a proposal may include two or more Parties, 
- an Agreement may contain only one. 
-
-``/Contract/Party/Id``
-
- This element is the URI or XRI which sepcifiy the composing party.
-
-``/Contract/Party/Rel``
-
- Indicates the type of the party. One of followings:
-
-- http://openid.net/srv/cx/1.0/#proposer
-- http://openid.net/srv/cx/1.0/#acceptor
-
-
-``/Contract/Party/ds:Signature``
-
- Signature are applied in the same way as defined in XRD 1.0 "`XRD Signature`_".
-
-.. _`XRD Signature`: http://www.oasis-open.org/apps/group_public/download.php/35274/xrd-1.0-wd10.html#signature
-
-``/Contract/Party/Obligations``
-
- Placeholder for specifying the obligation of the party. 
-
-``/Contract/Party/Obligations/param``
-
- 0 or more of the parameters that describes a portion of the party's 
- obligation. 
-
-``/Contract/Party/Obligations/param/@type``
-
- 1. Parameter type URL of this particular parameter. 
- Some of them are defined in the appendix of this specification. 
- Notably, ``http://openid.net/srv/cx/1.0/axreq`` MUST be supported 
- by all implementations. 
-
-``/Contract/Party/Obligations/param/@id``
-
- 1. Shortcut name of this parameter. 
- {{parameter_name}}s in CX Template CAN be replaced by the value of this element.
-
-``/Contract/Service``
-
- This holds paramters to the CX Service endpoint. This node is extensible and freely add any XML node.
- The respnding Contract can hold this element if service provider returns any data value.
-
-``/Contract/Service/Type``
-
- A CX Service type URI which describes the actual sevice provided at the CX Service endpoint, that in turn describes the Parameters. 
-
-``/Contract/Service/param``
-
- Parameters that this service supports and does not go into the 
- /Contract/Party/Obligation. 
-
-``/Contract/Params/param/@type``
-
- 1. Parameter type URL of this particular parameter. 
- Some of them are defined in the appendix of this specification. 
- Notably, ``http://openid.net/srv/cx/1.0/#axreq`` MUST be supported 
- by all implementations. 
-
-``/Contract/Params/param/@name``
-
- 1. Shortcut name of this parameter. 
- {{name}}s in CX Template CAN be replaced by the value of this element.
-
-``/Contract/Template``
-
- Base64 encoded CX Template text.
- {{name}}s in CX Template is replaced by the value of /Contract/Params/@name. 
-
-``/Contract/Original``
- 0 or 1. 
- The requesting document has no Original element.
- The base64-encoded original requesting XML document.
-
+.. include:: _cx_xsd_description.rst
 
 
 Proposal and Agreement Validation
@@ -365,7 +226,7 @@ The details of AX fetch resonse parameters are as follows:
 
     ``openid.ax.value.cx``
 
-        REQUIRED. Value: Actual CX proposal document. Base64 encoded.
+        REQUIRED. Value: Actual CX Contract document. Base64 encoded.
 
 
 Encrypting the payload

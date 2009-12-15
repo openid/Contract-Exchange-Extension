@@ -113,80 +113,26 @@ The returning document makes counter signature to the original XML document becu
 Contract XML Basic  Structure
 =============================
 
-The basic structure of Contract XML is defined as followings:
+Proposal Sample
+---------------
 
-.. code-block:: xml 
+A sample Contract XML Proposal looks like followings:
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <Contract>
-        <Party><!-- URI/XRI for the composing party --></Party>
-        <Id><!-- Document identifier --></Id>
-        <Rel>Relation in this Contract</Rel>
-        <Service>
-            <Type><!-- CX Servie identfier --></Type>
-            <service_parameter><!-- any service parameter for CX Service specified by <Type/> --></service_parameter>
-        </Service>
-        <Template>
-            <!--
-            Base64 form of the CX Template for CX Serive. Exists only in proposing Contract.    
-            -->
-        </Template>
-        <Original>
-            <!--
-            Original Document.
-            Base64 form of the requested CX Contract XML document. Exists only in repsonding Contract. 
-            -->
-        </Original>
-        <Signature>
-            <!--
-            W3C XML Security xmldsig-core ``Enveloped Signature`` element nodes
-            -->
-        </Signature>
-    </Contract> 
+.. include:: ../xml/sample_proposal.xml.rst 
 
+Contract Sample
+---------------
 
-Composing Party(Party element)
-------------------------------
+Also a sample Contract XML Contract looks like followings:
 
-This element is the URI or XRI which sepcifiy the composing party.
+.. include:: ../xml/sample_contract.xml.rst 
 
-Document Identifier (Id element)
----------------------------------
+CX Contract XML Schema
+----------------------
 
-This node identifies single Contract XML and the value of this MUST be unique at composing party which is specified by <Party/>.
+The followings is the XML Schema for CX Contract XML document:
 
-Relation in this Contract(Rel element) 
---------------------------------------
+.. include:: ../xml/cx.xsd.rst
 
-This means the type  the party. One of followings:
+.. include:: _cx_xsd_description.rst
 
-- http://openid.net/srv/cx/1.0#proposer
-- http://openid.net/srv/cx/1.0#acceptor
-
-Service Description(Service element and its descendents )
----------------------------------------------------------
-
-This holds paramters to the CX Service endpoint. This node is extensible and freely add any XML node.
-The respnding Contract can hold this element if service provider returns any data value.
-
-Service Type(Type element)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This MUST be a CX Service type URI which describes an actual sevice provided at the CX Service endpoint.
-
-Service Parameter(service_paramter element)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Any element can be specified under the <Service/>. Those element's values SHOULD be processed by CX Service identified by <Type/>  at the CX Service endpoint.
-Also {{service_parameter}}s in CX Template CAN be replaced by element's value at the service provider.
-
-Contract Template(Template element)
------------------------------------
-
-CX Template text MUST be base64-encoded and held at here.
-
-Original Document(Original element)
------------------------------------
-
-The requesting document has no Original element.
-The original requesting XML document MUST be base64-encoded and held at here.
