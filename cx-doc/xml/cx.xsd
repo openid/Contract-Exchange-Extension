@@ -15,7 +15,7 @@
       <xs:attribute name="id" use="required" type="xs:string"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Datetime" type="xs:string" />
+  <xs:element name="Datetime" type="xs:dateTime" />
   <xs:element name="Party">
     <xs:complexType>
       <xs:sequence>
