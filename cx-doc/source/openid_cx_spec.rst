@@ -47,7 +47,7 @@ For the exchange of the contract, this extension uses Attribute Exchange.
 
 .. note::
 
-   This version of CX expect that AX fetch request can contain "value". This extension is being discussed under `the AX 1.1 working group`_. 
+   This version of CX expects that AX fetch request can contain "value". This extension is being discussed under `the AX 1.1 working group`_. 
 
 ..  _`the AX 1.1 working group`: https://openid.pbworks.com/OpenID_Attribute_Exchange_Extention_1_1
 
@@ -57,7 +57,7 @@ The request parameters detailed here MUST be sent using the [OpenID.authenticati
 Contract Document
 =================
 
-Contract is a document that testifies that the parties involved in have agreed to what is written in it. The workflow for establishing such contract document varies, but in this extension, the following model is taken:
+Contract is a document that testifies that the parties involved  have agreed to what is written in it. The workflow for establishing such contract document varies, but in this extension, the following model is taken:
 
  1. There are typically 4 actors, A, SA, B, SB, where SA and SB are the designated signatory of A and B respectively.
  2. Proposer, A,  creates the contract proposal and signs and sends it to the other party.
@@ -66,7 +66,7 @@ Contract is a document that testifies that the parties involved in have agreed t
 
 Such contract can be used for various purposes not only for online transactions.
 
-There can be many Contract format: It could be profiled in XML, JSON(RFC4627_), XDI_, etc. In this extension, since XML parser and `XML Signature`_ facilities are there for XRD processing, we define a XML contract profile. This section explains semantics of each element. For the normative schema, refer to Appendix A.
+There can be many Contract format: It could be profiled in XML, JSON(RFC4627_), XDI_, etc. In this extension, since XML parser and `XML Signature`_ facilities are available for XRD processing, we define a XML contract profile. This section explains semantics of each element. For an example, refer to Appendix B.
 
 .. _`XML Signature`: http://www.w3.org/TR/xmldsig-core/
 .. _XDI: http://www.xdi.org/
@@ -88,7 +88,7 @@ A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis prot
 Human Readable Text
 ~~~~~~~~~~~~~~~~~~~
 
-A Contract Template MUST be formatted in a human readable text because it MUST be browsed by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.
+A Contract Template MUST be formatted in a human readable text because it MUST be read by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.
 
 Templating 
 ~~~~~~~~~~
@@ -132,7 +132,7 @@ Examples of common contract construsts used in CX are listed at `Appendix. B<com
 Contract Document Structure
 ---------------------------
 
-The default format for ``Contract Exchange`` (CX) document is XML. The non-repudiation for the XML document in CX is guaranteed by ``XML Signature Syntax and Processing(Second Edition)`` (xmldsig-core_).
+The default format for ``Contract Exchange`` (CX) document is XML. The non-repudiation for the XML document in CX is achieved by ``XML Signature Syntax and Processing(Second Edition)`` (xmldsig-core_).
 
 .. _xmldsig-core: http://www.w3.org/TR/xmldsig-core/
 
@@ -140,7 +140,7 @@ CX uses Envelopped Signature defined in xmldsig-core_ .
 Canonicalization method MUST be Exclusive Canonicalization. 
 
 .. note::
-  c14n- may have multiple diarects: need to check. 
+  c14n- may have multiple dialects: need to check. 
 
 Original Document and  Counter Signature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,11 +167,11 @@ Signature for each of Proposal and Agreement should be validated according to `X
 Storage and Timestamping
 ------------------------
 
-The Contract is supposed to act as a proof of agreement in case of dispute arising. 
-Since contracta may be  long term documents, there is a risk that are not so relevant in transient processing, such as Algorithm Compromise.
+The Contract is supposed to act as a proof of agreement in case of dispute at a later date. 
+Since contracts may be long term documents, there is a risk that are not so relevant in transient processing, such as Algorithm Compromise. Thus, care should be taken to appropriately process the contract through Timestamping etc. 
 
 
-Protocal
+Protocol
 ========
 
 Discovery
@@ -186,7 +186,7 @@ Discovery of the contract exchange service extension is achieved via the mechani
 Sending Proposal
 ----------------
 
-CX Proposal document is sent as the parameter of AX fetch request.
+A CX Proposal document is sent as the parameter of AX fetch request.
 The details of AX fetch request parameters are as follows:
 
     ``openid.ax.mode``
@@ -208,7 +208,7 @@ The details of AX fetch request parameters are as follows:
 Writing Aggreement
 ------------------
 
-The end user who has logged into the OP MUST be prompted to browse and agree to the proposal sent from the RP. OP MUST verify if the end user has enough right to authorize the signing before creating the counter sign. 
+The end user who has logged into the OP MUST be prompted to browse and agree to the proposal sent from the RP. OP MUST verify if the end user has enough right to authorize the signing before creating the counter signature. 
 
 Receiving Contract
 ------------------
@@ -232,7 +232,7 @@ The details of AX fetch resonse parameters are as follows:
 Encrypting the payload
 ---------------------------
 
-Payload can be sent or returned in ecrypted text. In addition to usual AX fetch request and response parameters, the following paramters MUST be sent to enable the decryption of the payload.
+The CX Payload can be sent or returned in ecrypted text. In addition to the usual AX fetch request and response parameters, the following paramters MUST be sent to enable the decryption of the payload.
 
 
     ``openid.ax.type.cx_encoding``
@@ -243,7 +243,7 @@ Payload can be sent or returned in ecrypted text. In addition to usual AX fetch 
 
         Value: "Base64", "CBC-256-128-PKCS5_PADDING".
 
-               If cx_encoding is "CBC-256-128-PKCS5_PADDING", the following parameters are also returned in addition.
+               If cx_encoding is "CBC-256-128-PKCS5_PADDING", the following parameters MUST be returned in addition.
 
     ``openid.ax.type.cx_enc_key``
 
@@ -252,7 +252,7 @@ Payload can be sent or returned in ecrypted text. In addition to usual AX fetch 
 
     ``openid.ax.value.cx_enc_key``
 
-        Shared key to encrypt the message in "Encryption BAse String" form. This key itself is encrypted asymmetrically with decryptor's public key included in the Contract and base 64 encoded.
+        Shared key to encrypt the message in "Encryption Base String" form. This key itself is encrypted asymmetrically with decryptor's public key included in the Contract and base 64 encoded.
         Value: base64 string.
 
 
@@ -346,6 +346,20 @@ This specification defines a small set of common parameters that may be generall
 
 Appendix B.  Examples
 =====================
+
+Proposal Sample
+---------------
+
+A sample Contract XML Proposal would look like as follows: 
+
+.. include:: ../xml/sample_proposal.xml.rst 
+
+Contract Sample
+---------------
+
+A sample Contract XML Contract would look like as follows: 
+
+.. include:: ../xml/sample_contract.xml.rst 
 
 .. _common_contract_constructs: 
 
