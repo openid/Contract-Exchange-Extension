@@ -73,13 +73,13 @@ Contact consists of Proposal and Agreement. The Proposer creates a signed Propos
 <p>For the exchange of the contract, this extension uses Attribute Exchange.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This version of CX expect that AX fetch request can contain &#8220;value&#8221;. This extension is being discussed under <a class="reference external" href="https://openid.pbworks.com/OpenID_Attribute_Exchange_Extention_1_1">the AX 1.1 working group</a>.</p>
+<p class="last">This version of CX expects that AX fetch request can contain &#8220;value&#8221;. This extension is being discussed under <a class="reference external" href="https://openid.pbworks.com/OpenID_Attribute_Exchange_Extention_1_1">the AX 1.1 working group</a>.</p>
 </div>
 <p>The request parameters detailed here MUST be sent using the [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.) extension mechanism.</p>
 </div>
 <div class="section" id="contract-document">
 <h2>1.3&nbsp;&nbsp;&nbsp;Contract Document<a class="headerlink" href="#contract-document" title="Permalink to this headline">¶</a></h2>
-<p>Contract is a document that testifies that the parties involved in have agreed to what is written in it. The workflow for establishing such contract document varies, but in this extension, the following model is taken:</p>
+<p>Contract is a document that testifies that the parties involved  have agreed to what is written in it. The workflow for establishing such contract document varies, but in this extension, the following model is taken:</p>
 <blockquote>
 <ol class="arabic simple">
 <li>There are typically 4 actors, A, SA, B, SB, where SA and SB are the designated signatory of A and B respectively.</li>
@@ -89,7 +89,7 @@ Contact consists of Proposal and Agreement. The Proposer creates a signed Propos
 </ol>
 </blockquote>
 <p>Such contract can be used for various purposes not only for online transactions.</p>
-<p>There can be many Contract format: It could be profiled in XML, JSON(<a class="reference external" href="http://tools.ietf.org/html/rfc4627">RFC4627</a>), <a class="reference external" href="http://www.xdi.org/">XDI</a>, etc. In this extension, since XML parser and <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">XML Signature</a> facilities are there for XRD processing, we define a XML contract profile. This section explains semantics of each element. For the normative schema, refer to Appendix A.</p>
+<p>There can be many Contract format: It could be profiled in XML, JSON(<a class="reference external" href="http://tools.ietf.org/html/rfc4627">RFC4627</a>), <a class="reference external" href="http://www.xdi.org/">XDI</a>, etc. In this extension, since XML parser and <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">XML Signature</a> facilities are available for XRD processing, we define a XML contract profile. This section explains semantics of each element. For an example, refer to Appendix B.</p>
 <div class="section" id="contract-template">
 <h3>1.3.1&nbsp;&nbsp;&nbsp;Contract Template<a class="headerlink" href="#contract-template" title="Permalink to this headline">¶</a></h3>
 <p>A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST include the CX Template in the CX Contract document.</p>
@@ -101,7 +101,7 @@ For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is <tt class="docutils literal"><sp
 </div>
 <div class="section" id="human-readable-text">
 <h4>1.3.1.1&nbsp;&nbsp;&nbsp;Human Readable Text<a class="headerlink" href="#human-readable-text" title="Permalink to this headline">¶</a></h4>
-<p>A Contract Template MUST be formatted in a human readable text because it MUST be browsed by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.</p>
+<p>A Contract Template MUST be formatted in a human readable text because it MUST be read by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.</p>
 </div>
 <div class="section" id="templating">
 <h4>1.3.1.2&nbsp;&nbsp;&nbsp;Templating<a class="headerlink" href="#templating" title="Permalink to this headline">¶</a></h4>
@@ -136,12 +136,12 @@ the provider should substitute the values into the variables.</p>
 </div>
 <div class="section" id="contract-document-structure">
 <h3>1.3.3&nbsp;&nbsp;&nbsp;Contract Document Structure<a class="headerlink" href="#contract-document-structure" title="Permalink to this headline">¶</a></h3>
-<p>The default format for <tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Exchange</span></tt> (CX) document is XML. The non-repudiation for the XML document in CX is guaranteed by <tt class="docutils literal"><span class="pre">XML</span> <span class="pre">Signature</span> <span class="pre">Syntax</span> <span class="pre">and</span> <span class="pre">Processing(Second</span> <span class="pre">Edition)</span></tt> (<a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a>).</p>
+<p>The default format for <tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Exchange</span></tt> (CX) document is XML. The non-repudiation for the XML document in CX is achieved by <tt class="docutils literal"><span class="pre">XML</span> <span class="pre">Signature</span> <span class="pre">Syntax</span> <span class="pre">and</span> <span class="pre">Processing(Second</span> <span class="pre">Edition)</span></tt> (<a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a>).</p>
 <p>CX uses Envelopped Signature defined in <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">xmldsig-core</a> .
 Canonicalization method MUST be Exclusive Canonicalization.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">c14n- may have multiple diarects: need to check.</p>
+<p class="last">c14n- may have multiple dialects: need to check.</p>
 </div>
 <div class="section" id="original-document-and-counter-signature">
 <h4>1.3.3.1&nbsp;&nbsp;&nbsp;Original Document and  Counter Signature<a class="headerlink" href="#original-document-and-counter-signature" title="Permalink to this headline">¶</a></h4>
@@ -274,12 +274,12 @@ The base64-encoded original requesting XML document.</blockquote>
 </div>
 <div class="section" id="storage-and-timestamping">
 <h3>1.3.5&nbsp;&nbsp;&nbsp;Storage and Timestamping<a class="headerlink" href="#storage-and-timestamping" title="Permalink to this headline">¶</a></h3>
-<p>The Contract is supposed to act as a proof of agreement in case of dispute arising.
-Since contracta may be  long term documents, there is a risk that are not so relevant in transient processing, such as Algorithm Compromise.</p>
+<p>The Contract is supposed to act as a proof of agreement in case of dispute at a later date.
+Since contracts may be long term documents, there is a risk that are not so relevant in transient processing, such as Algorithm Compromise. Thus, care should be taken to appropriately process the contract through Timestamping etc.</p>
 </div>
 </div>
-<div class="section" id="protocal">
-<h2>1.4&nbsp;&nbsp;&nbsp;Protocal<a class="headerlink" href="#protocal" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="protocol">
+<h2>1.4&nbsp;&nbsp;&nbsp;Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="discovery">
 <h3>1.4.1&nbsp;&nbsp;&nbsp;Discovery<a class="headerlink" href="#discovery" title="Permalink to this headline">¶</a></h3>
 <p>Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.). The attribute exchange namespace &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221; MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or /xrd/Link/rel element in the XRD 1.0 discovery document. The discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All of the party involved MUST publish an XRD.</p>
@@ -290,7 +290,7 @@ Since contracta may be  long term documents, there is a risk that are not so rel
 </div>
 <div class="section" id="sending-proposal">
 <h3>1.4.2&nbsp;&nbsp;&nbsp;Sending Proposal<a class="headerlink" href="#sending-proposal" title="Permalink to this headline">¶</a></h3>
-<p>CX Proposal document is sent as the parameter of AX fetch request.
+<p>A CX Proposal document is sent as the parameter of AX fetch request.
 The details of AX fetch request parameters are as follows:</p>
 <blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.mode</span></tt></p>
@@ -309,7 +309,7 @@ REQUIRED. Value: &#8216;cx&#8217; MUST be included in the AX required list.</blo
 </div>
 <div class="section" id="writing-aggreement">
 <h3>1.4.3&nbsp;&nbsp;&nbsp;Writing Aggreement<a class="headerlink" href="#writing-aggreement" title="Permalink to this headline">¶</a></h3>
-<p>The end user who has logged into the OP MUST be prompted to browse and agree to the proposal sent from the RP. OP MUST verify if the end user has enough right to authorize the signing before creating the counter sign.</p>
+<p>The end user who has logged into the OP MUST be prompted to browse and agree to the proposal sent from the RP. OP MUST verify if the end user has enough right to authorize the signing before creating the counter signature.</p>
 </div>
 <div class="section" id="receiving-contract">
 <h3>1.4.4&nbsp;&nbsp;&nbsp;Receiving Contract<a class="headerlink" href="#receiving-contract" title="Permalink to this headline">¶</a></h3>
@@ -329,7 +329,7 @@ REQUIRED. Value: Actual CX Contract document. Base64 encoded.</blockquote>
 </div>
 <div class="section" id="encrypting-the-payload">
 <h3>1.4.5&nbsp;&nbsp;&nbsp;Encrypting the payload<a class="headerlink" href="#encrypting-the-payload" title="Permalink to this headline">¶</a></h3>
-<p>Payload can be sent or returned in ecrypted text. In addition to usual AX fetch request and response parameters, the following paramters MUST be sent to enable the decryption of the payload.</p>
+<p>The CX Payload can be sent or returned in ecrypted text. In addition to the usual AX fetch request and response parameters, the following paramters MUST be sent to enable the decryption of the payload.</p>
 <blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_encoding</span></tt></p>
 <blockquote>
@@ -338,14 +338,14 @@ Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#
 <blockquote>
 <p>Value: &#8220;Base64&#8221;, &#8220;CBC-256-128-PKCS5_PADDING&#8221;.</p>
 <blockquote>
-If cx_encoding is &#8220;CBC-256-128-PKCS5_PADDING&#8221;, the following parameters are also returned in addition.</blockquote>
+If cx_encoding is &#8220;CBC-256-128-PKCS5_PADDING&#8221;, the following parameters MUST be returned in addition.</blockquote>
 </blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_enc_key</span></tt></p>
 <blockquote>
 Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#enc_key">http://openid.net/srv/cx/1.0/#enc_key</a>&#8220;.</blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.value.cx_enc_key</span></tt></p>
 <blockquote>
-Shared key to encrypt the message in &#8220;Encryption BAse String&#8221; form. This key itself is encrypted asymmetrically with decryptor&#8217;s public key included in the Contract and base 64 encoded.
+Shared key to encrypt the message in &#8220;Encryption Base String&#8221; form. This key itself is encrypted asymmetrically with decryptor&#8217;s public key included in the Contract and base 64 encoded.
 Value: base64 string.</blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.type.cx_enc_iv</span></tt></p>
 <blockquote>
@@ -442,6 +442,214 @@ Value: base64 string</blockquote>
 </div>
 <div class="section" id="appendix-b-examples">
 <h2>1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples<a class="headerlink" href="#appendix-b-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="proposal-sample">
+<h3>1.7.1&nbsp;&nbsp;&nbsp;Proposal Sample<a class="headerlink" href="#proposal-sample" title="Permalink to this headline">¶</a></h3>
+<p>A sample Contract XML Proposal would look like as follows:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e4bf53a8e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#proposal<span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://netshop.com<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/totalamount&quot;</span> <span class="na">id=</span><span class="s">&quot;taotalamount&quot;</span><span class="nt">&gt;</span>500.0<span class="nt">&lt;/param&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/title&quot;</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Python Books<span class="nt">&lt;/param&gt;</span>
+        <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;SignedInfo&gt;</span>
+<span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Reference&gt;</span>
+<span class="nt">&lt;Transforms&gt;</span>
+<span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Transforms&gt;</span>
+<span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;DigestValue&gt;</span>vSS75vnUZ/OIAkkEGr4qUjr9O2c=<span class="nt">&lt;/DigestValue&gt;</span>
+<span class="nt">&lt;/Reference&gt;</span>
+<span class="nt">&lt;/SignedInfo&gt;</span>
+<span class="nt">&lt;SignatureValue&gt;</span>gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
+V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
+oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=<span class="nt">&lt;/SignatureValue&gt;</span>
+<span class="nt">&lt;KeyInfo&gt;</span>
+<span class="nt">&lt;X509Data&gt;</span>
+<span class="nt">&lt;X509Certificate&gt;</span>MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
+NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
+AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
+X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
+wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
+IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
+MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
+uFAx2HjGzA==<span class="nt">&lt;/X509Certificate&gt;</span>
+<span class="nt">&lt;/X509Data&gt;</span>
+<span class="nt">&lt;/KeyInfo&gt;</span>
+<span class="nt">&lt;/Signature&gt;&lt;/Party&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>=hdknr<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations/&gt;</span>
+    <span class="nt">&lt;/Party&gt;</span>
+    <span class="nt">&lt;Service&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://cxop.net/openid/<span class="nt">&lt;/URL&gt;</span>
+    <span class="nt">&lt;/Service&gt;</span>
+    <span class="nt">&lt;TemplateURL&gt;</span>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c<span class="nt">&lt;/TemplateURL&gt;</span>
+    <span class="nt">&lt;Template&gt;</span>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
+IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
+b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
+dCBwYXkgdG8ge3sgb3BfcHJvdmlkZXJ9fSB1bnRpbCB0aGUgZGF5IHNwZWNpZmllZCBpbiB0aGUg
+IkNyZWRpdCBDYXJkIFBheW1lbnQgQWdyZWVtZW50IiBiZXR3ZWVuIHt7IG9wX3Byb3ZpZGVyfX0g
+YW5kIAogICAgICB7e2VuZF91c2VyfX19LiBCb3RoIG9mIHRoZW0gbXVzdCBmb2xsb3cgYWxsIHdh
+cnJhbnRpZXMgYW5kIGRpc2NsYWltZXIgd3JpdHRlcm4gb24gdGhlIGFncmVlbWVudC4KCgogMi4g
+ICB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBtdXN0IGJlIHBhaWQgYnkge3sgb3BfcHJvdmlkZXIgfX0g
+YmFzZWQgb24gdGhlICJEaWdpdGFsIFBheW1lbnQgU2VydmljZSBBZ3JlZW1lbnQiIGJldHdlZW4g
+e3sgb3BfcHJvdmlkZXIgfX0KICAgICAgYW5kIHt7IHNlcnZpY2VfcHJvdmlkZXIgfX0uIEJvdGgg
+b2YgdGhlbSBtdXN0IGZvbGxvdyBhbGwgd2FycmFudGllcyBhbmQgZGlzY2xhaW1lciAgd3JpdHRl
+cm4gb24gdGhlIGFncmVlbWVudC4KCiAzLiAgIHt7c2VydmljZV9wcm92aWRlcn19IG11c3QgZGln
+aXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBvbiB0aGlzIGRvY3VtZW50LgoKIDQuICAg
+e3tvcF9wcm92aWRlcn19IG11c3QgZGlnaXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBv
+biB0aGlzIGRvY3VtZW50IG9uIHRoZSBiZWhhbGYgb2Yge3sgZW5kX3VzZXIgfX0uCgp7e3NlcnZp
+Y2VfcHJvdmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0tLS0tLQoKIEJ5OiAgICAgIHt7cHJvcG9zZXJf
+c2lnbmF0b3J5fX0KCiBUaXRsZTogICB7e3Byb3Bvc2VyX3RpdGxlfX0KCiBEYXRlOiAgICB7e25v
+d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
+VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
+dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
+CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
+<span class="nt">&lt;/Template&gt;</span>
+<span class="nt">&lt;/Contract&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contract-sample">
+<h3>1.7.2&nbsp;&nbsp;&nbsp;Contract Sample<a class="headerlink" href="#contract-sample" title="Permalink to this headline">¶</a></h3>
+<p>A sample Contract XML Contract would look like as follows:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e5279de6e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#contract<span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
+    <span class="nt">&lt;Party&gt;</span>
+        <span class="nt">&lt;URL&gt;</span>http://cxop.net<span class="nt">&lt;/URL&gt;</span>
+        <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#acceptor<span class="nt">&lt;/Rel&gt;</span>
+        <span class="nt">&lt;obligations&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/statuscode&quot;</span> <span class="na">id=</span><span class="s">&quot;statuscode&quot;</span><span class="nt">&gt;</span>200<span class="nt">&lt;/param&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/description&quot;</span> <span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/param&gt;</span>
+        <span class="nt">&lt;/obligations&gt;</span>
+    <span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;SignedInfo&gt;</span>
+<span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Reference&gt;</span>
+<span class="nt">&lt;Transforms&gt;</span>
+<span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Transforms&gt;</span>
+<span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;DigestValue&gt;</span>qjE64vEk/1X6ZAoetneAeg8cYOY=<span class="nt">&lt;/DigestValue&gt;</span>
+<span class="nt">&lt;/Reference&gt;</span>
+<span class="nt">&lt;/SignedInfo&gt;</span>
+<span class="nt">&lt;SignatureValue&gt;</span>IbqKT6o2pe/iSiNKA1JtQoUkCiEnMjZERbFBBaOgD6EmsyK2tIhwwHWGuAq0uAea
+kZVrCfeVw2Yck9RTk3f1zoqJVkmBcJOanuzshrh02hqtjp3wEEAwp4iXB/32qcEc
+scaV1iubMjI1abxHmzkhyDNZdTQ/fsuu1yTRhZcI3WU=<span class="nt">&lt;/SignatureValue&gt;</span>
+<span class="nt">&lt;KeyInfo&gt;</span>
+<span class="nt">&lt;X509Data&gt;</span>
+<span class="nt">&lt;X509Certificate&gt;</span>MIICBzCCAXACCQCfVmQZ3hrYvTANBgkqhkiG9w0BAQUFADBIMRIwEAYDVQQDEwlj
+eG9wLm5ldCAxFjAUBgNVBAsTDXN5cy5jeG9wLm5ldCAxDTALBgNVBAoTBHN5cyAx
+CzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NVoXDTEwMDExNDEyMTA1NVowSDES
+MBAGA1UEAxMJY3hvcC5uZXQgMRYwFAYDVQQLEw1zeXMuY3hvcC5uZXQgMQ0wCwYD
+VQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
+gYEAtNk+qHH/luZjt0IQEck6jjANJ2fQLG5oOyF80C/PA5sStoc6LLgh0VosDp/S
+ixTCuTs3NRk+9NtA0Ej0f9Z9sUgNTS9ybyY3QbMDn+rAbo+MZqXnyKeqt98O0SEr
+W2HB5Ucmk0pc20mS5GuJt3J3E6KIh3seWwINZfio3g3AcgECAwEAATANBgkqhkiG
+9w0BAQUFAAOBgQCI+Ztcpy+M2eW+fSm5JyS5YQm32ZFtyK6EtKLP4z5mqM9i+zvq
+i1Po7/KkpuVqCPjR/qmjplwgZj+7yDeecE8GsO1D6p07eaInF7GQr5wenI6O25c/
+FfUYATTzJCfDJDJy7mJDlZq9WIjXBV07ymAnV30HXObgauqyPYlHp6JH4g==<span class="nt">&lt;/X509Certificate&gt;</span>
+<span class="nt">&lt;/X509Data&gt;</span>
+<span class="nt">&lt;/KeyInfo&gt;</span>
+<span class="nt">&lt;/Signature&gt;&lt;/Party&gt;</span>
+    <span class="nt">&lt;Original&gt;</span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbnRyYWN0IGlkPSJlNGJm
+NTNhOGU5NzIxMWRlOTNlMDA4MDAyNzJjOTgxZSI+CiAgICA8VHlwZT5odHRwOi8vb3BlbmlkLm5l
+dC9zcnYvY3gvMS4wLyNwcm9wb3NhbDwvVHlwZT4KICAgIDxEYXRldGltZT4yMDA5LTEyLTE1VDIx
+OjEwOjU0Kzk6MDA8L0RhdGV0aW1lPgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+aHR0cDovL25l
+dHNob3AuY29tPC9VUkw+CiAgICAgICAgPFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4w
+LyNwcm9wb3NlcjwvUmVsPgogICAgICAgIDxvYmxpZ2F0aW9ucz4KICAgICAgICAgICAgPHBhcmFt
+IHR5cGU9Imh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50L3RvdGFsYW1vdW50IiBpZD0idGFvdGFs
+YW1vdW50Ij41MDAuMDwvcGFyYW0+CiAgICAgICAgICAgIDxwYXJhbSB0eXBlPSJodHRwOi8vY3hv
+cC5uZXQvY3gvcGF5bWVudC90aXRsZSIgaWQ9InRpdGxlIj5QeXRob24gQm9va3M8L3BhcmFtPgog
+ICAgICAgIDwvb2JsaWdhdGlvbnM+CiAgICA8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3Lncz
+Lm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0
+aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+
+CjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
+bGRzaWcjcnNhLXNoYTEiLz4KPFJlZmVyZW5jZT4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxn
+b3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25h
+dHVyZSIvPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3
+LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIvPgo8RGlnZXN0VmFsdWU+dlNTNzV2blVaL09J
+QWtrRUdyNHFVanI5TzJjPTwvRGlnZXN0VmFsdWU+CjwvUmVmZXJlbmNlPgo8L1NpZ25lZEluZm8+
+CjxTaWduYXR1cmVWYWx1ZT5nemZWVVJWR2xLVjdVQ2E3a2orVHlIckhVL1FtUERTRHc4NXpQemp2
+Ky9xUHBBUXMrMlJlcGZvWkNmQnFXRTFIClYxYmwzMDdDR1BEQmxsZzRXZDNJVlpWaUlubTRqMWQy
+OC9NMUJBNDVZSmREMkJPaGxrZjZsYUZJNWxLWHdRUWUKb0VnU0RaLzZsbC8rczFyQ1U2V2ZaSzMw
+eDJlYWE2aitaTTluanNvc0F5RT08L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRh
+Pgo8WDUwOUNlcnRpZmljYXRlPk1JSUNFekNDQVh3Q0NRREZHTDIyMm54RXFEQU5CZ2txaGtpRzl3
+MEJBUVVGQURCT01SVXdFd1lEVlFRREV3eHUKWlhSemFHOXdMbU52YlNBeEdUQVhCZ05WQkFzVEVI
+TjVjeTV1WlhSemFHOXdMbU52YlNBeERUQUxCZ05WQkFvVApCSE41Y3lBeEN6QUpCZ05WQkFZVEFr
+cFFNQjRYRFRBNU1USXhOVEV5TVRBMU5Gb1hEVEV3TURFeE5ERXlNVEExCk5Gb3dUakVWTUJNR0Ex
+VUVBeE1NYm1WMGMyaHZjQzVqYjIwZ01Sa3dGd1lEVlFRTEV4QnplWE11Ym1WMGMyaHYKY0M1amIy
+MGdNUTB3Q3dZRFZRUUtFd1J6ZVhNZ01Rc3dDUVlEVlFRR0V3SktVRENCbnpBTkJna3Foa2lHOXcw
+QgpBUUVGQUFPQmpRQXdnWWtDZ1lFQXRzRkRwZjhJWVUwR0hwU1pNTTBQZ1daN0FOdmJudXF2Mmhh
+aUNtWXZWanEzClg4THB3YjhSWlk5VE41bmNrdUFlUWNObFRoOGxMNkJ6M3YvbWd3dkdMdU01N3JM
+dDRSajljYlFmRjhWNVQrb1YKd094c0xuUUI5S0pIem4yMVk1TGRwVmdHcGRDdlQ2aDhVdHc5KzhF
+SG92UmQySURvMmcxTW4yTnVMWk5QMTNNQwpBd0VBQVRBTkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FD
+ZCtldDlSOGZEdUdIM2p5dzl4RWdCRjczZnMvMDZVKytYCkl5SnlGR0RRTklaZjJpS202WkpTempD
+Q1Fzb1JVbHU3NE5QMzRQQXEzUmNQZTlnNitNcE40NUo1MWRsQUcyWG0KTVordTNxYVRhQU0yUEJE
+U1pNMFNBYTVBZU9aM3c1M25hb0lIUlFqUkhUVFdFY3JZOVBRYXRIYWpxK0RlNUlaZwp1RkF4Mkhq
+R3pBPT08L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVy
+ZT48L1BhcnR5PgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+PWhka25yPC9VUkw+CiAgICAgICAg
+PFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4wLyNwcm9wb3NlcjwvUmVsPgogICAgICAg
+IDxvYmxpZ2F0aW9ucy8+CiAgICA8L1BhcnR5PgogICAgPFNlcnZpY2U+CiAgICAgICAgPFR5cGU+
+aHR0cDovL2N4b3AubmV0L2N4L3BheW1lbnQjc2hhMjU2OjQwZWE3MjU3NjllNjIyMTkwOGYwODY3
+NTAxNGNmZjFiMTNlODM5OWE1ZWI1NTU1YzIxNjg3ZDQ4N2RhMGI2NmM8L1R5cGU+CiAgICAgICAg
+PFVSTD5odHRwOi8vY3hvcC5uZXQvb3BlbmlkLzwvVVJMPgogICAgPC9TZXJ2aWNlPgogICAgPFRl
+bXBsYXRlVVJMPmh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50I3NoYTI1Njo0MGVhNzI1NzY5ZTYy
+MjE5MDhmMDg2NzUwMTRjZmYxYjEzZTgzOTlhNWViNTU1NWMyMTY4N2Q0ODdkYTBiNjZjPC9UZW1w
+bGF0ZVVSTD4KICAgIDxUZW1wbGF0ZT5QVDA5UFQwOVBUMDlQVDA5UFQwOVBUMDlQVDA5UFQwOVBU
+MDlDa2xPVkVWU1RrVlVJRkJCV1UxTlJVNVVJRUZIVWtWRlRVVk9WQW85ClBUMDlQVDA5UFQwOVBU
+MDlQVDA5UFQwOVBUMDlQVDA5UFQwS0NsZG9aWEpsWVhNZ2UzdGxibVJmZFhObGNuMTlJSEJoZVhN
+Z1ptOXkKSUhSb1pTQnpaWEoyYVdObGN5QndjbTkyYVdSbFpDQmllU0I3ZTNObGNuWnBZMlZmY0hK
+dmRtbGtaWEo5ZlNCaGRDQjBhR1VnZTNzZwpiM0JmY0hKdmRtOWtaWEo5ZlNkeklIQmhlVzFsYm5R
+Z2MyVnlkbWxqWlM0Z0Nnb2dNUzRnSUNCN2UyVnVaRjkxYzJWeWZYMGdiWFZ6CmRDQndZWGtnZEc4
+Z2Uzc2diM0JmY0hKdmRtbGtaWEo5ZlNCMWJuUnBiQ0IwYUdVZ1pHRjVJSE53WldOcFptbGxaQ0Jw
+YmlCMGFHVWcKSWtOeVpXUnBkQ0JEWVhKa0lGQmhlVzFsYm5RZ1FXZHlaV1Z0Wlc1MElpQmlaWFIz
+WldWdUlIdDdJRzl3WDNCeWIzWnBaR1Z5ZlgwZwpZVzVrSUFvZ0lDQWdJQ0I3ZTJWdVpGOTFjMlZ5
+ZlgxOUxpQkNiM1JvSUc5bUlIUm9aVzBnYlhWemRDQm1iMnhzYjNjZ1lXeHNJSGRoCmNuSmhiblJw
+WlhNZ1lXNWtJR1JwYzJOc1lXbHRaWElnZDNKcGRIUmxjbTRnYjI0Z2RHaGxJR0ZuY21WbGJXVnVk
+QzRLQ2dvZ01pNGcKSUNCN2UzTmxjblpwWTJWZmNISnZkbWxrWlhKOWZTQnRkWE4wSUdKbElIQmhh
+V1FnWW5rZ2Uzc2diM0JmY0hKdmRtbGtaWElnZlgwZwpZbUZ6WldRZ2IyNGdkR2hsSUNKRWFXZHBk
+R0ZzSUZCaGVXMWxiblFnVTJWeWRtbGpaU0JCWjNKbFpXMWxiblFpSUdKbGRIZGxaVzRnCmUzc2di
+M0JmY0hKdmRtbGtaWElnZlgwS0lDQWdJQ0FnWVc1a0lIdDdJSE5sY25acFkyVmZjSEp2ZG1sa1pY
+SWdmWDB1SUVKdmRHZ2cKYjJZZ2RHaGxiU0J0ZFhOMElHWnZiR3h2ZHlCaGJHd2dkMkZ5Y21GdWRH
+bGxjeUJoYm1RZ1pHbHpZMnhoYVcxbGNpQWdkM0pwZEhSbApjbTRnYjI0Z2RHaGxJR0ZuY21WbGJX
+VnVkQzRLQ2lBekxpQWdJSHQ3YzJWeWRtbGpaVjl3Y205MmFXUmxjbjE5SUcxMWMzUWdaR2xuCmFY
+UmhiR3g1SUhOcFoyNGdkR2hsSUdGbmNtVmxiV1Z1ZENCaVlYTmxaQ0J2YmlCMGFHbHpJR1J2WTNW
+dFpXNTBMZ29LSURRdUlDQWcKZTN0dmNGOXdjbTkyYVdSbGNuMTlJRzExYzNRZ1pHbG5hWFJoYkd4
+NUlITnBaMjRnZEdobElHRm5jbVZsYldWdWRDQmlZWE5sWkNCdgpiaUIwYUdseklHUnZZM1Z0Wlc1
+MElHOXVJSFJvWlNCaVpXaGhiR1lnYjJZZ2Uzc2daVzVrWDNWelpYSWdmWDB1Q2dwN2UzTmxjblpw
+ClkyVmZjSEp2ZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFFvS0lFSjVPaUFn
+SUNBZ0lIdDdjSEp2Y0c5elpYSmYKYzJsbmJtRjBiM0o1ZlgwS0NpQlVhWFJzWlRvZ0lDQjdlM0J5
+YjNCdmMyVnlYM1JwZEd4bGZYMEtDaUJFWVhSbE9pQWdJQ0I3ZTI1dgpkMzE5Q2dwN2UyVnVaRjkx
+YzJWeWZYMEtMUzB0TFMwdExTMHRMUzB0Q2dvZ1FuazZJQ0FnSUNBZ2UzdGxibVJmZFhObGNuMTlD
+Z29nClZHbDBiR1U2SUNBZ2UzdGxibVJmZFhObGNsOTBhWFJzWlgxOUNnb2dSR0YwWlRvZ0lDQWdl
+M3R1YjNkOWZRb0tDbnQ3YjNCZmNISnYKZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMEtD
+aUJDZVRvZ0lDQWdJQ0I3ZTJGalkyVndkRzl5WDNOcFoyNWhkRzl5ZVgxOQpDaUFLSUZScGRHeGxP
+aUFnSUh0N1lXTmpaWEIwYjNKZmRHbDBiR1Y5ZlFvZ0lBb2dSR0YwWlRvZ0lDQWdlM3R1YjNkOWZR
+b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
+<span class="nt">&lt;/Original&gt;</span>
+<span class="nt">&lt;/Contract&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="appendix-c-common-contract-constructs-used-in-cx">
 <span id="id1"></span><h2>1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX<a class="headerlink" href="#appendix-c-common-contract-constructs-used-in-cx" title="Permalink to this headline">¶</a></h2>
@@ -619,7 +827,7 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
 <li><a class="reference external" href="#storage-and-timestamping">1.3.5&nbsp;&nbsp;&nbsp;Storage and Timestamping</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#protocal">1.4&nbsp;&nbsp;&nbsp;Protocal</a><ul>
+<li><a class="reference external" href="#protocol">1.4&nbsp;&nbsp;&nbsp;Protocol</a><ul>
 <li><a class="reference external" href="#discovery">1.4.1&nbsp;&nbsp;&nbsp;Discovery</a></li>
 <li><a class="reference external" href="#sending-proposal">1.4.2&nbsp;&nbsp;&nbsp;Sending Proposal</a></li>
 <li><a class="reference external" href="#writing-aggreement">1.4.3&nbsp;&nbsp;&nbsp;Writing Aggreement</a></li>
@@ -637,7 +845,11 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
 </ul>
 </li>
 <li><a class="reference external" href="#appendix-a-parameters">1.6&nbsp;&nbsp;&nbsp;Appendix A.  Parameters</a></li>
-<li><a class="reference external" href="#appendix-b-examples">1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples</a></li>
+<li><a class="reference external" href="#appendix-b-examples">1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples</a><ul>
+<li><a class="reference external" href="#proposal-sample">1.7.1&nbsp;&nbsp;&nbsp;Proposal Sample</a></li>
+<li><a class="reference external" href="#contract-sample">1.7.2&nbsp;&nbsp;&nbsp;Contract Sample</a></li>
+</ul>
+</li>
 <li><a class="reference external" href="#appendix-c-common-contract-constructs-used-in-cx">1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX</a></li>
 <li><a class="reference external" href="#normative-references">1.9&nbsp;&nbsp;&nbsp;Normative References</a></li>
 <li><a class="reference external" href="#authors-addresses">1.10&nbsp;&nbsp;&nbsp;Authors&#8217; Addresses</a></li>
