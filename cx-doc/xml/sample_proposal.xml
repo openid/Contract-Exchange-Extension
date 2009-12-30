@@ -3,11 +3,16 @@
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
     <Datetime>2009-12-15T21:10:54+09:00</Datetime>
     <Party>
-        <URL>http://netshop.com</URL>
+        <URL id="proposer" >http://bourgogneonline.com</URL>
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations>
-            <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
-            <param type="http://cxop.net/cx/payment/title" id="title">Python Books</param>
+            <param type="http://payment.hdknr.com/cx/proposer_name" id="proposer_name">Bourgone Online</param>
+            <param type="http://payment.hdknr.com/cx/price" id="price">29.90</param>
+            <param type="http://payment.hdknr.com/cx/title" id="title">OpenID: The Definitive Guide (Paperback)</param>
+            <param type="http://payment.hdknr.com/cx/purchase_items" id="purchase_items">
+ISBN-13: 978-0596153762 / Title: OpenID: The Definitive Guide (Paperback) / Unit: 1 / Price: USD29.99
+            </param>
+            <param type="http://payment.hdknr.com/cx/shipping" id="shipping">UPS</param>
         </obligations>
     <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
 <SignedInfo>
@@ -42,13 +47,20 @@ uFAx2HjGzA==</X509Certificate>
 </KeyInfo>
 </Signature></Party>
     <Party>
-        <URL>=hdknr</URL>
-        <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
+        <URL id="acceptor" >=hdknr</URL>
+        <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
+        <obligations>
+            <param type="http://cxop.net/cx/payment/acceptor_name" id="acceptor_name">=hdknr</param>
+        </obligations>
+    </Party>
+    <Party>
+        <URL>http://payment.hdknr.com/</URL>
+        <Rel>http://openid.net/srv/cx/1.0/#signer</Rel>
         <obligations/>
     </Party>
     <Service>
-        <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
-        <URL>http://cxop.net/openid/</URL>
+        <Type>http://payment.hdknr.com/cx/template_payment_usd#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
+        <URL>http://payment.hdknr.com/openid/</URL>
     </Service>
     <TemplateURL>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</TemplateURL>
     <Template>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9

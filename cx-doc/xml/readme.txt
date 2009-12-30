@@ -35,4 +35,3 @@ Execute the following command:
 
     % trang -I xml -O xsd cx.xml cx.xsd
 
-

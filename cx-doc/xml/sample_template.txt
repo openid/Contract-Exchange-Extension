@@ -1,0 +1,34 @@
+===========================
+Bookstore Payment Agreement
+===========================
+
+Proposer: Bourgogne Bookstore
+-----------------------------------------
+
+Acceptor: Alice Wonderland
+-----------------------------------------
+
+Order:
+-----------------------------------------
+
+ Order Date: 2010-01-01T09:00:00Z
+ ISBN-13: 978-0596153762
+ Title: OpenID: The Definitive Guide (Paperback)
+ Price: USD29.99
+ Purchaser: =alice.wonderland
+
+ Shipping Address:
+
+  - Name: Alice Wonderland
+  - Address: P.O. Box 3232, Anaheim, CA 92803-3232
+  - Phone: +1(714) 781-4565
+
+ Shipping Method: UPS
+ Payment: OpenID4us Payment Service
+
+Purpose of use of data:
+-----------------------
+
+ Ship to the purchaser
+ Once only.
+ Max Liability for breach: The Billing amount
