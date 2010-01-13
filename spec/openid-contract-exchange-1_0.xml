@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<rfc category="info" docName="openid-trust-exchange-extension-1_0"
+     ipr="full3978">
+  <?xml-stylesheet type='text/xsl' href='http://xml.resource.org/authoring/rfc2629.xslt' ?>
+
+  <?rfc toc="yes" ?>
+
+  <?rfc tocdepth="2" ?>
+
+  <?rfc symrefs="yes" ?>
+
+  <?rfc sortrefs="yes"?>
+
+  <?rfc iprnotified="no" ?>
+
+  <?rfc strict="yes" ?>
+
+  <?rfc private="Draft" ?>
+
+  <?rfc comments="no" ?>
+
+  <front>
+    <title abbrev=" CX">Contract Exchange Extension 1.0 - Draft 1</title>
+
+    <author fullname="Nat Sakimura" initials="N.S" surname="Sakimura">
+      <organization abbrev="NRI">Nomura Research Institute,
+      Ltd.</organization>
+
+      <address>
+        <postal>
+          <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
+
+          <city>Chiyoda-ku</city>
+
+          <region>Tokyo</region>
+
+          <code>100-0005</code>
+
+          <country>Japan</country>
+        </postal>
+
+        <email>n-sakimura@nri.co.jp</email>
+
+        <uri>http://www.nri.co.jp/</uri>
+      </address>
+    </author>
+
+    <author fullname="Masaki Nishitani" initials="M.N" surname="Nishitani">
+      <organization abbrev="NRI">Nomura Research Institute,
+      Ltd.</organization>
+
+      <address>
+        <postal>
+          <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
+
+          <city>Chiyoda-ku</city>
+
+          <region>Tokyo</region>
+
+          <code>100-0005</code>
+
+          <country>Japan</country>
+        </postal>
+
+        <email>m-nishitani@nri.co.jp</email>
+
+        <uri>http://www.nri.co.jp/</uri>
+      </address>
+    </author>
+
+    <author fullname="Hideki Nara" initials="H.N" surname="Nara">
+      <organization>TACT Communications,Inc</organization>
+
+      <address>
+        <postal>
+          <street>Cross Side Building , 3-52-1 Sendagaya</street>
+
+          <city>Shibuya-ku</city>
+
+          <region>Tokyo</region>
+
+          <code>151-0051</code>
+
+          <country>Japan</country>
+        </postal>
+
+        <email>hdknr@ic-tact.co.jp</email>
+
+        <uri>http://www.ic-tact.co.jp</uri>
+      </address>
+    </author>
+
+    <date day="17" month="October" year="2008" />
+
+    <abstract>
+      <t>This extension defines 1) An extensible Contract format, 2) Protocol
+      to exchange the Contract. Contact consists of Proposal and Agreement.
+      The Proposer creates a signed Proposal and send it to the counter party.
+      The counter party, upon agreeing to it, signs the Agreement. The
+      combination of the Proposal and Agreement is the mutually signed
+      contract, which is potentially legally binding. This Contract needs to
+      be stored by both parties for a given length of time, usually spanning
+      over many years depending on jurisdictions.</t>
+
+      <t>As these document size may be large while the user agent capability
+      may be limited (e.g., mobile phones), sending them via direct
+      communication and passing only the small reference called
+      &ldquo;Artifact&rdquo; through the user agents are advisable. Therefore,
+      as the protocol, use of Artifact Binding is strongly recommended.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Terminology">
+      <section title="Requirements Notation">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref
+        target="RFC2119" /> .</t>
+      </section>
+
+      <section title="Difinition and Conventions">
+        <t>All OpenID 2.0 messages that contain OpenID Contract Exchange (CX)
+        elements MUST contain the following extension namespace declarations,
+        as specified in the Extensions section of <xref
+        target="OpenIDAuthentication2.0" /> .</t>
+
+        <figure>
+          <artwork><![CDATA[openid.ns.<alias>=http://specs.openid.net/extensions/cx/1.0/
+]]></artwork>
+        </figure>
+
+        <t />
+
+        <t>The XML Path structure is expressed in a XPath notation.</t>
+      </section>
+    </section>
+
+    <section title="Overview">
+      <t>The contract exchange service extension is identified by the URI
+      &ldquo;http://openid.net/srv/cx/1.0/#&rdquo;. Support of this extension
+      is advertised by having this url in /XRDS/XRD/Service/Type or
+      /XRD/Link/rel.</t>
+
+      <t>For the exchange of the contract, this extension uses Attribute
+      Exchange.</t>
+
+      <t>Note This version of CX expects that AX fetch request can contain
+      &ldquo;value&rdquo;. This extension is being discussed under the AX 1.1
+      working group.</t>
+
+      <t>The request parameters detailed here MUST be sent using the
+      [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0
+      - Final, August 2007.) extension mechanism.</t>
+    </section>
+
+    <section anchor="contract_document" title="Contract Document">
+      <t>Contract is a document that testifies that the parties involved have
+      agreed to what is written in it. The workflow for establishing such
+      contract document varies, but in this extension, the following model is
+      taken:</t>
+
+      <t><list style="numbers">
+          <t>There are typically 4 actors, A, SA, B, SB, where SA and SB are
+          the designated signatory of A and B respectively.</t>
+
+          <t># Proposer, A, creates the contract proposal and signs and sends
+          it to the other party.</t>
+
+          <t>B examines the proposal and if it decides to accept, let SB sign
+          it</t>
+
+          <t>A obtains the signed copy of the contract.</t>
+        </list>Such contract can be used for various purposes not only for
+      online transactions.</t>
+
+      <t>There can be many Contract format: It could be profiled in XML,
+      JSON(RFC4627), XDI, etc. In this extension, since XML parser and XML
+      Signature facilities are available for XRD processing, we define a XML
+      contract profile. This section explains semantics of each element. For
+      an example, refer to Appendix B.</t>
+
+      <section title="Contract Template">
+        <t>A Contract Template is a document which describes the detail of
+        agreement, waranty, disclamier and other legal statements that binds
+        the parties in the CX Contract document. A proposing party MUST
+        include the CX Template in the CX Contract document.</t>
+
+        <t>A Contract Template MUST be discoverable by the RP using XRD, XRDS
+        or Yadis protocol.</t>
+
+        <t>Note A Contract Template discovery NEEDS to be further discussed.
+        For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is Template URL SHOULD be
+        the CX service which a relying party is looking at.</t>
+
+        <section title="Human Readable Text">
+          <t>A Contract Template MUST be formatted in a human readable text
+          because it MUST be read by the User when he/she wants to authorize
+          the CX Contract at a service provider. Simple markup like
+          reStructuredText, markdown, textile or others CAN be used to format
+          CX Templates. text/plain is the deafult content type for CX
+          Templates.</t>
+        </section>
+
+        <section title="Templating">
+          <t>A Template variable is in the form {{parameter_name}}. Any
+          variable should be replaced by the corresponding value defined in
+          the CX contract document, where @id is equal to the parameter_name.
+          When the provider shows the contract text to the end user to obtain
+          the signing authorization, the provider should substitute the values
+          into the variables.</t>
+        </section>
+
+        <section title=" Template URL and Digest">
+          <t>The digest data for a CX Template MUST be provided throught the
+          discovery process. The default digest algorithm is SHA256.</t>
+
+          <t>Contract Template URL should be in the form of</t>
+
+          <figure>
+            <artwork><![CDATA[http://uri_of_contract_template#digest_algorithm:digest]]></artwork>
+          </figure>
+
+          <t>For example:</t>
+
+          <figure>
+            <artwork><![CDATA[http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929]]></artwork>
+          </figure>
+
+          <t />
+        </section>
+      </section>
+
+      <section title="Contract Document Constructs">
+        <t>Because the CX protocol can be used for web services for critical
+        business transactions, a CX Contract document SHOULD be a &ldquo;legal
+        contract&rdquo; which contains obligations of each parties including
+        the remedy to the cases where it has been breached.</t>
+
+        <section title="Common Contract Constructs">
+          <t>CX Contracts and CX Templates include common contract contstructs
+          like warranty , disclaimer or other legal and business statements
+          based on the Common Law(Anglo-American Law).</t>
+
+          <t>Examples of common contract construsts used in CX are listed at
+          Appendix. B&lt;common_contract_constructs&gt;,</t>
+        </section>
+      </section>
+
+      <section title="Contract Document Structure">
+        <t>The default format for Contract Exchange (CX) document is XML. The
+        non-repudiation for the XML document in CX is achieved by XML
+        Signature Syntax and Processing(Second Edition) (xmldsig-core).</t>
+
+        <t>CX uses Envelopped Signature defined in xmldsig-core .
+        Canonicalization method MUST be Exclusive Canonicalization.</t>
+
+        <t>Note c14n- may have multiple dialects: need to check.</t>
+
+        <section title="Original Document and Counter Signature">
+          <t>To achieve mutual non-repudiation, the contract document needs to
+          be mutually digitaly signed. In CX, this is achieved through signing
+          the document that includes the original signed proposal in Base 64
+          format. The specifics will be defined below.</t>
+        </section>
+
+        <section title="Contract XML Basic Structure">
+          <t>The basic structure of Contract XML is defined as following XML
+          Schema:</t>
+
+          <figure>
+            <artwork><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#">
+ <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" />
+ <xs:element name="Contract">
+   <xs:complexType>
+     <xs:sequence>
+       <xs:element ref="Type" minOccurs="1" maxOccurs="1" />
+       <xs:element ref="Datetime" minOccurs="1" maxOccurs="1" />
+       <xs:element maxOccurs="unbounded" ref="Party"/>
+       <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
+       <xs:element ref="TemplateURL" minOccurs="0" maxOccurs="1" />
+       <xs:element ref="Template" minOccurs="0" maxOccurs="1" />
+       <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
+     </xs:sequence>
+     <xs:attribute name="id" use="required" type="xs:string"/>
+   </xs:complexType>
+ </xs:element>
+ <xs:element name="Datetime" type="xs:dateTime" />
+ <xs:element name="Party">
+   <xs:complexType>
+     <xs:sequence>
+       <xs:element ref="URL" minOccurs="1" maxOccurs="1" />
+       <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
+       <xs:element ref="obligations" minOccurs="1" maxOccurs="1" />
+       <xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/>
+     </xs:sequence>
+   </xs:complexType>
+ </xs:element>
+ <xs:element name="Rel"  type="xs:anyURI" />
+ <xs:element name="obligations">
+   <xs:complexType>
+     <xs:sequence>
+       <xs:element maxOccurs="unbounded" ref="param" minOccurs="0"/>
+     </xs:sequence>
+   </xs:complexType>
+ </xs:element>
+ <xs:element name="param">
+   <xs:complexType>
+     <xs:simpleContent>
+       <xs:extension base="xs:string">
+         <xs:attribute name="id" use="required" type="xs:string" />
+         <xs:attribute name="type" use="required" type="xs:anyURI" />
+       </xs:extension>
+     </xs:simpleContent>
+   </xs:complexType>
+ </xs:element>
+ <xs:element name="Service">
+   <xs:complexType>
+     <xs:sequence>
+       <xs:element ref="Type"/>
+       <xs:element ref="URL"/>
+     </xs:sequence>
+   </xs:complexType>
+ </xs:element>
+ <xs:element name="TemplateURL"  type="xs:anyURI" />
+ <xs:element name="Template" type="xs:base64Binary" />
+ <xs:element name="Original" type="xs:base64Binary" />
+ <xs:element name="Type"  type="xs:anyURI" />
+ <xs:element name="URL"   type="xs:anyURI" />
+</xs:schema>
+                  
+                  ]]></artwork>
+          </figure>
+
+          <t>Eash attribute and element is decribed as following with
+          cardinality:</t>
+
+          <t>
+            <list style="symbols">
+              <t>/Contract/@id [Required]<list style="empty">
+                  <t>A global unique Identifier of type string that identifies
+                  this contracrt.</t>
+                </list></t>
+
+              <t>/Contract/Type [One]<list style="empty">
+                  <t>Either http://openid.net/srv/cx/1.0/#proposal or
+                  http://opeind.net/srv/cx/1.0#agreement</t>
+                </list></t>
+
+              <t>/Contract/DateTime<list style="empty">
+                  <t>The creation dateTime of this Proposal or Agreement.</t>
+                </list></t>
+
+              <t>/Contract/Party [Two or More]<list style="empty">
+                  <t>A placeholder for the information related to the party.
+                  While a proposal may include two or more Parties, an
+                  Agreement may contain only one.</t>
+                </list></t>
+
+              <t>/Contract/Party/URL [One]<list style="empty">
+                  <t>This element is the URI (or XRI) which sepcifiy the
+                  composing party.</t>
+                </list></t>
+
+              <t>/Contract/Party/Rel [One]<list style="empty">
+                  <t>Indicates the type of the party. One of followings:</t>
+
+                  <t>http://openid.net/srv/cx/1.0/#proposer</t>
+
+                  <t>http://openid.net/srv/cx/1.0/#acceptor</t>
+                </list></t>
+
+              <t>/Contract/Party/xmldsig:Signature [One]<list style="empty">
+                  <t>Signature are applied in the same way as defined in XRD
+                  1.0 &ldquo;XRD Signature&ldquo;.</t>
+                </list></t>
+
+              <t>/Contract/Party/obligations [One]<list style="empty">
+                  <t>Placeholder for specifying the obligation of the
+                  party.</t>
+                </list></t>
+
+              <t>/Contract/Party/obligations/param [Zero or More]<list
+                  style="empty">
+                  <t>0 or more of the parameters that describes a portion of
+                  the party&rsquo;s obligation.</t>
+                </list></t>
+
+              <t>/Contract/Party/obligations/param/@type [One]<list
+                  style="empty">
+                  <t>Parameter type URL of this particular parameter. Some of
+                  them are defined in the appendix of this specification.
+                  Notably, http://openid.net/srv/cx/1.0/axreq MUST be
+                  supported by all implementations.</t>
+                </list></t>
+
+              <t>/Contract/Party/obligations/param/@id [One]<list
+                  style="empty">
+                  <t>Shortcut name of this parameter. {{parameter_name}}s in
+                  CX Template CAN be replaced by the value of this
+                  element.</t>
+                </list></t>
+
+              <t>/Contract/TemplateURL [Zero or One]<list style="empty">
+                  <t>The URL where the CX Contract Template file can be
+                  avaiable.</t>
+                </list></t>
+
+              <t>/Contract/Template [Zero or One]<list style="empty">
+                  <t>Base64 encoded CX Template text. Template text MUST be in
+                  UTF-8 encoding. {{name}}s in CX Template is replaced by the
+                  value of the element of which the @id is equal to
+                  &lsquo;name&rsquo;. Exists only in a proposal.</t>
+                </list></t>
+
+              <t>/Contract/Original [Zero or One]<list style="empty">
+                  <t>The requesting document has no Original element. The
+                  base64-encoded original requesting XML document.</t>
+                </list></t>
+            </list>
+          </t>
+        </section>
+      </section>
+
+      <section title="Proposal and Agreement Validation">
+        <t>Signature for each of Proposal and Agreement should be validated
+        according to XML Signature. The validity of the respective ds:KeyInfo
+        is determined by first obtaining the signed XRD from the Party&rsquo;s
+        identity url and perfoming following comparison operation.</t>
+
+        <t>
+          <list style="symbols">
+            <t>/XRD/Subject == /Contract/Party/id</t>
+
+            <t>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
+            /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
+            When there is certificate change in the ds:X509Data, the chain
+            must be checked in the same manner.</t>
+          </list>
+
+          
+        </t>
+      </section>
+
+      <section title="Storage and Timestamping">
+        <t>The Contract is supposed to act as a proof of agreement in case of
+        dispute at a later date. Since contracts may be long term documents,
+        there is a risk that are not so relevant in transient processing, such
+        as Algorithm Compromise. Thus, care should be taken to appropriately
+        process the contract through Timestamping etc.</t>
+      </section>
+    </section>
+
+    <section title="Protocol">
+      <section title="Discovery">
+        <t>Discovery of the contract exchange service extension is achieved
+        via the mechanism described in [OpenID.authentication2.0]
+        (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
+        The attribute exchange namespace
+        &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; MUST be listed as
+        /xrds/xrd/Service/Type element in the XRDS discovery document or
+        /xrd/Link/rel element in the XRD 1.0 discovery document. The
+        discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All
+        of the party involved MUST publish an XRD.</t>
+
+        <t>Note Discussion: RP Discovery needed for contract invalidation, RP
+        Verification by OP, etc. (=nat, 2009-08-12) </t>
+
+        <t />
+
+        <section title="Namespace">
+          <t>All message class shares a single parameter ,"openid.ns.cx".
+          Although you can freely choose any word for alias name other than
+          "cx", but you should better keep using "cx" as alias if you don't
+          have any special reason.</t>
+        </section>
+
+        <section title="Unique identifier for a Contract Completion Process">
+          <t>Participants MUST use openid.cx.realm with openid.cx.tx_id for
+          the key data to identify a specific contract completion process.
+          Both of them are initiated by a CXRP when the CXRP request a Offer
+          to CXSP. CXSP MUST return an error status in openid.cx.status when a
+          combitation of openid.cx.realm and openid.cx.tx_id have been already
+          existed on the list of CXSP contract history.</t>
+        </section>
+
+        <section title="Parameter Values">
+          <t>All CX parametes are exppected to be exchange in "key=value" form
+          called "attribute". Values of any attribute MUST NOT contain any
+          newline character(UCS codepoint 10 , "&yen;n"). Some attribues which
+          contains newline code in its value specifies special encoding rule
+          for a string data.</t>
+        </section>
+
+        <section title="Parameters">
+          <t>
+            <list style="symbols">
+              <t>openid.ns.cx<list style="empty">
+                  <t>Which describes there are CX message parameters. Its
+                  value should be
+                  http://specs.openid.net/extensions/cx/1.0/.</t>
+
+                  <t>Value : URI</t>
+                </list></t>
+
+              <t>openid.cx.mode<list style="empty">
+                  <t>Which describes CX mode. openid.cx.mode is one of
+                  "offer_request","offer_response","authz_request","authz_response","contract_request"
+                  , "contract_response" ,"notify_request" and
+                  "notify_response".</t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.realm<list style="empty">
+                  <t>Unique identifier to identify an offering participant.
+                  See Section 9.2 Relms of OpenID Authentication 2.0
+                  specification.</t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.tx_id<list style="empty">
+                  <t>Unique identifer initiated by CXRP for a series of CX
+                  trasactions until a contract will be completed.</t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.ticket_id<list style="empty">
+                  <t>Unique identifer for a proof which the CXSP has been
+                  accepted the Offer by CXRP and returned in the response
+                  message when openid.cx.mode is "offer_response".</t>
+
+                  <t>The Auhtorization request which means openid.cx.mode is
+                  "authz_request" MUST include this parameter and the message
+                  itself MUST be digitaly signed by DSig.</t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.contract_id<list style="empty">
+                  <t>Unique identifer for a proof which the CXSP has been
+                  completed the Contract for CXRP and returned in the response
+                  message when openid.cx.mode is "authz_response".</t>
+
+                  <t>The Contract request ,namely openid.cx.mode is
+                  "contract_request" MUST include this parameter and the
+                  message itself MUST be digitaly signed by DSig.</t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.status<list style="empty">
+                  <t>Only needed if openid.cx.mode is "*_response".
+                  openid.cx.status shows the current status of the contract
+                  completion process.</t>
+
+                  <t>
+                    <list style="symbols">
+                      <t>"offer_accepted","offer_rejected","contract_pending","contract_created","contract_rejected"</t>
+                    </list>
+                  </t>
+
+                  <t>Value : An alphanumeric string.</t>
+                </list></t>
+
+              <t>openid.cx.statements<list style="empty">
+                  <t>Only reeded if openid.cx.mode is "*_response". Some
+                  statements to be given to the counter party to describe the
+                  reason of openid.cx.status.</t>
+
+                  <t>Value: x-www-form-urlencoded string.</t>
+                </list></t>
+
+              <t>openid.cx.pki<list style="empty">
+                  <t>(Optional) Identifier which specfies the public key
+                  infrastructure. Default is
+                  "http://specs.openid.net/extensions/cx/1.0/x509_pki" which
+                  means X.509 public key infrastructure.</t>
+
+                  <t>Value: URI.</t>
+                </list></t>
+            </list>
+          </t>
+        </section>
+      </section>
+
+      <section title="Sending Proposal">
+        <t>A CX Proposal document is sent as the parameter of AX fetch
+        request. The details of AX fetch request parameters are as
+        follows:</t>
+
+        <t>
+          <list style="symbols">
+            <t>openid.ax.mode<list style="empty">
+                <t>REQUIRED. Value: &ldquo;fetch_request&rdquo;</t>
+              </list></t>
+
+            <t>openid.ax.type.cx<list style="empty">
+                <t>REQUIRED. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .</t>
+              </list></t>
+
+            <t>openid.ax.value.cx<list style="empty">
+                <t>REQUIRED. Value: Actual CX proposal document. Base64
+                encoded.</t>
+              </list></t>
+
+            <t>openid.ax.required<list style="empty">
+                <t>REQUIRED. Value: &lsquo;cx&rsquo; MUST be included in the
+                AX required list.</t>
+              </list></t>
+          </list>
+
+          
+        </t>
+      </section>
+
+      <section title="Writing Aggreement">
+        <t>The end user who has logged into the OP MUST be prompted to browse
+        and agree to the proposal sent from the RP. OP MUST verify if the end
+        user has enough right to authorize the signing before creating the
+        counter signature.</t>
+      </section>
+
+      <section title="Receiving Contract">
+        <t>CX Contract is returned as the value of AX fetch request. The
+        details of AX fetch resonse parameters are as follows:.</t>
+
+        <t>
+          <list style="symbols">
+            <t>openid.ax.mode<list style="empty">
+                <t>REQUIRED. Value: &ldquo;fetch_response&rdquo;</t>
+              </list></t>
+
+            <t>openid.ax.type.cx<list style="empty">
+                <t>REQUIRED. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .</t>
+              </list></t>
+
+            <t>openid.ax.value.cx<list style="empty">
+                <t>REQUIRED. Value: Actual CX Contract document. Base64
+                encoded.</t>
+              </list></t>
+          </list>
+
+          
+        </t>
+      </section>
+
+      <section title="Encrypting the payload">
+        <t>The CX Payload can be sent or returned in ecrypted text. In
+        addition to the usual AX fetch request and response parameters, the
+        following paramters MUST be sent to enable the decryption of the
+        payload.</t>
+
+        <t>
+          <list style="symbols">
+            <t>openid.ax.type.cx_encoding<list style="empty">
+                <t>Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#encoding&ldquo;.</t>
+              </list></t>
+
+            <t>openid.ax.value.cx_encoding<list style="empty">
+                <t>Value: &ldquo;Base64&rdquo;,
+                &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;.</t>
+
+                <t>If cx_encoding is &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;,
+                the following parameters MUST be returned in addition.</t>
+              </list></t>
+
+            <t>openid.ax.type.cx_enc_key<list style="empty">
+                <t>Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#enc_key&ldquo;.</t>
+              </list></t>
+
+            <t>openid.ax.value.cx_enc_key<list style="empty">
+                <t>Shared key to encrypt the message in &ldquo;Encryption Base
+                String&rdquo; form. This key itself is encrypted
+                asymmetrically with decryptor&rsquo;s public key included in
+                the Contract and base 64 encoded. Value: base64 string.</t>
+              </list></t>
+
+            <t>openid.ax.type.cx_enc_iv<list style="empty">
+                <t>Type URI for initialization vector used in a block
+                encryption. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#enc_iv&ldquo;.</t>
+              </list></t>
+
+            <t>openid.ax.value.cx_enc_iv<list style="empty">
+                <t>Value: base64 stringValue: base64 string</t>
+              </list></t>
+          </list>
+        </t>
+
+        <section title="Parameters">
+          <t>A CX Authorization message MAY include following OpenID
+          parameters. An Authorization message MAY be returned in Offer
+          response message by CXSP to negotiate the way of the authorization
+          request in CX Artifact Binding mode.</t>
+
+          <t />
+        </section>
+      </section>
+    </section>
+
+    <section title="Security Considerations">
+      <t />
+
+      <section title="Non-repudiation">
+        <t>Since CX is a message oriented public key based signing protocol,
+        it offers non-repudiation unlike plain OpenID Authenticaion 2.0.</t>
+      </section>
+
+      <section title="Man-in-the-middle">
+        <t>RP must verify the validity of the OP&rsquo;s identity and public
+        key and vice versa.</t>
+      </section>
+
+      <section title="Eavesdropping">
+        <t>When encryption mode is used, the payload is encrypted and only the
+        real recipient can decipher it. Thus, obtaining sensitive data through
+        eavesdropping is very difficult.</t>
+      </section>
+
+      <section title="Malicious Providers">
+        <t>Malicious Providers that is behaving correctly according to this
+        protocol cannot be coped within this protocol. It has to do the
+        checking of the certificate with some assurance services and/or
+        reputation services including RBL and white list.</t>
+      </section>
+
+      <section title="Phishing Attack">
+        <t>Phising attack is a social engineering, so it should in principle
+        be dealt with the non-knowledge-based authentication mechanism. This
+        is clearly out of scope of this extension.</t>
+      </section>
+
+      <section title="Private key compromise">
+        <t>In the unlikely event of private key compromise, the party should
+        immediately notify the CA as well as the counter party stated in the
+        Contract document. This will minimize the damage by the incident.</t>
+      </section>
+    </section>
+
+    <section title="Appendix A. Parameters">
+      <t>This specification defines a small set of common parameters that may
+      be generally useful for the contracting purposes.</t>
+
+      <t />
+    </section>
+
+    <appendix anchor="examples" title="Examples" />
+
+    <appendix title="Acknowledgements">
+      <t>ors would like to thank [...] for their feedback when drafting this
+      specification.</t>
+    </appendix>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <reference anchor="RFC2119">
+        <front>
+          <title>Key words for use in RFCs to Indicate Requirement
+          Levels</title>
+
+          <author fullname="Scott Bradner" initials="B.S" surname="Bradner">
+            <organization>Alis Technologies</organization>
+          </author>
+
+          <date year="1997" />
+        </front>
+
+        <seriesInfo name="RFC" value="2119" />
+      </reference>
+
+      <reference anchor="OpenIDAuthentication2.0">
+        <front>
+          <title>OpenID Authentication 2.0</title>
+
+          <author fullname="specs@openid.net" initials=""
+                  surname="specs@openid.net">
+            <organization></organization>
+          </author>
+
+          <date year="2007" />
+        </front>
+
+        <format target="http://www.openid.net/specs/openid-authentication-2_0.txt"
+                type="TXT" />
+
+        <format target="http://www.openid.net/specs/openid-authentication-2_0.html"
+                type="HTML" />
+      </reference>
+
+      <reference anchor="Yadis">
+        <front>
+          <title>Yadis Specification 1.0</title>
+
+          <author fullname="Joaquin Miller" initials="J.M" role="editor"
+                  surname="Miller">
+            <organization>NetMesh</organization>
+          </author>
+
+          <date year="2005" />
+        </front>
+
+        <format target="http://yadis.org/papers/yadis-v1.0.pdf" type="PDF" />
+
+        <format target="http://yadis.org/papers/yadis-v1.0.odt" type="ODT" />
+      </reference>
+
+      <reference anchor="XRIResolution2.0">
+        <front>
+          <title>Extensible Resource Identifier (XRI) Resolution Version
+          2.0</title>
+
+          <author fullname="Drummond Reed" initials="D.R" surname="Reed">
+            <organization>Cordance</organization>
+          </author>
+
+          <author fullname="Gabe Wachob" initials="G.W" role="editor"
+                  surname="Wachob">
+            <organization>Visa International</organization>
+          </author>
+
+          <date month="April" year="2008" />
+        </front>
+
+        <format target="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf"
+                type="PDF" />
+      </reference>
+
+      <reference anchor="RFC3339">
+        <front>
+          <title>Date and Time on the Internet: Timestamps</title>
+
+          <author fullname="Graham Klyne" initials="G.K" surname="Klyne">
+            <organization>Clearswift Corporation</organization>
+          </author>
+
+          <author fullname="Chris Newman" initials="C.N" surname="Newman">
+            <organization>Sun Microsystems</organization>
+          </author>
+        </front>
+
+        <seriesInfo name="RFC" value="3339" />
+      </reference>
+
+      <reference anchor="RFC2898">
+        <front>
+          <title>PKCS #5: Password-Based Cryptography Specification Version
+          2.0</title>
+
+          <author fullname="Burt " initials="B.K" surname="Kaliski ">
+            <organization></organization>
+          </author>
+
+          <date month="September" year="2000" />
+        </front>
+      </reference>
+
+      <reference anchor="OAEP">
+        <front>
+          <title>Optimal Asymmetric Encryption -- How to encrypt with RSA.
+          Extended abstract in Advances in Cryptology - Eurocrypt '94
+          Proceedings, Lecture Notes in Computer Science Vol. 950, A. De
+          Santis ed, Springer-Verlag, 1995</title>
+
+          <author fullname="Mihir " initials="M.B" surname="Bellare">
+            <organization></organization>
+          </author>
+
+          <author fullname="Phillip " initials="P.R" surname="Rogaway">
+            <organization></organization>
+
+            <address>
+              <postal>
+                <street></street>
+
+                <city></city>
+
+                <region></region>
+
+                <code></code>
+
+                <country></country>
+              </postal>
+
+              <phone></phone>
+
+              <facsimile></facsimile>
+
+              <email></email>
+
+              <uri></uri>
+            </address>
+          </author>
+
+          <date year="1995" />
+        </front>
+      </reference>
+    </references>
+  </back>
+</rfc>
