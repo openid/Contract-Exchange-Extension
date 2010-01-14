@@ -1,0 +1,1681 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 1</title>
+<meta http-equiv="Expires" content="Mon, 18 Jan 2010 06:07:22 +0000">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Contract Exchange Extension 1.0 - Draft 1">
+<meta name="generator" content="xml2rfc v1.34 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Draft</td><td class="header">N. Sakimura</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">M. Nishitani</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">October 17, 2008</td></tr>
+</table></td></tr></table>
+<h1><br />Contract Exchange Extension 1.0 - Draft 1</h1>
+
+<h3>Abstract</h3>
+
+<p>This extension defines 1) An extensible Contract format, 2) Protocol
+      to exchange the Contract. Contact consists of Proposal and Agreement.
+      The Proposer creates a signed Proposal and send it to the counter party.
+      The counter party, upon agreeing to it, signs the Agreement. The
+      combination of the Proposal and Agreement is the mutually signed
+      contract, which is potentially legally binding. This Contract needs to
+      be stored by both parties for a given length of time, usually spanning
+      over many years depending on jurisdictions.
+</p>
+<p>As these document size may be large while the user agent capability
+      may be limited (e.g., mobile phones), sending them via direct
+      communication and passing only the small reference called
+      &ldquo;Artifact&rdquo; through the user agents are advisable. Therefore,
+      as the protocol, use of Artifact Binding is strongly recommended.
+</p><a name="toc"></a><br /><hr />
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#anchor1">1.</a>&nbsp;
+Terminology<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor2">1.1.</a>&nbsp;
+Requirements Notation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor3">1.2.</a>&nbsp;
+Difinition and Conventions<br />
+<a href="#anchor4">2.</a>&nbsp;
+Overview<br />
+<a href="#contract_document">3.</a>&nbsp;
+Contract Document<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor5">3.1.</a>&nbsp;
+Contract Template<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor9">3.2.</a>&nbsp;
+Contract Document Constructs<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor11">3.3.</a>&nbsp;
+Contract Document Structure<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor14">3.4.</a>&nbsp;
+Proposal and Agreement Validation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor15">3.5.</a>&nbsp;
+Storage and Timestamping<br />
+<a href="#anchor16">4.</a>&nbsp;
+Protocol<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor17">4.1.</a>&nbsp;
+Discovery<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor22">4.2.</a>&nbsp;
+Sending Proposal<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor23">4.3.</a>&nbsp;
+Writing Aggreement<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor24">4.4.</a>&nbsp;
+Receiving Contract<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor25">4.5.</a>&nbsp;
+Encrypting the payload<br />
+<a href="#anchor27">5.</a>&nbsp;
+Security Considerations<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor28">5.1.</a>&nbsp;
+Non-repudiation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor29">5.2.</a>&nbsp;
+Man-in-the-middle<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor30">5.3.</a>&nbsp;
+Eavesdropping<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor31">5.4.</a>&nbsp;
+Malicious Providers<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor32">5.5.</a>&nbsp;
+Phishing Attack<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor33">5.6.</a>&nbsp;
+Private key compromise<br />
+<a href="#anchor34">6.</a>&nbsp;
+Appendix A. Parameters<br />
+<a href="#anchor35">7.</a>&nbsp;
+Appendix B. Examples<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor36">7.1.</a>&nbsp;
+Proposal Sample<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor37">7.2.</a>&nbsp;
+Contract Sample<br />
+<a href="#anchor38">8.</a>&nbsp;
+Appendix C. Common Contract Constructs used in CX<br />
+<a href="#examples">Appendix&nbsp;A.</a>&nbsp;
+Examples<br />
+<a href="#anchor39">Appendix&nbsp;B.</a>&nbsp;
+Acknowledgements<br />
+<a href="#rfc.references1">9.</a>&nbsp;
+Normative References<br />
+<a href="#rfc.authors">&#167;</a>&nbsp;
+Authors' Addresses<br />
+</p>
+<br clear="all" />
+
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Terminology</h3>
+
+<a name="anchor2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.1"></a><h3>1.1.&nbsp;
+Requirements Notation</h3>
+
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <a class='info' href='#RFC2119'>[RFC2119]<span> (</span><span class='info'>Bradner, B., &ldquo;Key words for use in RFCs to Indicate Requirement           Levels,&rdquo; 1997.</span><span>)</span></a> .
+</p>
+<a name="anchor3"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.2"></a><h3>1.2.&nbsp;
+Difinition and Conventions</h3>
+
+<p>All OpenID 2.0 messages that contain OpenID Contract Exchange (CX)
+        elements MUST contain the following extension namespace declarations,
+        as specified in the Extensions section of <a class='info' href='#OpenIDAuthentication2.0'>[OpenIDAuthentication2.0]<span> (</span><span class='info'>specs@openid.net, &ldquo;OpenID Authentication 2.0,&rdquo; 2007.</span><span>)</span></a> .
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>openid.ns.&lt;alias&gt;=http://specs.openid.net/extensions/cx/1.0/
+</pre></div>
+<p>
+</p>
+<p>The XML Path structure is expressed in a XPath notation.
+</p>
+<a name="anchor4"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Overview</h3>
+
+<p>The contract exchange service extension is identified by the URI
+      &ldquo;http://openid.net/srv/cx/1.0/#&rdquo;. Support of this extension
+      is advertised by having this url in /XRDS/XRD/Service/Type or
+      /XRD/Link/rel.
+</p>
+<p>For the exchange of the contract, this extension uses Attribute
+      Exchange.
+</p>
+<p>Note This version of CX expects that AX fetch request can contain
+      &ldquo;value&rdquo;. This extension is being discussed under the AX 1.1
+      working group.
+</p>
+<p>The request parameters detailed here MUST be sent using the
+      [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0
+      - Final, August 2007.) extension mechanism.
+</p>
+<a name="contract_document"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Contract Document</h3>
+
+<p>Contract is a document that testifies that the parties involved have
+      agreed to what is written in it. The workflow for establishing such
+      contract document varies, but in this extension, the following model is
+      taken:
+</p>
+<p></p>
+<ol class="text">
+<li>There are typically 4 actors, A, SA, B, SB, where SA and SB are
+          the designated signatory of A and B respectively.
+</li>
+<li># Proposer, A, creates the contract proposal and signs and sends
+          it to the other party.
+</li>
+<li>B examines the proposal and if it decides to accept, let SB sign
+          it
+</li>
+<li>A obtains the signed copy of the contract.
+</li>
+</ol><p>Such contract can be used for various purposes not only for
+      online transactions.
+</p>
+<p>There can be many Contract format: It could be profiled in XML,
+      JSON(RFC4627), XDI, etc. In this extension, since XML parser and XML
+      Signature facilities are available for XRD processing, we define a XML
+      contract profile. This section explains semantics of each element. For
+      an example, refer to Appendix B.
+</p>
+<a name="anchor5"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+Contract Template</h3>
+
+<p>A Contract Template is a document which describes the detail of
+        agreement, waranty, disclamier and other legal statements that binds
+        the parties in the CX Contract document. A proposing party MUST
+        include the CX Template in the CX Contract document.
+</p>
+<p>A Contract Template MUST be discoverable by the RP using XRD, XRDS
+        or Yadis protocol.
+</p>
+<p>Note A Contract Template discovery NEEDS to be further discussed.
+        For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is Template URL SHOULD be
+        the CX service which a relying party is looking at.
+</p>
+<a name="anchor6"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.1"></a><h3>3.1.1.&nbsp;
+Human Readable Text</h3>
+
+<p>A Contract Template MUST be formatted in a human readable text
+          because it MUST be read by the User when he/she wants to authorize
+          the CX Contract at a service provider. Simple markup like
+          reStructuredText, markdown, textile or others CAN be used to format
+          CX Templates. text/plain is the deafult content type for CX
+          Templates.
+</p>
+<a name="anchor7"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.2"></a><h3>3.1.2.&nbsp;
+Templating</h3>
+
+<p>A Template variable is in the form {{parameter_name}}. Any
+          variable should be replaced by the corresponding value defined in
+          the CX contract document, where @id is equal to the parameter_name.
+          When the provider shows the contract text to the end user to obtain
+          the signing authorization, the provider should substitute the values
+          into the variables.
+</p>
+<a name="anchor8"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.3"></a><h3>3.1.3.&nbsp;
+ Template URL and Digest</h3>
+
+<p>The digest data for a CX Template MUST be provided throught the
+          discovery process. The default digest algorithm is SHA256.
+</p>
+<p>Contract Template URL should be in the form of
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>http://uri_of_contract_template#digest_algorithm:digest</pre></div>
+<p>For example:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929</pre></div>
+<p>
+</p>
+<a name="anchor9"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+Contract Document Constructs</h3>
+
+<p>Because the CX protocol can be used for web services for critical
+        business transactions, a CX Contract document SHOULD be a &ldquo;legal
+        contract&rdquo; which contains obligations of each parties including
+        the remedy to the cases where it has been breached.
+</p>
+<a name="anchor10"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.1"></a><h3>3.2.1.&nbsp;
+Common Contract Constructs</h3>
+
+<p>CX Contracts and CX Templates include common contract contstructs
+          like warranty , disclaimer or other legal and business statements
+          based on the Common Law(Anglo-American Law).
+</p>
+<p>Examples of common contract construsts used in CX are listed at
+          Appendix. B&lt;common_contract_constructs&gt;,
+</p>
+<a name="anchor11"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
+Contract Document Structure</h3>
+
+<p>The default format for Contract Exchange (CX) document is XML. The
+        non-repudiation for the XML document in CX is achieved by XML
+        Signature Syntax and Processing(Second Edition) (xmldsig-core).
+</p>
+<p>CX uses Envelopped Signature defined in xmldsig-core .
+        Canonicalization method MUST be Exclusive Canonicalization.
+</p>
+<p>Note c14n- may have multiple dialects: need to check.
+</p>
+<a name="anchor12"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3.1"></a><h3>3.3.1.&nbsp;
+Original Document and Counter Signature</h3>
+
+<p>To achieve mutual non-repudiation, the contract document needs to
+          be mutually digitaly signed. In CX, this is achieved through signing
+          the document that includes the original signed proposal in Base 64
+          format. The specifics will be defined below.
+</p>
+<a name="anchor13"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3.2"></a><h3>3.3.2.&nbsp;
+Contract XML Basic Structure</h3>
+
+<p>The basic structure of Contract XML is defined as following XML
+          Schema:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#"&gt;
+ &lt;xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" /&gt;
+ &lt;xs:element name="Contract"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+       &lt;xs:element ref="Type" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element ref="Datetime" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element maxOccurs="unbounded" ref="Party"/&gt;
+       &lt;xs:element ref="Service" minOccurs="0" maxOccurs="1" /&gt;
+       &lt;xs:element ref="TemplateURL" minOccurs="0" maxOccurs="1" /&gt;
+       &lt;xs:element ref="Template" minOccurs="0" maxOccurs="1" /&gt;
+       &lt;xs:element ref="Original" minOccurs="0" maxOccurs="1" /&gt;
+     &lt;/xs:sequence&gt;
+     &lt;xs:attribute name="id" use="required" type="xs:string"/&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ &lt;xs:element name="Datetime" type="xs:dateTime" /&gt;
+ &lt;xs:element name="Party"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+       &lt;xs:element ref="URL" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element ref="Rel" minOccurs="1" maxOccurs="1"/&gt;
+       &lt;xs:element ref="obligations" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/&gt;
+     &lt;/xs:sequence&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ &lt;xs:element name="Rel"  type="xs:anyURI" /&gt;
+ &lt;xs:element name="obligations"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+       &lt;xs:element maxOccurs="unbounded" ref="param" minOccurs="0"/&gt;
+     &lt;/xs:sequence&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ &lt;xs:element name="param"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:simpleContent&gt;
+       &lt;xs:extension base="xs:string"&gt;
+         &lt;xs:attribute name="id" use="required" type="xs:string" /&gt;
+         &lt;xs:attribute name="type" use="required" type="xs:anyURI" /&gt;
+       &lt;/xs:extension&gt;
+     &lt;/xs:simpleContent&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ &lt;xs:element name="Service"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+       &lt;xs:element ref="Type"/&gt;
+       &lt;xs:element ref="URL"/&gt;
+     &lt;/xs:sequence&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ &lt;xs:element name="TemplateURL"  type="xs:anyURI" /&gt;
+ &lt;xs:element name="Template" type="xs:base64Binary" /&gt;
+ &lt;xs:element name="Original" type="xs:base64Binary" /&gt;
+ &lt;xs:element name="Type"  type="xs:anyURI" /&gt;
+ &lt;xs:element name="URL"   type="xs:anyURI" /&gt;
+&lt;/xs:schema&gt;
+
+</pre></div>
+<p>Eash attribute and element is decribed as following with
+          cardinality:
+</p>
+<p>
+            </p>
+<ul class="text">
+<li>/Contract/@id [Required]
+<blockquote class="text">
+<p>A global unique Identifier of type string that identifies
+                  this contracrt.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Type [One]
+<blockquote class="text">
+<p>Either http://openid.net/srv/cx/1.0/#proposal or
+                  http://opeind.net/srv/cx/1.0#agreement
+</p>
+</blockquote>
+</li>
+<li>/Contract/DateTime
+<blockquote class="text">
+<p>The creation dateTime of this Proposal or Agreement.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party [Two or More]
+<blockquote class="text">
+<p>A placeholder for the information related to the party.
+                  While a proposal may include two or more Parties, an
+                  Agreement may contain only one.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/URL [One]
+<blockquote class="text">
+<p>This element is the URI (or XRI) which sepcifiy the
+                  composing party.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/Rel [One]
+<blockquote class="text">
+<p>Indicates the type of the party. One of followings:
+</p>
+<p>http://openid.net/srv/cx/1.0/#proposer
+</p>
+<p>http://openid.net/srv/cx/1.0/#acceptor
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/xmldsig:Signature [One]
+<blockquote class="text">
+<p>Signature are applied in the same way as defined in XRD
+                  1.0 &ldquo;XRD Signature&ldquo;.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/obligations [One]
+<blockquote class="text">
+<p>Placeholder for specifying the obligation of the
+                  party.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/obligations/param [Zero or More]
+<blockquote class="text">
+<p>0 or more of the parameters that describes a portion of
+                  the party&rsquo;s obligation.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/obligations/param/@type [One]
+<blockquote class="text">
+<p>Parameter type URL of this particular parameter. Some of
+                  them are defined in the appendix of this specification.
+                  Notably, http://openid.net/srv/cx/1.0/axreq MUST be
+                  supported by all implementations.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Party/obligations/param/@id [One]
+<blockquote class="text">
+<p>Shortcut name of this parameter. {{parameter_name}}s in
+                  CX Template CAN be replaced by the value of this
+                  element.
+</p>
+</blockquote>
+</li>
+<li>/Contract/TemplateURL [Zero or One]
+<blockquote class="text">
+<p>The URL where the CX Contract Template file can be
+                  avaiable.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Template [Zero or One]
+<blockquote class="text">
+<p>Base64 encoded CX Template text. Template text MUST be in
+                  UTF-8 encoding. {{name}}s in CX Template is replaced by the
+                  value of the element of which the @id is equal to
+                  &lsquo;name&rsquo;. Exists only in a proposal.
+</p>
+</blockquote>
+</li>
+<li>/Contract/Original [Zero or One]
+<blockquote class="text">
+<p>The requesting document has no Original element. The
+                  base64-encoded original requesting XML document.
+</p>
+</blockquote>
+</li>
+</ul><p>
+          
+</p>
+<a name="anchor14"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.4"></a><h3>3.4.&nbsp;
+Proposal and Agreement Validation</h3>
+
+<p>Signature for each of Proposal and Agreement should be validated
+        according to XML Signature. The validity of the respective ds:KeyInfo
+        is determined by first obtaining the signed XRD from the Party&rsquo;s
+        identity url and perfoming following comparison operation.
+</p>
+<p>
+          </p>
+<ul class="text">
+<li>/XRD/Subject == /Contract/Party/id
+</li>
+<li>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
+            /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
+            When there is certificate change in the ds:X509Data, the chain
+            must be checked in the same manner.
+</li>
+</ul><p>
+        
+</p>
+<a name="anchor15"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.5"></a><h3>3.5.&nbsp;
+Storage and Timestamping</h3>
+
+<p>The Contract is supposed to act as a proof of agreement in case of
+        dispute at a later date. Since contracts may be long term documents,
+        there is a risk that are not so relevant in transient processing, such
+        as Algorithm Compromise. Thus, care should be taken to appropriately
+        process the contract through Timestamping etc.
+</p>
+<a name="anchor16"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Protocol</h3>
+
+<a name="anchor17"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
+Discovery</h3>
+
+<p>Discovery of the contract exchange service extension is achieved
+        via the mechanism described in [OpenID.authentication2.0]
+        (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
+        The attribute exchange namespace
+        &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; MUST be listed as
+        /xrds/xrd/Service/Type element in the XRDS discovery document or
+        /xrd/Link/rel element in the XRD 1.0 discovery document. The
+        discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All
+        of the party involved MUST publish an XRD.
+</p>
+<p>Note Discussion: RP Discovery needed for contract invalidation, RP
+        Verification by OP, etc. (=nat, 2009-08-12)
+</p>
+<p>
+</p>
+<a name="anchor18"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
+Namespace</h3>
+
+<p>All message class shares a single parameter ,"openid.ns.cx".
+          Although you can freely choose any word for alias name other than
+          "cx", but you should better keep using "cx" as alias if you don't
+          have any special reason.
+</p>
+<a name="anchor19"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.2"></a><h3>4.1.2.&nbsp;
+Unique identifier for a Contract Completion Process</h3>
+
+<p>Participants MUST use openid.cx.realm with openid.cx.tx_id for
+          the key data to identify a specific contract completion process.
+          Both of them are initiated by a CXRP when the CXRP request a Offer
+          to CXSP. CXSP MUST return an error status in openid.cx.status when a
+          combitation of openid.cx.realm and openid.cx.tx_id have been already
+          existed on the list of CXSP contract history.
+</p>
+<a name="anchor20"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.3"></a><h3>4.1.3.&nbsp;
+Parameter Values</h3>
+
+<p>All CX parametes are exppected to be exchange in "key=value" form
+          called "attribute". Values of any attribute MUST NOT contain any
+          newline character(UCS codepoint 10 , "&yen;n"). Some attribues which
+          contains newline code in its value specifies special encoding rule
+          for a string data.
+</p>
+<a name="anchor21"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.4"></a><h3>4.1.4.&nbsp;
+Parameters</h3>
+
+<p>
+            </p>
+<ul class="text">
+<li>openid.ns.cx
+<blockquote class="text">
+<p>Which describes there are CX message parameters. Its
+                  value should be
+                  http://specs.openid.net/extensions/cx/1.0/.
+</p>
+<p>Value : URI
+</p>
+</blockquote>
+</li>
+<li>openid.cx.mode
+<blockquote class="text">
+<p>Which describes CX mode. openid.cx.mode is one of
+                  "offer_request","offer_response","authz_request","authz_response","contract_request"
+                  , "contract_response" ,"notify_request" and
+                  "notify_response".
+</p>
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.realm
+<blockquote class="text">
+<p>Unique identifier to identify an offering participant.
+                  See Section 9.2 Relms of OpenID Authentication 2.0
+                  specification.
+</p>
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.tx_id
+<blockquote class="text">
+<p>Unique identifer initiated by CXRP for a series of CX
+                  trasactions until a contract will be completed.
+</p>
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.ticket_id
+<blockquote class="text">
+<p>Unique identifer for a proof which the CXSP has been
+                  accepted the Offer by CXRP and returned in the response
+                  message when openid.cx.mode is "offer_response".
+</p>
+<p>The Auhtorization request which means openid.cx.mode is
+                  "authz_request" MUST include this parameter and the message
+                  itself MUST be digitaly signed by DSig.
+</p>
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.contract_id
+<blockquote class="text">
+<p>Unique identifer for a proof which the CXSP has been
+                  completed the Contract for CXRP and returned in the response
+                  message when openid.cx.mode is "authz_response".
+</p>
+<p>The Contract request ,namely openid.cx.mode is
+                  "contract_request" MUST include this parameter and the
+                  message itself MUST be digitaly signed by DSig.
+</p>
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.status
+<blockquote class="text">
+<p>Only needed if openid.cx.mode is "*_response".
+                  openid.cx.status shows the current status of the contract
+                  completion process.
+</p>
+<p>
+                    </p>
+<ul class="text">
+<li>"offer_accepted","offer_rejected","contract_pending","contract_created","contract_rejected"
+</li>
+</ul>
+                  
+
+<p>Value : An alphanumeric string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.statements
+<blockquote class="text">
+<p>Only reeded if openid.cx.mode is "*_response". Some
+                  statements to be given to the counter party to describe the
+                  reason of openid.cx.status.
+</p>
+<p>Value: x-www-form-urlencoded string.
+</p>
+</blockquote>
+</li>
+<li>openid.cx.pki
+<blockquote class="text">
+<p>(Optional) Identifier which specfies the public key
+                  infrastructure. Default is
+                  "http://specs.openid.net/extensions/cx/1.0/x509_pki" which
+                  means X.509 public key infrastructure.
+</p>
+<p>Value: URI.
+</p>
+</blockquote>
+</li>
+</ul><p>
+          
+</p>
+<a name="anchor22"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
+Sending Proposal</h3>
+
+<p>A CX Proposal document is sent as the parameter of AX fetch
+        request. The details of AX fetch request parameters are as
+        follows:
+</p>
+<p>
+          </p>
+<ul class="text">
+<li>openid.ax.mode
+<blockquote class="text">
+<p>REQUIRED. Value: &ldquo;fetch_request&rdquo;
+</p>
+</blockquote>
+</li>
+<li>openid.ax.type.cx
+<blockquote class="text">
+<p>REQUIRED. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cx
+<blockquote class="text">
+<p>REQUIRED. Value: Actual CX proposal document. Base64
+                encoded.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.required
+<blockquote class="text">
+<p>REQUIRED. Value: &lsquo;cx&rsquo; MUST be included in the
+                AX required list.
+</p>
+</blockquote>
+</li>
+</ul><p>
+        
+</p>
+<a name="anchor23"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
+Writing Aggreement</h3>
+
+<p>The end user who has logged into the OP MUST be prompted to browse
+        and agree to the proposal sent from the RP. OP MUST verify if the end
+        user has enough right to authorize the signing before creating the
+        counter signature.
+</p>
+<a name="anchor24"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
+Receiving Contract</h3>
+
+<p>CX Contract is returned as the value of AX fetch request. The
+        details of AX fetch resonse parameters are as follows:.
+</p>
+<p>
+          </p>
+<ul class="text">
+<li>openid.ax.mode
+<blockquote class="text">
+<p>REQUIRED. Value: &ldquo;fetch_response&rdquo;
+</p>
+</blockquote>
+</li>
+<li>openid.ax.type.cx
+<blockquote class="text">
+<p>REQUIRED. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cx
+<blockquote class="text">
+<p>REQUIRED. Value: Actual CX Contract document. Base64
+                encoded.
+</p>
+</blockquote>
+</li>
+</ul><p>
+        
+</p>
+<a name="anchor25"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
+Encrypting the payload</h3>
+
+<p>The CX Payload can be sent or returned in ecrypted text. In
+        addition to the usual AX fetch request and response parameters, the
+        following paramters MUST be sent to enable the decryption of the
+        payload.
+</p>
+<p>
+          </p>
+<ul class="text">
+<li>openid.ax.type.cx_encoding
+<blockquote class="text">
+<p>Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#encoding&ldquo;.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cx_encoding
+<blockquote class="text">
+<p>Value: &ldquo;Base64&rdquo;,
+                &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;.
+</p>
+<p>If cx_encoding is &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;,
+                the following parameters MUST be returned in addition.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.type.cx_enc_key
+<blockquote class="text">
+<p>Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#enc_key&ldquo;.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cx_enc_key
+<blockquote class="text">
+<p>Shared key to encrypt the message in &ldquo;Encryption Base
+                String&rdquo; form. This key itself is encrypted
+                asymmetrically with decryptor&rsquo;s public key included in
+                the Contract and base 64 encoded. Value: base64 string.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.type.cx_enc_iv
+<blockquote class="text">
+<p>Type URI for initialization vector used in a block
+                encryption. Value:
+                &ldquo;http://openid.net/srv/cx/1.0/#enc_iv&ldquo;.
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cx_enc_iv
+<blockquote class="text">
+<p>Value: base64 stringValue: base64 string
+</p>
+</blockquote>
+</li>
+</ul><p>
+        
+</p>
+<a name="anchor26"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
+Parameters</h3>
+
+<p>A CX Authorization message MAY include following OpenID
+          parameters. An Authorization message MAY be returned in Offer
+          response message by CXSP to negotiate the way of the authorization
+          request in CX Artifact Binding mode.
+</p>
+<p>
+</p>
+<a name="anchor27"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Security Considerations</h3>
+
+<p>
+</p>
+<a name="anchor28"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
+Non-repudiation</h3>
+
+<p>Since CX is a message oriented public key based signing protocol,
+        it offers non-repudiation unlike plain OpenID Authenticaion 2.0.
+</p>
+<a name="anchor29"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
+Man-in-the-middle</h3>
+
+<p>RP must verify the validity of the OP&rsquo;s identity and public
+        key and vice versa.
+</p>
+<a name="anchor30"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
+Eavesdropping</h3>
+
+<p>When encryption mode is used, the payload is encrypted and only the
+        real recipient can decipher it. Thus, obtaining sensitive data through
+        eavesdropping is very difficult.
+</p>
+<a name="anchor31"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
+Malicious Providers</h3>
+
+<p>Malicious Providers that is behaving correctly according to this
+        protocol cannot be coped within this protocol. It has to do the
+        checking of the certificate with some assurance services and/or
+        reputation services including RBL and white list.
+</p>
+<a name="anchor32"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
+Phishing Attack</h3>
+
+<p>Phising attack is a social engineering, so it should in principle
+        be dealt with the non-knowledge-based authentication mechanism. This
+        is clearly out of scope of this extension.
+</p>
+<a name="anchor33"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
+Private key compromise</h3>
+
+<p>In the unlikely event of private key compromise, the party should
+        immediately notify the CA as well as the counter party stated in the
+        Contract document. This will minimize the damage by the incident.
+</p>
+<a name="anchor34"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+Appendix A. Parameters</h3>
+
+<p>This specification defines a small set of common parameters that may
+      be generally useful for the contracting purposes.</p>
+<ul class="text">
+<li>AX Request
+<ul class="text">
+<li>description: Used to convey the data that the requester
+              requests.
+</li>
+<li>type URL: http://opneid.net/srv/cx/1.0#axreq
+</li>
+<li>value: Attribute Exchange 1.1 string in
+              tag=value&amp;tag=value format as in X1.1
+</li>
+<li>Conformance: MUST support.
+</li>
+</ul>
+</li>
+<li>Price to be paid by the party
+<ul class="text">
+<li>description: The price to be paid to execute this
+              contract.
+</li>
+<li>type URL: http://openid.net/srv/cx/1.0/#price#currency where
+              currency is replaced by the ISO currency code or
+              &lsquo;other&rsquo;
+</li>
+<li>value: Decimal string when #currency is ISO code, and
+              anyString when #currency is &lsquo;other&rsquo;
+</li>
+<li>Conformance: MUST support
+</li>
+</ul>
+</li>
+<li>Maximum Liability assumed by the party
+<ul class="text">
+<li>description: The maximum liability assumed by the party when
+              there was a breach in the contract.
+</li>
+<li>type URL: http://openid.net/srv/cx/1.0/#damageslimit#currency
+              where currency is replaced by the ISO currency code or
+              &lsquo;other&rsquo;
+</li>
+<li>value: Decimal string when #currency is ISO code, and
+              anyString when #currency is &lsquo;other&rsquo;
+</li>
+<li>Conformance: MUST support
+</li>
+</ul>
+</li>
+<li>Contact
+<ul class="text">
+<li>description: The address at which the party can be reached
+              at.
+</li>
+<li>type URL: http://openid.net/srv/cx/1.0/#contact
+</li>
+<li>value: xs:string
+</li>
+<li>Conformance: MUST support
+</li>
+</ul>
+</li>
+<li>Datetime
+<ul class="text">
+<li>type URL: http://www.w3.orgg/TR/xmlschema-2/#datetime
+</li>
+<li>value: The value defined as xs:dateTime in W3C XML Schema
+              Datatypes specification, and MUST be expressed in UTC form, with
+              no timme zone component (reprsented by the UTC &lsquo;Z&rsquo;
+              timezone). It must not specify the gime instants that
+              corresponds to leap seconds.
+</li>
+<li>Conformance: MUST support.
+</li>
+</ul>
+</li>
+<li>String
+<ul class="text">
+<li>type URL: http://www.w3.orgg/TR/xmlschema-2/#string
+</li>
+<li>value: UTF-8 string.
+</li>
+<li>Conformance: MUST support.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+</p>
+<a name="anchor35"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+Appendix B. Examples</h3>
+
+<a name="anchor36"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.1"></a><h3>7.1.&nbsp;
+Proposal Sample</h3>
+
+<p>A sample Contract XML Proposal would look like as follows:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Contract id="e4bf53a8e97211de93e00800272c981e"&gt;
+    &lt;Type&gt;http://openid.net/srv/cx/1.0/#proposal&lt;/Type&gt;
+    &lt;Datetime&gt;2009-12-15T21:10:54+9:00&lt;/Datetime&gt;
+    &lt;Party&gt;
+        &lt;URL&gt;http://netshop.com&lt;/URL&gt;
+        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#proposer&lt;/Rel&gt;
+        &lt;obligations&gt;
+            &lt;param type="http://cxop.net/cx/payment/totalamount" id="taotalamount"&gt;500.0&lt;/param&gt;
+            &lt;param type="http://cxop.net/cx/payment/title" id="title"&gt;Python Books&lt;/param&gt;
+        &lt;/obligations&gt;
+    &lt;Signature xmlns="http://www.w3.org/2000/09/xmldsig#"&gt;
+&lt;SignedInfo&gt;
+&lt;CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+&lt;SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/&gt;
+&lt;Reference&gt;
+&lt;Transforms&gt;
+&lt;Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+&lt;/Transforms&gt;
+&lt;DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/&gt;
+&lt;DigestValue&gt;vSS75vnUZ/OIAkkEGr4qUjr9O2c=&lt;/DigestValue&gt;
+&lt;/Reference&gt;
+&lt;/SignedInfo&gt;
+&lt;SignatureValue&gt;gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
+V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
+oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=&lt;/SignatureValue&gt;
+&lt;KeyInfo&gt;
+&lt;X509Data&gt;
+&lt;X509Certificate&gt;MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
+NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
+AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
+X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
+wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
+IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
+MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
+uFAx2HjGzA==&lt;/X509Certificate&gt;
+&lt;/X509Data&gt;
+&lt;/KeyInfo&gt;
+&lt;/Signature&gt;&lt;/Party&gt;
+    &lt;Party&gt;
+        &lt;URL&gt;=hdknr&lt;/URL&gt;
+        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#proposer&lt;/Rel&gt;
+        &lt;obligations/&gt;
+    &lt;/Party&gt;
+    &lt;Service&gt;
+        &lt;Type&gt;http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c&lt;/Type&gt;
+        &lt;URL&gt;http://cxop.net/openid/&lt;/URL&gt;
+    &lt;/Service&gt;
+    &lt;TemplateURL&gt;http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c&lt;/TemplateURL&gt;
+    &lt;Template&gt;PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
+IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
+b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
+dCBwYXkgdG8ge3sgb3BfcHJvdmlkZXJ9fSB1bnRpbCB0aGUgZGF5IHNwZWNpZmllZCBpbiB0aGUg
+IkNyZWRpdCBDYXJkIFBheW1lbnQgQWdyZWVtZW50IiBiZXR3ZWVuIHt7IG9wX3Byb3ZpZGVyfX0g
+YW5kIAogICAgICB7e2VuZF91c2VyfX19LiBCb3RoIG9mIHRoZW0gbXVzdCBmb2xsb3cgYWxsIHdh
+cnJhbnRpZXMgYW5kIGRpc2NsYWltZXIgd3JpdHRlcm4gb24gdGhlIGFncmVlbWVudC4KCgogMi4g
+ICB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBtdXN0IGJlIHBhaWQgYnkge3sgb3BfcHJvdmlkZXIgfX0g
+YmFzZWQgb24gdGhlICJEaWdpdGFsIFBheW1lbnQgU2VydmljZSBBZ3JlZW1lbnQiIGJldHdlZW4g
+e3sgb3BfcHJvdmlkZXIgfX0KICAgICAgYW5kIHt7IHNlcnZpY2VfcHJvdmlkZXIgfX0uIEJvdGgg
+b2YgdGhlbSBtdXN0IGZvbGxvdyBhbGwgd2FycmFudGllcyBhbmQgZGlzY2xhaW1lciAgd3JpdHRl
+cm4gb24gdGhlIGFncmVlbWVudC4KCiAzLiAgIHt7c2VydmljZV9wcm92aWRlcn19IG11c3QgZGln
+aXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBvbiB0aGlzIGRvY3VtZW50LgoKIDQuICAg
+e3tvcF9wcm92aWRlcn19IG11c3QgZGlnaXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBv
+biB0aGlzIGRvY3VtZW50IG9uIHRoZSBiZWhhbGYgb2Yge3sgZW5kX3VzZXIgfX0uCgp7e3NlcnZp
+Y2VfcHJvdmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0tLS0tLQoKIEJ5OiAgICAgIHt7cHJvcG9zZXJf
+c2lnbmF0b3J5fX0KCiBUaXRsZTogICB7e3Byb3Bvc2VyX3RpdGxlfX0KCiBEYXRlOiAgICB7e25v
+d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
+VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
+dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
+CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
+&lt;/Template&gt;
+&lt;/Contract&gt;
+
+
+</pre></div>
+<a name="anchor37"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.2"></a><h3>7.2.&nbsp;
+Contract Sample</h3>
+
+<p>A sample Contract XML Contract would look like as follows:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Contract id="e5279de6e97211de93e00800272c981e"&gt;
+    &lt;Type&gt;http://openid.net/srv/cx/1.0/#contract&lt;/Type&gt;
+    &lt;Datetime&gt;2009-12-15T21:10:54+9:00&lt;/Datetime&gt;
+    &lt;Party&gt;
+        &lt;URL&gt;http://cxop.net&lt;/URL&gt;
+        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#acceptor&lt;/Rel&gt;
+        &lt;obligations&gt;
+            &lt;param type="http://cxop.net/cx/payment/statuscode" id="statuscode"&gt;200&lt;/param&gt;
+            &lt;param type="http://cxop.net/cx/payment/description" id="description"&gt;OK&lt;/param&gt;
+        &lt;/obligations&gt;
+    &lt;Signature xmlns="http://www.w3.org/2000/09/xmldsig#"&gt;
+&lt;SignedInfo&gt;
+&lt;CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/&gt;
+&lt;SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/&gt;
+&lt;Reference&gt;
+&lt;Transforms&gt;
+&lt;Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+&lt;/Transforms&gt;
+&lt;DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/&gt;
+&lt;DigestValue&gt;qjE64vEk/1X6ZAoetneAeg8cYOY=&lt;/DigestValue&gt;
+&lt;/Reference&gt;
+&lt;/SignedInfo&gt;
+&lt;SignatureValue&gt;IbqKT6o2pe/iSiNKA1JtQoUkCiEnMjZERbFBBaOgD6EmsyK2tIhwwHWGuAq0uAea
+kZVrCfeVw2Yck9RTk3f1zoqJVkmBcJOanuzshrh02hqtjp3wEEAwp4iXB/32qcEc
+scaV1iubMjI1abxHmzkhyDNZdTQ/fsuu1yTRhZcI3WU=&lt;/SignatureValue&gt;
+&lt;KeyInfo&gt;
+&lt;X509Data&gt;
+&lt;X509Certificate&gt;MIICBzCCAXACCQCfVmQZ3hrYvTANBgkqhkiG9w0BAQUFADBIMRIwEAYDVQQDEwlj
+eG9wLm5ldCAxFjAUBgNVBAsTDXN5cy5jeG9wLm5ldCAxDTALBgNVBAoTBHN5cyAx
+CzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NVoXDTEwMDExNDEyMTA1NVowSDES
+MBAGA1UEAxMJY3hvcC5uZXQgMRYwFAYDVQQLEw1zeXMuY3hvcC5uZXQgMQ0wCwYD
+VQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
+gYEAtNk+qHH/luZjt0IQEck6jjANJ2fQLG5oOyF80C/PA5sStoc6LLgh0VosDp/S
+ixTCuTs3NRk+9NtA0Ej0f9Z9sUgNTS9ybyY3QbMDn+rAbo+MZqXnyKeqt98O0SEr
+W2HB5Ucmk0pc20mS5GuJt3J3E6KIh3seWwINZfio3g3AcgECAwEAATANBgkqhkiG
+9w0BAQUFAAOBgQCI+Ztcpy+M2eW+fSm5JyS5YQm32ZFtyK6EtKLP4z5mqM9i+zvq
+i1Po7/KkpuVqCPjR/qmjplwgZj+7yDeecE8GsO1D6p07eaInF7GQr5wenI6O25c/
+FfUYATTzJCfDJDJy7mJDlZq9WIjXBV07ymAnV30HXObgauqyPYlHp6JH4g==&lt;/X509Certificate&gt;
+&lt;/X509Data&gt;
+&lt;/KeyInfo&gt;
+&lt;/Signature&gt;&lt;/Party&gt;
+    &lt;Original&gt;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbnRyYWN0IGlkPSJlNGJm
+NTNhOGU5NzIxMWRlOTNlMDA4MDAyNzJjOTgxZSI+CiAgICA8VHlwZT5odHRwOi8vb3BlbmlkLm5l
+dC9zcnYvY3gvMS4wLyNwcm9wb3NhbDwvVHlwZT4KICAgIDxEYXRldGltZT4yMDA5LTEyLTE1VDIx
+OjEwOjU0Kzk6MDA8L0RhdGV0aW1lPgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+aHR0cDovL25l
+dHNob3AuY29tPC9VUkw+CiAgICAgICAgPFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4w
+LyNwcm9wb3NlcjwvUmVsPgogICAgICAgIDxvYmxpZ2F0aW9ucz4KICAgICAgICAgICAgPHBhcmFt
+IHR5cGU9Imh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50L3RvdGFsYW1vdW50IiBpZD0idGFvdGFs
+YW1vdW50Ij41MDAuMDwvcGFyYW0+CiAgICAgICAgICAgIDxwYXJhbSB0eXBlPSJodHRwOi8vY3hv
+cC5uZXQvY3gvcGF5bWVudC90aXRsZSIgaWQ9InRpdGxlIj5QeXRob24gQm9va3M8L3BhcmFtPgog
+ICAgICAgIDwvb2JsaWdhdGlvbnM+CiAgICA8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3Lncz
+Lm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0
+aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+
+CjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
+bGRzaWcjcnNhLXNoYTEiLz4KPFJlZmVyZW5jZT4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxn
+b3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25h
+dHVyZSIvPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3
+LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIvPgo8RGlnZXN0VmFsdWU+dlNTNzV2blVaL09J
+QWtrRUdyNHFVanI5TzJjPTwvRGlnZXN0VmFsdWU+CjwvUmVmZXJlbmNlPgo8L1NpZ25lZEluZm8+
+CjxTaWduYXR1cmVWYWx1ZT5nemZWVVJWR2xLVjdVQ2E3a2orVHlIckhVL1FtUERTRHc4NXpQemp2
+Ky9xUHBBUXMrMlJlcGZvWkNmQnFXRTFIClYxYmwzMDdDR1BEQmxsZzRXZDNJVlpWaUlubTRqMWQy
+OC9NMUJBNDVZSmREMkJPaGxrZjZsYUZJNWxLWHdRUWUKb0VnU0RaLzZsbC8rczFyQ1U2V2ZaSzMw
+eDJlYWE2aitaTTluanNvc0F5RT08L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRh
+Pgo8WDUwOUNlcnRpZmljYXRlPk1JSUNFekNDQVh3Q0NRREZHTDIyMm54RXFEQU5CZ2txaGtpRzl3
+MEJBUVVGQURCT01SVXdFd1lEVlFRREV3eHUKWlhSemFHOXdMbU52YlNBeEdUQVhCZ05WQkFzVEVI
+TjVjeTV1WlhSemFHOXdMbU52YlNBeERUQUxCZ05WQkFvVApCSE41Y3lBeEN6QUpCZ05WQkFZVEFr
+cFFNQjRYRFRBNU1USXhOVEV5TVRBMU5Gb1hEVEV3TURFeE5ERXlNVEExCk5Gb3dUakVWTUJNR0Ex
+VUVBeE1NYm1WMGMyaHZjQzVqYjIwZ01Sa3dGd1lEVlFRTEV4QnplWE11Ym1WMGMyaHYKY0M1amIy
+MGdNUTB3Q3dZRFZRUUtFd1J6ZVhNZ01Rc3dDUVlEVlFRR0V3SktVRENCbnpBTkJna3Foa2lHOXcw
+QgpBUUVGQUFPQmpRQXdnWWtDZ1lFQXRzRkRwZjhJWVUwR0hwU1pNTTBQZ1daN0FOdmJudXF2Mmhh
+aUNtWXZWanEzClg4THB3YjhSWlk5VE41bmNrdUFlUWNObFRoOGxMNkJ6M3YvbWd3dkdMdU01N3JM
+dDRSajljYlFmRjhWNVQrb1YKd094c0xuUUI5S0pIem4yMVk1TGRwVmdHcGRDdlQ2aDhVdHc5KzhF
+SG92UmQySURvMmcxTW4yTnVMWk5QMTNNQwpBd0VBQVRBTkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FD
+ZCtldDlSOGZEdUdIM2p5dzl4RWdCRjczZnMvMDZVKytYCkl5SnlGR0RRTklaZjJpS202WkpTempD
+Q1Fzb1JVbHU3NE5QMzRQQXEzUmNQZTlnNitNcE40NUo1MWRsQUcyWG0KTVordTNxYVRhQU0yUEJE
+U1pNMFNBYTVBZU9aM3c1M25hb0lIUlFqUkhUVFdFY3JZOVBRYXRIYWpxK0RlNUlaZwp1RkF4Mkhq
+R3pBPT08L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVy
+ZT48L1BhcnR5PgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+PWhka25yPC9VUkw+CiAgICAgICAg
+PFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4wLyNwcm9wb3NlcjwvUmVsPgogICAgICAg
+IDxvYmxpZ2F0aW9ucy8+CiAgICA8L1BhcnR5PgogICAgPFNlcnZpY2U+CiAgICAgICAgPFR5cGU+
+aHR0cDovL2N4b3AubmV0L2N4L3BheW1lbnQjc2hhMjU2OjQwZWE3MjU3NjllNjIyMTkwOGYwODY3
+NTAxNGNmZjFiMTNlODM5OWE1ZWI1NTU1YzIxNjg3ZDQ4N2RhMGI2NmM8L1R5cGU+CiAgICAgICAg
+PFVSTD5odHRwOi8vY3hvcC5uZXQvb3BlbmlkLzwvVVJMPgogICAgPC9TZXJ2aWNlPgogICAgPFRl
+bXBsYXRlVVJMPmh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50I3NoYTI1Njo0MGVhNzI1NzY5ZTYy
+MjE5MDhmMDg2NzUwMTRjZmYxYjEzZTgzOTlhNWViNTU1NWMyMTY4N2Q0ODdkYTBiNjZjPC9UZW1w
+bGF0ZVVSTD4KICAgIDxUZW1wbGF0ZT5QVDA5UFQwOVBUMDlQVDA5UFQwOVBUMDlQVDA5UFQwOVBU
+MDlDa2xPVkVWU1RrVlVJRkJCV1UxTlJVNVVJRUZIVWtWRlRVVk9WQW85ClBUMDlQVDA5UFQwOVBU
+MDlQVDA5UFQwOVBUMDlQVDA5UFQwS0NsZG9aWEpsWVhNZ2UzdGxibVJmZFhObGNuMTlJSEJoZVhN
+Z1ptOXkKSUhSb1pTQnpaWEoyYVdObGN5QndjbTkyYVdSbFpDQmllU0I3ZTNObGNuWnBZMlZmY0hK
+dmRtbGtaWEo5ZlNCaGRDQjBhR1VnZTNzZwpiM0JmY0hKdmRtOWtaWEo5ZlNkeklIQmhlVzFsYm5R
+Z2MyVnlkbWxqWlM0Z0Nnb2dNUzRnSUNCN2UyVnVaRjkxYzJWeWZYMGdiWFZ6CmRDQndZWGtnZEc4
+Z2Uzc2diM0JmY0hKdmRtbGtaWEo5ZlNCMWJuUnBiQ0IwYUdVZ1pHRjVJSE53WldOcFptbGxaQ0Jw
+YmlCMGFHVWcKSWtOeVpXUnBkQ0JEWVhKa0lGQmhlVzFsYm5RZ1FXZHlaV1Z0Wlc1MElpQmlaWFIz
+WldWdUlIdDdJRzl3WDNCeWIzWnBaR1Z5ZlgwZwpZVzVrSUFvZ0lDQWdJQ0I3ZTJWdVpGOTFjMlZ5
+ZlgxOUxpQkNiM1JvSUc5bUlIUm9aVzBnYlhWemRDQm1iMnhzYjNjZ1lXeHNJSGRoCmNuSmhiblJw
+WlhNZ1lXNWtJR1JwYzJOc1lXbHRaWElnZDNKcGRIUmxjbTRnYjI0Z2RHaGxJR0ZuY21WbGJXVnVk
+QzRLQ2dvZ01pNGcKSUNCN2UzTmxjblpwWTJWZmNISnZkbWxrWlhKOWZTQnRkWE4wSUdKbElIQmhh
+V1FnWW5rZ2Uzc2diM0JmY0hKdmRtbGtaWElnZlgwZwpZbUZ6WldRZ2IyNGdkR2hsSUNKRWFXZHBk
+R0ZzSUZCaGVXMWxiblFnVTJWeWRtbGpaU0JCWjNKbFpXMWxiblFpSUdKbGRIZGxaVzRnCmUzc2di
+M0JmY0hKdmRtbGtaWElnZlgwS0lDQWdJQ0FnWVc1a0lIdDdJSE5sY25acFkyVmZjSEp2ZG1sa1pY
+SWdmWDB1SUVKdmRHZ2cKYjJZZ2RHaGxiU0J0ZFhOMElHWnZiR3h2ZHlCaGJHd2dkMkZ5Y21GdWRH
+bGxjeUJoYm1RZ1pHbHpZMnhoYVcxbGNpQWdkM0pwZEhSbApjbTRnYjI0Z2RHaGxJR0ZuY21WbGJX
+VnVkQzRLQ2lBekxpQWdJSHQ3YzJWeWRtbGpaVjl3Y205MmFXUmxjbjE5SUcxMWMzUWdaR2xuCmFY
+UmhiR3g1SUhOcFoyNGdkR2hsSUdGbmNtVmxiV1Z1ZENCaVlYTmxaQ0J2YmlCMGFHbHpJR1J2WTNW
+dFpXNTBMZ29LSURRdUlDQWcKZTN0dmNGOXdjbTkyYVdSbGNuMTlJRzExYzNRZ1pHbG5hWFJoYkd4
+NUlITnBaMjRnZEdobElHRm5jbVZsYldWdWRDQmlZWE5sWkNCdgpiaUIwYUdseklHUnZZM1Z0Wlc1
+MElHOXVJSFJvWlNCaVpXaGhiR1lnYjJZZ2Uzc2daVzVrWDNWelpYSWdmWDB1Q2dwN2UzTmxjblpw
+ClkyVmZjSEp2ZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFFvS0lFSjVPaUFn
+SUNBZ0lIdDdjSEp2Y0c5elpYSmYKYzJsbmJtRjBiM0o1ZlgwS0NpQlVhWFJzWlRvZ0lDQjdlM0J5
+YjNCdmMyVnlYM1JwZEd4bGZYMEtDaUJFWVhSbE9pQWdJQ0I3ZTI1dgpkMzE5Q2dwN2UyVnVaRjkx
+YzJWeWZYMEtMUzB0TFMwdExTMHRMUzB0Q2dvZ1FuazZJQ0FnSUNBZ2UzdGxibVJmZFhObGNuMTlD
+Z29nClZHbDBiR1U2SUNBZ2UzdGxibVJmZFhObGNsOTBhWFJzWlgxOUNnb2dSR0YwWlRvZ0lDQWdl
+M3R1YjNkOWZRb0tDbnQ3YjNCZmNISnYKZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMEtD
+aUJDZVRvZ0lDQWdJQ0I3ZTJGalkyVndkRzl5WDNOcFoyNWhkRzl5ZVgxOQpDaUFLSUZScGRHeGxP
+aUFnSUh0N1lXTmpaWEIwYjNKZmRHbDBiR1Y5ZlFvZ0lBb2dSR0YwWlRvZ0lDQWdlM3R1YjNkOWZR
+b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
+&lt;/Original&gt;
+&lt;/Contract&gt;
+
+
+</pre></div>
+<a name="anchor38"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8"></a><h3>8.&nbsp;
+Appendix C. Common Contract Constructs used in CX</h3>
+
+<p>Followings are the list of common contract constructs. Each contract
+      type should define some of the following as data type and utilize it in
+      the template.</p>
+<ul class="text">
+<li>Contract Identifier
+<blockquote class="text">
+<p>Defined as /Contract/Id in the core.
+</p>
+</blockquote>
+</li>
+<li>Parties
+<blockquote class="text">
+<p>Stakeholders in a contract. Defined as /Contract/Party.
+</p>
+</blockquote>
+</li>
+<li>Individual Signatories
+<blockquote class="text">
+<p>The person who signes on behalf of one of the Party. Defined
+              as /Contract/Party/ds:Signature/ds:KeyInfo.
+</p>
+</blockquote>
+</li>
+<li>Title or Capacity of Signatories
+<blockquote class="text">
+<p>Signers responsibility.
+</p>
+</blockquote>
+</li>
+<li>Date of Signature
+<blockquote class="text">
+<p>Date of Signature.
+</p>
+</blockquote>
+</li>
+<li>Contact Details (for notices)
+<blockquote class="text">
+<p>The address at which the parties can be contacted.
+</p>
+</blockquote>
+</li>
+<li>Actions, or Other Items to be delivered
+<blockquote class="text">
+<p>Description of goods, services.
+</p>
+</blockquote>
+</li>
+<li>Quantity to be Delivered
+</li>
+<li>Price
+<blockquote class="text">
+<p>This should include denomination of currency [ex., USD$],
+              description of non-monetary consideration, any formula or
+              external reference for calculation
+</p>
+</blockquote>
+</li>
+<li>Date of delivery or other performance
+</li>
+<li>Place of delivery or other performance
+</li>
+<li>Definitions
+</li>
+<li>Conditions
+<blockquote class="text">
+<p>Ex., performance contingent on certain events, payment
+              contingent on standards of acceptance
+</p>
+</blockquote>
+</li>
+<li>Warranties
+<blockquote class="text">
+<p>Ex., warranty of non-infringement, warranty of conformance to
+              stated specifications, warranty of legal authority, warranty of
+              insurance coverage
+</p>
+</blockquote>
+</li>
+<li>Relationship to other contracts
+<blockquote class="text">
+<p>Ex., purchase order under a framework agreement
+</p>
+</blockquote>
+</li>
+<li>Term of contract
+<blockquote class="text">
+<p>May include renewal provisions
+</p>
+</blockquote>
+</li>
+<li>Termination
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Billing and payment
+<blockquote class="text">
+<p>Ex., net 30 days, discounts, late penalties, wire
+              transfers
+</p>
+</blockquote>
+</li>
+<li>Governing Law
+<blockquote class="text">
+<p>Ex., English law, Japanese law, law of California, German
+              Civil Code
+</p>
+</blockquote>
+</li>
+<li>Jurisdiction and forum
+<blockquote class="text">
+<p>Ex., courts of general jurisdiction located in New York
+              City
+</p>
+</blockquote>
+</li>
+<li>Waiver of Jury Trial
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Arbitration / alternative dispute resolution
+<blockquote class="text">
+<p>Ex., ICC binding arbitration clause, arbitration to be
+              conducted in Geneva, Switzerland
+</p>
+</blockquote>
+</li>
+<li>Merger clause/ entire agreement
+<blockquote class="text">
+<p>Provision stating that this is the entire agreement between
+              the parties and excluding claims based on statement in
+              advertising or negotiations.
+</p>
+</blockquote>
+</li>
+<li>Survival
+<blockquote class="text">
+<p>Clauses providing that certain terms, such as indemnification
+              or confidentiality, survive expiration or termination of the
+              contract
+</p>
+</blockquote>
+</li>
+<li>Damages/Limitation of Liability
+<blockquote class="text">
+<p>Provisions on calculation of damages, liquidated damages,
+              limitation or exclusion of certain kinds of damages
+</p>
+</blockquote>
+</li>
+<li>Warranty disclaimers
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Indemnification
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Third-party beneficiary rights
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Relationship of Parties
+<blockquote class="text">
+<p>Ex., provisions creating or disclaiming agency or employment
+              relationship
+</p>
+</blockquote>
+</li>
+<li>Confidentiality / Nondisclosure Publicity
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Proprietary Rights, Ownership and Licensing of Intellectual
+          Property
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Assignment, Succession, Delegation
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Legal and Regulatory Compliance
+<blockquote class="text">
+<p>Ex., licensing obligations, export controls, data
+              protection
+</p>
+</blockquote>
+</li>
+<li>Notice Requirements
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Force Majeure
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+<li>Counterparts and Signatures
+<blockquote class="text">
+<p>Provisions allowing signatures at different times; validity
+              of multiple copies or printouts
+</p>
+</blockquote>
+</li>
+<li>Other Terms
+<blockquote class="text">
+<p>
+</p>
+</blockquote>
+</li>
+</ul>
+
+<a name="examples"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
+Examples</h3>
+
+<a name="anchor39"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.B"></a><h3>Appendix B.&nbsp;
+Acknowledgements</h3>
+
+<p>ors would like to thank [...] for their feedback when drafting this
+      specification.
+</p>
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>9.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="OAEP">[OAEP]</a></td>
+<td class="author-text">Bellare, M. and <a href="mailto:">P. Rogaway</a>, &ldquo;Optimal Asymmetric Encryption -- How to encrypt with RSA.
+          Extended abstract in Advances in Cryptology - Eurocrypt '94
+          Proceedings, Lecture Notes in Computer Science Vol. 950, A. De
+          Santis ed, Springer-Verlag, 1995,&rdquo; 1995.</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenIDAuthentication2.0">[OpenIDAuthentication2.0]</a></td>
+<td class="author-text">specs@openid.net, &ldquo;OpenID Authentication 2.0,&rdquo; 2007 (<a href="http://www.openid.net/specs/openid-authentication-2_0.txt">TXT</a>, <a href="http://www.openid.net/specs/openid-authentication-2_0.html">HTML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text">Bradner, B., &ldquo;<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement
+          Levels</a>,&rdquo; RFC&nbsp;2119, 1997.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2898">[RFC2898]</a></td>
+<td class="author-text">Kaliski , B., &ldquo;PKCS #5: Password-Based Cryptography Specification Version
+          2.0,&rdquo; September&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3339">[RFC3339]</a></td>
+<td class="author-text">Klyne, G. and C. Newman, &ldquo;<a href="http://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>,&rdquo; RFC&nbsp;3339.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XRIResolution2.0">[XRIResolution2.0]</a></td>
+<td class="author-text">Reed, D. and G. Wachob, Ed., &ldquo;<a href="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf">Extensible Resource Identifier (XRI) Resolution Version
+          2.0</a>,&rdquo; April&nbsp;2008.</td></tr>
+<tr><td class="author-text" valign="top"><a name="Yadis">[Yadis]</a></td>
+<td class="author-text">Miller, J., Ed., &ldquo;Yadis Specification 1.0,&rdquo; 2005 (<a href="http://yadis.org/papers/yadis-v1.0.pdf">PDF</a>, <a href="http://yadis.org/papers/yadis-v1.0.odt">ODT</a>).</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Authors' Addresses</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nat Sakimura</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nomura Research Institute,
+      Ltd.</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Chiyoda-ku, Tokyo  100-0005</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:n-sakimura@nri.co.jp">n-sakimura@nri.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Masaki Nishitani</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nomura Research Institute,
+      Ltd.</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Chiyoda-ku, Tokyo  100-0005</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:m-nishitani@nri.co.jp">m-nishitani@nri.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Hideki Nara</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">TACT Communications,Inc</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Cross Side Building , 3-52-1 Sendagaya</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Shibuya-ku, Tokyo  151-0051</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:hdknr@ic-tact.co.jp">hdknr@ic-tact.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.ic-tact.co.jp">http://www.ic-tact.co.jp</a></td></tr>
+</table>
+</body></html>
+

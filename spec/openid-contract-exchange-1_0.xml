@@ -440,8 +440,6 @@
             When there is certificate change in the ds:X509Data, the chain
             must be checked in the same manner.</t>
           </list>
-
-          
         </t>
       </section>
 
@@ -467,7 +465,7 @@
         of the party involved MUST publish an XRD.</t>
 
         <t>Note Discussion: RP Discovery needed for contract invalidation, RP
-        Verification by OP, etc. (=nat, 2009-08-12) </t>
+        Verification by OP, etc. (=nat, 2009-08-12)</t>
 
         <t />
 
@@ -615,8 +613,6 @@
                 AX required list.</t>
               </list></t>
           </list>
-
-          
         </t>
       </section>
 
@@ -647,8 +643,6 @@
                 encoded.</t>
               </list></t>
           </list>
-
-          
         </t>
       </section>
 
@@ -749,9 +743,465 @@
 
     <section title="Appendix A. Parameters">
       <t>This specification defines a small set of common parameters that may
-      be generally useful for the contracting purposes.</t>
+      be generally useful for the contracting purposes.<list style="symbols">
+          <t>AX Request<list style="symbols">
+              <t>description: Used to convey the data that the requester
+              requests.</t>
+
+              <t>type URL: http://opneid.net/srv/cx/1.0#axreq</t>
+
+              <t>value: Attribute Exchange 1.1 string in
+              tag=value&amp;tag=value format as in X1.1</t>
+
+              <t>Conformance: MUST support.</t>
+            </list></t>
+
+          <t>Price to be paid by the party<list style="symbols">
+              <t>description: The price to be paid to execute this
+              contract.</t>
+
+              <t>type URL: http://openid.net/srv/cx/1.0/#price#currency where
+              currency is replaced by the ISO currency code or
+              &lsquo;other&rsquo;</t>
+
+              <t>value: Decimal string when #currency is ISO code, and
+              anyString when #currency is &lsquo;other&rsquo;</t>
+
+              <t>Conformance: MUST support</t>
+            </list></t>
+
+          <t>Maximum Liability assumed by the party<list style="symbols">
+              <t>description: The maximum liability assumed by the party when
+              there was a breach in the contract.</t>
+
+              <t>type URL: http://openid.net/srv/cx/1.0/#damageslimit#currency
+              where currency is replaced by the ISO currency code or
+              &lsquo;other&rsquo;</t>
+
+              <t>value: Decimal string when #currency is ISO code, and
+              anyString when #currency is &lsquo;other&rsquo;</t>
+
+              <t>Conformance: MUST support</t>
+            </list></t>
+
+          <t>Contact<list style="symbols">
+              <t>description: The address at which the party can be reached
+              at.</t>
+
+              <t>type URL: http://openid.net/srv/cx/1.0/#contact</t>
+
+              <t>value: xs:string</t>
+
+              <t>Conformance: MUST support</t>
+            </list></t>
+
+          <t>Datetime<list style="symbols">
+              <t>type URL: http://www.w3.orgg/TR/xmlschema-2/#datetime</t>
+
+              <t>value: The value defined as xs:dateTime in W3C XML Schema
+              Datatypes specification, and MUST be expressed in UTC form, with
+              no timme zone component (reprsented by the UTC &lsquo;Z&rsquo;
+              timezone). It must not specify the gime instants that
+              corresponds to leap seconds.</t>
+
+              <t>Conformance: MUST support.</t>
+            </list></t>
+
+          <t>String<list style="symbols">
+              <t>type URL: http://www.w3.orgg/TR/xmlschema-2/#string</t>
+
+              <t>value: UTF-8 string.</t>
+
+              <t>Conformance: MUST support.</t>
+            </list></t>
+        </list></t>
 
       <t />
+    </section>
+
+    <section title="Appendix B. Examples">
+      <section title="Proposal Sample">
+        <t>A sample Contract XML Proposal would look like as follows:</t>
+
+        <figure>
+          <artwork><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<Contract id="e4bf53a8e97211de93e00800272c981e">
+    <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
+    <Datetime>2009-12-15T21:10:54+9:00</Datetime>
+    <Party>
+        <URL>http://netshop.com</URL>
+        <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
+        <obligations>
+            <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
+            <param type="http://cxop.net/cx/payment/title" id="title">Python Books</param>
+        </obligations>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+<SignedInfo>
+<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<Reference>
+<Transforms>
+<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</Transforms>
+<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<DigestValue>vSS75vnUZ/OIAkkEGr4qUjr9O2c=</DigestValue>
+</Reference>
+</SignedInfo>
+<SignatureValue>gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
+V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
+oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=</SignatureValue>
+<KeyInfo>
+<X509Data>
+<X509Certificate>MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
+ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
+BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
+NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
+cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
+AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
+X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
+wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
+AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
+IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
+MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
+uFAx2HjGzA==</X509Certificate>
+</X509Data>
+</KeyInfo>
+</Signature></Party>
+    <Party>
+        <URL>=hdknr</URL>
+        <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
+        <obligations/>
+    </Party>
+    <Service>
+        <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
+        <URL>http://cxop.net/openid/</URL>
+    </Service>
+    <TemplateURL>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</TemplateURL>
+    <Template>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
+IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
+b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
+dCBwYXkgdG8ge3sgb3BfcHJvdmlkZXJ9fSB1bnRpbCB0aGUgZGF5IHNwZWNpZmllZCBpbiB0aGUg
+IkNyZWRpdCBDYXJkIFBheW1lbnQgQWdyZWVtZW50IiBiZXR3ZWVuIHt7IG9wX3Byb3ZpZGVyfX0g
+YW5kIAogICAgICB7e2VuZF91c2VyfX19LiBCb3RoIG9mIHRoZW0gbXVzdCBmb2xsb3cgYWxsIHdh
+cnJhbnRpZXMgYW5kIGRpc2NsYWltZXIgd3JpdHRlcm4gb24gdGhlIGFncmVlbWVudC4KCgogMi4g
+ICB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBtdXN0IGJlIHBhaWQgYnkge3sgb3BfcHJvdmlkZXIgfX0g
+YmFzZWQgb24gdGhlICJEaWdpdGFsIFBheW1lbnQgU2VydmljZSBBZ3JlZW1lbnQiIGJldHdlZW4g
+e3sgb3BfcHJvdmlkZXIgfX0KICAgICAgYW5kIHt7IHNlcnZpY2VfcHJvdmlkZXIgfX0uIEJvdGgg
+b2YgdGhlbSBtdXN0IGZvbGxvdyBhbGwgd2FycmFudGllcyBhbmQgZGlzY2xhaW1lciAgd3JpdHRl
+cm4gb24gdGhlIGFncmVlbWVudC4KCiAzLiAgIHt7c2VydmljZV9wcm92aWRlcn19IG11c3QgZGln
+aXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBvbiB0aGlzIGRvY3VtZW50LgoKIDQuICAg
+e3tvcF9wcm92aWRlcn19IG11c3QgZGlnaXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBv
+biB0aGlzIGRvY3VtZW50IG9uIHRoZSBiZWhhbGYgb2Yge3sgZW5kX3VzZXIgfX0uCgp7e3NlcnZp
+Y2VfcHJvdmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0tLS0tLQoKIEJ5OiAgICAgIHt7cHJvcG9zZXJf
+c2lnbmF0b3J5fX0KCiBUaXRsZTogICB7e3Byb3Bvc2VyX3RpdGxlfX0KCiBEYXRlOiAgICB7e25v
+d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
+VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
+dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
+CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
+</Template>
+</Contract>
+                
+
+]]></artwork>
+        </figure>
+      </section>
+
+      <section title="Contract Sample">
+        <t>A sample Contract XML Contract would look like as follows:</t>
+
+        <figure>
+          <artwork><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<Contract id="e5279de6e97211de93e00800272c981e">
+    <Type>http://openid.net/srv/cx/1.0/#contract</Type>
+    <Datetime>2009-12-15T21:10:54+9:00</Datetime>
+    <Party>
+        <URL>http://cxop.net</URL>
+        <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
+        <obligations>
+            <param type="http://cxop.net/cx/payment/statuscode" id="statuscode">200</param>
+            <param type="http://cxop.net/cx/payment/description" id="description">OK</param>
+        </obligations>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+<SignedInfo>
+<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<Reference>
+<Transforms>
+<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</Transforms>
+<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<DigestValue>qjE64vEk/1X6ZAoetneAeg8cYOY=</DigestValue>
+</Reference>
+</SignedInfo>
+<SignatureValue>IbqKT6o2pe/iSiNKA1JtQoUkCiEnMjZERbFBBaOgD6EmsyK2tIhwwHWGuAq0uAea
+kZVrCfeVw2Yck9RTk3f1zoqJVkmBcJOanuzshrh02hqtjp3wEEAwp4iXB/32qcEc
+scaV1iubMjI1abxHmzkhyDNZdTQ/fsuu1yTRhZcI3WU=</SignatureValue>
+<KeyInfo>
+<X509Data>
+<X509Certificate>MIICBzCCAXACCQCfVmQZ3hrYvTANBgkqhkiG9w0BAQUFADBIMRIwEAYDVQQDEwlj
+eG9wLm5ldCAxFjAUBgNVBAsTDXN5cy5jeG9wLm5ldCAxDTALBgNVBAoTBHN5cyAx
+CzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NVoXDTEwMDExNDEyMTA1NVowSDES
+MBAGA1UEAxMJY3hvcC5uZXQgMRYwFAYDVQQLEw1zeXMuY3hvcC5uZXQgMQ0wCwYD
+VQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
+gYEAtNk+qHH/luZjt0IQEck6jjANJ2fQLG5oOyF80C/PA5sStoc6LLgh0VosDp/S
+ixTCuTs3NRk+9NtA0Ej0f9Z9sUgNTS9ybyY3QbMDn+rAbo+MZqXnyKeqt98O0SEr
+W2HB5Ucmk0pc20mS5GuJt3J3E6KIh3seWwINZfio3g3AcgECAwEAATANBgkqhkiG
+9w0BAQUFAAOBgQCI+Ztcpy+M2eW+fSm5JyS5YQm32ZFtyK6EtKLP4z5mqM9i+zvq
+i1Po7/KkpuVqCPjR/qmjplwgZj+7yDeecE8GsO1D6p07eaInF7GQr5wenI6O25c/
+FfUYATTzJCfDJDJy7mJDlZq9WIjXBV07ymAnV30HXObgauqyPYlHp6JH4g==</X509Certificate>
+</X509Data>
+</KeyInfo>
+</Signature></Party>
+    <Original>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbnRyYWN0IGlkPSJlNGJm
+NTNhOGU5NzIxMWRlOTNlMDA4MDAyNzJjOTgxZSI+CiAgICA8VHlwZT5odHRwOi8vb3BlbmlkLm5l
+dC9zcnYvY3gvMS4wLyNwcm9wb3NhbDwvVHlwZT4KICAgIDxEYXRldGltZT4yMDA5LTEyLTE1VDIx
+OjEwOjU0Kzk6MDA8L0RhdGV0aW1lPgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+aHR0cDovL25l
+dHNob3AuY29tPC9VUkw+CiAgICAgICAgPFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4w
+LyNwcm9wb3NlcjwvUmVsPgogICAgICAgIDxvYmxpZ2F0aW9ucz4KICAgICAgICAgICAgPHBhcmFt
+IHR5cGU9Imh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50L3RvdGFsYW1vdW50IiBpZD0idGFvdGFs
+YW1vdW50Ij41MDAuMDwvcGFyYW0+CiAgICAgICAgICAgIDxwYXJhbSB0eXBlPSJodHRwOi8vY3hv
+cC5uZXQvY3gvcGF5bWVudC90aXRsZSIgaWQ9InRpdGxlIj5QeXRob24gQm9va3M8L3BhcmFtPgog
+ICAgICAgIDwvb2JsaWdhdGlvbnM+CiAgICA8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3Lncz
+Lm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0
+aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+
+CjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
+bGRzaWcjcnNhLXNoYTEiLz4KPFJlZmVyZW5jZT4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxn
+b3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25h
+dHVyZSIvPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3
+LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIvPgo8RGlnZXN0VmFsdWU+dlNTNzV2blVaL09J
+QWtrRUdyNHFVanI5TzJjPTwvRGlnZXN0VmFsdWU+CjwvUmVmZXJlbmNlPgo8L1NpZ25lZEluZm8+
+CjxTaWduYXR1cmVWYWx1ZT5nemZWVVJWR2xLVjdVQ2E3a2orVHlIckhVL1FtUERTRHc4NXpQemp2
+Ky9xUHBBUXMrMlJlcGZvWkNmQnFXRTFIClYxYmwzMDdDR1BEQmxsZzRXZDNJVlpWaUlubTRqMWQy
+OC9NMUJBNDVZSmREMkJPaGxrZjZsYUZJNWxLWHdRUWUKb0VnU0RaLzZsbC8rczFyQ1U2V2ZaSzMw
+eDJlYWE2aitaTTluanNvc0F5RT08L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRh
+Pgo8WDUwOUNlcnRpZmljYXRlPk1JSUNFekNDQVh3Q0NRREZHTDIyMm54RXFEQU5CZ2txaGtpRzl3
+MEJBUVVGQURCT01SVXdFd1lEVlFRREV3eHUKWlhSemFHOXdMbU52YlNBeEdUQVhCZ05WQkFzVEVI
+TjVjeTV1WlhSemFHOXdMbU52YlNBeERUQUxCZ05WQkFvVApCSE41Y3lBeEN6QUpCZ05WQkFZVEFr
+cFFNQjRYRFRBNU1USXhOVEV5TVRBMU5Gb1hEVEV3TURFeE5ERXlNVEExCk5Gb3dUakVWTUJNR0Ex
+VUVBeE1NYm1WMGMyaHZjQzVqYjIwZ01Sa3dGd1lEVlFRTEV4QnplWE11Ym1WMGMyaHYKY0M1amIy
+MGdNUTB3Q3dZRFZRUUtFd1J6ZVhNZ01Rc3dDUVlEVlFRR0V3SktVRENCbnpBTkJna3Foa2lHOXcw
+QgpBUUVGQUFPQmpRQXdnWWtDZ1lFQXRzRkRwZjhJWVUwR0hwU1pNTTBQZ1daN0FOdmJudXF2Mmhh
+aUNtWXZWanEzClg4THB3YjhSWlk5VE41bmNrdUFlUWNObFRoOGxMNkJ6M3YvbWd3dkdMdU01N3JM
+dDRSajljYlFmRjhWNVQrb1YKd094c0xuUUI5S0pIem4yMVk1TGRwVmdHcGRDdlQ2aDhVdHc5KzhF
+SG92UmQySURvMmcxTW4yTnVMWk5QMTNNQwpBd0VBQVRBTkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FD
+ZCtldDlSOGZEdUdIM2p5dzl4RWdCRjczZnMvMDZVKytYCkl5SnlGR0RRTklaZjJpS202WkpTempD
+Q1Fzb1JVbHU3NE5QMzRQQXEzUmNQZTlnNitNcE40NUo1MWRsQUcyWG0KTVordTNxYVRhQU0yUEJE
+U1pNMFNBYTVBZU9aM3c1M25hb0lIUlFqUkhUVFdFY3JZOVBRYXRIYWpxK0RlNUlaZwp1RkF4Mkhq
+R3pBPT08L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVy
+ZT48L1BhcnR5PgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+PWhka25yPC9VUkw+CiAgICAgICAg
+PFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4wLyNwcm9wb3NlcjwvUmVsPgogICAgICAg
+IDxvYmxpZ2F0aW9ucy8+CiAgICA8L1BhcnR5PgogICAgPFNlcnZpY2U+CiAgICAgICAgPFR5cGU+
+aHR0cDovL2N4b3AubmV0L2N4L3BheW1lbnQjc2hhMjU2OjQwZWE3MjU3NjllNjIyMTkwOGYwODY3
+NTAxNGNmZjFiMTNlODM5OWE1ZWI1NTU1YzIxNjg3ZDQ4N2RhMGI2NmM8L1R5cGU+CiAgICAgICAg
+PFVSTD5odHRwOi8vY3hvcC5uZXQvb3BlbmlkLzwvVVJMPgogICAgPC9TZXJ2aWNlPgogICAgPFRl
+bXBsYXRlVVJMPmh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50I3NoYTI1Njo0MGVhNzI1NzY5ZTYy
+MjE5MDhmMDg2NzUwMTRjZmYxYjEzZTgzOTlhNWViNTU1NWMyMTY4N2Q0ODdkYTBiNjZjPC9UZW1w
+bGF0ZVVSTD4KICAgIDxUZW1wbGF0ZT5QVDA5UFQwOVBUMDlQVDA5UFQwOVBUMDlQVDA5UFQwOVBU
+MDlDa2xPVkVWU1RrVlVJRkJCV1UxTlJVNVVJRUZIVWtWRlRVVk9WQW85ClBUMDlQVDA5UFQwOVBU
+MDlQVDA5UFQwOVBUMDlQVDA5UFQwS0NsZG9aWEpsWVhNZ2UzdGxibVJmZFhObGNuMTlJSEJoZVhN
+Z1ptOXkKSUhSb1pTQnpaWEoyYVdObGN5QndjbTkyYVdSbFpDQmllU0I3ZTNObGNuWnBZMlZmY0hK
+dmRtbGtaWEo5ZlNCaGRDQjBhR1VnZTNzZwpiM0JmY0hKdmRtOWtaWEo5ZlNkeklIQmhlVzFsYm5R
+Z2MyVnlkbWxqWlM0Z0Nnb2dNUzRnSUNCN2UyVnVaRjkxYzJWeWZYMGdiWFZ6CmRDQndZWGtnZEc4
+Z2Uzc2diM0JmY0hKdmRtbGtaWEo5ZlNCMWJuUnBiQ0IwYUdVZ1pHRjVJSE53WldOcFptbGxaQ0Jw
+YmlCMGFHVWcKSWtOeVpXUnBkQ0JEWVhKa0lGQmhlVzFsYm5RZ1FXZHlaV1Z0Wlc1MElpQmlaWFIz
+WldWdUlIdDdJRzl3WDNCeWIzWnBaR1Z5ZlgwZwpZVzVrSUFvZ0lDQWdJQ0I3ZTJWdVpGOTFjMlZ5
+ZlgxOUxpQkNiM1JvSUc5bUlIUm9aVzBnYlhWemRDQm1iMnhzYjNjZ1lXeHNJSGRoCmNuSmhiblJw
+WlhNZ1lXNWtJR1JwYzJOc1lXbHRaWElnZDNKcGRIUmxjbTRnYjI0Z2RHaGxJR0ZuY21WbGJXVnVk
+QzRLQ2dvZ01pNGcKSUNCN2UzTmxjblpwWTJWZmNISnZkbWxrWlhKOWZTQnRkWE4wSUdKbElIQmhh
+V1FnWW5rZ2Uzc2diM0JmY0hKdmRtbGtaWElnZlgwZwpZbUZ6WldRZ2IyNGdkR2hsSUNKRWFXZHBk
+R0ZzSUZCaGVXMWxiblFnVTJWeWRtbGpaU0JCWjNKbFpXMWxiblFpSUdKbGRIZGxaVzRnCmUzc2di
+M0JmY0hKdmRtbGtaWElnZlgwS0lDQWdJQ0FnWVc1a0lIdDdJSE5sY25acFkyVmZjSEp2ZG1sa1pY
+SWdmWDB1SUVKdmRHZ2cKYjJZZ2RHaGxiU0J0ZFhOMElHWnZiR3h2ZHlCaGJHd2dkMkZ5Y21GdWRH
+bGxjeUJoYm1RZ1pHbHpZMnhoYVcxbGNpQWdkM0pwZEhSbApjbTRnYjI0Z2RHaGxJR0ZuY21WbGJX
+VnVkQzRLQ2lBekxpQWdJSHQ3YzJWeWRtbGpaVjl3Y205MmFXUmxjbjE5SUcxMWMzUWdaR2xuCmFY
+UmhiR3g1SUhOcFoyNGdkR2hsSUdGbmNtVmxiV1Z1ZENCaVlYTmxaQ0J2YmlCMGFHbHpJR1J2WTNW
+dFpXNTBMZ29LSURRdUlDQWcKZTN0dmNGOXdjbTkyYVdSbGNuMTlJRzExYzNRZ1pHbG5hWFJoYkd4
+NUlITnBaMjRnZEdobElHRm5jbVZsYldWdWRDQmlZWE5sWkNCdgpiaUIwYUdseklHUnZZM1Z0Wlc1
+MElHOXVJSFJvWlNCaVpXaGhiR1lnYjJZZ2Uzc2daVzVrWDNWelpYSWdmWDB1Q2dwN2UzTmxjblpw
+ClkyVmZjSEp2ZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFFvS0lFSjVPaUFn
+SUNBZ0lIdDdjSEp2Y0c5elpYSmYKYzJsbmJtRjBiM0o1ZlgwS0NpQlVhWFJzWlRvZ0lDQjdlM0J5
+YjNCdmMyVnlYM1JwZEd4bGZYMEtDaUJFWVhSbE9pQWdJQ0I3ZTI1dgpkMzE5Q2dwN2UyVnVaRjkx
+YzJWeWZYMEtMUzB0TFMwdExTMHRMUzB0Q2dvZ1FuazZJQ0FnSUNBZ2UzdGxibVJmZFhObGNuMTlD
+Z29nClZHbDBiR1U2SUNBZ2UzdGxibVJmZFhObGNsOTBhWFJzWlgxOUNnb2dSR0YwWlRvZ0lDQWdl
+M3R1YjNkOWZRb0tDbnQ3YjNCZmNISnYKZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMEtD
+aUJDZVRvZ0lDQWdJQ0I3ZTJGalkyVndkRzl5WDNOcFoyNWhkRzl5ZVgxOQpDaUFLSUZScGRHeGxP
+aUFnSUh0N1lXTmpaWEIwYjNKZmRHbDBiR1Y5ZlFvZ0lBb2dSR0YwWlRvZ0lDQWdlM3R1YjNkOWZR
+b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
+</Original>
+</Contract>
+
+
+]]></artwork>
+        </figure>
+      </section>
+    </section>
+
+    <section title="Appendix C. Common Contract Constructs used in CX">
+      <t>Followings are the list of common contract constructs. Each contract
+      type should define some of the following as data type and utilize it in
+      the template.<list style="symbols">
+          <t>Contract Identifier<list style="empty">
+              <t>Defined as /Contract/Id in the core.</t>
+            </list></t>
+
+          <t>Parties<list style="empty">
+              <t>Stakeholders in a contract. Defined as /Contract/Party.</t>
+            </list></t>
+
+          <t>Individual Signatories<list style="empty">
+              <t>The person who signes on behalf of one of the Party. Defined
+              as /Contract/Party/ds:Signature/ds:KeyInfo.</t>
+            </list></t>
+
+          <t>Title or Capacity of Signatories<list style="empty">
+              <t>Signers responsibility.</t>
+            </list></t>
+
+          <t>Date of Signature<list style="empty">
+              <t>Date of Signature.</t>
+            </list></t>
+
+          <t>Contact Details (for notices)<list style="empty">
+              <t>The address at which the parties can be contacted.</t>
+            </list></t>
+
+          <t>Actions, or Other Items to be delivered<list style="empty">
+              <t>Description of goods, services.</t>
+            </list></t>
+
+          <t>Quantity to be Delivered</t>
+
+          <t>Price<list style="empty">
+              <t>This should include denomination of currency [ex., USD$],
+              description of non-monetary consideration, any formula or
+              external reference for calculation</t>
+            </list></t>
+
+          <t>Date of delivery or other performance</t>
+
+          <t>Place of delivery or other performance</t>
+
+          <t>Definitions</t>
+
+          <t>Conditions<list style="empty">
+              <t>Ex., performance contingent on certain events, payment
+              contingent on standards of acceptance</t>
+            </list></t>
+
+          <t>Warranties<list style="empty">
+              <t>Ex., warranty of non-infringement, warranty of conformance to
+              stated specifications, warranty of legal authority, warranty of
+              insurance coverage</t>
+            </list></t>
+
+          <t>Relationship to other contracts<list style="empty">
+              <t>Ex., purchase order under a framework agreement</t>
+            </list></t>
+
+          <t>Term of contract<list style="empty">
+              <t>May include renewal provisions</t>
+            </list></t>
+
+          <t>Termination<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Billing and payment<list style="empty">
+              <t>Ex., net 30 days, discounts, late penalties, wire
+              transfers</t>
+            </list></t>
+
+          <t>Governing Law<list style="empty">
+              <t>Ex., English law, Japanese law, law of California, German
+              Civil Code</t>
+            </list></t>
+
+          <t>Jurisdiction and forum<list style="empty">
+              <t>Ex., courts of general jurisdiction located in New York
+              City</t>
+            </list></t>
+
+          <t>Waiver of Jury Trial<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Arbitration / alternative dispute resolution<list style="empty">
+              <t>Ex., ICC binding arbitration clause, arbitration to be
+              conducted in Geneva, Switzerland</t>
+            </list></t>
+
+          <t>Merger clause/ entire agreement<list style="empty">
+              <t>Provision stating that this is the entire agreement between
+              the parties and excluding claims based on statement in
+              advertising or negotiations.</t>
+            </list></t>
+
+          <t>Survival<list style="empty">
+              <t>Clauses providing that certain terms, such as indemnification
+              or confidentiality, survive expiration or termination of the
+              contract</t>
+            </list></t>
+
+          <t>Damages/Limitation of Liability<list style="empty">
+              <t>Provisions on calculation of damages, liquidated damages,
+              limitation or exclusion of certain kinds of damages</t>
+            </list></t>
+
+          <t>Warranty disclaimers<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Indemnification<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Third-party beneficiary rights<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Relationship of Parties<list style="empty">
+              <t>Ex., provisions creating or disclaiming agency or employment
+              relationship</t>
+            </list></t>
+
+          <t>Confidentiality / Nondisclosure Publicity<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Proprietary Rights, Ownership and Licensing of Intellectual
+          Property<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Assignment, Succession, Delegation<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Legal and Regulatory Compliance<list style="empty">
+              <t>Ex., licensing obligations, export controls, data
+              protection</t>
+            </list></t>
+
+          <t>Notice Requirements<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Force Majeure<list style="empty">
+              <t />
+            </list></t>
+
+          <t>Counterparts and Signatures<list style="empty">
+              <t>Provisions allowing signatures at different times; validity
+              of multiple copies or printouts</t>
+            </list></t>
+
+          <t>Other Terms<list style="empty">
+              <t />
+            </list></t>
+        </list></t>
     </section>
 
     <appendix anchor="examples" title="Examples" />
