@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 1</title>
-<meta http-equiv="Expires" content="Tue, 26 Jan 2010 06:09:26 +0000">
+<meta http-equiv="Expires" content="Tue, 26 Jan 2010 06:12:18 +0000">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="Contract Exchange Extension 1.0 - Draft 1">
 <meta name="generator" content="xml2rfc v1.34 (http://xml.resource.org/)">
@@ -194,41 +194,41 @@ Storage and Timestamping<br />
 Protocol<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor17">4.1.</a>&nbsp;
 Discovery<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor22">4.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor18">4.2.</a>&nbsp;
 Sending Proposal<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor23">4.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor19">4.3.</a>&nbsp;
 Writing Agreement<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor24">4.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor20">4.4.</a>&nbsp;
 Receiving Contract<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor25">4.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor21">4.5.</a>&nbsp;
 Encrypting the payload<br />
-<a href="#anchor27">5.</a>&nbsp;
+<a href="#anchor23">5.</a>&nbsp;
 Security Considerations<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor28">5.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor24">5.1.</a>&nbsp;
 Non-repudiation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor29">5.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor25">5.2.</a>&nbsp;
 Man-in-the-middle<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor30">5.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor26">5.3.</a>&nbsp;
 Eavesdropping<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor31">5.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor27">5.4.</a>&nbsp;
 Malicious Providers<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor32">5.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor28">5.5.</a>&nbsp;
 Phishing Attack<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor33">5.6.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor29">5.6.</a>&nbsp;
 Private key compromise<br />
-<a href="#anchor34">6.</a>&nbsp;
+<a href="#anchor30">6.</a>&nbsp;
 Appendix A. Parameters<br />
-<a href="#anchor35">7.</a>&nbsp;
+<a href="#anchor31">7.</a>&nbsp;
 Appendix B. Examples<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor36">7.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor32">7.1.</a>&nbsp;
 Proposal Sample<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor37">7.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor33">7.2.</a>&nbsp;
 Contract Sample<br />
-<a href="#anchor38">8.</a>&nbsp;
+<a href="#anchor34">8.</a>&nbsp;
 Appendix C. Common Contract Constructs used in CX<br />
 <a href="#examples">Appendix&nbsp;A.</a>&nbsp;
 Examples<br />
-<a href="#anchor39">Appendix&nbsp;B.</a>&nbsp;
+<a href="#anchor35">Appendix&nbsp;B.</a>&nbsp;
 Acknowledgements<br />
 <a href="#rfc.references1">9.</a>&nbsp;
 Normative References<br />
@@ -663,157 +663,6 @@ Discovery</h3>
 </p>
 <a name="anchor18"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
-Namespace</h3>
-
-<p>All message class shares a single parameter ,"openid.ns.cx".
-          Although you can freely choose any word for alias name other than
-          "cx", but you should better keep using "cx" as alias if you don't
-          have any special reason.
-</p>
-<a name="anchor19"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.1.2"></a><h3>4.1.2.&nbsp;
-Unique identifier for a Contract Completion Process</h3>
-
-<p>Participants MUST use openid.cx.realm with openid.cx.tx_id for
-          the key data to identify a specific contract completion process.
-          Both of them are initiated by a CXRP when the CXRP request a Offer
-          to CXSP. CXSP MUST return an error status in openid.cx.status when a
-          combination of openid.cx.realm and openid.cx.tx_id have been already
-          existed on the list of CXSP contract history.
-</p>
-<a name="anchor20"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.1.3"></a><h3>4.1.3.&nbsp;
-Parameter Values</h3>
-
-<p>All CX parameters are expected to be exchange in "key=value" form
-          called "attribute". Values of any attribute MUST NOT contain any
-          newline character(UCS codepoint 10 , "&yen;n"). Some attributes which
-          contains newline code in its value specifies special encoding rule
-          for a string data.
-</p>
-<a name="anchor21"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.1.4"></a><h3>4.1.4.&nbsp;
-Parameters</h3>
-
-<p>
-            </p>
-<ul class="text">
-<li>openid.ns.cx
-<blockquote class="text">
-<p>Which describes there are CX message parameters. Its
-                  value should be
-                  http://specs.openid.net/extensions/cx/1.0/.
-</p>
-<p>Value : URI
-</p>
-</blockquote>
-</li>
-<li>openid.cx.mode
-<blockquote class="text">
-<p>Which describes CX mode. openid.cx.mode is one of
-                  "offer_request","offer_response","authz_request","authz_response","contract_request"
-                  , "contract_response" ,"notify_request" and
-                  "notify_response".
-</p>
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.realm
-<blockquote class="text">
-<p>Unique identifier to identify an offering participant.
-                  See Section 9.2 Relms of OpenID Authentication 2.0
-                  specification.
-</p>
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.tx_id
-<blockquote class="text">
-<p>Unique identifier initiated by CXRP for a series of CX
-                  transactions until a contract will be completed.
-</p>
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.ticket_id
-<blockquote class="text">
-<p>Unique identifier for a proof which the CXSP has been
-                  accepted the Offer by CXRP and returned in the response
-                  message when openid.cx.mode is "offer_response".
-</p>
-<p>The Authorization request which means openid.cx.mode is
-                  "authz_request" MUST include this parameter and the message
-                  itself MUST be digitally signed by DSig.
-</p>
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.contract_id
-<blockquote class="text">
-<p>Unique identifier for a proof which the CXSP has been
-                  completed the Contract for CXRP and returned in the response
-                  message when openid.cx.mode is "authz_response".
-</p>
-<p>The Contract request ,namely openid.cx.mode is
-                  "contract_request" MUST include this parameter and the
-                  message itself MUST be digitally signed by DSig.
-</p>
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.status
-<blockquote class="text">
-<p>Only needed if openid.cx.mode is "*_response".
-                  openid.cx.status shows the current status of the contract
-                  completion process.
-</p>
-<p>
-                    </p>
-<ul class="text">
-<li>"offer_accepted","offer_rejected","contract_pending","contract_created","contract_rejected"
-</li>
-</ul>
-                  
-
-<p>Value : An alphanumeric string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.statements
-<blockquote class="text">
-<p>Only needed if openid.cx.mode is "*_response". Some
-                  statements to be given to the counter party to describe the
-                  reason of openid.cx.status.
-</p>
-<p>Value: x-www-form-urlencoded string.
-</p>
-</blockquote>
-</li>
-<li>openid.cx.pki
-<blockquote class="text">
-<p>(Optional) Identifier which specifies the public key
-                  infrastructure. Default is
-                  "http://specs.openid.net/extensions/cx/1.0/x509_pki" which
-                  means X.509 public key infrastructure.
-</p>
-<p>Value: URI.
-</p>
-</blockquote>
-</li>
-</ul><p>
-          
-</p>
-<a name="anchor22"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
 Sending Proposal</h3>
 
@@ -854,7 +703,7 @@ Sending Proposal</h3>
 </ul><p>
         
 </p>
-<a name="anchor23"></a><br /><hr />
+<a name="anchor19"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
 Writing Agreement</h3>
@@ -864,7 +713,7 @@ Writing Agreement</h3>
         user has enough right to authorize the signing before creating the
         counter signature.
 </p>
-<a name="anchor24"></a><br /><hr />
+<a name="anchor20"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
 Receiving Contract</h3>
@@ -898,7 +747,7 @@ Receiving Contract</h3>
 </ul><p>
         
 </p>
-<a name="anchor25"></a><br /><hr />
+<a name="anchor21"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
 Encrypting the payload</h3>
@@ -961,7 +810,7 @@ Encrypting the payload</h3>
 </ul><p>
         
 </p>
-<a name="anchor26"></a><br /><hr />
+<a name="anchor22"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
 Parameters</h3>
@@ -973,14 +822,14 @@ Parameters</h3>
 </p>
 <p>
 </p>
-<a name="anchor27"></a><br /><hr />
+<a name="anchor23"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5"></a><h3>5.&nbsp;
 Security Considerations</h3>
 
 <p>
 </p>
-<a name="anchor28"></a><br /><hr />
+<a name="anchor24"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
 Non-repudiation</h3>
@@ -988,7 +837,7 @@ Non-repudiation</h3>
 <p>Since CX is a message oriented public key based signing protocol,
         it offers non-repudiation unlike plain OpenID Authentication 2.0.
 </p>
-<a name="anchor29"></a><br /><hr />
+<a name="anchor25"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
 Man-in-the-middle</h3>
@@ -996,7 +845,7 @@ Man-in-the-middle</h3>
 <p>RP must verify the validity of the OP&rsquo;s identity and public
         key and vice versa.
 </p>
-<a name="anchor30"></a><br /><hr />
+<a name="anchor26"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
 Eavesdropping</h3>
@@ -1005,7 +854,7 @@ Eavesdropping</h3>
         real recipient can decipher it. Thus, obtaining sensitive data through
         eavesdropping is very difficult.
 </p>
-<a name="anchor31"></a><br /><hr />
+<a name="anchor27"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
 Malicious Providers</h3>
@@ -1015,7 +864,7 @@ Malicious Providers</h3>
         checking of the certificate with some assurance services and/or
         reputation services including RBL and white list.
 </p>
-<a name="anchor32"></a><br /><hr />
+<a name="anchor28"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
 Phishing Attack</h3>
@@ -1024,7 +873,7 @@ Phishing Attack</h3>
         be dealt with the non-knowledge-based authentication mechanism. This
         is clearly out of scope of this extension.
 </p>
-<a name="anchor33"></a><br /><hr />
+<a name="anchor29"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
 Private key compromise</h3>
@@ -1033,7 +882,7 @@ Private key compromise</h3>
         immediately notify the CA as well as the counter party stated in the
         Contract document. This will minimize the damage by the incident.
 </p>
-<a name="anchor34"></a><br /><hr />
+<a name="anchor30"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.6"></a><h3>6.&nbsp;
 Appendix A. Parameters</h3>
@@ -1128,12 +977,12 @@ Appendix A. Parameters</h3>
 
 <p>
 </p>
-<a name="anchor35"></a><br /><hr />
+<a name="anchor31"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.7"></a><h3>7.&nbsp;
 Appendix B. Examples</h3>
 
-<a name="anchor36"></a><br /><hr />
+<a name="anchor32"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.7.1"></a><h3>7.1.&nbsp;
 Proposal Sample</h3>
@@ -1220,7 +1069,7 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 
 
 </pre></div>
-<a name="anchor37"></a><br /><hr />
+<a name="anchor33"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.7.2"></a><h3>7.2.&nbsp;
 Contract Sample</h3>
@@ -1349,7 +1198,7 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
 
 
 </pre></div>
-<a name="anchor38"></a><br /><hr />
+<a name="anchor34"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8"></a><h3>8.&nbsp;
 Appendix C. Common Contract Constructs used in CX</h3>
@@ -1590,7 +1439,7 @@ Appendix C. Common Contract Constructs used in CX</h3>
 <a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
 Examples</h3>
 
-<a name="anchor39"></a><br /><hr />
+<a name="anchor35"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.B"></a><h3>Appendix B.&nbsp;
 Acknowledgements</h3>

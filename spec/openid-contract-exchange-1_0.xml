@@ -475,6 +475,7 @@
         </figure>
 
         <t />
+      </section>
 
       <section title="Sending Proposal">
         <t>A CX Proposal document is sent as the parameter of AX fetch
@@ -489,7 +490,7 @@
 
             <t>openid.ax.type.cx<list style="empty">
                 <t>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .</t>
+                &ldquo;http://openid.net/srv/cx/1.0/#proposal&rdquo; .</t>
               </list></t>
 
             <t>openid.ax.value.cx<list style="empty">
@@ -524,7 +525,7 @@
 
             <t>openid.ax.type.cx<list style="empty">
                 <t>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .</t>
+                &ldquo;http://openid.net/srv/cx/1.0/#contract&rdquo; .</t>
               </list></t>
 
             <t>openid.ax.value.cx<list style="empty">
