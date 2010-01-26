@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 1</title>
-<meta http-equiv="Expires" content="Tue, 26 Jan 2010 06:12:18 +0000">
+<meta http-equiv="Expires" content="Tue, 26 Jan 2010 18:03:50 +0000">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="Contract Exchange Extension 1.0 - Draft 1">
 <meta name="generator" content="xml2rfc v1.34 (http://xml.resource.org/)">
@@ -300,7 +300,7 @@ Contract Document</h3>
 <li>There are typically 4 actors, A, SA, B, SB, where SA and SB are
           the designated signatory of A and B respectively.
 </li>
-<li># Proposer, A, creates the contract proposal and signs and sends
+<li>Proposer, A, creates the contract proposal and signs and sends
           it to the other party.
 </li>
 <li>B examines the proposal and if it decides to accept, let SB sign
@@ -620,7 +620,7 @@ Proposal and Agreement Validation</h3>
 </li>
 <li>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
             /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
-            When there is certificate change in the ds:X509Data, the chain
+            When there is a certificate chain in the ds:X509Data, the chain
             must be checked in the same manner.
 </li>
 </ul><p>
@@ -682,7 +682,7 @@ Sending Proposal</h3>
 <li>openid.ax.type.cx
 <blockquote class="text">
 <p>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .
+                &ldquo;http://openid.net/srv/cx/1.0/#proposal&rdquo; .
 </p>
 </blockquote>
 </li>
@@ -733,7 +733,7 @@ Receiving Contract</h3>
 <li>openid.ax.type.cx
 <blockquote class="text">
 <p>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; .
+                &ldquo;http://openid.net/srv/cx/1.0/#contract&rdquo; .
 </p>
 </blockquote>
 </li>
