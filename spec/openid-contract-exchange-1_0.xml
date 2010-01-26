@@ -120,7 +120,7 @@
         target="RFC2119" /> .</t>
       </section>
 
-      <section title="Difinition and Conventions">
+      <section title="Definitions and Conventions">
         <t>All OpenID 2.0 messages that contain OpenID Contract Exchange (CX)
         elements MUST contain the following extension namespace declarations,
         as specified in the Extensions section of <xref
@@ -183,7 +183,7 @@
 
       <section title="Contract Template">
         <t>A Contract Template is a document which describes the detail of
-        agreement, waranty, disclamier and other legal statements that binds
+        agreement, warranty, disclaimer and other legal statements that binds
         the parties in the CX Contract document. A proposing party MUST
         include the CX Template in the CX Contract document.</t>
 
@@ -199,7 +199,7 @@
           because it MUST be read by the User when he/she wants to authorize
           the CX Contract at a service provider. Simple markup like
           reStructuredText, markdown, textile or others CAN be used to format
-          CX Templates. text/plain is the deafult content type for CX
+          CX Templates. text/plain is the default content type for CX
           Templates.</t>
         </section>
 
@@ -213,7 +213,7 @@
         </section>
 
         <section title=" Template URL and Digest">
-          <t>The digest data for a CX Template MUST be provided throught the
+          <t>The digest data for a CX Template MUST be provided through the
           discovery process. The default digest algorithm is SHA256.</t>
 
           <t>Contract Template URL should be in the form of</t>
@@ -239,11 +239,11 @@
         the remedy to the cases where it has been breached.</t>
 
         <section title="Common Contract Constructs">
-          <t>CX Contracts and CX Templates include common contract contstructs
+          <t>CX Contracts and CX Templates include common contract constructs
           like warranty , disclaimer or other legal and business statements
           based on the Common Law(Anglo-American Law).</t>
 
-          <t>Examples of common contract construsts used in CX are listed at
+          <t>Examples of common contract constructs used in CX are listed at
           Appendix. B&lt;common_contract_constructs&gt;,</t>
         </section>
       </section>
@@ -253,14 +253,14 @@
         non-repudiation for the XML document in CX is achieved by XML
         Signature Syntax and Processing(Second Edition) (xmldsig-core).</t>
 
-        <t>CX uses Envelopped Signature defined in xmldsig-core .
+        <t>CX uses Enveloped Signature defined in xmldsig-core .
         Canonicalization method MUST be Exclusive Canonicalization.</t>
 
         <t>Note c14n- may have multiple dialects: need to check.</t>
 
         <section title="Original Document and Counter Signature">
           <t>To achieve mutual non-repudiation, the contract document needs to
-          be mutually digitaly signed. In CX, this is achieved through signing
+          be mutually digitally signed. In CX, this is achieved through signing
           the document that includes the original signed proposal in Base 64
           format. The specifics will be defined below.</t>
         </section>
@@ -335,14 +335,14 @@
                   ]]></artwork>
           </figure>
 
-          <t>Eash attribute and element is decribed as following with
+          <t>Each attribute and element is described as following with
           cardinality:</t>
 
           <t>
             <list style="symbols">
               <t>/Contract/@id [Required]<list style="empty">
                   <t>A global unique Identifier of type string that identifies
-                  this contracrt.</t>
+                  this contract.</t>
                 </list></t>
 
               <t>/Contract/Type [One]<list style="empty">
@@ -361,7 +361,7 @@
                 </list></t>
 
               <t>/Contract/Party/URL [One]<list style="empty">
-                  <t>This element is the URI (or XRI) which sepcifiy the
+                  <t>This element is the URI (or XRI) which specify the
                   composing party.</t>
                 </list></t>
 
@@ -406,7 +406,7 @@
 
               <t>/Contract/TemplateURL [Zero or One]<list style="empty">
                   <t>The URL where the CX Contract Template file can be
-                  avaiable.</t>
+                  available.</t>
                 </list></t>
 
               <t>/Contract/Template [Zero or One]<list style="empty">
@@ -429,7 +429,7 @@
         <t>Signature for each of Proposal and Agreement should be validated
         according to XML Signature. The validity of the respective ds:KeyInfo
         is determined by first obtaining the signed XRD from the Party&rsquo;s
-        identity url and perfoming following comparison operation.</t>
+        identity url and performing following comparison operation.</t>
 
         <t>
           <list style="symbols">
@@ -481,14 +481,14 @@
           the key data to identify a specific contract completion process.
           Both of them are initiated by a CXRP when the CXRP request a Offer
           to CXSP. CXSP MUST return an error status in openid.cx.status when a
-          combitation of openid.cx.realm and openid.cx.tx_id have been already
+          combination of openid.cx.realm and openid.cx.tx_id have been already
           existed on the list of CXSP contract history.</t>
         </section>
 
         <section title="Parameter Values">
-          <t>All CX parametes are exppected to be exchange in "key=value" form
+          <t>All CX parameters are expected to be exchange in "key=value" form
           called "attribute". Values of any attribute MUST NOT contain any
-          newline character(UCS codepoint 10 , "&yen;n"). Some attribues which
+          newline character(UCS codepoint 10 , "&yen;n"). Some attributes which
           contains newline code in its value specifies special encoding rule
           for a string data.</t>
         </section>
@@ -522,32 +522,32 @@
                 </list></t>
 
               <t>openid.cx.tx_id<list style="empty">
-                  <t>Unique identifer initiated by CXRP for a series of CX
-                  trasactions until a contract will be completed.</t>
+                  <t>Unique identifier initiated by CXRP for a series of CX
+                  transactions until a contract will be completed.</t>
 
                   <t>Value : An alphanumeric string.</t>
                 </list></t>
 
               <t>openid.cx.ticket_id<list style="empty">
-                  <t>Unique identifer for a proof which the CXSP has been
+                  <t>Unique identifier for a proof which the CXSP has been
                   accepted the Offer by CXRP and returned in the response
                   message when openid.cx.mode is "offer_response".</t>
 
-                  <t>The Auhtorization request which means openid.cx.mode is
+                  <t>The Authorization request which means openid.cx.mode is
                   "authz_request" MUST include this parameter and the message
-                  itself MUST be digitaly signed by DSig.</t>
+                  itself MUST be digitally signed by DSig.</t>
 
                   <t>Value : An alphanumeric string.</t>
                 </list></t>
 
               <t>openid.cx.contract_id<list style="empty">
-                  <t>Unique identifer for a proof which the CXSP has been
+                  <t>Unique identifier for a proof which the CXSP has been
                   completed the Contract for CXRP and returned in the response
                   message when openid.cx.mode is "authz_response".</t>
 
                   <t>The Contract request ,namely openid.cx.mode is
                   "contract_request" MUST include this parameter and the
-                  message itself MUST be digitaly signed by DSig.</t>
+                  message itself MUST be digitally signed by DSig.</t>
 
                   <t>Value : An alphanumeric string.</t>
                 </list></t>
@@ -567,7 +567,7 @@
                 </list></t>
 
               <t>openid.cx.statements<list style="empty">
-                  <t>Only reeded if openid.cx.mode is "*_response". Some
+                  <t>Only needed if openid.cx.mode is "*_response". Some
                   statements to be given to the counter party to describe the
                   reason of openid.cx.status.</t>
 
@@ -575,7 +575,7 @@
                 </list></t>
 
               <t>openid.cx.pki<list style="empty">
-                  <t>(Optional) Identifier which specfies the public key
+                  <t>(Optional) Identifier which specifies the public key
                   infrastructure. Default is
                   "http://specs.openid.net/extensions/cx/1.0/x509_pki" which
                   means X.509 public key infrastructure.</t>
@@ -616,7 +616,7 @@
         </t>
       </section>
 
-      <section title="Writing Aggreement">
+      <section title="Writing Agreement">
         <t>The end user who has logged into the OP MUST be prompted to browse
         and agree to the proposal sent from the RP. OP MUST verify if the end
         user has enough right to authorize the signing before creating the
@@ -625,7 +625,7 @@
 
       <section title="Receiving Contract">
         <t>CX Contract is returned as the value of AX fetch request. The
-        details of AX fetch resonse parameters are as follows:.</t>
+        details of AX fetch response parameters are as follows:.</t>
 
         <t>
           <list style="symbols">
@@ -647,9 +647,9 @@
       </section>
 
       <section title="Encrypting the payload">
-        <t>The CX Payload can be sent or returned in ecrypted text. In
+        <t>The CX Payload can be sent or returned in encrypted text. In
         addition to the usual AX fetch request and response parameters, the
-        following paramters MUST be sent to enable the decryption of the
+        following parameters MUST be sent to enable the decryption of the
         payload.</t>
 
         <t>
@@ -675,7 +675,7 @@
             <t>openid.ax.value.cx_enc_key<list style="empty">
                 <t>Shared key to encrypt the message in &ldquo;Encryption Base
                 String&rdquo; form. This key itself is encrypted
-                asymmetrically with decryptor&rsquo;s public key included in
+                asymmetrically with decryptors&rsquo; public key included in
                 the Contract and base 64 encoded. Value: base64 string.</t>
               </list></t>
 
@@ -707,7 +707,7 @@
 
       <section title="Non-repudiation">
         <t>Since CX is a message oriented public key based signing protocol,
-        it offers non-repudiation unlike plain OpenID Authenticaion 2.0.</t>
+        it offers non-repudiation unlike plain OpenID Authentication 2.0.</t>
       </section>
 
       <section title="Man-in-the-middle">
@@ -729,7 +729,7 @@
       </section>
 
       <section title="Phishing Attack">
-        <t>Phising attack is a social engineering, so it should in principle
+        <t>Phishing attack is a social engineering, so it should in principle
         be dealt with the non-knowledge-based authentication mechanism. This
         is clearly out of scope of this extension.</t>
       </section>
@@ -800,8 +800,8 @@
 
               <t>value: The value defined as xs:dateTime in W3C XML Schema
               Datatypes specification, and MUST be expressed in UTC form, with
-              no timme zone component (reprsented by the UTC &lsquo;Z&rsquo;
-              timezone). It must not specify the gime instants that
+              no time zone component (represented by the UTC &lsquo;Z&rsquo;
+              timezone). It must not specify the time instants that
               corresponds to leap seconds.</t>
 
               <t>Conformance: MUST support.</t>
@@ -1052,7 +1052,7 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
             </list></t>
 
           <t>Individual Signatories<list style="empty">
-              <t>The person who signes on behalf of one of the Party. Defined
+              <t>The person who signs on behalf of one of the Party. Defined
               as /Contract/Party/ds:Signature/ds:KeyInfo.</t>
             </list></t>
 
@@ -1207,7 +1207,7 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
     <appendix anchor="examples" title="Examples" />
 
     <appendix title="Acknowledgements">
-      <t>ors would like to thank [...] for their feedback when drafting this
+      <t>Authors would like to thank [...] for their feedback when drafting this
       specification.</t>
     </appendix>
   </middle>
