@@ -146,9 +146,12 @@
       <t>For the exchange of the contract, this extension uses Attribute
       Exchange.</t>
 
-      <t>Note This version of CX expects that AX fetch request can contain
+        <figure>
+        <artwork>Note This version of CX expects that AX fetch request can contain
       &ldquo;value&rdquo;. This extension is being discussed under the AX 1.1
-      working group.</t>
+      working group.
+        </artwork>
+        </figure>
 
       <t>The request parameters detailed here MUST be sent using the
       [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0
@@ -190,9 +193,11 @@
         <t>A Contract Template MUST be discoverable by the RP using XRD, XRDS
         or Yadis protocol.</t>
 
-        <t>Note A Contract Template discovery NEEDS to be further discussed.
+        <figure><artwork>
+        Note A Contract Template discovery NEEDS to be further discussed.
         For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is Template URL SHOULD be
-        the CX service which a relying party is looking at.</t>
+        the CX service which a relying party is looking at.
+        </artwork></figure>
 
         <section title="Human Readable Text">
           <t>A Contract Template MUST be formatted in a human readable text
@@ -464,128 +469,12 @@
         discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All
         of the party involved MUST publish an XRD.</t>
 
-        <t>Note Discussion: RP Discovery needed for contract invalidation, RP
-        Verification by OP, etc. (=nat, 2009-08-12)</t>
+        <figure><artwork>Note Discussion: RP Discovery needed for contract invalidation, RP
+        Verification by OP, etc. (=nat, 2009-08-12)
+        </artwork>
+        </figure>
 
         <t />
-
-        <section title="Namespace">
-          <t>All message class shares a single parameter ,"openid.ns.cx".
-          Although you can freely choose any word for alias name other than
-          "cx", but you should better keep using "cx" as alias if you don't
-          have any special reason.</t>
-        </section>
-
-        <section title="Unique identifier for a Contract Completion Process">
-          <t>Participants MUST use openid.cx.realm with openid.cx.tx_id for
-          the key data to identify a specific contract completion process.
-          Both of them are initiated by a CXRP when the CXRP request a Offer
-          to CXSP. CXSP MUST return an error status in openid.cx.status when a
-          combination of openid.cx.realm and openid.cx.tx_id have been already
-          existed on the list of CXSP contract history.</t>
-        </section>
-
-        <section title="Parameter Values">
-          <t>All CX parameters are expected to be exchange in "key=value" form
-          called "attribute". Values of any attribute MUST NOT contain any
-          newline character(UCS codepoint 10 , "&yen;n"). Some attributes which
-          contains newline code in its value specifies special encoding rule
-          for a string data.</t>
-        </section>
-
-        <section title="Parameters">
-          <t>
-            <list style="symbols">
-              <t>openid.ns.cx<list style="empty">
-                  <t>Which describes there are CX message parameters. Its
-                  value should be
-                  http://specs.openid.net/extensions/cx/1.0/.</t>
-
-                  <t>Value : URI</t>
-                </list></t>
-
-              <t>openid.cx.mode<list style="empty">
-                  <t>Which describes CX mode. openid.cx.mode is one of
-                  "offer_request","offer_response","authz_request","authz_response","contract_request"
-                  , "contract_response" ,"notify_request" and
-                  "notify_response".</t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.realm<list style="empty">
-                  <t>Unique identifier to identify an offering participant.
-                  See Section 9.2 Relms of OpenID Authentication 2.0
-                  specification.</t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.tx_id<list style="empty">
-                  <t>Unique identifier initiated by CXRP for a series of CX
-                  transactions until a contract will be completed.</t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.ticket_id<list style="empty">
-                  <t>Unique identifier for a proof which the CXSP has been
-                  accepted the Offer by CXRP and returned in the response
-                  message when openid.cx.mode is "offer_response".</t>
-
-                  <t>The Authorization request which means openid.cx.mode is
-                  "authz_request" MUST include this parameter and the message
-                  itself MUST be digitally signed by DSig.</t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.contract_id<list style="empty">
-                  <t>Unique identifier for a proof which the CXSP has been
-                  completed the Contract for CXRP and returned in the response
-                  message when openid.cx.mode is "authz_response".</t>
-
-                  <t>The Contract request ,namely openid.cx.mode is
-                  "contract_request" MUST include this parameter and the
-                  message itself MUST be digitally signed by DSig.</t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.status<list style="empty">
-                  <t>Only needed if openid.cx.mode is "*_response".
-                  openid.cx.status shows the current status of the contract
-                  completion process.</t>
-
-                  <t>
-                    <list style="symbols">
-                      <t>"offer_accepted","offer_rejected","contract_pending","contract_created","contract_rejected"</t>
-                    </list>
-                  </t>
-
-                  <t>Value : An alphanumeric string.</t>
-                </list></t>
-
-              <t>openid.cx.statements<list style="empty">
-                  <t>Only needed if openid.cx.mode is "*_response". Some
-                  statements to be given to the counter party to describe the
-                  reason of openid.cx.status.</t>
-
-                  <t>Value: x-www-form-urlencoded string.</t>
-                </list></t>
-
-              <t>openid.cx.pki<list style="empty">
-                  <t>(Optional) Identifier which specifies the public key
-                  infrastructure. Default is
-                  "http://specs.openid.net/extensions/cx/1.0/x509_pki" which
-                  means X.509 public key infrastructure.</t>
-
-                  <t>Value: URI.</t>
-                </list></t>
-            </list>
-          </t>
-        </section>
-      </section>
 
       <section title="Sending Proposal">
         <t>A CX Proposal document is sent as the parameter of AX fetch
