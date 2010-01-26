@@ -168,7 +168,7 @@
           <t>There are typically 4 actors, A, SA, B, SB, where SA and SB are
           the designated signatory of A and B respectively.</t>
 
-          <t># Proposer, A, creates the contract proposal and signs and sends
+          <t>Proposer, A, creates the contract proposal and signs and sends
           it to the other party.</t>
 
           <t>B examines the proposal and if it decides to accept, let SB sign
@@ -442,7 +442,7 @@
 
             <t>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
             /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
-            When there is certificate change in the ds:X509Data, the chain
+            When there is a certificate chain in the ds:X509Data, the chain
             must be checked in the same manner.</t>
           </list>
         </t>
