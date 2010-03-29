@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 1</title>
-<meta http-equiv="Expires" content="Tue, 26 Jan 2010 18:03:50 +0000">
+<meta http-equiv="Expires" content="Mon, 29 Mar 2010 04:46:38 +0000">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="Contract Exchange Extension 1.0 - Draft 1">
 <meta name="generator" content="xml2rfc v1.34 (http://xml.resource.org/)">
@@ -202,6 +202,8 @@ Writing Agreement<br />
 Receiving Contract<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor21">4.5.</a>&nbsp;
 Encrypting the payload<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor22">4.6.</a>&nbsp;
+Notify the Contract Status<br />
 <a href="#anchor23">5.</a>&nbsp;
 Security Considerations<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor24">5.1.</a>&nbsp;
@@ -700,6 +702,13 @@ Sending Proposal</h3>
 </p>
 </blockquote>
 </li>
+<li>openid.ax.update_url
+<blockquote class="text">
+<p>OPTIONAL. Value: The URL which an OP MAY send a message to notify the change of status. 
+                The paramters of this message is described in "Notify the Contract Status".  
+</p>
+</blockquote>
+</li>
 </ul><p>
         
 </p>
@@ -812,15 +821,40 @@ Encrypting the payload</h3>
 </p>
 <a name="anchor22"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
-Parameters</h3>
+<a name="rfc.section.4.6"></a><h3>4.6.&nbsp;
+Notify the Contract Status</h3>
 
-<p>A CX Authorization message MAY include following OpenID
-          parameters. An Authorization message MAY be returned in Offer
-          response message by CXSP to negotiate the way of the authorization
-          request in CX Artifact Binding mode.
+<p>The OP can notify the status of the contract to the RP using OpenID AX update_url. 
+            As with the case of other AX, the notfication message is unsolicited possitive assertion 
+            including the following parameters.  
 </p>
 <p>
+            </p>
+<ul class="text">
+<li>openid.ax.mode
+<blockquote class="text">
+<p>REQUIRED Value: "fetch_response" 
+</p>
+</blockquote>
+</li>
+<li>openid.ax.type.cxstat
+<blockquote class="text">
+<p>REQUIRED Value: "http://openid.net/srv/cx/1.0/#status".  
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cxstat
+<blockquote class="text">
+<p>REQUIRED Value: Any string to specify the Contract and its status. 
+                        The RP SHOULD reqeust a Direct Assertion Request to the OP endpoint 
+                        of which openid.artifact MUST be this value. 
+</p>
+</blockquote>
+</li>
+</ul><p>
+          
+</p>
+<p>If the RP receive this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request. RP SUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  
 </p>
 <a name="anchor23"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>

@@ -502,6 +502,12 @@
                 <t>REQUIRED. Value: &lsquo;cx&rsquo; MUST be included in the
                 AX required list.</t>
               </list></t>
+
+            <t>openid.ax.update_url<list style="empty">
+                <t>OPTIONAL. Value: The URL which an OP MAY send a message to notify the change of status. 
+                The paramters of this message is described in "Notify the Contract Status".  </t>
+              </list></t>
+
           </list>
         </t>
       </section>
@@ -580,17 +586,36 @@
               </list></t>
           </list>
         </t>
+     </section>
 
-        <section title="Parameters">
-          <t>A CX Authorization message MAY include following OpenID
-          parameters. An Authorization message MAY be returned in Offer
-          response message by CXSP to negotiate the way of the authorization
-          request in CX Artifact Binding mode.</t>
+     <section title="Notify the Contract Status">
+          <t>The OP can notify the status of the contract to the RP using OpenID AX update_url. 
+            As with the case of other AX, the notfication message is unsolicited possitive assertion 
+            including the following parameters.  </t>
 
-          <t />
-        </section>
+          <t>
+            <list style="symbols">
+                <t>openid.ax.mode<list style="empty">
+                    <t>REQUIRED Value: "fetch_response" </t> 
+                  </list></t>
+
+                <t>openid.ax.type.cxstat<list style="empty">
+                    <t>REQUIRED Value: "http://openid.net/srv/cx/1.0/#status".  </t> 
+                  </list></t>
+
+                <t>openid.ax.value.cxstat<list style="empty">
+                    <t>REQUIRED Value: Any string to specify the Contract and its status. 
+                        The RP SHOULD reqeust a Direct Assertion Request to the OP endpoint 
+                        of which openid.artifact MUST be this value. </t> 
+                  </list></t>
+            </list>
+          </t>
+
+          <t>If the RP receive this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request. RP SUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  </t>
       </section>
+
     </section>
+
 
     <section title="Security Considerations">
       <t />
