@@ -9,6 +9,16 @@ Contact =nat (http://xri.net/=nat/+contact) for details.
 History 
 =======
 
+2010-03-29
+----------
+
+For OP to notify the status change of a CX Contract, the `openid.ax.update_url` in a request SHOULD be used same as with AX.
+
+A RP SHOULD parse `status` AX parameter of which type is specified by http://openid.net/srv/cx/1.0#status.
+The `status` value SHOULD be specifed as the `openid.artifact` paramter in the `Direct Assertion Request` to the OP endpoint.
+The OP SHOULD proper `unsolicited possitive assertion` messeage including CX Contract or other message in HTTP response body.
+
+
 2009-12-08
 ----------
 

@@ -205,6 +205,11 @@ The details of AX fetch request parameters are as follows:
 
         REQUIRED. Value: 'cx' MUST be included in the AX required list.
 
+    
+    ``openid.ax.update_url``
+
+        OPTIONAL. Value: The URL which an OP MAY send a message to notify the change of status. The paramters of this message is described in  :ref:`notification`. 
+
 Writing Aggreement
 ------------------
 
@@ -264,6 +269,28 @@ The CX Payload can be sent or returned in ecrypted text. In addition to the usua
     ``openid.ax.value.cx_enc_iv``
 
         Value: base64 string
+
+.. _notification:
+
+Notify the Contract Status
+--------------------------
+
+The OP can notify the status of the contract to the RP using OpenID AX `update_url`. As with the case of other AX messages, the notification message is `unsolicited possitive assertion` including the following parameters.
+
+    ``openid.ax.mode``
+
+        REQUIRED. Value: "fetch_response"
+
+    ``openid.ax.type.cxstat``
+
+        REQUIRED. Value: "http://openid.net/srv/cx/1.0/#status" .
+
+    ``openid.ax.value.cxstat``
+
+        REQUIRED. Value: Any string to specify the Contract and its status. The RP SHOULD reqeust a `Direct Assertion Request` to the OP endpoint of which `openid.artifact` MUST be this value.
+
+
+If the RP receive this message and verify that it is a valid `unsolicited possitive assertion` message, the RP SHOULD request the contract and its status by requesting a `Direct Assertion Request`. RP SHUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.
 
 Security Considerations
 =======================

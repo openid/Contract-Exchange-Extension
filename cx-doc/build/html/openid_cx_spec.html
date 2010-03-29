@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    '#',
         VERSION:     '1.0',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
@@ -305,6 +305,9 @@ REQUIRED. Value: Actual CX proposal document. Base64 encoded.</blockquote>
 <p><tt class="docutils literal"><span class="pre">openid.ax.required</span></tt></p>
 <blockquote>
 REQUIRED. Value: &#8216;cx&#8217; MUST be included in the AX required list.</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.update_url</span></tt></p>
+<blockquote>
+OPTIONAL. Value: The URL which an OP MAY send a message to notify the change of status. The paramters of this message is described in  <a class="reference internal" href="#notification"><em>1.4.6&nbsp;&nbsp;&nbsp;Notify the Contract Status</em></a>.</blockquote>
 </blockquote>
 </div>
 <div class="section" id="writing-aggreement">
@@ -355,6 +358,22 @@ Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#
 <blockquote>
 Value: base64 string</blockquote>
 </blockquote>
+</div>
+<div class="section" id="notify-the-contract-status">
+<span id="notification"></span><h3>1.4.6&nbsp;&nbsp;&nbsp;Notify the Contract Status<a class="headerlink" href="#notify-the-contract-status" title="Permalink to this headline">¶</a></h3>
+<p>The OP can notify the status of the contract to the RP using OpenID AX <cite>update_url</cite>. As with the case of other AX messages, the notification message is <cite>unsolicited possitive assertion</cite> including the following parameters.</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.mode</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;fetch_response&#8221;</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.type.cxstat</span></tt></p>
+<blockquote>
+REQUIRED. Value: &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0/#status">http://openid.net/srv/cx/1.0/#status</a>&#8221; .</blockquote>
+<p><tt class="docutils literal"><span class="pre">openid.ax.value.cxstat</span></tt></p>
+<blockquote>
+REQUIRED. Value: Any string to specify the Contract and its status. The RP SHOULD reqeust a <cite>Direct Assertion Request</cite> to the OP endpoint of which <cite>openid.artifact</cite> MUST be this value.</blockquote>
+</blockquote>
+<p>If the RP receive this message and verify that it is a valid <cite>unsolicited possitive assertion</cite> message, the RP SHOULD request the contract and its status by requesting a <cite>Direct Assertion Request</cite>. RP SHUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.</p>
 </div>
 </div>
 <div class="section" id="security-considerations">
@@ -801,7 +820,7 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6</a><ul>
+<li><a class="reference external" href="#">1&nbsp;&nbsp;&nbsp;Contract Exchange Extension 1.0 - Draft 1.6</a><ul>
 <li><a class="reference external" href="#terminology">1.1&nbsp;&nbsp;&nbsp;Terminology</a><ul>
 <li><a class="reference external" href="#definitions-and-conventions">1.1.1&nbsp;&nbsp;&nbsp;Definitions and Conventions</a></li>
 </ul>
@@ -833,6 +852,7 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
 <li><a class="reference external" href="#writing-aggreement">1.4.3&nbsp;&nbsp;&nbsp;Writing Aggreement</a></li>
 <li><a class="reference external" href="#receiving-contract">1.4.4&nbsp;&nbsp;&nbsp;Receiving Contract</a></li>
 <li><a class="reference external" href="#encrypting-the-payload">1.4.5&nbsp;&nbsp;&nbsp;Encrypting the payload</a></li>
+<li><a class="reference external" href="#notify-the-contract-status">1.4.6&nbsp;&nbsp;&nbsp;Notify the Contract Status</a></li>
 </ul>
 </li>
 <li><a class="reference external" href="#security-considerations">1.5&nbsp;&nbsp;&nbsp;Security Considerations</a><ul>
@@ -903,7 +923,7 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
     </div>
     <div class="footer">
       &copy; Copyright 2009, hdknr.com.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
     </div>
   </body>
 </html>
