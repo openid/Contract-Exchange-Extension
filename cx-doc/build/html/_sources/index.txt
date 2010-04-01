@@ -10,14 +10,18 @@ CX OpenID Binding  Documentation
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   cx
-   cx_service
-   cx_contract
-   cx_protocol
-   openid_cx_spec
-   pyxmlsec
+    cx
+    cx_service
+    cx_contract
+    cx_protocol
+    openid_cx_spec
+    openid_cx_spec_todo
+           
+    pyxmlsec
+
+    glossary
 
 
 Indices and tables

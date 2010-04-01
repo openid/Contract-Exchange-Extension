@@ -50,19 +50,19 @@
 <div class="section" id="importing-and-initializing-libxml2">
 <h2>Importing and initializing  libxml2<a class="headerlink" href="#importing-and-initializing-libxml2" title="Permalink to this headline">¶</a></h2>
 <p>libxml2 can be imported like following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">libxml2</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">libxml2</span>
 </pre></div>
 </div>
 <p>It&#8217;s better to initialize the library:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">libxml2</span><span class="o">.</span><span class="n">initParser</span><span class="p">()</span>
-<span class="n">libxml2</span><span class="o">.</span><span class="n">substituteEntitiesDefault</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">libxml2</span><span class="o">.</span><span class="n">substituteEntitiesDefault</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="importing-and-initializing-pyxmlsec">
 <h2>Importing and initializing PyXMLSec<a class="headerlink" href="#importing-and-initializing-pyxmlsec" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://pyxmlsec.labs.libre-entreprise.org/">PyXMLSec</a> can be imported like following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">xmlsec</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">xmlsec</span>
 </pre></div>
 </div>
 <p>It&#8217;s better to initialize the library:</p>
@@ -131,12 +131,12 @@
     <span class="n">manager</span> <span class="o">=</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeysMngr</span><span class="p">()</span>
     <span class="k">assert</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
 
-    <span class="k">assert</span><span class="p">(</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppDefaultKeysMngrInit</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="k">assert</span><span class="p">(</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">cryptoAppDefaultKeysMngrInit</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0</span> <span class="p">)</span>
 
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">certs</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;loading &quot;</span><span class="p">,</span><span class="n">c</span> <span class="p">,</span> <span class="s">&quot;as a certificate to Key Manager...&quot;</span>
         <span class="k">assert</span><span class="p">(</span> <span class="n">manager</span><span class="o">.</span><span class="n">certLoad</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataFormatPem</span><span class="p">,</span>
-                     <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataTypeTrusted</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="p">)</span>
+                     <span class="n">xmlsec</span><span class="o">.</span><span class="n">KeyDataTypeTrusted</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mf">0</span> <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigCtx</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
 </pre></div>
@@ -169,7 +169,7 @@
     <span class="k">assert</span><span class="p">(</span> <span class="n">dsig_ctx</span> <span class="p">)</span>
 
     <span class="c"># Verify the signature</span>
-    <span class="k">assert</span><span class="p">(</span> <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="k">assert</span><span class="p">(</span> <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0</span> <span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span> <span class="n">dsig_ctx</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">xmlsec</span><span class="o">.</span><span class="n">DSigStatusSucceeded</span> <span class="p">)</span>
 </pre></div>
 </div>
