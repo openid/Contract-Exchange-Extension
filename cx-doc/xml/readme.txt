@@ -1,8 +1,9 @@
+==============================
 Sample XML and XML Schema(xsd)
 ==============================
 
 File
-----
+====
 
 - cx.xml 
  sample xml
@@ -13,14 +14,14 @@ File
 
 
 Trang
------
+=====
 
 trang_ is a Java based XML tool to generate and convert XML Schema and Relax NG.
 
 .. _trang: http://www.thaiopensource.com/relaxng/trang.html 
 
 Install Trang on Debian Squeeze
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Simple. Just use aptitude command:
 
@@ -29,7 +30,7 @@ Simple. Just use aptitude command:
 More than 100Mbytes space is required.
 
 Generate XML Schema
-~~~~~~~~~~~~~~~~~~~
+---------------------
 
 Execute the following command:
 
