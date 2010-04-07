@@ -397,124 +397,124 @@ Followings are the list of common contract constructs.
 Each contract type should define some of the following 
 as data type and utilize it in the template. 
 
-``Contract Identifier``
+``Contract Identifier`` ( 0 or more )
 
   Defined as /Contract/Id in the core. 
 
-``Parties``
+``Parties`` ( 2 or more )
 
   Stakeholders in a contract. Defined as /Contract/Party. 
 
-``Individual Signatories``
+``Individual Signatories`` ( 2 or more )
 
   The person who signes on behalf of one of the Party. 
   Defined as /Contract/Party/ds:Signature/ds:KeyInfo.
 
-``Title or Capacity of Signatories``
+``Title or Capacity of Signatories`` ( 0 or more )
 
   Signers responsibility.  
 
-``Date of Signature``
+``Date of Signature`` ( 0 or more ) 
 
   Date of Signature. 
 
-``Contact Details (for notices)``
+``Contact Details (for notices)`` ( 0 or more )
 
   The address at which the parties can be contacted. 
 
-``Actions, or Other Items  to be delivered``
+``Actions, or Other Items  to be delivered`` ( 1 or more )
 
   Description of goods, services. 
 
-``Quantity to be Delivered``
+``Quantity to be Delivered`` ( 1 or more )
 
-``Price``
+``Price`` ( 1 or more )
 
   This should include denomination of currency [ex., USD$], description of non-monetary consideration, any formula or external reference for calculation
 
-``Date of delivery or  other performance``
+``Date of delivery or  other performance`` ( 0 or more )
 
-``Place of delivery or other performance``
+``Place of delivery or other performance`` ( 0 or more ) 
 
-``Definitions``
+``Definitions`` ( 0 or more )
 
-``Conditions``
+``Conditions`` ( 0 or more )
 
   Ex., performance contingent on certain events, payment contingent on standards of acceptance
 
-``Warranties``
+``Warranties`` ( 0 or more )
 
   Ex., warranty of non-infringement, warranty of conformance to stated specifications, warranty of legal authority, warranty of insurance coverage
 
-``Relationship to other contracts``
+``Relationship to other contracts`` ( 0 or more )
 
   Ex., purchase order under a framework agreement
 
-``Term of contract``
+``Term of contract`` ( 0 or more )
 
   May include renewal provisions
 
-``Termination``
+``Termination`` ( 0 or more )
 
-``Billing and payment``
+``Billing and payment`` ( 0 or more )
 
   Ex., net 30 days, discounts, late penalties, wire transfers
 
-``Governing Law``
+``Governing Law`` ( 0 or more )
 
   Ex., English law, Japanese law, law of California, German Civil Code
 
-``Jurisdiction and forum``
+``Jurisdiction and forum`` ( 0 or more )
 
   Ex., courts of general jurisdiction located in New York City
 
-``Waiver of Jury Trial``
+``Waiver of Jury Trial`` ( 0 or more )
 
-``Arbitration / alternative dispute ?ゑｿｽresolution``
+``Arbitration / alternative dispute ?ゑｿｽresolution`` ( 0 or more )
 
   Ex., ICC binding arbitration clause, arbitration to be conducted in Geneva, Switzerland
 
-``Merger clause/ entire agreement``
+``Merger clause/ entire agreement`` ( 0 or more )
 
   Provision stating that this is the entire agreement between the parties and excluding claims based on statement in advertising or negotiations.
 
-``Survival``
+``Survival`` ( 0 or more )
 
   Clauses providing that certain terms, such as indemnification or confidentiality, survive expiration or termination of the contract
 
-``Damages/Limitation of Liability``
+``Damages/Limitation of Liability`` ( 0 or more )
 
   Provisions on calculation of damages, liquidated damages, limitation or exclusion of certain kinds of damages
 
-``Warranty disclaimers``
+``Warranty disclaimers`` ( 0 or more )
 
-``Indemnification`` 
+``Indemnification``  ( 0 or more )
 
-``Third-party beneficiary rights``
+``Third-party beneficiary rights`` ( 0 or more )
 
-``Relationship of Parties``
+``Relationship of Parties`` ( 0 or more )
 
   Ex., provisions creating or disclaiming agency or employment relationship
 
-``Confidentiality / Nondisclosure Publicity``
+``Confidentiality / Nondisclosure Publicity`` ( 0 or more )
 
-``Proprietary Rights, Ownership and Licensing of Intellectual Property``
+``Proprietary Rights, Ownership and Licensing of Intellectual Property`` ( 0 or more )
 
-``Assignment, Succession, Delegation``
+``Assignment, Succession, Delegation`` ( 0 or more )
 
-``Legal and Regulatory Compliance`` 
+``Legal and Regulatory Compliance``  ( 0 or more )
 
   Ex., licensing obligations, export controls, data protection
 
-``Notice Requirements``
+``Notice Requirements`` ( 0 or more )
 
-``Force Majeure``
+``Force Majeure`` ( 0 or more )
 
-``Counterparts and Signatures``
+``Counterparts and Signatures`` ( 0 or more )
 
   Provisions allowing signatures at different times; validity of multiple copies or printouts
 
-``Other Terms``
+``Other Terms`` ( 0 or more )
 
 
 Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.

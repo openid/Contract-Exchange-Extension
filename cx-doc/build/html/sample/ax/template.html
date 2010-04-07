@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AX:Template &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Use Case : Attribute Exchange" href="index.html" />
+    <link rel="next" title="Glossary, Terms ..." href="../../glossary.html" />
+    <link rel="prev" title="AX:Discovery" href="discovery.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../glossary.html" title="Glossary, Terms ..."
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="discovery.html" title="AX:Discovery"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">cx-doc v1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Use Case : Attribute Exchange</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ax-template">
+<h1>AX:Template<a class="headerlink" href="#ax-template" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="advertising-the-supporting-cx-contract">
+<h2>Advertising the Supporting CX Contract<a class="headerlink" href="#advertising-the-supporting-cx-contract" title="Permalink to this headline">¶</a></h2>
+<p>Because an OP can serve multile type of CX Contract, it must advertise list of supporting CX contract in some way , e.g, in its developers&#8217; web pages.
+If Google,Inc supports CX for its OpenID services, is may put CX contract information on <a class="reference external" href="http://code.google.com/intl/ja/apis/accounts/docs/OpenID.html">http://code.google.com/intl/ja/apis/accounts/docs/OpenID.html</a> .</p>
+<p>Every CX contarct is signed based on the corresponding CX Tempalte which describes the detail of agreement, waranty , disclamier and other juridistic statement to be enforced not to breach by parties included in a CX Contract.</p>
+</div>
+<div class="section" id="cx-template">
+<h2>CX Template<a class="headerlink" href="#cx-template" title="Permalink to this headline">¶</a></h2>
+<p>CX Template is specified as a unique URI. As with the fictional Google case, the URI could be the following:</p>
+<div class="highlight-python"><pre>https://www.google.com/accounts/o8/cx/attribute_exchange?sha256=</pre>
+</div>
+</div>
+<div class="section" id="cx-template-for-the-attribute-exchange-seenario">
+<h2>CX Template for the Attribute Exchange Seenario<a class="headerlink" href="#cx-template-for-the-attribute-exchange-seenario" title="Permalink to this headline">¶</a></h2>
+<p>Service advertises the following CX Contract Template:</p>
+<div class="highlight-python"><pre>===========================
+Bookstore Payment Agreement
+===========================
+
+Proposer: {{ proposer_name }}
+-----------------------------------------
+
+ {{ proposer }}
+
+Acceptor: {{ acceptor_name }}
+-----------------------------------------
+
+ {{ acceptor }}
+
+Order:
+-----------------------------------------
+
+ Order Date: 2010-01-01T09:00:00Z
+
+ {{ purchase_items }}
+
+ Price: USD{{ price }}
+ Purchaser: {{ acceptor_name }}
+
+ Shipping Address:
+
+  - Name: {{ name }}
+  - Address: {{ address }}
+  - Phone: {{ phone }}
+
+ Shipping Method: {{shipping}}
+ Payment: OpenID4us Payment Service
+
+Purpose of use of data:
+-----------------------
+
+ Ship to the purchaser
+ Once only.
+ Max Liability for breach: The Billing amount</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">AX:Template</a><ul>
+<li><a class="reference external" href="#advertising-the-supporting-cx-contract">Advertising the Supporting CX Contract</a></li>
+<li><a class="reference external" href="#cx-template">CX Template</a></li>
+<li><a class="reference external" href="#cx-template-for-the-attribute-exchange-seenario">CX Template for the Attribute Exchange Seenario</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="discovery.html"
+                                  title="previous chapter">AX:Discovery</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../../glossary.html"
+                                  title="next chapter">Glossary, Terms ...</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/sample/ax/template.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../glossary.html" title="Glossary, Terms ..."
+             >next</a> |</li>
+        <li class="right" >
+          <a href="discovery.html" title="AX:Discovery"
+             >previous</a> |</li>
+        <li><a href="../../index.html">cx-doc v1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Use Case : Attribute Exchange</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

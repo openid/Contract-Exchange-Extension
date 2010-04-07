@@ -20,7 +20,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="cx-doc v1.0 documentation" href="index.html" />
-    <link rel="next" title="PyXMLSec" href="pyxmlsec.html" />
+    <link rel="next" title="Specfication Task List" href="openid_cx_spec_todo.html" />
     <link rel="prev" title="CX Protocol" href="cx_protocol.html" /> 
   </head>
   <body>
@@ -31,7 +31,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="pyxmlsec.html" title="PyXMLSec"
+          <a href="openid_cx_spec_todo.html" title="Specfication Task List"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="cx_protocol.html" title="CX Protocol"
@@ -675,88 +675,88 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
 <p>Followings are the list of common contract constructs.
 Each contract type should define some of the following
 as data type and utilize it in the template.</p>
-<p><tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Identifier</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Contract</span> <span class="pre">Identifier</span></tt> ( 0 or more )</p>
 <blockquote>
 Defined as /Contract/Id in the core.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Parties</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Parties</span></tt> ( 2 or more )</p>
 <blockquote>
 Stakeholders in a contract. Defined as /Contract/Party.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Individual</span> <span class="pre">Signatories</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Individual</span> <span class="pre">Signatories</span></tt> ( 2 or more )</p>
 <blockquote>
 The person who signes on behalf of one of the Party.
 Defined as /Contract/Party/ds:Signature/ds:KeyInfo.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Title</span> <span class="pre">or</span> <span class="pre">Capacity</span> <span class="pre">of</span> <span class="pre">Signatories</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Title</span> <span class="pre">or</span> <span class="pre">Capacity</span> <span class="pre">of</span> <span class="pre">Signatories</span></tt> ( 0 or more )</p>
 <blockquote>
 Signers responsibility.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">Signature</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">Signature</span></tt> ( 0 or more )</p>
 <blockquote>
 Date of Signature.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Contact</span> <span class="pre">Details</span> <span class="pre">(for</span> <span class="pre">notices)</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Contact</span> <span class="pre">Details</span> <span class="pre">(for</span> <span class="pre">notices)</span></tt> ( 0 or more )</p>
 <blockquote>
 The address at which the parties can be contacted.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Actions,</span> <span class="pre">or</span> <span class="pre">Other</span> <span class="pre">Items</span>&nbsp; <span class="pre">to</span> <span class="pre">be</span> <span class="pre">delivered</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Actions,</span> <span class="pre">or</span> <span class="pre">Other</span> <span class="pre">Items</span>&nbsp; <span class="pre">to</span> <span class="pre">be</span> <span class="pre">delivered</span></tt> ( 1 or more )</p>
 <blockquote>
 Description of goods, services.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Quantity</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">Delivered</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Price</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Quantity</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">Delivered</span></tt> ( 1 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Price</span></tt> ( 1 or more )</p>
 <blockquote>
 This should include denomination of currency [ex., USD$], description of non-monetary consideration, any formula or external reference for calculation</blockquote>
-<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span>&nbsp; <span class="pre">other</span> <span class="pre">performance</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Place</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span> <span class="pre">other</span> <span class="pre">performance</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Definitions</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Conditions</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Date</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span>&nbsp; <span class="pre">other</span> <span class="pre">performance</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Place</span> <span class="pre">of</span> <span class="pre">delivery</span> <span class="pre">or</span> <span class="pre">other</span> <span class="pre">performance</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Definitions</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Conditions</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., performance contingent on certain events, payment contingent on standards of acceptance</blockquote>
-<p><tt class="docutils literal"><span class="pre">Warranties</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Warranties</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., warranty of non-infringement, warranty of conformance to stated specifications, warranty of legal authority, warranty of insurance coverage</blockquote>
-<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">to</span> <span class="pre">other</span> <span class="pre">contracts</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">to</span> <span class="pre">other</span> <span class="pre">contracts</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., purchase order under a framework agreement</blockquote>
-<p><tt class="docutils literal"><span class="pre">Term</span> <span class="pre">of</span> <span class="pre">contract</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Term</span> <span class="pre">of</span> <span class="pre">contract</span></tt> ( 0 or more )</p>
 <blockquote>
 May include renewal provisions</blockquote>
-<p><tt class="docutils literal"><span class="pre">Termination</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Billing</span> <span class="pre">and</span> <span class="pre">payment</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Termination</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Billing</span> <span class="pre">and</span> <span class="pre">payment</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., net 30 days, discounts, late penalties, wire transfers</blockquote>
-<p><tt class="docutils literal"><span class="pre">Governing</span> <span class="pre">Law</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Governing</span> <span class="pre">Law</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., English law, Japanese law, law of California, German Civil Code</blockquote>
-<p><tt class="docutils literal"><span class="pre">Jurisdiction</span> <span class="pre">and</span> <span class="pre">forum</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Jurisdiction</span> <span class="pre">and</span> <span class="pre">forum</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., courts of general jurisdiction located in New York City</blockquote>
-<p><tt class="docutils literal"><span class="pre">Waiver</span> <span class="pre">of</span> <span class="pre">Jury</span> <span class="pre">Trial</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Arbitration</span> <span class="pre">/</span> <span class="pre">alternative</span> <span class="pre">dispute</span> <span class="pre">?ゑｿｽresolution</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Waiver</span> <span class="pre">of</span> <span class="pre">Jury</span> <span class="pre">Trial</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Arbitration</span> <span class="pre">/</span> <span class="pre">alternative</span> <span class="pre">dispute</span> <span class="pre">?ゑｿｽresolution</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., ICC binding arbitration clause, arbitration to be conducted in Geneva, Switzerland</blockquote>
-<p><tt class="docutils literal"><span class="pre">Merger</span> <span class="pre">clause/</span> <span class="pre">entire</span> <span class="pre">agreement</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Merger</span> <span class="pre">clause/</span> <span class="pre">entire</span> <span class="pre">agreement</span></tt> ( 0 or more )</p>
 <blockquote>
 Provision stating that this is the entire agreement between the parties and excluding claims based on statement in advertising or negotiations.</blockquote>
-<p><tt class="docutils literal"><span class="pre">Survival</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Survival</span></tt> ( 0 or more )</p>
 <blockquote>
 Clauses providing that certain terms, such as indemnification or confidentiality, survive expiration or termination of the contract</blockquote>
-<p><tt class="docutils literal"><span class="pre">Damages/Limitation</span> <span class="pre">of</span> <span class="pre">Liability</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Damages/Limitation</span> <span class="pre">of</span> <span class="pre">Liability</span></tt> ( 0 or more )</p>
 <blockquote>
 Provisions on calculation of damages, liquidated damages, limitation or exclusion of certain kinds of damages</blockquote>
-<p><tt class="docutils literal"><span class="pre">Warranty</span> <span class="pre">disclaimers</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Indemnification</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Third-party</span> <span class="pre">beneficiary</span> <span class="pre">rights</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">of</span> <span class="pre">Parties</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Warranty</span> <span class="pre">disclaimers</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Indemnification</span></tt>  ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Third-party</span> <span class="pre">beneficiary</span> <span class="pre">rights</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Relationship</span> <span class="pre">of</span> <span class="pre">Parties</span></tt> ( 0 or more )</p>
 <blockquote>
 Ex., provisions creating or disclaiming agency or employment relationship</blockquote>
-<p><tt class="docutils literal"><span class="pre">Confidentiality</span> <span class="pre">/</span> <span class="pre">Nondisclosure</span> <span class="pre">Publicity</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Proprietary</span> <span class="pre">Rights,</span> <span class="pre">Ownership</span> <span class="pre">and</span> <span class="pre">Licensing</span> <span class="pre">of</span> <span class="pre">Intellectual</span> <span class="pre">Property</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Assignment,</span> <span class="pre">Succession,</span> <span class="pre">Delegation</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Legal</span> <span class="pre">and</span> <span class="pre">Regulatory</span> <span class="pre">Compliance</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Confidentiality</span> <span class="pre">/</span> <span class="pre">Nondisclosure</span> <span class="pre">Publicity</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Proprietary</span> <span class="pre">Rights,</span> <span class="pre">Ownership</span> <span class="pre">and</span> <span class="pre">Licensing</span> <span class="pre">of</span> <span class="pre">Intellectual</span> <span class="pre">Property</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Assignment,</span> <span class="pre">Succession,</span> <span class="pre">Delegation</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Legal</span> <span class="pre">and</span> <span class="pre">Regulatory</span> <span class="pre">Compliance</span></tt>  ( 0 or more )</p>
 <blockquote>
 Ex., licensing obligations, export controls, data protection</blockquote>
-<p><tt class="docutils literal"><span class="pre">Notice</span> <span class="pre">Requirements</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Force</span> <span class="pre">Majeure</span></tt></p>
-<p><tt class="docutils literal"><span class="pre">Counterparts</span> <span class="pre">and</span> <span class="pre">Signatures</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Notice</span> <span class="pre">Requirements</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Force</span> <span class="pre">Majeure</span></tt> ( 0 or more )</p>
+<p><tt class="docutils literal"><span class="pre">Counterparts</span> <span class="pre">and</span> <span class="pre">Signatures</span></tt> ( 0 or more )</p>
 <blockquote>
 Provisions allowing signatures at different times; validity of multiple copies or printouts</blockquote>
-<p><tt class="docutils literal"><span class="pre">Other</span> <span class="pre">Terms</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">Other</span> <span class="pre">Terms</span></tt> ( 0 or more )</p>
 <p>Many other terms could be mentioned, especially in specific contexts such as loan agreements or lease contracts, but the items listed above are some of the most common in commercial contracts generally.</p>
 </div>
 <div class="section" id="normative-references">
@@ -882,8 +882,8 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
             <p class="topless"><a href="cx_protocol.html"
                                   title="previous chapter">CX Protocol</a></p>
             <h4>Next topic</h4>
-            <p class="topless"><a href="pyxmlsec.html"
-                                  title="next chapter">PyXMLSec</a></p>
+            <p class="topless"><a href="openid_cx_spec_todo.html"
+                                  title="next chapter">Specfication Task List</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
               <li><a href="_sources/openid_cx_spec.txt"
@@ -913,7 +913,7 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="pyxmlsec.html" title="PyXMLSec"
+          <a href="openid_cx_spec_todo.html" title="Specfication Task List"
              >next</a> |</li>
         <li class="right" >
           <a href="cx_protocol.html" title="CX Protocol"

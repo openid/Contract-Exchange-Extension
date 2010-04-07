@@ -1,9 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 1</title>
-<meta http-equiv="Expires" content="Mon, 29 Mar 2010 04:46:38 +0000">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="Contract Exchange Extension 1.0 - Draft 1">
-<meta name="generator" content="xml2rfc v1.34 (http://xml.resource.org/)">
+<meta name="generator" content="xml2rfc v1.35 (http://xml.resource.org/)">
 <style type='text/css'><!--
         body {
                 font-family: verdana, charcoal, helvetica, arial, sans-serif;
@@ -652,12 +651,19 @@ Discovery</h3>
 <p>Discovery of the contract exchange service extension is achieved
         via the mechanism described in [OpenID.authentication2.0]
         (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
-        The attribute exchange namespace
-        &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; MUST be listed as
+        
+</p>
+<p>
+        The contract exchange namespace
+        &ldquo;http://openid.net/srv/cx/1.0/&rdquo; MUST be listed as
         /xrds/xrd/Service/Type element in the XRDS discovery document or
-        /xrd/Link/rel element in the XRD 1.0 discovery document. The
-        discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All
-        of the party involved MUST publish an XRD.
+        /xrd/Link/rel element in the XRD 1.0 discovery document. 
+        
+</p>
+<p>
+        The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed 
+        using XML Signature and have a XRD/ds:Signature element in it.
+        All of the party involved, including Relying Parties, MUST publish an XRD.
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>Note Discussion: RP Discovery needed for contract invalidation, RP
         Verification by OP, etc. (=nat, 2009-08-12)
 </pre></div>
@@ -1241,52 +1247,52 @@ Appendix C. Common Contract Constructs used in CX</h3>
       type should define some of the following as data type and utilize it in
       the template.</p>
 <ul class="text">
-<li>Contract Identifier
+<li>Contract Identifier (0 or more)
 <blockquote class="text">
 <p>Defined as /Contract/Id in the core.
 </p>
 </blockquote>
 </li>
-<li>Parties
+<li>Parties ( 2 or more )
 <blockquote class="text">
 <p>Stakeholders in a contract. Defined as /Contract/Party.
 </p>
 </blockquote>
 </li>
-<li>Individual Signatories
+<li>Individual Signatories ( 2 or more ) 
 <blockquote class="text">
 <p>The person who signs on behalf of one of the Party. Defined
               as /Contract/Party/ds:Signature/ds:KeyInfo.
 </p>
 </blockquote>
 </li>
-<li>Title or Capacity of Signatories
+<li>Title or Capacity of Signatories ( 0 or more ) 
 <blockquote class="text">
 <p>Signers responsibility.
 </p>
 </blockquote>
 </li>
-<li>Date of Signature
+<li>Date of Signature ( 0 or more )
 <blockquote class="text">
 <p>Date of Signature.
 </p>
 </blockquote>
 </li>
-<li>Contact Details (for notices)
+<li>Contact Details (for notices) ( 0 or more )
 <blockquote class="text">
 <p>The address at which the parties can be contacted.
 </p>
 </blockquote>
 </li>
-<li>Actions, or Other Items to be delivered
+<li>Actions, or Other Items to be delivered ( 1 or more )
 <blockquote class="text">
 <p>Description of goods, services.
 </p>
 </blockquote>
 </li>
-<li>Quantity to be Delivered
+<li>Quantity to be Delivered ( 1 or more )
 </li>
-<li>Price
+<li>Price ( 1 or more ) 
 <blockquote class="text">
 <p>This should include denomination of currency [ex., USD$],
               description of non-monetary consideration, any formula or
@@ -1294,20 +1300,20 @@ Appendix C. Common Contract Constructs used in CX</h3>
 </p>
 </blockquote>
 </li>
-<li>Date of delivery or other performance
+<li>Date of delivery or other performance ( 0 or more )
 </li>
-<li>Place of delivery or other performance
+<li>Place of delivery or other performance ( 0 or more )
 </li>
-<li>Definitions
+<li>Definitions ( 0 or more )
 </li>
-<li>Conditions
+<li>Conditions ( 0 or more )
 <blockquote class="text">
 <p>Ex., performance contingent on certain events, payment
               contingent on standards of acceptance
 </p>
 </blockquote>
 </li>
-<li>Warranties
+<li>Warranties ( 0 or more )
 <blockquote class="text">
 <p>Ex., warranty of non-infringement, warranty of conformance to
               stated specifications, warranty of legal authority, warranty of
@@ -1315,59 +1321,59 @@ Appendix C. Common Contract Constructs used in CX</h3>
 </p>
 </blockquote>
 </li>
-<li>Relationship to other contracts
+<li>Relationship to other contracts ( 0 or more )
 <blockquote class="text">
 <p>Ex., purchase order under a framework agreement
 </p>
 </blockquote>
 </li>
-<li>Term of contract
+<li>Term of contract ( 0 or more )
 <blockquote class="text">
 <p>May include renewal provisions
 </p>
 </blockquote>
 </li>
-<li>Termination
+<li>Termination ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Billing and payment
+<li>Billing and payment ( 0 or more )
 <blockquote class="text">
 <p>Ex., net 30 days, discounts, late penalties, wire
               transfers
 </p>
 </blockquote>
 </li>
-<li>Governing Law
+<li>Governing Law ( 0 or more )
 <blockquote class="text">
 <p>Ex., English law, Japanese law, law of California, German
               Civil Code
 </p>
 </blockquote>
 </li>
-<li>Jurisdiction and forum
+<li>Jurisdiction and forum ( 0 or more )
 <blockquote class="text">
 <p>Ex., courts of general jurisdiction located in New York
               City
 </p>
 </blockquote>
 </li>
-<li>Waiver of Jury Trial
+<li>Waiver of Jury Trial ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Arbitration / alternative dispute resolution
+<li>Arbitration / alternative dispute resolution ( 0 or more )
 <blockquote class="text">
 <p>Ex., ICC binding arbitration clause, arbitration to be
               conducted in Geneva, Switzerland
 </p>
 </blockquote>
 </li>
-<li>Merger clause/ entire agreement
+<li>Merger clause/ entire agreement ( 0 or more )
 <blockquote class="text">
 <p>Provision stating that this is the entire agreement between
               the parties and excluding claims based on statement in
@@ -1375,7 +1381,7 @@ Appendix C. Common Contract Constructs used in CX</h3>
 </p>
 </blockquote>
 </li>
-<li>Survival
+<li>Survival ( 0 or more )
 <blockquote class="text">
 <p>Clauses providing that certain terms, such as indemnification
               or confidentiality, survive expiration or termination of the
@@ -1383,84 +1389,84 @@ Appendix C. Common Contract Constructs used in CX</h3>
 </p>
 </blockquote>
 </li>
-<li>Damages/Limitation of Liability
+<li>Damages/Limitation of Liability ( 0 or more )
 <blockquote class="text">
 <p>Provisions on calculation of damages, liquidated damages,
               limitation or exclusion of certain kinds of damages
 </p>
 </blockquote>
 </li>
-<li>Warranty disclaimers
+<li>Warranty disclaimers ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Indemnification
+<li>Indemnification ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Third-party beneficiary rights
+<li>Third-party beneficiary rights ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Relationship of Parties
+<li>Relationship of Parties ( 0 or more )
 <blockquote class="text">
 <p>Ex., provisions creating or disclaiming agency or employment
               relationship
 </p>
 </blockquote>
 </li>
-<li>Confidentiality / Nondisclosure Publicity
+<li>Confidentiality / Nondisclosure Publicity ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
 <li>Proprietary Rights, Ownership and Licensing of Intellectual
-          Property
+          Propert ( 0 or more )y
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Assignment, Succession, Delegation
+<li>Assignment, Succession, Delegation ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Legal and Regulatory Compliance
+<li>Legal and Regulatory Compliance ( 0 or more )
 <blockquote class="text">
 <p>Ex., licensing obligations, export controls, data
               protection
 </p>
 </blockquote>
 </li>
-<li>Notice Requirements
+<li>Notice Requirements ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Force Majeure
+<li>Force Majeure ( 0 or more )
 <blockquote class="text">
 <p>
 </p>
 </blockquote>
 </li>
-<li>Counterparts and Signatures
+<li>Counterparts and Signatures ( 0 or more )
 <blockquote class="text">
 <p>Provisions allowing signatures at different times; validity
               of multiple copies or printouts
 </p>
 </blockquote>
 </li>
-<li>Other Terms
+<li>Other Terms ( 0 or more )
 <blockquote class="text">
 <p>
 </p>

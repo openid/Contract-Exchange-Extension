@@ -3,21 +3,13 @@
 <rfc category="info" docName="openid-trust-exchange-extension-1_0"
      ipr="full3978">
   <?xml-stylesheet type='text/xsl' href='http://xml.resource.org/authoring/rfc2629.xslt' ?>
-
   <?rfc toc="yes" ?>
-
   <?rfc tocdepth="2" ?>
-
   <?rfc symrefs="yes" ?>
-
   <?rfc sortrefs="yes"?>
-
   <?rfc iprnotified="no" ?>
-
   <?rfc strict="yes" ?>
-
   <?rfc private="Draft" ?>
-
   <?rfc comments="no" ?>
 
   <front>
@@ -30,13 +22,9 @@
       <address>
         <postal>
           <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
-
           <city>Chiyoda-ku</city>
-
           <region>Tokyo</region>
-
           <code>100-0005</code>
-
           <country>Japan</country>
         </postal>
 
@@ -53,13 +41,9 @@
       <address>
         <postal>
           <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
-
           <city>Chiyoda-ku</city>
-
           <region>Tokyo</region>
-
           <code>100-0005</code>
-
           <country>Japan</country>
         </postal>
 
@@ -75,13 +59,9 @@
       <address>
         <postal>
           <street>Cross Side Building , 3-52-1 Sendagaya</street>
-
           <city>Shibuya-ku</city>
-
           <region>Tokyo</region>
-
           <code>151-0051</code>
-
           <country>Japan</country>
         </postal>
 
@@ -462,12 +442,17 @@
         <t>Discovery of the contract exchange service extension is achieved
         via the mechanism described in [OpenID.authentication2.0]
         (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
-        The attribute exchange namespace
-        &ldquo;http://openid.net/srv/cx/1.0/#&rdquo; MUST be listed as
+        </t>
+        <t>
+        The contract exchange namespace
+        &ldquo;http://openid.net/srv/cx/1.0/&rdquo; MUST be listed as
         /xrds/xrd/Service/Type element in the XRDS discovery document or
-        /xrd/Link/rel element in the XRD 1.0 discovery document. The
-        discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All
-        of the party involved MUST publish an XRD.</t>
+        /xrd/Link/rel element in the XRD 1.0 discovery document. 
+        </t>
+        <t>
+        The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed 
+        using XML Signature and have a XRD/ds:Signature element in it.
+        All of the party involved, including Relying Parties, MUST publish an XRD.</t>
 
         <figure><artwork>Note Discussion: RP Discovery needed for contract invalidation, RP
         Verification by OP, etc. (=nat, 2009-08-12)
@@ -958,162 +943,162 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
       <t>Followings are the list of common contract constructs. Each contract
       type should define some of the following as data type and utilize it in
       the template.<list style="symbols">
-          <t>Contract Identifier<list style="empty">
+          <t>Contract Identifier (0 or more)<list style="empty">
               <t>Defined as /Contract/Id in the core.</t>
             </list></t>
 
-          <t>Parties<list style="empty">
+          <t>Parties ( 2 or more )<list style="empty">
               <t>Stakeholders in a contract. Defined as /Contract/Party.</t>
             </list></t>
 
-          <t>Individual Signatories<list style="empty">
+          <t>Individual Signatories ( 2 or more ) <list style="empty">
               <t>The person who signs on behalf of one of the Party. Defined
               as /Contract/Party/ds:Signature/ds:KeyInfo.</t>
             </list></t>
 
-          <t>Title or Capacity of Signatories<list style="empty">
+          <t>Title or Capacity of Signatories ( 0 or more ) <list style="empty">
               <t>Signers responsibility.</t>
             </list></t>
 
-          <t>Date of Signature<list style="empty">
+          <t>Date of Signature ( 0 or more )<list style="empty">
               <t>Date of Signature.</t>
             </list></t>
 
-          <t>Contact Details (for notices)<list style="empty">
+          <t>Contact Details (for notices) ( 0 or more )<list style="empty">
               <t>The address at which the parties can be contacted.</t>
             </list></t>
 
-          <t>Actions, or Other Items to be delivered<list style="empty">
+          <t>Actions, or Other Items to be delivered ( 1 or more )<list style="empty">
               <t>Description of goods, services.</t>
             </list></t>
 
-          <t>Quantity to be Delivered</t>
+          <t>Quantity to be Delivered ( 1 or more )</t>
 
-          <t>Price<list style="empty">
+          <t>Price ( 1 or more ) <list style="empty">
               <t>This should include denomination of currency [ex., USD$],
               description of non-monetary consideration, any formula or
               external reference for calculation</t>
             </list></t>
 
-          <t>Date of delivery or other performance</t>
+          <t>Date of delivery or other performance ( 0 or more )</t>
 
-          <t>Place of delivery or other performance</t>
+          <t>Place of delivery or other performance ( 0 or more )</t>
 
-          <t>Definitions</t>
+          <t>Definitions ( 0 or more )</t>
 
-          <t>Conditions<list style="empty">
+          <t>Conditions ( 0 or more )<list style="empty">
               <t>Ex., performance contingent on certain events, payment
               contingent on standards of acceptance</t>
             </list></t>
 
-          <t>Warranties<list style="empty">
+          <t>Warranties ( 0 or more )<list style="empty">
               <t>Ex., warranty of non-infringement, warranty of conformance to
               stated specifications, warranty of legal authority, warranty of
               insurance coverage</t>
             </list></t>
 
-          <t>Relationship to other contracts<list style="empty">
+          <t>Relationship to other contracts ( 0 or more )<list style="empty">
               <t>Ex., purchase order under a framework agreement</t>
             </list></t>
 
-          <t>Term of contract<list style="empty">
+          <t>Term of contract ( 0 or more )<list style="empty">
               <t>May include renewal provisions</t>
             </list></t>
 
-          <t>Termination<list style="empty">
+          <t>Termination ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Billing and payment<list style="empty">
+          <t>Billing and payment ( 0 or more )<list style="empty">
               <t>Ex., net 30 days, discounts, late penalties, wire
               transfers</t>
             </list></t>
 
-          <t>Governing Law<list style="empty">
+          <t>Governing Law ( 0 or more )<list style="empty">
               <t>Ex., English law, Japanese law, law of California, German
               Civil Code</t>
             </list></t>
 
-          <t>Jurisdiction and forum<list style="empty">
+          <t>Jurisdiction and forum ( 0 or more )<list style="empty">
               <t>Ex., courts of general jurisdiction located in New York
               City</t>
             </list></t>
 
-          <t>Waiver of Jury Trial<list style="empty">
+          <t>Waiver of Jury Trial ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Arbitration / alternative dispute resolution<list style="empty">
+          <t>Arbitration / alternative dispute resolution ( 0 or more )<list style="empty">
               <t>Ex., ICC binding arbitration clause, arbitration to be
               conducted in Geneva, Switzerland</t>
             </list></t>
 
-          <t>Merger clause/ entire agreement<list style="empty">
+          <t>Merger clause/ entire agreement ( 0 or more )<list style="empty">
               <t>Provision stating that this is the entire agreement between
               the parties and excluding claims based on statement in
               advertising or negotiations.</t>
             </list></t>
 
-          <t>Survival<list style="empty">
+          <t>Survival ( 0 or more )<list style="empty">
               <t>Clauses providing that certain terms, such as indemnification
               or confidentiality, survive expiration or termination of the
               contract</t>
             </list></t>
 
-          <t>Damages/Limitation of Liability<list style="empty">
+          <t>Damages/Limitation of Liability ( 0 or more )<list style="empty">
               <t>Provisions on calculation of damages, liquidated damages,
               limitation or exclusion of certain kinds of damages</t>
             </list></t>
 
-          <t>Warranty disclaimers<list style="empty">
+          <t>Warranty disclaimers ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Indemnification<list style="empty">
+          <t>Indemnification ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Third-party beneficiary rights<list style="empty">
+          <t>Third-party beneficiary rights ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Relationship of Parties<list style="empty">
+          <t>Relationship of Parties ( 0 or more )<list style="empty">
               <t>Ex., provisions creating or disclaiming agency or employment
               relationship</t>
             </list></t>
 
-          <t>Confidentiality / Nondisclosure Publicity<list style="empty">
+          <t>Confidentiality / Nondisclosure Publicity ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
           <t>Proprietary Rights, Ownership and Licensing of Intellectual
-          Property<list style="empty">
+          Propert ( 0 or more )y<list style="empty">
               <t />
             </list></t>
 
-          <t>Assignment, Succession, Delegation<list style="empty">
+          <t>Assignment, Succession, Delegation ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Legal and Regulatory Compliance<list style="empty">
+          <t>Legal and Regulatory Compliance ( 0 or more )<list style="empty">
               <t>Ex., licensing obligations, export controls, data
               protection</t>
             </list></t>
 
-          <t>Notice Requirements<list style="empty">
+          <t>Notice Requirements ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Force Majeure<list style="empty">
+          <t>Force Majeure ( 0 or more )<list style="empty">
               <t />
             </list></t>
 
-          <t>Counterparts and Signatures<list style="empty">
+          <t>Counterparts and Signatures ( 0 or more )<list style="empty">
               <t>Provisions allowing signatures at different times; validity
               of multiple copies or printouts</t>
             </list></t>
 
-          <t>Other Terms<list style="empty">
+          <t>Other Terms ( 0 or more )<list style="empty">
               <t />
             </list></t>
         </list></t>

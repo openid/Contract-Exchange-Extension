@@ -11,6 +11,7 @@ Contents:
 
 .. toctree::
     :maxdepth: 2
+    :glob:
 
     cx
     cx_service
@@ -20,6 +21,8 @@ Contents:
     openid_cx_spec_todo
            
     pyxmlsec
+
+    sample/ax/index
 
     glossary
 

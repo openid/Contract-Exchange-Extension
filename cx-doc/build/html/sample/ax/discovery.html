@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AX:Discovery &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Use Case : Attribute Exchange" href="index.html" />
+    <link rel="next" title="AX: Template" href="template.html" />
+    <link rel="prev" title="Use Case : Attribute Exchange" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="template.html" title="AX: Template"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Use Case : Attribute Exchange"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">cx-doc v1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Use Case : Attribute Exchange</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ax-discovery">
+<h1>AX:Discovery<a class="headerlink" href="#ax-discovery" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="xrds-discovery">
+<h2>XRDS Discovery<a class="headerlink" href="#xrds-discovery" title="Permalink to this headline">¶</a></h2>
+<p>An OpenID CX Service can be discovered through <a class="reference external" href="http://openid.net/specs/openid-authentication-2_0.html#discovery">XRDS-Based Discovery</a> .</p>
+<p>Suppose that the <a class="reference external" href="http://code.google.com/intl/ja/apis/accounts/docs/OpenID.html">Google OpenID Provider service</a> support the contract based attribute exchange using CX extension.</p>
+<p>If you request the following YADIS discovery request ,</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>main<span class="o">)</span>hdknr@deblen:~/examples<span class="nv">$ </span>python
+Python 2.5.2 <span class="o">(</span>r252:60911, Jan 24 2010, 14:53:14<span class="o">)</span>
+<span class="o">[</span>GCC 4.3.2<span class="o">]</span> on linux2
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">import</span> <span class="nn">urllib2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://www.google.com/accounts/o8/id&#39;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Accept&#39;</span><span class="p">:</span><span class="s">&#39;text/html; q=0.3, application/xhtml+xml; q=0.5, application/xrds+xml&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>the following XRDS should be returned.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;XRDS&gt;</span>
+<span class="nt">&lt;XRD&gt;</span>
+<span class="nt">&lt;Service</span> <span class="na">priority=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/auth/2.0/server<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://openid.net/srv/ax/1.0<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/ui/1.0/mode/popup<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/ui/1.0/icon<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/pape/1.0<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;URI&gt;</span>https://www.google.com/accounts/o8/ud<span class="nt">&lt;/URI&gt;</span>
+<span class="nt">&lt;/Service&gt;</span>
+<span class="nt">&lt;/XRD&gt;</span>
+<span class="nt">&lt;/XRDS&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This particular XRDS has no xmlns attribute in any element because PyXMLSec produces errors if it is specified.
+This error Should be investigated sometime later.</p>
+</div>
+</div>
+<div class="section" id="xrds-in-xml-signagure">
+<h2>XRDS in XML Signagure<a class="headerlink" href="#xrds-in-xml-signagure" title="Permalink to this headline">¶</a></h2>
+<p>But the returning XRDS MUST be signed like this</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;XRDS&gt;</span>
+<span class="nt">&lt;XRD&gt;</span>
+<span class="nt">&lt;Service</span> <span class="na">priority=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/auth/2.0/server<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://openid.net/srv/ax/1.0<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/ui/1.0/mode/popup<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/ui/1.0/icon<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://specs.openid.net/extensions/pape/1.0<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#<span class="nt">&lt;/Type&gt;</span>
+<span class="nt">&lt;URI&gt;</span>https://www.google.com/accounts/o8/ud<span class="nt">&lt;/URI&gt;</span>
+<span class="nt">&lt;/Service&gt;</span>
+<span class="nt">&lt;/XRD&gt;</span>
+<span class="nt">&lt;Signature</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;SignedInfo&gt;</span>
+<span class="nt">&lt;CanonicalizationMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2001/10/xml-exc-c14n#&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;SignatureMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#rsa-sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Reference&gt;</span>
+<span class="nt">&lt;Transforms&gt;</span>
+<span class="nt">&lt;Transform</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Transforms&gt;</span>
+<span class="nt">&lt;DigestMethod</span> <span class="na">Algorithm=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;DigestValue&gt;</span>PJ9EM2ZreuTY8tfJDLJwctzhe+A=<span class="nt">&lt;/DigestValue&gt;</span>
+<span class="nt">&lt;/Reference&gt;</span>
+<span class="nt">&lt;/SignedInfo&gt;</span>
+<span class="nt">&lt;SignatureValue&gt;</span>nfV5MwI2OlQ9bOJ71I8RlAw5MY031YuZD/A2zKzD3llEyDsc+oTqsPN9o4q34BiW
+CGG/FjlwDvQvlEvoAayzDjnCJ2w04S0NmkQxC9wYTsVfXFEQB1a7yjE1YCP487M1
+qoLLUTzrftxjjddoskSbxaC51SNmZNQSJ59dqD/ETlo=<span class="nt">&lt;/SignatureValue&gt;</span>
+<span class="nt">&lt;KeyInfo&gt;</span>
+<span class="nt">&lt;X509Data&gt;</span>
+<span class="nt">&lt;X509Certificate&gt;</span>MIICHzCCAYgCCQCb8py2cYa9YjANBgkqhkiG9w0BAQUFADBUMRgwFgYDVQQDEw93
+d3cuZ29vZ2xlLmNvbSAxHDAaBgNVBAsTE3N5cy53d3cuZ29vZ2xlLmNvbSAxDTAL
+BgNVBAoTBHN5cyAxCzAJBgNVBAYTAkpQMB4XDTEwMDQwNzA0MTAzMFoXDTEwMDUw
+NzA0MTAzMFowVDEYMBYGA1UEAxMPd3d3Lmdvb2dsZS5jb20gMRwwGgYDVQQLExNz
+eXMud3d3Lmdvb2dsZS5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCB
+nzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwaeeccIQ0o3htlvUR6mFnmjmsQej
+BYsh3bzNEKCzBFjGPitixrqNkmon1mpbtBnYGsbYldUydlSWU3hGV5UO24JwH8Sz
+rUPpVC1MmaY6VyENlVcIdpui8IkCSpRBVklxXYF1hEAcuWBSpNsLq9W1f5+L+p2M
+6MDsvfq0cmIvV/8CAwEAATANBgkqhkiG9w0BAQUFAAOBgQAhTnm89c+yUqd//VlN
+Q2oWK/zdVAKlVRYRE910fGkkYIUFe9bd+HGHKSazq15B09ZevTwK5ahMJq2kyKfr
+igpzPyNiAWa/DpNsLYr2VUU02gLwxgEGXs6BmjfIxZh9eAIzg2FN8SQPs9eKp6c0
+RK6Tmmt9ro8lyn4wW9XR7kb83A==<span class="nt">&lt;/X509Certificate&gt;</span>
+<span class="nt">&lt;/X509Data&gt;</span>
+<span class="nt">&lt;/KeyInfo&gt;</span>
+<span class="nt">&lt;/Signature&gt;&lt;/XRDS&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cx-service-endpoint">
+<h2>CX Service Endpoint<a class="headerlink" href="#cx-service-endpoint" title="Permalink to this headline">¶</a></h2>
+<p>After parsing and validating the XRDS, a Relying Party must find the XRD/Service/Type element with a CX namespace url as its value:</p>
+<div class="highlight-python"><pre>http://openid.net/srv/cx/1.0/#</pre>
+</div>
+<p>Because  the CX is a OpenID Extension and alse based on the OpenID AX, indispensable XRD/Service/Type elements must be also specifed.</p>
+<p>For &#8220;OP Identifier&#8221; senario, the OpenID Type url must be:</p>
+<div class="highlight-python"><pre>http://specs.openid.net/auth/2.0/server</pre>
+</div>
+<p>If the End User specified user idetnfier to discover,  the URL must be</p>
+<div class="highlight-python"><pre>http://specs.openid.net/auth/2.0/signon</pre>
+</div>
+<p>For OpenID AX, the Type url must be:</p>
+<div class="highlight-python"><pre>http://openid.net/srv/ax/1.0</pre>
+</div>
+<p>If all XRD/Service/Type urls are find, the XRD/Service is the one you look at and the endpoint to the service is the value of XRD/Service/URI.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">AX:Discovery</a><ul>
+<li><a class="reference external" href="#xrds-discovery">XRDS Discovery</a></li>
+<li><a class="reference external" href="#xrds-in-xml-signagure">XRDS in XML Signagure</a></li>
+<li><a class="reference external" href="#cx-service-endpoint">CX Service Endpoint</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Use Case : Attribute Exchange</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="template.html"
+                                  title="next chapter">AX: Template</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/sample/ax/discovery.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="template.html" title="AX: Template"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Use Case : Attribute Exchange"
+             >previous</a> |</li>
+        <li><a href="../../index.html">cx-doc v1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Use Case : Attribute Exchange</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

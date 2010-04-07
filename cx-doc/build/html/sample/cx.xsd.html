@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title><no title> &mdash; cx-doc v1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="cx-doc v1.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xs:schema</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span> <span class="na">xmlns:xmldsig=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;xs:import</span> <span class="na">namespace=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span> <span class="na">schemaLocation=</span><span class="s">&quot;http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Contract&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;Party&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Service&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;TemplateURL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Template&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Original&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+     <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:dateTime&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Party&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Rel&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;obligations&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">ref=</span><span class="s">&quot;xmldsig:Signature&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Rel&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;obligations&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;param&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;param&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:simpleContent&gt;</span>
+       <span class="nt">&lt;xs:extension</span> <span class="na">base=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/xs:extension&gt;</span>
+     <span class="nt">&lt;/xs:simpleContent&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Service&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;xs:complexType&gt;</span>
+     <span class="nt">&lt;xs:sequence&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/xs:sequence&gt;</span>
+   <span class="nt">&lt;/xs:complexType&gt;</span>
+ <span class="nt">&lt;/xs:element&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;TemplateURL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Original&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>   <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/xs:schema&gt;</span>
+</pre></div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/sample/cx.xsd.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">cx-doc v1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>
