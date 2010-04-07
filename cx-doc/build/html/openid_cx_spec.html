@@ -461,8 +461,53 @@ REQUIRED. Value: Any string to specify the Contract and its status. The RP SHOUL
 </div>
 <div class="section" id="appendix-b-examples">
 <h2>1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples<a class="headerlink" href="#appendix-b-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="template-sample">
+<h3>1.7.1&nbsp;&nbsp;&nbsp;Template Sample<a class="headerlink" href="#template-sample" title="Permalink to this headline">¶</a></h3>
+<p>A sample CX Template for a payment senario would look like as follows:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">===========================</span>
+<span class="gh">Bookstore Payment Agreement</span>
+<span class="gh">===========================</span>
+
+<span class="gh">Proposer: {{ proposer_name }}</span>
+<span class="gh">-----------------------------------------</span>
+
+ {{ proposer }}
+
+<span class="gh">Acceptor: {{ acceptor_name }}</span>
+<span class="gh">-----------------------------------------</span>
+
+ {{ acceptor }}
+
+<span class="gh">Order:</span>
+<span class="gh">-----------------------------------------</span>
+
+ Order Date: 2010-01-01T09:00:00Z
+
+ {{ purchase_items }}
+
+ Price: USD{{ price }}
+ Purchaser: {{ acceptor_name }}
+
+ Shipping Address:
+
+  <span class="m">-</span> Name: {{ name }}
+  <span class="m">-</span> Address: {{ address }}
+  <span class="m">-</span> Phone: {{ phone }}
+
+ Shipping Method: {{shipping}}
+ Payment: OpenID4us Payment Service
+
+<span class="gh">Purpose of use of data:</span>
+<span class="gh">-----------------------</span>
+
+ Ship to the purchaser
+ Once only.
+ Max Liability for breach: The Billing amount
+</pre></div>
+</div>
+</div>
 <div class="section" id="proposal-sample">
-<h3>1.7.1&nbsp;&nbsp;&nbsp;Proposal Sample<a class="headerlink" href="#proposal-sample" title="Permalink to this headline">¶</a></h3>
+<h3>1.7.2&nbsp;&nbsp;&nbsp;Proposal Sample<a class="headerlink" href="#proposal-sample" title="Permalink to this headline">¶</a></h3>
 <p>A sample Contract XML Proposal would look like as follows:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e4bf53a8e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
@@ -545,7 +590,7 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 </div>
 </div>
 <div class="section" id="contract-sample">
-<h3>1.7.2&nbsp;&nbsp;&nbsp;Contract Sample<a class="headerlink" href="#contract-sample" title="Permalink to this headline">¶</a></h3>
+<h3>1.7.3&nbsp;&nbsp;&nbsp;Contract Sample<a class="headerlink" href="#contract-sample" title="Permalink to this headline">¶</a></h3>
 <p>A sample Contract XML Contract would look like as follows:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e5279de6e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
@@ -866,8 +911,9 @@ URI:    <a class="reference external" href="http://www.ic-tact.co.jp">http://www
 </li>
 <li><a class="reference external" href="#appendix-a-parameters">1.6&nbsp;&nbsp;&nbsp;Appendix A.  Parameters</a></li>
 <li><a class="reference external" href="#appendix-b-examples">1.7&nbsp;&nbsp;&nbsp;Appendix B.  Examples</a><ul>
-<li><a class="reference external" href="#proposal-sample">1.7.1&nbsp;&nbsp;&nbsp;Proposal Sample</a></li>
-<li><a class="reference external" href="#contract-sample">1.7.2&nbsp;&nbsp;&nbsp;Contract Sample</a></li>
+<li><a class="reference external" href="#template-sample">1.7.1&nbsp;&nbsp;&nbsp;Template Sample</a></li>
+<li><a class="reference external" href="#proposal-sample">1.7.2&nbsp;&nbsp;&nbsp;Proposal Sample</a></li>
+<li><a class="reference external" href="#contract-sample">1.7.3&nbsp;&nbsp;&nbsp;Contract Sample</a></li>
 </ul>
 </li>
 <li><a class="reference external" href="#appendix-c-common-contract-constructs-used-in-cx">1.8&nbsp;&nbsp;&nbsp;Appendix C.  Common Contract Constructs used in CX</a></li>

@@ -3,7 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-
 ===========================================
 Contract Exchange Extension 1.0 - Draft 1.6
 ===========================================
@@ -20,7 +19,6 @@ This extension defines 1) An extensible Contract format, 2) Protocol to exchange
 Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions.
 
 As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called "Artifact" through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended.
-
 
 .. sectnum::  
 
@@ -373,6 +371,15 @@ This specification defines a small set of common parameters that may be generall
 
 Appendix B.  Examples
 =====================
+
+
+Template Sample
+----------------
+
+A sample CX Template for a payment senario would look like as follows:
+
+
+.. include:: ../xml/sample_template.rst.rst 
 
 Proposal Sample
 ---------------
