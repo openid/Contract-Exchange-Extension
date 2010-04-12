@@ -2,7 +2,7 @@
 Use Case : Attribute Exchange
 ==============================
 
-Attribute Excahnge Senario
+Attribute Exchange Senario
 ==========================
 
 In this senario, An End User is using a RP service and is asked to be authenticated with OpenID.
@@ -15,3 +15,4 @@ Because the End User wants his privacy to be proteced under a contract binding a
 
     discovery
     template
+    proposal

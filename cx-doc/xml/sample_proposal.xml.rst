@@ -52,7 +52,6 @@
             <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
             <URL>http://cxop.net/openid/</URL>
         </Service>
-        <TemplateURL>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</TemplateURL>
         <Template>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
     PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
     IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg

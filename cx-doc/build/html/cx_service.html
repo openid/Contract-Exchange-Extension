@@ -52,9 +52,53 @@
 <p>A CX Service is a Web service provided by a service provider.</p>
 <div class="section" id="identifier-and-discovery">
 <h3>Identifier and Discovery<a class="headerlink" href="#identifier-and-discovery" title="Permalink to this headline">¶</a></h3>
-<p>A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider&#8217;s identifier / user identifier.
+<p>A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider&#8217;s identifier.
 XRDS/XRD discovery can be used for OpenID CX protocol.</p>
-<p>CX Template MUST be discoverd as same as a CX Service endpoint.</p>
+<p>For example, if you discover the following server identifier:</p>
+<div class="highlight-python"><pre>http://op.com/</pre>
+</div>
+<p>Here is an example of a XRDS :</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;XRDS&gt;</span>
+  <span class="nt">&lt;XRD&gt;</span>
+  <span class="nt">&lt;Service</span> <span class="na">priority=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Type&gt;</span>http://specs.openid.net/auth/2.0/server<span class="nt">&lt;/Type&gt;</span>
+  <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/ax/1.0<span class="nt">&lt;/Type&gt;</span>
+  <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#<span class="nt">&lt;/Type&gt;</span>
+  <span class="nt">&lt;Type&gt;</span>http://op.com/cx/payment.txt?sha256=c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67<span class="nt">&lt;/URI&gt;</span>
+  <span class="nt">&lt;URI&gt;</span>https://op.com/op/openid/<span class="nt">&lt;/URI&gt;</span>
+  <span class="nt">&lt;/Service&gt;</span>
+  <span class="nt">&lt;/XRD&gt;</span>
+<span class="nt">&lt;/XRDS&gt;</span>
+</pre></div>
+</div>
+<p>This XRDS describes the following.</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference external" href="https://op.com/op/openid/">https://op.com/op/openid/</a> is the OpenID Authentication 2.0  for <a class="reference external" href="http://op.com/">http://op.com/</a></p>
+<blockquote>
+<p>The CX is an extension of the OpenID Authentication protocal.</p>
+</blockquote>
+</li>
+<li><p class="first">This endpoint support the OpenID AX extension (1.0).</p>
+<blockquote>
+<p>The CX is dependent on the AX extension to deliver the CX message.</p>
+</blockquote>
+</li>
+<li><p class="first">This endpoint also support the OpenID CX extension (1.0).</p>
+<blockquote>
+<p>So a Relying Party can exchange the CX Contract messages through the OP endpoint.</p>
+</blockquote>
+</li>
+<li><p class="first">This endpoint can process the &#8220;payment&#8221; contract through this endpoint.</p>
+<blockquote>
+<p>The details of the contract and service is described in the content published by this URI.
+The base64 encoded SHA-256 digest of this document must be this.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67</span>
+</pre></div>
+</div>
+</blockquote>
+</li>
+</ol>
 </div>
 </div>
 <div class="section" id="what-is-cx-template">

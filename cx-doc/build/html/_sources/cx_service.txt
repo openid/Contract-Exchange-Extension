@@ -15,10 +15,51 @@ A CX Service is a Web service provided by a service provider.
 Identifier and Discovery
 ------------------------
 
-A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider's identifier / user identifier.
+A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider's identifier. 
 XRDS/XRD discovery can be used for OpenID CX protocol.
 
-CX Template MUST be discoverd as same as a CX Service endpoint.
+For example, if you discover the following server identifier::
+
+   http://op.com/
+
+Here is an example of a XRDS :
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <XRDS>
+      <XRD>
+      <Service priority="0">
+      <Type>http://specs.openid.net/auth/2.0/server</Type>
+      <Type>http://openid.net/srv/ax/1.0</Type>
+      <Type>http://openid.net/srv/cx/1.0/#</Type>
+      <Type>http://op.com/cx/payment.txt?sha256=c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67</URI>
+      <URI>https://op.com/op/openid/</URI>
+      </Service>
+      </XRD>
+    </XRDS>
+
+
+This XRDS describes the following.
+
+1. https://op.com/op/openid/ is the OpenID Authentication 2.0  for http://op.com/
+
+    The CX is an extension of the OpenID Authentication protocal.
+
+2. This endpoint support the OpenID AX extension (1.0).
+
+    The CX is dependent on the AX extension to deliver the CX message.
+
+3. This endpoint also support the OpenID CX extension (1.0).
+
+    So a Relying Party can exchange the CX Contract messages through the OP endpoint.
+
+4. This endpoint can process the "payment" contract through this endpoint.
+
+    The details of the contract and service is described in the content published by this URI.
+    The base64 encoded SHA-256 digest of this document must be this.::
+
+        c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67
 
 What is CX Template ?
 =====================
