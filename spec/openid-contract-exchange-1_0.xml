@@ -277,11 +277,11 @@
  <xs:element name="Party">
    <xs:complexType>
      <xs:sequence>
-       <xs:element ref="URL" minOccurs="1" maxOccurs="1" />
        <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
        <xs:element ref="obligations" minOccurs="1" maxOccurs="1" />
        <xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/>
      </xs:sequence>
+     <xs:attribute name="id" use="required" type="xs:anyURI"/>
    </xs:complexType>
  </xs:element>
  <xs:element name="Rel"  type="xs:anyURI" />
@@ -345,9 +345,9 @@
                   Agreement may contain only one.</t>
                 </list></t>
 
-              <t>/Contract/Party/URL [One]<list style="empty">
-                  <t>This element is the URI (or XRI) which specify the
-                  composing party.</t>
+              <t>/Contract/Party/@id [One]<list style="empty">
+                  <t>This attribute is the URI (or XRI) which specify the
+                  composing parties.</t>
                 </list></t>
 
               <t>/Contract/Party/Rel [One]<list style="empty">
@@ -418,12 +418,13 @@
 
         <t>
           <list style="symbols">
-            <t>/XRD/Subject == /Contract/Party/id</t>
+            <t>/XRD/Subject == /Contract/Party/@id</t>
 
             <t>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
             /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
             When there is a certificate chain in the ds:X509Data, the chain
             must be checked in the same manner.</t>
+
           </list>
         </t>
       </section>
@@ -729,8 +730,7 @@
 <Contract id="e4bf53a8e97211de93e00800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
     <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-    <Party>
-        <URL>http://netshop.com</URL>
+    <Party id='http://netshop.com' >
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations>
             <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
@@ -768,8 +768,7 @@ uFAx2HjGzA==</X509Certificate>
 </X509Data>
 </KeyInfo>
 </Signature></Party>
-    <Party>
-        <URL>=hdknr</URL>
+    <Party id='>=hdknr' >
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations/>
     </Party>
@@ -817,8 +816,7 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 <Contract id="e5279de6e97211de93e00800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#contract</Type>
     <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-    <Party>
-        <URL>http://cxop.net</URL>
+    <Party id='http://cxop.net' >
         <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
         <obligations>
             <param type="http://cxop.net/cx/payment/statuscode" id="statuscode">200</param>
