@@ -65,7 +65,6 @@ XRDS/XRD discovery can be used for OpenID CX protocol.</p>
   <span class="nt">&lt;Type&gt;</span>http://specs.openid.net/auth/2.0/server<span class="nt">&lt;/Type&gt;</span>
   <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/ax/1.0<span class="nt">&lt;/Type&gt;</span>
   <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#<span class="nt">&lt;/Type&gt;</span>
-  <span class="nt">&lt;Type&gt;</span>http://op.com/cx/payment.txt?sha256=c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67<span class="nt">&lt;/URI&gt;</span>
   <span class="nt">&lt;URI&gt;</span>https://op.com/op/openid/<span class="nt">&lt;/URI&gt;</span>
   <span class="nt">&lt;/Service&gt;</span>
   <span class="nt">&lt;/XRD&gt;</span>
@@ -87,15 +86,6 @@ XRDS/XRD discovery can be used for OpenID CX protocol.</p>
 <li><p class="first">This endpoint also support the OpenID CX extension (1.0).</p>
 <blockquote>
 <p>So a Relying Party can exchange the CX Contract messages through the OP endpoint.</p>
-</blockquote>
-</li>
-<li><p class="first">This endpoint can process the &#8220;payment&#8221; contract through this endpoint.</p>
-<blockquote>
-<p>The details of the contract and service is described in the content published by this URI.
-The base64 encoded SHA-256 digest of this document must be this.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67</span>
-</pre></div>
-</div>
 </blockquote>
 </li>
 </ol>

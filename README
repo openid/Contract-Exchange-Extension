@@ -5,6 +5,9 @@ This repository is to host (draft) OpenID Contract Exchange Specs and related fi
 
 Contact =nat (http://xri.net/=nat/+contact) for details. 
 
+The specification is under discussion in `openid-cx list`_ . 
+
+.. _`openid-cx list`: http://lists.openid.net/mailman/listinfo/openid-specs-cx
 
 History 
 =======

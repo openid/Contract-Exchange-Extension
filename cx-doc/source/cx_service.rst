@@ -33,7 +33,6 @@ Here is an example of a XRDS :
       <Type>http://specs.openid.net/auth/2.0/server</Type>
       <Type>http://openid.net/srv/ax/1.0</Type>
       <Type>http://openid.net/srv/cx/1.0/#</Type>
-      <Type>http://op.com/cx/payment.txt?sha256=c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67</URI>
       <URI>https://op.com/op/openid/</URI>
       </Service>
       </XRD>
@@ -54,12 +53,6 @@ This XRDS describes the following.
 
     So a Relying Party can exchange the CX Contract messages through the OP endpoint.
 
-4. This endpoint can process the "payment" contract through this endpoint.
-
-    The details of the contract and service is described in the content published by this URI.
-    The base64 encoded SHA-256 digest of this document must be this.::
-
-        c8d6c46425bf83b6eebcf9fb24ac5ff7599e97f7b24973e53ae114a1a072ec67
 
 What is CX Template ?
 =====================

@@ -3,6 +3,11 @@ Specfication Task List
 ========================
 
 
+CX Templates can be hosted anywhere if those are not faked.
+===========================================================
+
+CX Template URL must be specified with hash digest like SHA-256
+
 3.1.3.  Template URL and Digest
 ================================
 
