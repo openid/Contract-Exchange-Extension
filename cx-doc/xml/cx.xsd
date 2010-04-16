@@ -19,11 +19,11 @@
   <xs:element name="Party">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="URL" minOccurs="1" maxOccurs="1" />
         <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
         <xs:element ref="obligations" minOccurs="1" maxOccurs="1" />
         <xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/>
       </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="Rel"  type="xs:anyURI" />

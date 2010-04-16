@@ -2,8 +2,7 @@
 <Contract id="e4bf53a8e97211de93e00800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
     <Datetime>2009-12-15T21:10:54+09:00</Datetime>
-    <Party>
-        <URL id="proposer" >http://bourgogneonline.com</URL>
+    <Party id="http://bourgogneonline.com" >
         <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
         <obligations>
             <param type="http://payment.hdknr.com/cx/proposer_name" id="proposer_name">Bourgone Online</param>
@@ -46,8 +45,7 @@ uFAx2HjGzA==</X509Certificate>
 </X509Data>
 </KeyInfo>
 </Signature></Party>
-    <Party>
-        <URL id="acceptor" >=hdknr</URL>
+    <Party id="=hdknr" >
         <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
         <obligations>
             <param type="http://cxop.net/cx/payment/acceptor_name" id="acceptor_name">=hdknr</param>

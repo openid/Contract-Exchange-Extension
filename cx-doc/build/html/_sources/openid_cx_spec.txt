@@ -159,7 +159,7 @@ Proposal and Agreement Validation
 
 Signature for each of Proposal and Agreement should be validated according to `XML Signature`_. The validity of the respective ds:KeyInfo is determined by first obtaining the signed XRD from the Party's identity url and perfoming following comparison operation. 
 
-- /XRD/Subject == /Contract/Party/id 
+- /XRD/Subject == /Contract/Party/@id 
 - /XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate == /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate. When there is certificate change in the ds:X509Data, the chain must be checked in the same manner. 
 
 Storage and Timestamping

@@ -144,8 +144,7 @@ The returning document makes counter signature to the original XML document becu
 <span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e4bf53a8e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#proposal<span class="nt">&lt;/Type&gt;</span>
     <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
-    <span class="nt">&lt;Party&gt;</span>
-        <span class="nt">&lt;URL&gt;</span>http://netshop.com<span class="nt">&lt;/URL&gt;</span>
+    <span class="nt">&lt;Party</span> <span class="na">id=</span><span class="s">&quot;http://netshop.com&quot;</span> <span class="nt">&gt;</span>
         <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
         <span class="nt">&lt;obligations&gt;</span>
             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/totalamount&quot;</span> <span class="na">id=</span><span class="s">&quot;taotalamount&quot;</span><span class="nt">&gt;</span>500.0<span class="nt">&lt;/param&gt;</span>
@@ -183,8 +182,7 @@ uFAx2HjGzA==<span class="nt">&lt;/X509Certificate&gt;</span>
 <span class="nt">&lt;/X509Data&gt;</span>
 <span class="nt">&lt;/KeyInfo&gt;</span>
 <span class="nt">&lt;/Signature&gt;&lt;/Party&gt;</span>
-    <span class="nt">&lt;Party&gt;</span>
-        <span class="nt">&lt;URL&gt;</span>=hdknr<span class="nt">&lt;/URL&gt;</span>
+    <span class="nt">&lt;Party</span> <span class="na">id=</span><span class="s">&quot;=hdknr&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#proposer<span class="nt">&lt;/Rel&gt;</span>
         <span class="nt">&lt;obligations/&gt;</span>
     <span class="nt">&lt;/Party&gt;</span>
@@ -226,8 +224,7 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 <span class="nt">&lt;Contract</span> <span class="na">id=</span><span class="s">&quot;e5279de6e97211de93e00800272c981e&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Type&gt;</span>http://openid.net/srv/cx/1.0/#contract<span class="nt">&lt;/Type&gt;</span>
     <span class="nt">&lt;Datetime&gt;</span>2009-12-15T21:10:54+9:00<span class="nt">&lt;/Datetime&gt;</span>
-    <span class="nt">&lt;Party&gt;</span>
-        <span class="nt">&lt;URL&gt;</span>http://cxop.net<span class="nt">&lt;/URL&gt;</span>
+    <span class="nt">&lt;Party</span> <span class="na">id=</span><span class="s">&quot;http://cxop.net&quot;</span> <span class="nt">&gt;</span>
         <span class="nt">&lt;Rel&gt;</span>http://openid.net/srv/cx/1.0/#acceptor<span class="nt">&lt;/Rel&gt;</span>
         <span class="nt">&lt;obligations&gt;</span>
             <span class="nt">&lt;param</span> <span class="na">type=</span><span class="s">&quot;http://cxop.net/cx/payment/statuscode&quot;</span> <span class="na">id=</span><span class="s">&quot;statuscode&quot;</span><span class="nt">&gt;</span>200<span class="nt">&lt;/param&gt;</span>
@@ -368,11 +365,11 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Party&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;xs:complexType&gt;</span>
      <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Rel&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;obligations&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
        <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">ref=</span><span class="s">&quot;xmldsig:Signature&quot;</span><span class="nt">/&gt;</span>
      <span class="nt">&lt;/xs:sequence&gt;</span>
+     <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span><span class="nt">/&gt;</span>
    <span class="nt">&lt;/xs:complexType&gt;</span>
  <span class="nt">&lt;/xs:element&gt;</span>
  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Rel&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>

@@ -15,8 +15,7 @@
             <param type="" id="">value</param>
         </obligations>
     </Party>
-    <Party>
-        <URL></URL>
+    <Party id="party_unique_identifier">
         <Rel>
         </Rel>
         <obligations>

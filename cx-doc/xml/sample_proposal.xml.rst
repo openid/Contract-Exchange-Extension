@@ -4,8 +4,7 @@
     <Contract id="e4bf53a8e97211de93e00800272c981e">
         <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
         <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-        <Party>
-            <URL>http://netshop.com</URL>
+        <Party id="http://netshop.com" >
             <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
             <obligations>
                 <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
@@ -43,8 +42,7 @@
     </X509Data>
     </KeyInfo>
     </Signature></Party>
-        <Party>
-            <URL>=hdknr</URL>
+        <Party id="=hdknr">
             <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
             <obligations/>
         </Party>
