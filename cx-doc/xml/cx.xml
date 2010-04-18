@@ -24,15 +24,9 @@
         </obligations>
     </Party>
     <Service>
-        <Type>
-        </Type>
-        <URL>
-        </URL>
+        <Type> </Type>
+        <URL> </URL>
+        <Template> </Template>
     </Service>
-    <TemplateURL>
-    </TemplateURL>
-    <Template>
-    </Template>
-    <Original>
-    </Original>
+    <Original> </Original>
 </Contract>

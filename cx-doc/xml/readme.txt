@@ -25,7 +25,7 @@ Install Trang on Debian Squeeze
 
 Simple. Just use aptitude command:
 
-    sudo apatitude install trang -y
+    sudo aptitude install trang -y
 
 More than 100Mbytes space is required.
 

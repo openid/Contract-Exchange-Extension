@@ -51,13 +51,19 @@
 
  Shortcut name of this parameter.  {{parameter_name}}s in CX Template CAN be replaced by the value of this element.
 
-``/Contract/TemplateURL`` [Zero or One]
 
-The URL where the CX Contract Template file can be avaiable.
+``/Contract/Service/Type`` [One]
 
-``/Contract/Template`` [Zero or One] 
+ URI which specify which CX Service is used by a  Relying Party
 
- Base64 encoded CX Template text. Template text MUST be in UTF-8 encoding. 
+``/Contract/Service/URL`` [One]
+
+ OP service endpoint reuqested by a Relying Party
+
+``/Contract/Service/Template`` [Zero or One] 
+
+ Base64 encoded CX Template text publish from the URL specified by /Conract/Service/Type. 
+ Template text MUST be in UTF-8 encoding. 
  {{name}}s in CX Template is replaced by the value of the element of which the @id is equal to 'name'.  
  Exists only in a proposal. 
 

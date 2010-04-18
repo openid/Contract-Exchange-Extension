@@ -49,14 +49,12 @@
   <xs:element name="Service">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Type"/>
-        <xs:element ref="URL"/>
+        <xs:element name="Type"  type="xs:anyURI" />
+        <xs:element name="URL"  type="xs:anyURI" />
+        <xs:element name="Template" type="xs:base64Binary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TemplateURL"  type="xs:anyURI" />
-  <xs:element name="Template" type="xs:base64Binary" />
   <xs:element name="Original" type="xs:base64Binary" />
   <xs:element name="Type"  type="xs:anyURI" />
-  <xs:element name="URL"   type="xs:anyURI" />
  </xs:schema>

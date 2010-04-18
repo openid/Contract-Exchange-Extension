@@ -76,11 +76,16 @@ Notably, <tt class="docutils literal"><span class="pre">http://openid.net/srv/cx
 <p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations/param/&#64;id</span></tt> [One]</p>
 <blockquote>
 Shortcut name of this parameter.  {{parameter_name}}s in CX Template CAN be replaced by the value of this element.</blockquote>
-<p><tt class="docutils literal"><span class="pre">/Contract/TemplateURL</span></tt> [Zero or One]</p>
-<p>The URL where the CX Contract Template file can be avaiable.</p>
-<p><tt class="docutils literal"><span class="pre">/Contract/Template</span></tt> [Zero or One]</p>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/Type</span></tt> [One]</p>
 <blockquote>
-Base64 encoded CX Template text. Template text MUST be in UTF-8 encoding.
+URI which specify which CX Service is used by a  Relying Party</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/URL</span></tt> [One]</p>
+<blockquote>
+OP service endpoint reuqested by a Relying Party</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/Template</span></tt> [Zero or One]</p>
+<blockquote>
+Base64 encoded CX Template text publish from the URL specified by /Conract/Service/Type.
+Template text MUST be in UTF-8 encoding.
 {{name}}s in CX Template is replaced by the value of the element of which the &#64;id is equal to &#8216;name&#8217;.
 Exists only in a proposal.</blockquote>
 <p><tt class="docutils literal"><span class="pre">/Contract/Original</span></tt> [Zero or One]</p>

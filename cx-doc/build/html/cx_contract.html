@@ -189,8 +189,7 @@ uFAx2HjGzA==<span class="nt">&lt;/X509Certificate&gt;</span>
     <span class="nt">&lt;Service&gt;</span>
         <span class="nt">&lt;Type&gt;</span>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c<span class="nt">&lt;/Type&gt;</span>
         <span class="nt">&lt;URL&gt;</span>http://cxop.net/openid/<span class="nt">&lt;/URL&gt;</span>
-    <span class="nt">&lt;/Service&gt;</span>
-    <span class="nt">&lt;Template&gt;</span>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
+        <span class="nt">&lt;Template&gt;</span>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
 PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
 IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
 b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
@@ -212,7 +211,8 @@ d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
 VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
 dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
 CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
-<span class="nt">&lt;/Template&gt;</span>
+        <span class="nt">&lt;/Template&gt;</span>
+    <span class="nt">&lt;/Service&gt;</span>
 <span class="nt">&lt;/Contract&gt;</span>
 </pre></div>
 </div>
@@ -393,16 +393,14 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Service&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;xs:complexType&gt;</span>
      <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span><span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
      <span class="nt">&lt;/xs:sequence&gt;</span>
    <span class="nt">&lt;/xs:complexType&gt;</span>
  <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;TemplateURL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Original&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>   <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/xs:schema&gt;</span>
 </pre></div>
 </div>
@@ -445,11 +443,16 @@ Notably, <tt class="docutils literal"><span class="pre">http://openid.net/srv/cx
 <p><tt class="docutils literal"><span class="pre">/Contract/Party/obligations/param/&#64;id</span></tt> [One]</p>
 <blockquote>
 Shortcut name of this parameter.  {{parameter_name}}s in CX Template CAN be replaced by the value of this element.</blockquote>
-<p><tt class="docutils literal"><span class="pre">/Contract/TemplateURL</span></tt> [Zero or One]</p>
-<p>The URL where the CX Contract Template file can be avaiable.</p>
-<p><tt class="docutils literal"><span class="pre">/Contract/Template</span></tt> [Zero or One]</p>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/Type</span></tt> [One]</p>
 <blockquote>
-Base64 encoded CX Template text. Template text MUST be in UTF-8 encoding.
+URI which specify which CX Service is used by a  Relying Party</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/URL</span></tt> [One]</p>
+<blockquote>
+OP service endpoint reuqested by a Relying Party</blockquote>
+<p><tt class="docutils literal"><span class="pre">/Contract/Service/Template</span></tt> [Zero or One]</p>
+<blockquote>
+Base64 encoded CX Template text publish from the URL specified by /Conract/Service/Type.
+Template text MUST be in UTF-8 encoding.
 {{name}}s in CX Template is replaced by the value of the element of which the &#64;id is equal to &#8216;name&#8217;.
 Exists only in a proposal.</blockquote>
 <p><tt class="docutils literal"><span class="pre">/Contract/Original</span></tt> [Zero or One]</p>
