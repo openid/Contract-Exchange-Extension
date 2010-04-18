@@ -437,8 +437,6 @@ Contract XML Basic Structure</h3>
        &lt;xs:element ref="Datetime" minOccurs="1" maxOccurs="1" /&gt;
        &lt;xs:element maxOccurs="unbounded" ref="Party"/&gt;
        &lt;xs:element ref="Service" minOccurs="0" maxOccurs="1" /&gt;
-       &lt;xs:element ref="TemplateURL" minOccurs="0" maxOccurs="1" /&gt;
-       &lt;xs:element ref="Template" minOccurs="0" maxOccurs="1" /&gt;
        &lt;xs:element ref="Original" minOccurs="0" maxOccurs="1" /&gt;
      &lt;/xs:sequence&gt;
      &lt;xs:attribute name="id" use="required" type="xs:string"/&gt;
@@ -476,12 +474,12 @@ Contract XML Basic Structure</h3>
  &lt;xs:element name="Service"&gt;
    &lt;xs:complexType&gt;
      &lt;xs:sequence&gt;
-       &lt;xs:element ref="Type"/&gt;
-       &lt;xs:element ref="URL"/&gt;
+       &lt;xs:element ref="Type" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element ref="URL" minOccurs="1" maxOccurs="1" /&gt;
+       &lt;xs:element ref="Template" minOccurs="0" maxOccurs="1" /&gt;
      &lt;/xs:sequence&gt;
    &lt;/xs:complexType&gt;
  &lt;/xs:element&gt;
- &lt;xs:element name="TemplateURL"  type="xs:anyURI" /&gt;
  &lt;xs:element name="Template" type="xs:base64Binary" /&gt;
  &lt;xs:element name="Original" type="xs:base64Binary" /&gt;
  &lt;xs:element name="Type"  type="xs:anyURI" /&gt;
@@ -578,14 +576,19 @@ Contract XML Basic Structure</h3>
 </p>
 </blockquote>
 </li>
-<li>/Contract/TemplateURL [Zero or One]
+<li>/Contract/Service/Type [One]
 <blockquote class="text">
-<p>The URL where the CX Contract Template file can be
-                  available.
+<p>URI which specify which CX Service is used by a Relying Party 
 </p>
 </blockquote>
 </li>
-<li>/Contract/Template [Zero or One]
+<li>/Contract/Service/URL [One]
+<blockquote class="text">
+<p>OP service endpoint reuqested by a Relying Party
+</p>
+</blockquote>
+</li>
+<li>/Contract/Service/Template [Zero or One]
 <blockquote class="text">
 <p>Base64 encoded CX Template text. Template text MUST be in
                   UTF-8 encoding. {{name}}s in CX Template is replaced by the
