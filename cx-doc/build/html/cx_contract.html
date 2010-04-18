@@ -346,61 +346,61 @@ b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
 <p>The followings is the XML Schema for CX Contract XML document:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;xs:schema</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span> <span class="na">xmlns:xmldsig=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span><span class="nt">&gt;</span>
- <span class="nt">&lt;xs:import</span> <span class="na">namespace=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span> <span class="na">schemaLocation=</span><span class="s">&quot;http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Contract&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;xs:complexType&gt;</span>
-     <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;Party&quot;</span><span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Service&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;TemplateURL&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Template&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Original&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-     <span class="nt">&lt;/xs:sequence&gt;</span>
-     <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
-   <span class="nt">&lt;/xs:complexType&gt;</span>
- <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:dateTime&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Party&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;xs:complexType&gt;</span>
-     <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Rel&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;obligations&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">ref=</span><span class="s">&quot;xmldsig:Signature&quot;</span><span class="nt">/&gt;</span>
-     <span class="nt">&lt;/xs:sequence&gt;</span>
-     <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span><span class="nt">/&gt;</span>
-   <span class="nt">&lt;/xs:complexType&gt;</span>
- <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Rel&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;obligations&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;xs:complexType&gt;</span>
-     <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;param&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-     <span class="nt">&lt;/xs:sequence&gt;</span>
-   <span class="nt">&lt;/xs:complexType&gt;</span>
- <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;param&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;xs:complexType&gt;</span>
-     <span class="nt">&lt;xs:simpleContent&gt;</span>
-       <span class="nt">&lt;xs:extension</span> <span class="na">base=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-         <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;/xs:extension&gt;</span>
-     <span class="nt">&lt;/xs:simpleContent&gt;</span>
-   <span class="nt">&lt;/xs:complexType&gt;</span>
- <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Service&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;xs:complexType&gt;</span>
-     <span class="nt">&lt;xs:sequence&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
-     <span class="nt">&lt;/xs:sequence&gt;</span>
-   <span class="nt">&lt;/xs:complexType&gt;</span>
- <span class="nt">&lt;/xs:element&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Original&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:import</span> <span class="na">namespace=</span><span class="s">&quot;http://www.w3.org/2000/09/xmldsig#&quot;</span> <span class="na">schemaLocation=</span><span class="s">&quot;http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Contract&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:sequence&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;Party&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Service&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Original&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/xs:sequence&gt;</span>
+      <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Datetime&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:dateTime&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Party&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:sequence&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Rel&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;obligations&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">ref=</span><span class="s">&quot;xmldsig:Signature&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/xs:sequence&gt;</span>
+      <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Rel&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;obligations&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:sequence&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">ref=</span><span class="s">&quot;param&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/xs:sequence&gt;</span>
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;param&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:simpleContent&gt;</span>
+        <span class="nt">&lt;xs:extension</span> <span class="na">base=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span> <span class="na">use=</span><span class="s">&quot;required&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/xs:extension&gt;</span>
+      <span class="nt">&lt;/xs:simpleContent&gt;</span>
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Service&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:sequence&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Type&quot;</span>  <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;URL&quot;</span>   <span class="nt">/&gt;</span>
+        <span class="nt">&lt;xs:element</span> <span class="na">ref=</span><span class="s">&quot;Template&quot;</span>   <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/xs:sequence&gt;</span>
+    <span class="nt">&lt;/xs:complexType&gt;</span>
+  <span class="nt">&lt;/xs:element&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Template&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Original&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:base64Binary&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;Type&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;URL&quot;</span>  <span class="na">type=</span><span class="s">&quot;xs:anyURI&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/xs:schema&gt;</span>
 </pre></div>
 </div>

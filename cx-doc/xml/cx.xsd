@@ -8,8 +8,6 @@
         <xs:element ref="Datetime" minOccurs="1" maxOccurs="1" />
         <xs:element maxOccurs="unbounded" ref="Party"/>
         <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="TemplateURL" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="Template" minOccurs="0" maxOccurs="1" />
         <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
       </xs:sequence>
       <xs:attribute name="id" use="required" type="xs:string"/>
@@ -56,4 +54,5 @@
   <xs:element name="Template" type="xs:base64Binary" />
   <xs:element name="Original" type="xs:base64Binary" />
   <xs:element name="Type"  type="xs:anyURI" />
+  <xs:element name="URL"  type="xs:anyURI" />
 </xs:schema>
