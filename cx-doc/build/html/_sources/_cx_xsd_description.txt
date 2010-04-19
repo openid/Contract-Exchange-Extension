@@ -26,6 +26,7 @@
 
 - http://openid.net/srv/cx/1.0/#proposer
 - http://openid.net/srv/cx/1.0/#acceptor
+- http://openid.net/srv/cx/1.0/#proxy_acceptor
 
 
 ``/Contract/Party/xmldsig:Signature`` [One]

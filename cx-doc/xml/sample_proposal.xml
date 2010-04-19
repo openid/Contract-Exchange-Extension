@@ -51,14 +51,13 @@ uFAx2HjGzA==</X509Certificate>
             <param type="http://cxop.net/cx/payment/acceptor_name" id="acceptor_name">=hdknr</param>
         </obligations>
     </Party>
-    <Party>
-        <URL>http://payment.hdknr.com/</URL>
-        <Rel>http://openid.net/srv/cx/1.0/#signer</Rel>
+    <Party id="http://cxop.com/" >
+        <Rel>http://openid.net/srv/cx/1.0/#proxy_acceptor</Rel>
         <obligations/>
     </Party>
     <Service>
-        <Type>http://payment.hdknr.com/cx/template_payment_usd#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
-        <URL>http://payment.hdknr.com/openid/</URL>
+        <Type>http://cxop.com/cx/template_payment_usd#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
+        <URL>http://cxop.com/openid/</URL>
         <Template>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
 PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
 IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg

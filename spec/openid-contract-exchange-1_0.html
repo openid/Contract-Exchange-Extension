@@ -532,10 +532,16 @@ Contract XML Basic Structure</h3>
 <blockquote class="text">
 <p>Indicates the type of the party. One of followings:
 </p>
+<p></p>
+<blockquote class="text">
 <p>http://openid.net/srv/cx/1.0/#proposer
 </p>
 <p>http://openid.net/srv/cx/1.0/#acceptor
 </p>
+<p>http://openid.net/srv/cx/1.0/#proxy_acceptor
+</p>
+</blockquote>
+
 </blockquote>
 </li>
 <li>/Contract/Party/xmldsig:Signature [One]
@@ -1074,9 +1080,12 @@ uFAx2HjGzA==&lt;/X509Certificate&gt;
 &lt;/X509Data&gt;
 &lt;/KeyInfo&gt;
 &lt;/Signature&gt;&lt;/Party&gt;
-    &lt;Party id='&gt;=hdknr' &gt;
-        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#proposer&lt;/Rel&gt;
+    &lt;Party id="=hdknr" &gt;
+        &lt;rel&gt;http://openid.net/srv/cx/1.0/#proposer&lt;/rel&gt;
         &lt;obligations/&gt;
+    &lt;/Party&gt;
+    &lt;Party id="http://cxop.com" &gt;
+        &lt;rel&gt;http://openid.net/srv/cx/1.0/#proxy_proposer&lt;/rel&gt;
     &lt;/Party&gt;
     &lt;Service&gt;
         &lt;Type&gt;http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c&lt;/Type&gt;
@@ -1121,8 +1130,12 @@ Contract Sample</h3>
 &lt;Contract id="e5279de6e97211de93e00800272c981e"&gt;
     &lt;Type&gt;http://openid.net/srv/cx/1.0/#contract&lt;/Type&gt;
     &lt;Datetime&gt;2009-12-15T21:10:54+9:00&lt;/Datetime&gt;
+    &lt;Party id="=hdknr" &gt;
+        &lt;rel&gt;http://openid.net/srv/cx/1.0/#proposer&lt;/rel&gt;
+        &lt;obligations/&gt;
+    &lt;/Party&gt;
     &lt;Party id='http://cxop.net' &gt;
-        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#acceptor&lt;/Rel&gt;
+        &lt;Rel&gt;http://openid.net/srv/cx/1.0/#proxy_acceptor&lt;/Rel&gt;
         &lt;obligations&gt;
             &lt;param type="http://cxop.net/cx/payment/statuscode" id="statuscode"&gt;200&lt;/param&gt;
             &lt;param type="http://cxop.net/cx/payment/description" id="description"&gt;OK&lt;/param&gt;

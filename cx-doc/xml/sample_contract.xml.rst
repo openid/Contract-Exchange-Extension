@@ -4,8 +4,11 @@
     <Contract id="e5279de6e97211de93e00800272c981e">
         <Type>http://openid.net/srv/cx/1.0/#contract</Type>
         <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-        <Party id="http://cxop.net" >
+        <Party id="=hdknr" >
             <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
+        </Party>
+        <Party id="http://cxop.net" >
+            <Rel>http://openid.net/srv/cx/1.0/#proxy_acceptor</Rel>
             <obligations>
                 <param type="http://cxop.net/cx/payment/statuscode" id="statuscode">200</param>
                 <param type="http://cxop.net/cx/payment/description" id="description">OK</param>

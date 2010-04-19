@@ -351,9 +351,12 @@
               <t>/Contract/Party/Rel [One]<list style="empty">
                   <t>Indicates the type of the party. One of followings:</t>
 
+                  <t><list style="empty">
                   <t>http://openid.net/srv/cx/1.0/#proposer</t>
-
                   <t>http://openid.net/srv/cx/1.0/#acceptor</t>
+                  <t>http://openid.net/srv/cx/1.0/#proxy_acceptor</t>
+                  </list></t>
+
                 </list></t>
 
               <t>/Contract/Party/xmldsig:Signature [One]<list style="empty">
@@ -769,9 +772,12 @@ uFAx2HjGzA==</X509Certificate>
 </X509Data>
 </KeyInfo>
 </Signature></Party>
-    <Party id='>=hdknr' >
-        <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
+    <Party id="=hdknr" >
+        <rel>http://openid.net/srv/cx/1.0/#proposer</rel>
         <obligations/>
+    </Party>
+    <Party id="http://cxop.com" >
+        <rel>http://openid.net/srv/cx/1.0/#proxy_proposer</rel>
     </Party>
     <Service>
         <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
@@ -817,8 +823,12 @@ CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
 <Contract id="e5279de6e97211de93e00800272c981e">
     <Type>http://openid.net/srv/cx/1.0/#contract</Type>
     <Datetime>2009-12-15T21:10:54+9:00</Datetime>
+    <Party id="=hdknr" >
+        <rel>http://openid.net/srv/cx/1.0/#proposer</rel>
+        <obligations/>
+    </Party>
     <Party id='http://cxop.net' >
-        <Rel>http://openid.net/srv/cx/1.0/#acceptor</Rel>
+        <Rel>http://openid.net/srv/cx/1.0/#proxy_acceptor</Rel>
         <obligations>
             <param type="http://cxop.net/cx/payment/statuscode" id="statuscode">200</param>
             <param type="http://cxop.net/cx/payment/description" id="description">OK</param>

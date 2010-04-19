@@ -46,6 +46,10 @@
             <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
             <obligations/>
         </Party>
+        <Party id="http://payment.hdknr.com/" >
+            <Rel>http://openid.net/srv/cx/1.0/#proxy_acceptor</Rel>
+            <obligations/>
+        </Party>
         <Service>
             <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
             <URL>http://cxop.net/openid/</URL>
