@@ -100,6 +100,18 @@ When the provider shows the contract text to the end user
 to obtain the signing authorization, 
 the provider should substitute the values into the variables.
 
+For exmanple, if a CX Proposal includes the following XML element ::
+
+    <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
+
+and the Contract Templage include the following text ::
+
+    Total ${{ totalamaount }} 
+
+,then processed document MUST be the following. ::
+
+    Total $500.0
+
 
 Template URL and Digest
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

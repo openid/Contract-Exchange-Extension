@@ -359,6 +359,15 @@ Templating</h3>
           the signing authorization, the provider should substitute the values
           into the variables.
 </p>
+<p>For exmanple, if a CX Proposal includes the following XML element
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>&lt;param type="http://cxop.net/cx/payment/totalamount" id="taotalamount"&gt;500.0&lt;/param&gt;
+</pre></div>
+<p>and the Contract Templage include the following text
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>Total ${{ totalamaount }}
+</pre></div>
+<p>,then processed document MUST be the following. 
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>Total $500.0
+</pre></div>
 <a name="anchor8"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.1.3"></a><h3>3.1.3.&nbsp;

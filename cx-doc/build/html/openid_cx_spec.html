@@ -112,6 +112,15 @@ defined in the CX contract document, where
 <p>When the provider shows the contract text to the end user
 to obtain the signing authorization,
 the provider should substitute the values into the variables.</p>
+<p>For exmanple, if a CX Proposal includes the following XML element</p>
+<div class="highlight-python"><pre>&lt;param type="http://cxop.net/cx/payment/totalamount" id="taotalamount"&gt;500.0&lt;/param&gt;</pre>
+</div>
+<p>and the Contract Templage include the following text</p>
+<div class="highlight-python"><pre>Total ${{ totalamaount }}</pre>
+</div>
+<p>,then processed document MUST be the following.</p>
+<div class="highlight-python"><pre>Total $500.0</pre>
+</div>
 </div>
 <div class="section" id="template-url-and-digest">
 <h4>1.3.1.3&nbsp;&nbsp;&nbsp;Template URL and Digest<a class="headerlink" href="#template-url-and-digest" title="Permalink to this headline">¶</a></h4>
