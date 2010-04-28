@@ -5,6 +5,7 @@ doctrees
 *.com
 *.deb
 *.net
+._*
 tmp
 source/sample/ax/xmlsig
 

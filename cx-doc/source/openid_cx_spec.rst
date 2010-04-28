@@ -74,14 +74,7 @@ There can be many Contract format: It could be profiled in XML, JSON(RFC4627_), 
 Contract Template 
 -----------------
 
-A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST include the CX Template in the CX Contract document.
-
-A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis protocol.
-
-.. note::
-
-   A Contract Template discovery NEEDS to be further discussed.
-   For XRDS, <XRD> of which <Type/> is ``Template URL`` SHOULD be the CX service which a relying party is looking at.
+A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST specify the CX Template as URI  and include it in the CX Contract document.
 
 Human Readable Text
 ~~~~~~~~~~~~~~~~~~~
@@ -187,7 +180,15 @@ Protocol
 Discovery
 ---------
 
-Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.). The attribute exchange namespace "http://openid.net/srv/cx/1.0/#" MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or /xrd/Link/rel element in the XRD 1.0 discovery document. The discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All of the party involved MUST publish an XRD. 
+Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
+
+The contract exchange namespace "http://openid.net/srv/cx/1.0/#"  MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or
+/xrd/Link/rel element in the XRD 1.0 discovery document.
+
+The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed using XML Signature and have a XRD/ds:Signature element in it.
+
+All of the party involved, including Relying Parties, MUST publish an XRD.  
+
 
 .. note::
 

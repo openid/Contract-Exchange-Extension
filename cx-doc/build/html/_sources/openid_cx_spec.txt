@@ -187,7 +187,15 @@ Protocol
 Discovery
 ---------
 
-Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.). The attribute exchange namespace "http://openid.net/srv/cx/1.0/#" MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or /xrd/Link/rel element in the XRD 1.0 discovery document. The discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All of the party involved MUST publish an XRD. 
+Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
+
+The contract exchange namespace "http://openid.net/srv/cx/1.0/#"  MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or
+/xrd/Link/rel element in the XRD 1.0 discovery document.
+
+The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed using XML Signature and have a XRD/ds:Signature element in it.
+
+All of the party involved, including Relying Parties, MUST publish an XRD.  
+
 
 .. note::
 

@@ -295,7 +295,11 @@ Since contracts may be long term documents, there is a risk that are not so rele
 <h2>1.4&nbsp;&nbsp;&nbsp;Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="discovery">
 <h3>1.4.1&nbsp;&nbsp;&nbsp;Discovery<a class="headerlink" href="#discovery" title="Permalink to this headline">¶</a></h3>
-<p>Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.). The attribute exchange namespace &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221; MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or /xrd/Link/rel element in the XRD 1.0 discovery document. The discovered XRDS MUST have an XRD/CanonicalID and XRD/ds:Signature. All of the party involved MUST publish an XRD.</p>
+<p>Discovery of the contract exchange service extension is achieved via the mechanism described in [OpenID.authentication2.0] (<a class="reference external" href="mailto:specs&#37;&#52;&#48;openid&#46;net">specs<span>&#64;</span>openid<span>&#46;</span>net</a>, OpenID Authentication 2.0 - Final, August 2007.).</p>
+<p>The contract exchange namespace &#8220;<a class="reference external" href="http://openid.net/srv/cx/1.0">http://openid.net/srv/cx/1.0</a>/#&#8221;  MUST be listed as /xrds/xrd/Service/Type element in the XRDS discovery document or
+/xrd/Link/rel element in the XRD 1.0 discovery document.</p>
+<p>The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed using XML Signature and have a XRD/ds:Signature element in it.</p>
+<p>All of the party involved, including Relying Parties, MUST publish an XRD.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Discussion: RP Discovery needed for contract invalidation, RP Verification by OP, etc. (=nat, 2009-08-12)</p>

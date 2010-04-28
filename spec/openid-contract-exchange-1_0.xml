@@ -165,19 +165,11 @@
       an example, refer to Appendix B.</t>
 
       <section title="Contract Template">
-        <t>A Contract Template is a document which describes the detail of
-        agreement, warranty, disclaimer and other legal statements that binds
-        the parties in the CX Contract document. A proposing party MUST
-        include the CX Template in the CX Contract document.</t>
-
-        <t>A Contract Template MUST be discoverable by the RP using XRD, XRDS
-        or Yadis protocol.</t>
-
-        <figure><artwork>
-        Note A Contract Template discovery NEEDS to be further discussed.
-        For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is Template URL SHOULD be
-        the CX service which a relying party is looking at.
-        </artwork></figure>
+        <t> A Contract Template is a document which describes the detail of agreement, 
+        waranty, disclamier and other legal statements that binds the parties in the 
+        CX Contract document. 
+        A proposing party MUST specify the CX Template as URI  and include it in the CX Contract document.
+        </t>
 
         <section title="Human Readable Text">
           <t>A Contract Template MUST be formatted in a human readable text
