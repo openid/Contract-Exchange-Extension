@@ -855,6 +855,18 @@ Notify the Contract Status</h3>
 </p>
 </blockquote>
 </li>
+<li>openid.ax.type.cxid
+<blockquote class="text">
+<p>REQUIRED Value: "http://openid.net/srv/cx/1.0/#id".  
+</p>
+</blockquote>
+</li>
+<li>openid.ax.value.cxid
+<blockquote class="text">
+<p>REQUIRED Value: Any URI to specify the Contract but MUST be unique in the OP.
+</p>
+</blockquote>
+</li>
 <li>openid.ax.type.cxstat
 <blockquote class="text">
 <p>REQUIRED Value: "http://openid.net/srv/cx/1.0/#status".  
@@ -863,9 +875,7 @@ Notify the Contract Status</h3>
 </li>
 <li>openid.ax.value.cxstat
 <blockquote class="text">
-<p>REQUIRED Value: Any string to specify the Contract and its status. 
-                        The RP SHOULD reqeust a Direct Assertion Request to the OP endpoint 
-                        of which openid.artifact MUST be this value. 
+<p>REQUIRED Value: Any string to specify the Contract's status. 
 </p>
 </blockquote>
 </li>

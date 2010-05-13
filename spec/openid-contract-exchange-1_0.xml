@@ -603,14 +603,20 @@
                     <t>REQUIRED Value: "fetch_response" </t> 
                   </list></t>
 
+                <t>openid.ax.type.cxid<list style="empty">
+                    <t>REQUIRED Value: "http://openid.net/srv/cx/1.0/#id".  </t> 
+                  </list></t>
+
+                <t>openid.ax.value.cxid<list style="empty">
+                    <t>REQUIRED Value: Any URI to specify the Contract but MUST be unique in the OP.</t> 
+                  </list></t>
+
                 <t>openid.ax.type.cxstat<list style="empty">
                     <t>REQUIRED Value: "http://openid.net/srv/cx/1.0/#status".  </t> 
                   </list></t>
 
                 <t>openid.ax.value.cxstat<list style="empty">
-                    <t>REQUIRED Value: Any string to specify the Contract and its status. 
-                        The RP SHOULD reqeust a Direct Assertion Request to the OP endpoint 
-                        of which openid.artifact MUST be this value. </t> 
+                    <t>REQUIRED Value: Any string to specify the Contract's status. </t>
                   </list></t>
             </list>
           </t>
