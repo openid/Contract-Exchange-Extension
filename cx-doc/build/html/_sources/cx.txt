@@ -9,25 +9,42 @@ Contract eXchange
 
 A contract is an exchange of promises between two or more parties for the doing or not doing of something specified and enforceable by law. Contract eXchange(CX) is the process framework for parties in the Internet to exchange such promises on consuming and providing Web services.
 
+CX Contract
+===========
 
-CX Service
-==========
+A CX Contract is a form to be exchanged between parties and can be non-repuidiative proof of the ability of consuming and providing web services between each other engaged in the contract.
 
-A CX Service is a Web service provided by a service provider and can be a formal business transactions certified by a CX Contract.
-Because a CX Service MUST be specifed by an unique identfier like URI and advertised by a service provider, service consumers can easily discover the endpoint of the service.
-Also this URI must publish the corresponding CX Template.
+.. image:: cx_at_a_glance.png
+   
+Party
+-----
+
+A party is an entity who owes obligation to other parties bound to a CX Contract.
+A party's public key  MUST be assured with its X.509 certificate signed by a proper certificate authority(CA).
+
+Obligation
+----------
+
+An obligation is owed by a party to others parties bound to the same CX Contract.
+Obligation endpoints MUST provide data service to proper parties for the obligation stated in the CX Contract.
+
+Proposal
+--------
+
+A proposal is a CX Contract document before an End User argrees and sign at his/her signatory. 
+A proposal MUST be counter-signed by all parties excluding the End User's signatory.
+
+Contract
+---------
+
+A contract is a CX Contract document made of a CX proposal and a digital signature for the proposal.
+
 
 CX Template
 ===========
 
 A CX Template is a document which describes the detail of agreement, waranty , disclamier and other juridistic statement to be enforced not to breach by parties included in a CX Service transaction.
 The CX Template MUST be refered in a CX Contract.
-
-
-CX Contract
-===========
-
-A CX Contract is a form to be exchanged between parties and can be non-repuidiative proof of consuming a CX Service. 
 
 CX Protocal
 ===========

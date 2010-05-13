@@ -92,13 +92,7 @@ Contact consists of Proposal and Agreement. The Proposer creates a signed Propos
 <p>There can be many Contract format: It could be profiled in XML, JSON(<a class="reference external" href="http://tools.ietf.org/html/rfc4627">RFC4627</a>), <a class="reference external" href="http://www.xdi.org/">XDI</a>, etc. In this extension, since XML parser and <a class="reference external" href="http://www.w3.org/TR/xmldsig-core/">XML Signature</a> facilities are available for XRD processing, we define a XML contract profile. This section explains semantics of each element. For an example, refer to Appendix B.</p>
 <div class="section" id="contract-template">
 <h3>1.3.1&nbsp;&nbsp;&nbsp;Contract Template<a class="headerlink" href="#contract-template" title="Permalink to this headline">¶</a></h3>
-<p>A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST include the CX Template in the CX Contract document.</p>
-<p>A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis protocol.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">A Contract Template discovery NEEDS to be further discussed.
-For XRDS, &lt;XRD&gt; of which &lt;Type/&gt; is <tt class="docutils literal"><span class="pre">Template</span> <span class="pre">URL</span></tt> SHOULD be the CX service which a relying party is looking at.</p>
-</div>
+<p>A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST specify the CX Template as URI  and include it in the CX Contract document.</p>
 <div class="section" id="human-readable-text">
 <h4>1.3.1.1&nbsp;&nbsp;&nbsp;Human Readable Text<a class="headerlink" href="#human-readable-text" title="Permalink to this headline">¶</a></h4>
 <p>A Contract Template MUST be formatted in a human readable text because it MUST be read by the User when he/she wants to authorize the CX Contract at a service provider. Simple markup like reStructuredText, markdown, textile or others CAN be used to format CX Templates. text/plain is the deafult content type for CX Templates.</p>

@@ -74,14 +74,7 @@ There can be many Contract format: It could be profiled in XML, JSON(RFC4627_), 
 Contract Template 
 -----------------
 
-A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST include the CX Template in the CX Contract document.
-
-A Contract Template MUST be discoverable by the RP using XRD, XRDS or Yadis protocol.
-
-.. note::
-
-   A Contract Template discovery NEEDS to be further discussed.
-   For XRDS, <XRD> of which <Type/> is ``Template URL`` SHOULD be the CX service which a relying party is looking at.
+A Contract Template is a document which describes the detail of agreement, waranty, disclamier and other legal statements that binds the parties in the CX Contract document. A proposing party MUST specify the CX Template as URI  and include it in the CX Contract document.
 
 Human Readable Text
 ~~~~~~~~~~~~~~~~~~~
