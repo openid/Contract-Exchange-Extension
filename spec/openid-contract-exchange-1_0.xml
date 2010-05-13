@@ -624,6 +624,42 @@
           <t>If the RP receive this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request. RP SUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  </t>
       </section>
 
+        <section title="Data Request">
+            <t>A party engaged in a CX Contract MAY request data from a endpoint exposed by the other party engaed in the same CX Contract</t>
+
+            <t>A request MUST be formed in a HTTP GET request defined in the following URL. </t>
+            <figure>
+                <artwork><![CDATA[endpoint?party=_party_identfier_&cxid=_cx_identifier_]]></artwork>
+            </figure>
+
+            <t>where parameters are definend in the following.
+            <list style="symbols">
+                <t>endpoint<list style="empty">
+                    <t>REQUIRED Value: URI. Either of the followings.
+                        <list style="symbols">
+                            <t>Contract identfier 
+                                <list style="empty"><t>The OP MUST return the CX Contract specified by this identfiier.</t></list>
+                            </t>
+                            <t>Obligation endpoint
+                                <list style="empty"><t>A party MUST return the data for the obligation specified in the CX Contract.</t></list>
+                            </t>
+                        </list>
+                    </t> 
+                  </list></t>
+
+                <t>_party_identifier_<list style="empty">
+                    <t>REQUIRED Value: An identfier of a party engaged in the CX Contract. 
+                    The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string  and returns in text/plain content type.</t>
+                  </list></t>
+
+                <t>_cx_identifier_<list style="empty">
+                    <t>REQUIRED for the obligation endpoint.  Value: CX Contract identfier including the obligation.</t>
+                  </list></t>
+
+            </list>
+            </t>
+        </section> 
+
     </section>
 
 
