@@ -12,7 +12,7 @@
             <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
             <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
           </xs:sequence>
-          <xs:attribute name="id" use="required" type="xs:string"/>
+          <xs:attribute name="id" use="required" type="xs:anyURI"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="Datetime" type="xs:dateTime" />
@@ -20,17 +20,20 @@
         <xs:complexType>
           <xs:sequence>
             <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="obligations" minOccurs="1" maxOccurs="1" />
-            <xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/>
+            <xs:element ref="obligations" minOccurs="1" maxOccurs="unbounded"  />
+            <xs:element ref="xmldsig:Signature" minOccurs="0" maxOccurs="1" />
           </xs:sequence>
           <xs:attribute name="id" use="required" type="xs:anyURI"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="Rel"  type="xs:anyURI" />
+      <xs:element name="ReturnTo"  type="xs:anyURI" />
       <xs:element name="obligations">
         <xs:complexType>
           <xs:sequence>
-            <xs:element maxOccurs="unbounded" ref="param" minOccurs="0"/>
+            <xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element ref="endpoint" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element ref="to" minOccurs="0" maxOccurs="unbounded" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -44,6 +47,8 @@
           </xs:simpleContent>
         </xs:complexType>
       </xs:element>
+      <xs:element name="endpoint"  type="xs:anyURI" />
+      <xs:element name="to"  type="xs:anyURI" />
       <xs:element name="Service">
         <xs:complexType>
           <xs:sequence>

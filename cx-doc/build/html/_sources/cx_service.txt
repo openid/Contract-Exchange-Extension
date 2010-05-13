@@ -7,6 +7,11 @@
 CX Service and CX Template
 ==========================
 
+.. note::
+
+    CX Service should be dropped. Signatory of the End User MUST be described here.
+    ( by :term:`=hdknr` , as of May 14,2010 )
+
 CX Serivice
 ===========
 

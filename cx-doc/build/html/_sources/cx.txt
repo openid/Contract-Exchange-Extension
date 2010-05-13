@@ -38,15 +38,16 @@ Contract
 ---------
 
 A contract is a CX Contract document made of a CX proposal and a digital signature for the proposal.
+A contract MUST be specified by a URI and  requested by any party bound to the contract.
 
 
 CX Template
 ===========
 
-A CX Template is a document which describes the detail of agreement, waranty , disclamier and other juridistic statement to be enforced not to breach by parties included in a CX Service transaction.
-The CX Template MUST be refered in a CX Contract.
+A CX Template is a document which describes the detail of agreement, waranty , disclamier and other juridistic statement to be enforced not to breach by parties bound to the CX Contract during fullfilling their obligations.
+The CX Template MUST be refered in a CX Contract document.
 
-CX Protocal
+CX Protocol
 ===========
 
 The CX Protocal defined following process:
@@ -56,5 +57,6 @@ The CX Protocal defined following process:
 - Accepting a proposal
 - Authroizing a CX Contract 
 - Reponding a CX Contract
+- Requesting data
 
 CX is thought to be bound to OpenID Authentication and Extension protocols.

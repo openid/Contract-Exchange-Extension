@@ -17,6 +17,10 @@ The default format for ``Contract Exchange`` (CX) document is XML. The non-repud
 
 .. _xmldsig-core: http://www.w3.org/TR/xmldsig-core/
 
+.. note::
+
+    :term:`MagicSignatures` could be an good alternative.
+
 Enveloped XML Signature
 -----------------------
 
