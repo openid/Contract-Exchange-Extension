@@ -6,8 +6,7 @@
     </Datetime>
     <Party>
         <URL></URL>
-        <Rel>
-        </Rel>
+        <Rel></Rel>
         <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
         </Signature>
         <obligations>
@@ -16,11 +15,14 @@
         </obligations>
     </Party>
     <Party id="party_unique_identifier">
-        <Rel>
-        </Rel>
+        <Rel></Rel>
+        <ReturnTo></ReturnTo>
         <obligations>
+            <endpoint></endpoint>
             <param type="" id="">value</param>
             <param type="" id="">value</param>
+            <to></to>
+            <to></to>
         </obligations>
     </Party>
     <Service>

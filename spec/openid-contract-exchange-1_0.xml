@@ -270,65 +270,71 @@
 
           <figure>
             <artwork><![CDATA[
+
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#">
- <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" />
- <xs:element name="Contract">
-   <xs:complexType>
-     <xs:sequence>
-       <xs:element ref="Type" minOccurs="1" maxOccurs="1" />
-       <xs:element ref="Datetime" minOccurs="1" maxOccurs="1" />
-       <xs:element maxOccurs="unbounded" ref="Party"/>
-       <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
-       <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
-     </xs:sequence>
-     <xs:attribute name="id" use="required" type="xs:string"/>
-   </xs:complexType>
- </xs:element>
- <xs:element name="Datetime" type="xs:dateTime" />
- <xs:element name="Party">
-   <xs:complexType>
-     <xs:sequence>
-       <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
-       <xs:element ref="obligations" minOccurs="1" maxOccurs="1" />
-       <xs:element minOccurs="0" maxOccurs="1" ref="xmldsig:Signature"/>
-     </xs:sequence>
-     <xs:attribute name="id" use="required" type="xs:anyURI"/>
-   </xs:complexType>
- </xs:element>
- <xs:element name="Rel"  type="xs:anyURI" />
- <xs:element name="obligations">
-   <xs:complexType>
-     <xs:sequence>
-       <xs:element maxOccurs="unbounded" ref="param" minOccurs="0"/>
-     </xs:sequence>
-   </xs:complexType>
- </xs:element>
- <xs:element name="param">
-   <xs:complexType>
-     <xs:simpleContent>
-       <xs:extension base="xs:string">
-         <xs:attribute name="id" use="required" type="xs:string" />
-         <xs:attribute name="type" use="required" type="xs:anyURI" />
-       </xs:extension>
-     </xs:simpleContent>
-   </xs:complexType>
- </xs:element>
- <xs:element name="Service">
-   <xs:complexType>
-     <xs:sequence>
-       <xs:element ref="Type" minOccurs="1" maxOccurs="1" />
-       <xs:element ref="URL" minOccurs="1" maxOccurs="1" />
-       <xs:element ref="Template" minOccurs="0" maxOccurs="1" />
-     </xs:sequence>
-   </xs:complexType>
- </xs:element>
- <xs:element name="Template" type="xs:base64Binary" />
- <xs:element name="Original" type="xs:base64Binary" />
- <xs:element name="Type"  type="xs:anyURI" />
- <xs:element name="URL"   type="xs:anyURI" />
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" />
+  <xs:element name="Contract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Type" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="Datetime" minOccurs="1" maxOccurs="1" />
+        <xs:element maxOccurs="unbounded" ref="Party"/>
+        <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Datetime" type="xs:dateTime" />
+  <xs:element name="Party">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="ReturnTo" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="obligations" minOccurs="1" maxOccurs="unbounded"  />
+        <xs:element ref="xmldsig:Signature" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rel"  type="xs:anyURI" />
+  <xs:element name="ReturnTo"  type="xs:anyURI" />
+  <xs:element name="obligations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="endpoint" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="to" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="param">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="id" use="required" type="xs:string" />
+          <xs:attribute name="type" use="required" type="xs:anyURI" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endpoint"  type="xs:anyURI" />
+  <xs:element name="to"  type="xs:anyURI" />
+  <xs:element name="Service">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Type"  />
+        <xs:element ref="URL"   />
+        <xs:element ref="Template"   />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Template" type="xs:base64Binary" />
+  <xs:element name="Original" type="xs:base64Binary" />
+  <xs:element name="Type"  type="xs:anyURI" />
+  <xs:element name="URL"  type="xs:anyURI" />
 </xs:schema>
-                  
                   ]]></artwork>
           </figure>
 
@@ -368,9 +374,12 @@
                   <t><list style="empty">
                   <t>http://openid.net/srv/cx/1.0/#proposer</t>
                   <t>http://openid.net/srv/cx/1.0/#acceptor</t>
-                  <t>http://openid.net/srv/cx/1.0/#proxy_acceptor</t>
                   </list></t>
 
+                </list></t>
+
+              <t>/Contract/Party/ReturnTo [One]<list style="empty">
+                  <t>URI to which a party MAY notify message.  </t>
                 </list></t>
 
               <t>/Contract/Party/xmldsig:Signature [One]<list style="empty">
@@ -402,6 +411,16 @@
                   <t>Shortcut name of this parameter. {{parameter_name}}s in
                   CX Template CAN be replaced by the value of this
                   element.</t>
+                </list></t>
+
+              <t>/Contract/Party/obligations/endpoint [Zero or More]<list style="empty">
+                  <t>URI from which other party MAY request data declared by the obligation. </t>
+                </list></t>
+
+              <t>/Contract/Party/obligations/to [Zero or More]<list style="empty">
+                  <t> Identifiers of a party to which this party owe an obligation. This MUST be equal to one of /Contrat/Party/@id. 
+                    If there is no element under an obligations, any party engaged in this CX contract MAY request data of this obligations.
+                  </t>
                 </list></t>
 
               <t>/Contract/Service/Type [One]<list style="empty">
