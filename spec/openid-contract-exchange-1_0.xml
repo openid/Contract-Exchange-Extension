@@ -419,7 +419,7 @@
 
               <t>/Contract/Party/obligations/to [Zero or More]<list style="empty">
                   <t> Identifiers of a party to which this party owe an obligation. This MUST be equal to one of /Contrat/Party/@id. 
-                    If there is no element under an obligations, any party engaged in this CX contract MAY request data of this obligations.
+                    If there is no element under an obligations, any party bound to this CX contract MAY request data of this obligations.
                   </t>
                 </list></t>
 
@@ -640,11 +640,11 @@
             </list>
           </t>
 
-          <t>If the RP receive this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request. RP SUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  </t>
+          <t>If the RP receives this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request, or any party bound to a CX Contract MAY request data or contract itself by requesting to obligation endpoint described in the section of "Data Request" in this document.    RP SHOULD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  </t>
       </section>
 
         <section title="Data Request">
-            <t>A party engaged in a CX Contract MAY request data from a endpoint exposed by the other party engaed in the same CX Contract</t>
+            <t>A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract</t>
 
             <t>A request MUST be formed in a HTTP GET request defined in the following URL. </t>
             <figure>
@@ -667,7 +667,7 @@
                   </list></t>
 
                 <t>_party_identifier_<list style="empty">
-                    <t>REQUIRED Value: An identfier of a party engaged in the CX Contract. 
+                    <t>REQUIRED Value: An identfier of a party bound to the CX Contract. 
                     The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string  and returns in text/plain content type.</t>
                   </list></t>
 

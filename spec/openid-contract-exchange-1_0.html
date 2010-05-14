@@ -599,14 +599,14 @@ Contract XML Basic Structure</h3>
 </li>
 <li>/Contract/Party/obligations/endpoint [Zero or More]
 <blockquote class="text">
-<p>URI from which other party MAY request data declaired by the obligation. 
+<p>URI from which other party MAY request data declared by the obligation. 
 </p>
 </blockquote>
 </li>
 <li>/Contract/Party/obligations/to [Zero or More]
 <blockquote class="text">
 <p> Identifiers of a party to which this party owe an obligation. This MUST be equal to one of /Contrat/Party/@id. 
-                    If there is no element under an obligations, any party engaged in this CX contract MAY request data of this obligations.
+                    If there is no element under an obligations, any party bound to this CX contract MAY request data of this obligations.
                   
 </p>
 </blockquote>
@@ -908,14 +908,14 @@ Notify the Contract Status</h3>
 </ul><p>
           
 </p>
-<p>If the RP receive this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request. RP SUOLD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  
+<p>If the RP receives this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request, or any party bound to a CX Contract MAY request data or contract itself by requesting to obligation endpoint described in the section of "Data Request" in this document.    RP SHOULD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  
 </p>
 <a name="anchor23"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.7"></a><h3>4.7.&nbsp;
 Data Request</h3>
 
-<p>A party engaged in a CX Contract MAY request data from a endpoint exposed by the other party engaed in the same CX Contract
+<p>A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract
 </p>
 <p>A request MUST be formed in a HTTP GET request defined in the following URL. 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>endpoint?party=_party_identfier_&amp;cxid=_cx_identifier_</pre></div>
@@ -950,7 +950,7 @@ Data Request</h3>
 </li>
 <li>_party_identifier_
 <blockquote class="text">
-<p>REQUIRED Value: An identfier of a party engaged in the CX Contract. 
+<p>REQUIRED Value: An identfier of a party bound to the CX Contract. 
                     The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string  and returns in text/plain content type.
 </p>
 </blockquote>
