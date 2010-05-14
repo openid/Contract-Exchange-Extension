@@ -22,6 +22,12 @@ Party
 A party is an entity who owes obligation to other parties bound to a CX Contract.
 A party's public key  MUST be assured with its X.509 certificate signed by a proper certificate authority(CA).
 
+Signatory
+~~~~~~~~~
+
+A signatory is special party where End Users MUST be authenticated. Signatory MAY be an OpenID provider or smart device. 
+A signatory MUST be discovered using an End User's identfiier.
+
 Obligation
 ----------
 
