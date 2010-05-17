@@ -68,6 +68,53 @@
 <h2>Data Sharing Use Case<a class="headerlink" href="#data-sharing-use-case" title="Permalink to this headline">¶</a></h2>
 <p>Sharing privacry information stored in OP  to a RP is quite common use case for CX aplication.
 We should provide example CX message for this kind of a use case.</p>
+<div class="section" id="result">
+<h3>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<ul>
+<li><p class="first">Data Sharing is &#8220;Data Requesting&#8221;</p>
+</li>
+<li><p class="first">A Party owes <a class="reference external" href="glossary.html#term-obligations"><em class="xref">Obligations</em></a> to other parties bound to an CX Contract</p>
+</li>
+<li><p class="first"><a class="reference external" href="glossary.html#term-obligations"><em class="xref">Obligations</em></a> has endpoints where a <a class="reference external" href="glossary.html#term-party"><em class="xref">Party</em></a> provides web services</p>
+</li>
+<li><p class="first">The endpoints of a particular obligation  is specified as /Contract/Party/obligations/endpoint</p>
+</li>
+<li><p class="first">Only parties who have permission can request data.</p>
+</li>
+<li><p class="first">Permissions can be declared under /Contract/Party/obligations/to</p>
+</li>
+<li><p class="first"><cite>to</cite> is an identifier to <a class="reference external" href="glossary.html#term-party"><em class="xref">Party</em></a> which is one of /Contract/Party</p>
+</li>
+<li><p class="first">If there is no <cite>to</cite> under /Contract/Party/obligations, any party bound to the CX Contract MAY request data.</p>
+</li>
+<li><p class="first">CX Contract idetifier issued by a <em class="xref">Signatory</em> is a special obligation endpoint where the signatory MUST provide the contract itself.</p>
+</li>
+<li><p class="first">Data response MUST be encrypted with the requester&#8217;s public key.</p>
+</li>
+<li><p class="first">Encrpytion parameters should be returned in HTTP response headers</p>
+<blockquote>
+<ul>
+<li><p class="first">Shared key encrypted asynmmetriccally which requester&#8217;s public key.</p>
+</li>
+<li><p class="first">Optionally initialization vector (IV) for block ciphers</p>
+</li>
+<li><p class="first">Optionally ecnryption paramter. Default is CBC-256-128-PKCS5_PADDING which means</p>
+<blockquote>
+<ul class="simple">
+<li>Cipher is  <em class="xref">CBC</em></li>
+<li>Shared key length is 256 bits.</li>
+<li>Block size is 128 bits.</li>
+<li>Padding is <em class="xref">PKCS5</em></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</div>
 </div>
 <div class="section" id="contract-information-detail">
 <h2>Contract Information Detail<a class="headerlink" href="#contract-information-detail" title="Permalink to this headline">¶</a></h2>
@@ -89,7 +136,10 @@ We should provide example CX message for this kind of a use case.</p>
 <li><a class="reference external" href="#fragment-or-query-string-for-a-template-url">Fragment or query string for a Template URL ?</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#data-sharing-use-case">Data Sharing Use Case</a></li>
+<li><a class="reference external" href="#data-sharing-use-case">Data Sharing Use Case</a><ul>
+<li><a class="reference external" href="#result">Result</a></li>
+</ul>
+</li>
 <li><a class="reference external" href="#contract-information-detail">Contract Information Detail</a></li>
 </ul>
 </li>

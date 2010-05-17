@@ -3,24 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-==========================
-CX Service and CX Template
-==========================
+=============================
+CX Signatory and CX Template
+=============================
 
-.. note::
+CX Signatory
+=============
 
-    CX Service should be dropped. Signatory of the End User MUST be described here.
-    ( by :term:`=hdknr` , as of May 14,2010 )
-
-CX Serivice
-===========
-
-A CX Service is a Web service provided by a service provider.
+A CX Signatory is a CX Party where an End User is authorized to agree the CX Proposal and provides private key to sign the CX Contract  and encrypt data.
 
 Identifier and Discovery
 ------------------------
 
-A CX Service endpoint  MUST be discovered by any party using CX Service identifier and service provider's identifier. 
+A CX Signatory endpoint  MUST be discovered by any party using an End User's identifier or service provider's identifier. 
 XRDS/XRD discovery can be used for OpenID CX protocol.
 
 For example, if you discover the following server identifier::
@@ -37,7 +32,7 @@ Here is an example of a XRDS :
       <Service priority="0">
       <Type>http://specs.openid.net/auth/2.0/server</Type>
       <Type>http://openid.net/srv/ax/1.0</Type>
-      <Type>http://openid.net/srv/cx/1.0/#</Type>
+      <Type>http://openid.net/srv/cx/1.0/#signatory</Type>
       <URI>https://op.com/op/openid/</URI>
       </Service>
       </XRD>
@@ -54,7 +49,7 @@ This XRDS describes the following.
 
     The CX is dependent on the AX extension to deliver the CX message.
 
-3. This endpoint also support the OpenID CX extension (1.0).
+3. This endpoint also support the OpenID CX extension(1.0) and is a CX Signatory.
 
     So a Relying Party can exchange the CX Contract messages through the OP endpoint.
 
@@ -69,7 +64,7 @@ A CX Template MUST include statements described at ``Common Contract Constructs 
 Getting CX Template
 -------------------
 
-A CX Template MUST be advertised by a service provider and discoverd by CX Service identifier.
+A CX Template MAY be advertised by any provider and MUST be protected against alterations.
 A CX Tempalte MUST be publicly fetched using HTTP GET protocol.
 
 The digest data of a CX Template  MUST be provided throught the discovery process. The default digest algorithm is SHA256.

@@ -13,7 +13,44 @@ OpenID CX is a protocol which bind CX Protocl to OpenID Authentication and Exten
 Discovering OpenID CX Service
 =============================
 
-[ToDO] Description about  Yadis / XRDS / XRD  discovery.
+.. note::
+
+    Description about  Yadis / XRDS / XRD  discovery.
+
+Data Request
+=============================
+
+A :term:`Party` can reqeust data provided from other party's :term:`Obligations` endpoint declared in the CX Contract.
+
+Endpoints
+----------
+
+ - The endpoints of a particular obligation  is specified as /Contract/Party/obligations/endpoint
+ - Only parties who have permission can request data.
+ - Permissions can be declared under /Contract/Party/obligations/to
+ - `to` is an identifier to :term:`Party` which is one of /Contract/Party
+ - If there is no `to` under /Contract/Party/obligations, any party bound to the CX Contract MAY request data.
+
+Encryption
+-----------
+
+ - Data response MUST be encrypted with the requester's public key.
+ - Encrpytion parameters should be returned in HTTP response headers
+
+    - Shared key encrypted asynmmetriccally which requester's public key.
+    - Optionally initialization vector (IV) for block ciphers
+    - Optionally ecnryption paramter. Default is CBC-256-128-PKCS5_PADDING which means
+
+        - Cipher is  :term:`CBC`
+        - Shared key length is 256 bits.
+        - Block size is 128 bits.
+        - Padding is :term:`PKCS5`
+
+Contract Request
+-----------------
+
+CX Contract idetifier issued by a :term:`Signatory` is used as a special obligation endpoint where the signatory MUST provide the contract itself.
+The signatory MUST return the CX Contract to any party bound to that contract. Responding contract MUST be encrypted in the same manner as generic obligations.
 
 Exchange documents by OpenID AX
 ===============================
@@ -86,3 +123,5 @@ Because CX documents can be quite large documents, it will be quite difficult fo
 OpenID Authentication Artifact Binding can be described in following char:
 
 .. image:: openid_abx.jpg
+
+

@@ -677,6 +677,15 @@
 
             </list>
             </t>
+
+            <t>Encryption parameters MUST be returned HTTP response headers. Following are response header keys. 
+            All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
+            <list style="symbols">
+                <t>cx_enc_key</t>
+                <t>cx_enc_iv</t>
+                <t>cx_encoding</t>
+            </list>
+            </t>
         </section> 
 
     </section>

@@ -50,7 +50,60 @@
 <p>OpenID CX is a protocol which bind CX Protocl to OpenID Authentication and Extension protocols.</p>
 <div class="section" id="discovering-openid-cx-service">
 <h2>Discovering OpenID CX Service<a class="headerlink" href="#discovering-openid-cx-service" title="Permalink to this headline">¶</a></h2>
-<p>[ToDO] Description about  Yadis / XRDS / XRD  discovery.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Description about  Yadis / XRDS / XRD  discovery.</p>
+</div>
+</div>
+<div class="section" id="data-request">
+<h2>Data Request<a class="headerlink" href="#data-request" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference external" href="glossary.html#term-party"><em class="xref">Party</em></a> can reqeust data provided from other party&#8217;s <a class="reference external" href="glossary.html#term-obligations"><em class="xref">Obligations</em></a> endpoint declared in the CX Contract.</p>
+<div class="section" id="endpoints">
+<h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<ul class="simple">
+<li>The endpoints of a particular obligation  is specified as /Contract/Party/obligations/endpoint</li>
+<li>Only parties who have permission can request data.</li>
+<li>Permissions can be declared under /Contract/Party/obligations/to</li>
+<li><cite>to</cite> is an identifier to <a class="reference external" href="glossary.html#term-party"><em class="xref">Party</em></a> which is one of /Contract/Party</li>
+<li>If there is no <cite>to</cite> under /Contract/Party/obligations, any party bound to the CX Contract MAY request data.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="encryption">
+<h3>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<ul>
+<li><p class="first">Data response MUST be encrypted with the requester&#8217;s public key.</p>
+</li>
+<li><p class="first">Encrpytion parameters should be returned in HTTP response headers</p>
+<blockquote>
+<ul>
+<li><p class="first">Shared key encrypted asynmmetriccally which requester&#8217;s public key.</p>
+</li>
+<li><p class="first">Optionally initialization vector (IV) for block ciphers</p>
+</li>
+<li><p class="first">Optionally ecnryption paramter. Default is CBC-256-128-PKCS5_PADDING which means</p>
+<blockquote>
+<ul class="simple">
+<li>Cipher is  <em class="xref">CBC</em></li>
+<li>Shared key length is 256 bits.</li>
+<li>Block size is 128 bits.</li>
+<li>Padding is <em class="xref">PKCS5</em></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="contract-request">
+<h3>Contract Request<a class="headerlink" href="#contract-request" title="Permalink to this headline">¶</a></h3>
+<p>CX Contract idetifier issued by a <em class="xref">Signatory</em> is used as a special obligation endpoint where the signatory MUST provide the contract itself.
+The signatory MUST return the CX Contract to any party bound to that contract. Responding contract MUST be encrypted in the same manner as generic obligations.</p>
+</div>
 </div>
 <div class="section" id="exchange-documents-by-openid-ax">
 <h2>Exchange documents by OpenID AX<a class="headerlink" href="#exchange-documents-by-openid-ax" title="Permalink to this headline">¶</a></h2>
@@ -118,6 +171,12 @@ patching file extensions/ax.py</pre>
             <ul>
 <li><a class="reference external" href="#">CX Protocol</a><ul>
 <li><a class="reference external" href="#discovering-openid-cx-service">Discovering OpenID CX Service</a></li>
+<li><a class="reference external" href="#data-request">Data Request</a><ul>
+<li><a class="reference external" href="#endpoints">Endpoints</a></li>
+<li><a class="reference external" href="#encryption">Encryption</a></li>
+<li><a class="reference external" href="#contract-request">Contract Request</a></li>
+</ul>
+</li>
 <li><a class="reference external" href="#exchange-documents-by-openid-ax">Exchange documents by OpenID AX</a><ul>
 <li><a class="reference external" href="#adding-value-to-openid-ax-fetch-request">Adding value to OpenID AX  fetch_request</a></li>
 <li><a class="reference external" href="#extendding-janrain-python-openid">Extendding JanRain python-openid</a><ul>

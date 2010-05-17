@@ -14,7 +14,7 @@ Contents:
     :glob:
 
     cx
-    cx_service
+    cx_signatory
     cx_contract
     cx_protocol
     openid_cx_spec
