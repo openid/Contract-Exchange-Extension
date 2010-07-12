@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<rfc category="info" docName="openid-trust-exchange-extension-1_0"
+     ipr="full3978">
+  <?xml-stylesheet type='text/xsl' href='http://xml.resource.org/authoring/rfc2629.xslt' ?>
+  <?rfc toc="yes" ?>
+  <?rfc tocdepth="2" ?>
+  <?rfc symrefs="yes" ?>
+  <?rfc sortrefs="yes"?>
+  <?rfc iprnotified="no" ?>
+  <?rfc strict="yes" ?>
+  <?rfc private="Draft" ?>
+  <?rfc comments="no" ?>
+  <front>
+    <title abbrev=" CX">Contract Exchange Extension 1.0 - Draft 2</title>
+
+    <author fullname="Nat Sakimura" initials="N.S" surname="Sakimura">
+      <organization abbrev="NRI">Nomura Research Institute,
+      Ltd.</organization>
+
+      <address>
+        <postal>
+          <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
+          <city>Chiyoda-ku</city>
+          <region>Tokyo</region>
+          <code>100-0005</code>
+          <country>Japan</country>
+        </postal>
+
+        <email>n-sakimura@nri.co.jp</email>
+
+        <uri>http://www.nri.co.jp/</uri>
+      </address>
+    </author>
+
+    <author fullname="Masaki Nishitani" initials="M.N" surname="Nishitani">
+      <organization abbrev="NRI">Nomura Research Institute,
+      Ltd.</organization>
+
+      <address>
+        <postal>
+          <street>Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</street>
+          <city>Chiyoda-ku</city>
+          <region>Tokyo</region>
+          <code>100-0005</code>
+          <country>Japan</country>
+        </postal>
+
+        <email>m-nishitani@nri.co.jp</email>
+
+        <uri>http://www.nri.co.jp/</uri>
+      </address>
+    </author>
+
+    <author fullname="Hideki Nara" initials="H.N" surname="Nara">
+      <organization>TACT Communications,Inc</organization>
+
+      <address>
+        <postal>
+          <street>Cross Side Building , 3-52-1 Sendagaya</street>
+          <city>Shibuya-ku</city>
+          <region>Tokyo</region>
+          <code>151-0051</code>
+          <country>Japan</country>
+        </postal>
+
+        <email>hdknr@ic-tact.co.jp</email>
+
+        <uri>http://www.ic-tact.co.jp</uri>
+      </address>
+    </author>
+
+    <date day="17" month="October" year="2008" />
+
+    <abstract>
+    <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
+<t> As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called “Artifact” through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended. </t>
+    </abstract>
+  </front>
+  <middle>
+
+    <section title="Terminology">
+      <section title="Requirements Notation">
+                <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref target="RFC2119" /> .
+        </t>
+      </section>
+
+      <section title="Definitions and Conventions">
+        <t> All OpenID 2.0 Artifact Binding messages that contain OpenID Contract Exchange (CX) JSON node MUST contain "type" member starts with the following URI.</t>
+<figure>
+    <artwork><![CDATA[
+            http://specs.openid.net/extensions/cx/1.0/
+    ]]></artwork>
+</figure>
+<t/>
+<t> Variety of sub class message contains fragments at the end of the type URI.</t>
+      </section>
+    </section>
+
+    <section title="Overview">
+        <t>The contract exchange extension(CX) is OpenID extension identified by the URI "http://openid.net/srv/cx/1.0/#". The contract is the document to prove that all parties bound to that have rights and obligations on consuming and providing services between each other.</t>
+<t/>
+<t>CX protocol is based on OpenID Artifact Binding and some JSON messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
+<t/>
+<t>With presenting the CX Contract at specified endpoints, the RP and other parties bound to the contract can be authenticated and request data services.</t>
+    </section>
+
+    <section title="Files">
+        <t>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended Magic Singatures is used for digital signature and the extended JSON Encrypted Envelope is used for asymmetric encryption with public key infrastructure.</t>
+
+<section title="JSON">
+    <t>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
+
+<figure>
+    <artwork><![CDATA[
+http://specs.openid.net/cx/1.0/#
+    ]]></artwork>
+</figure>
+
+<t>And CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
+
+<t>So, a generic CX JSON object likes like the following</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#",
+    "id"   : "http://rp.net/432144395df"
+}
+    ]]></artwork>
+</figure>
+
+<section title="Extending CX JSON">
+<t>
+Although any CX JSON object MUST have members specified for  "type", any other member MAY be used if parties agree the meaning of it.  Any CX JSON MAY has any other JSON object as a member in itself. If a member is a JSON object,  "type" and "id" SHOULD be checked firstly and this should be done recursively.
+</t>
+</section>
+
+<section title="Signed JSON">
+<t>
+Some CX  JSON object MUST be digitally signed  to prove a particular JSON object's composer.
+Magic Envelope is the default format. Like other CX JSON,  Magic Envelopes used for CX MUST have "type" and MAY optionally have "id".
+</t>
+<t>
+Other JSON member  used for particular CX JSON Magic Envelope file are identified by its "type".
+</t>
+</section>
+
+<section title="Encrypted JSON">
+<t>
+Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
+JSON Encryption Envelope  is the default format.
+Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
+</t>
+<t>
+Other JSON member used for particular CX JSON Encryption Envelope file are identified by its "type".
+</t>
+</section>
+</section>
+<section title="Structures">
+    <section title="Non-Normative Examples">
+    <t>TODO: Here should be a sample use case description for a CX transaction for non-normative examples in this section and delivered to the RP from OP in an OpenID Artifact Binding assertion.</t>
+<t> An OpenID Artifact Binding assertion holding a CX Contract might be described here .</t>
+
+<t>
+Here is a  non-normative example of a CX Contract which is actually the Magic Enveloped version of CX Acceptance.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" :  "http://specs.openid.net/cx/1.0/#contract",
+    "id" : "http://op.com/contract/f43213214",
+    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
+     ...    (other Magic Envelop JSON MEMBERS )   ...
+}
+    ]]></artwork>
+</figure>
+
+
+<t>
+Here is a non-normative example of a CX Acceptance which is composed by the OP.
+</t>
+<figure>
+    <artwork><![CDATA[
+{
+   // sample of a Acceptance
+}
+    ]]></artwork>
+</figure>
+
+<t>
+Each privacy data encrypted and held in CX Acceptance and Response is originally formed like the following JSON object
+</t>
+<figure>
+    <artwork><![CDATA[
+{
+    // sample of a Sdata
+}
+
+    ]]></artwork>
+</figure>
+
+<t>Also original request files are formed like the following JSON before they are digitally signed</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    // sample of a Sdata
+}
+    ]]></artwork>
+</figure>
+</section>
+<section title="Request">
+    <t>
+A CX Request is a extended OpenID Artifact Binding Request file.
+Every party bound to a CX Contract MUST prepare a CX Request.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>http://specs.openid.net/cx/1.0/#request"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>optional,string(URI))</t>
+                    
+                        <t>Identifier for the particular CX Request file
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> client_id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>Identifier for the requesting party.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> server_id
+                <list style="symbols">
+                    
+                        <t>optional,string(URI)</t>
+                    
+                        <t>Identifier for the responding party</t>
+                    
+                        <t>This parameter MAY be specified only  when a requesting party want the End User to use a particular service.</t>
+                    
+                        <t>In this case, the requesting party has already known the service endpoint.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> payment_to
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User SHOULD be given "payment_to" from the party specified by  "client_id" for every CX service request to the service endpoint provided the party  identified by "server_id".
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> payment_from
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User SHOULD pay  "payment_from" to  the party specified by  "client_id" for every CX service request
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> template
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User MAY read "template" text to accept a CX Contract.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> related_requests
+                <list style="symbols">
+                    
+                        <t>optional,array of string(URI)</t>
+                    
+                        <t>"related_requests" contains ids of the sibling CX Signed Requests.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> related_signs
+                <list style="symbols">
+                    
+                        <t>optional,array of string(base64url)</t>
+                    
+                        <t>"related_signs" contains signatures of "related_requests". The order in this array MUST reserved the same order as in "related_requests".</t>
+                    
+                        <t>Only proposing party (RP) may use.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+</section>
+<section title="Signed Request">
+    
+</section>
+<section title="Proposal">
+    
+</section>
+<section title="Response">
+    
+</section>
+<section title="Keys">
+    
+</section>
+<section title="Encrypted Keys">
+    
+</section>
+<section title="Acceptance">
+    
+</section>
+<section title="Contract">
+    
+</section>
+<section title="Status">
+    
+</section>
+
+
+
+
+
+
+
+
+
+</section>
+<section title="Storage and Timestamping">
+    
+</section>
+    </section>
+
+    <section title="Protocal">
+        
+    </section>
+
+    <section title="Security Considerations">
+        
+    </section>
+
+    <appendix title="Acknowledgements">
+        
+    </appendix>
+
+  </middle>
+  <back>
+    <references title="Normative References">
+      <reference anchor="RFC2119">
+        <front>
+          <title>Key words for use in RFCs to Indicate Requirement
+          Levels</title>
+
+          <author fullname="Scott Bradner" initials="B.S" surname="Bradner">
+            <organization>Alis Technologies</organization>
+          </author>
+
+          <date year="1997" />
+        </front>
+
+        <seriesInfo name="RFC" value="2119" />
+      </reference>
+
+      <reference anchor="OpenIDAuthentication2.0">
+        <front>
+          <title>OpenID Authentication 2.0</title>
+
+          <author fullname="specs@openid.net" initials=""
+                  surname="specs@openid.net">
+            <organization></organization>
+          </author>
+
+          <date year="2007" />
+        </front>
+
+        <format target="http://www.openid.net/specs/openid-authentication-2_0.txt"
+                type="TXT" />
+
+        <format target="http://www.openid.net/specs/openid-authentication-2_0.html"
+                type="HTML" />
+      </reference>
+
+      <reference anchor="Yadis">
+        <front>
+          <title>Yadis Specification 1.0</title>
+
+          <author fullname="Joaquin Miller" initials="J.M" role="editor"
+                  surname="Miller">
+            <organization>NetMesh</organization>
+          </author>
+
+          <date year="2005" />
+        </front>
+
+        <format target="http://yadis.org/papers/yadis-v1.0.pdf" type="PDF" />
+
+        <format target="http://yadis.org/papers/yadis-v1.0.odt" type="ODT" />
+      </reference>
+
+      <reference anchor="XRIResolution2.0">
+        <front>
+          <title>Extensible Resource Identifier (XRI) Resolution Version
+          2.0</title>
+
+          <author fullname="Drummond Reed" initials="D.R" surname="Reed">
+            <organization>Cordance</organization>
+          </author>
+
+          <author fullname="Gabe Wachob" initials="G.W" role="editor"
+                  surname="Wachob">
+            <organization>Visa International</organization>
+          </author>
+
+          <date month="April" year="2008" />
+        </front>
+
+        <format target="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf"
+                type="PDF" />
+      </reference>
+
+      <reference anchor="RFC3339">
+        <front>
+          <title>Date and Time on the Internet: Timestamps</title>
+
+          <author fullname="Graham Klyne" initials="G.K" surname="Klyne">
+            <organization>Clearswift Corporation</organization>
+          </author>
+
+          <author fullname="Chris Newman" initials="C.N" surname="Newman">
+            <organization>Sun Microsystems</organization>
+          </author>
+        </front>
+
+        <seriesInfo name="RFC" value="3339" />
+      </reference>
+
+      <reference anchor="RFC2898">
+        <front>
+          <title>PKCS #5: Password-Based Cryptography Specification Version
+          2.0</title>
+
+          <author fullname="Burt " initials="B.K" surname="Kaliski ">
+            <organization></organization>
+          </author>
+
+          <date month="September" year="2000" />
+        </front>
+      </reference>
+
+      <reference anchor="OAEP">
+        <front>
+          <title>Optimal Asymmetric Encryption -- How to encrypt with RSA.
+          Extended abstract in Advances in Cryptology - Eurocrypt '94
+          Proceedings, Lecture Notes in Computer Science Vol. 950, A. De
+          Santis ed, Springer-Verlag, 1995</title>
+
+          <author fullname="Mihir " initials="M.B" surname="Bellare">
+            <organization></organization>
+          </author>
+
+          <author fullname="Phillip " initials="P.R" surname="Rogaway">
+            <organization></organization>
+
+            <address>
+              <postal>
+                <street></street>
+
+                <city></city>
+
+                <region></region>
+
+                <code></code>
+
+                <country></country>
+              </postal>
+
+              <phone></phone>
+
+              <facsimile></facsimile>
+
+              <email></email>
+
+              <uri></uri>
+            </address>
+          </author>
+
+          <date year="1995" />
+        </front>
+      </reference>
+    </references>
+  </back>
+</rfc>

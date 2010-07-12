@@ -24,6 +24,8 @@ Contents:
 
     sample/ax/index
 
+    json
+
     glossary
 
 
