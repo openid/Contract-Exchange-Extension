@@ -1,0 +1,4 @@
+{
+    "type" : "http://specs.openid.net/cx/1.0/#response",   
+    "sdatas" :  [ ....( JSON ARRAY OF ENCRYPTED sdata) ... ],
+}

@@ -1,0 +1,25 @@
+<t>
+A CX Signed Request is a Magic Enveloped version of a CX Request file.
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in signed_request: %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Request JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "signed_request.json" %}
+    ]]></artwork>
+</figure>
