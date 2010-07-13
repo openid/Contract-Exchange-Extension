@@ -1,0 +1,27 @@
+<t>
+Actually CX Keys MUST be encrypted with OP's public key into a form of JSON Encrypted Envelope .
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in encrypted_keys: %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Encrypted KeysJSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "encrypted_keys.json" %}
+    ]]></artwork>
+</figure>
+
+

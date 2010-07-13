@@ -25,7 +25,12 @@ if __name__ == '__main__':
     #t=env.get_template('abstract.tmpl')
     
     
-    
-    ctx = {'request':load_params('request') }
+    ctx = dict([ [r,load_params(r)]  
+            for r in ['request','signed_request','proposal',
+                        'response','sdata','encrypted_sdata',
+                        'keys','encrypted_keys',
+                        'acceptance','contract','status',
+                        'data_request','encrypted_response',
+                    ] ] )  
+#    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
     print t.render(ctx).encode('utf-8')
-

@@ -1,0 +1,27 @@
+<t>
+OP SHOULD hold all shared keys used JSON Encrypted Envelope for itself to decrypt all privacy information later.
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in keys: %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Keysobject:</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "keys.json" %}
+    ]]></artwork>
+</figure>
+
+
