@@ -13,7 +13,8 @@ class rsa:
         self.cname = cname
         self.path = basepath+self.cname
         self.subject   = "/CN=%s /OU=sys.%s /O=sys /C=JP" % ( self.cname ,self.cname )
-        self.x('mkdir -p %s' % (self.path) )
+        if os.path.isdir(self.path) == False:
+            self.x('mkdir -p %s' % (self.path) )
 
         self.prikey = self.path+"/pri.pem"
         self.pubkey = self.path+"/pub.pem"
