@@ -11,9 +11,8 @@
   <?rfc strict="yes" ?>
   <?rfc private="Draft" ?>
   <?rfc comments="no" ?>
-
   <front>
-    <title abbrev=" CX">Contract Exchange Extension 1.0 - Draft 1</title>
+    <title abbrev=" CX">Contract Exchange Extension 1.0 - Draft 2</title>
 
     <author fullname="Nat Sakimura" initials="N.S" surname="Sakimura">
       <organization abbrev="NRI">Nomura Research Institute,
@@ -74,1137 +73,1291 @@
     <date day="17" month="October" year="2008" />
 
     <abstract>
-      <t>This extension defines 1) An extensible Contract format, 2) Protocol
-      to exchange the Contract. Contact consists of Proposal and Agreement.
-      The Proposer creates a signed Proposal and send it to the counter party.
-      The counter party, upon agreeing to it, signs the Agreement. The
-      combination of the Proposal and Agreement is the mutually signed
-      contract, which is potentially legally binding. This Contract needs to
-      be stored by both parties for a given length of time, usually spanning
-      over many years depending on jurisdictions.</t>
-
-      <t>As these document size may be large while the user agent capability
-      may be limited (e.g., mobile phones), sending them via direct
-      communication and passing only the small reference called
-      &ldquo;Artifact&rdquo; through the user agents are advisable. Therefore,
-      as the protocol, use of Artifact Binding is strongly recommended.</t>
+    <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
+<t> As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called “Artifact” through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended. </t>
     </abstract>
   </front>
-
   <middle>
+
     <section title="Terminology">
       <section title="Requirements Notation">
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+                <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
         "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-        document are to be interpreted as described in <xref
-        target="RFC2119" /> .</t>
+        document are to be interpreted as described in <xref target="RFC2119" /> .
+        </t>
       </section>
 
       <section title="Definitions and Conventions">
-        <t>All OpenID 2.0 messages that contain OpenID Contract Exchange (CX)
-        elements MUST contain the following extension namespace declarations,
-        as specified in the Extensions section of <xref
-        target="OpenIDAuthentication2.0" /> .</t>
-
-        <figure>
-          <artwork><![CDATA[openid.ns.<alias>=http://specs.openid.net/extensions/cx/1.0/
-]]></artwork>
-        </figure>
-
-        <t />
-
-        <t>The XML Path structure is expressed in a XPath notation.</t>
+        <t> All OpenID 2.0 Artifact Binding messages that contain OpenID Contract Exchange (CX) JSON node MUST contain "type" member starts with the following URI.</t>
+<figure>
+    <artwork><![CDATA[
+            http://specs.openid.net/extensions/cx/1.0/
+    ]]></artwork>
+</figure>
+<t/>
+<t> Variety of sub class message contains fragments at the end of the type URI.</t>
       </section>
     </section>
 
     <section title="Overview">
-      <t>The contract exchange service extension is identified by the URI
-      &ldquo;http://openid.net/srv/cx/1.0/#&rdquo;. Support of this extension
-      is advertised by having this url in /XRDS/XRD/Service/Type or
-      /XRD/Link/rel.</t>
-
-      <t>For the exchange of the contract, this extension uses Attribute
-      Exchange.</t>
-
-        <figure>
-        <artwork>Note This version of CX expects that AX fetch request can contain
-      &ldquo;value&rdquo;. This extension is being discussed under the AX 1.1
-      working group.
-        </artwork>
-        </figure>
-
-      <t>The request parameters detailed here MUST be sent using the
-      [OpenID.authentication2.0] (specs@openid.net, OpenID Authentication 2.0
-      - Final, August 2007.) extension mechanism.</t>
+        <t>The contract exchange extension(CX) is OpenID extension identified by the URI "http://openid.net/srv/cx/1.0/#". The contract is the document to prove that all parties bound to that have rights and obligations on consuming and providing services between each other.</t>
+<t/>
+<t>CX protocol is based on OpenID Artifact Binding and some JSON messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
+<t/>
+<t>With presenting the CX Contract at specified endpoints, the RP and other parties bound to the contract can be authenticated and request data services.</t>
     </section>
 
-    <section anchor="contract_document" title="Contract Document">
-      <t>Contract is a document that testifies that the parties involved have
-      agreed to what is written in it. The workflow for establishing such
-      contract document varies, but in this extension, the following model is
-      taken:</t>
-
-      <t><list style="numbers">
-          <t>There are typically 4 actors, A, SA, B, SB, where SA and SB are
-          the designated signatory of A and B respectively.</t>
-
-          <t>Proposer, A, creates the contract proposal and signs and sends
-          it to the other party.</t>
-
-          <t>B examines the proposal and if it decides to accept, let SB sign
-          it</t>
-
-          <t>A obtains the signed copy of the contract.</t>
-        </list>Such contract can be used for various purposes not only for
-      online transactions.</t>
-
-      <t>There can be many Contract format: It could be profiled in XML,
-      JSON(RFC4627), XDI, etc. In this extension, since XML parser and XML
-      Signature facilities are available for XRD processing, we define a XML
-      contract profile. This section explains semantics of each element. For
-      an example, refer to Appendix B.</t>
-
-      <section title="Contract Template">
-        <t> A Contract Template is a document which describes the detail of agreement, 
-        waranty, disclamier and other legal statements that binds the parties in the 
-        CX Contract document. 
-        A proposing party MUST specify the CX Template as URI  and include it in the CX Contract document.
-        </t>
-
-        <section title="Human Readable Text">
-          <t>A Contract Template MUST be formatted in a human readable text
-          because it MUST be read by the User when he/she wants to authorize
-          the CX Contract at a service provider. Simple markup like
-          reStructuredText, markdown, textile or others CAN be used to format
-          CX Templates. text/plain is the default content type for CX
-          Templates.</t>
-        </section>
-
-        <section title="Templating">
-          <t>A Template variable is in the form {{parameter_name}}. Any
-          variable should be replaced by the corresponding value defined in
-          the CX contract document, where @id is equal to the parameter_name.
-          When the provider shows the contract text to the end user to obtain
-          the signing authorization, the provider should substitute the values
-          into the variables.</t>
-
-          <t>For exmanple, if a CX Proposal includes the following XML element</t>
-
-          <figure>
-            <artwork><![CDATA[<param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
-            ]]></artwork>
-          </figure>
-
-          <t>and the Contract Templage include the following text</t>
-
-          <figure>
-            <artwork><![CDATA[Total ${{ totalamaount }} 
-            ]]></artwork>
-          </figure>
-
-          <t>,then processed document MUST be the following. </t>
-
-          <figure>
-            <artwork><![CDATA[Total $500.0
-            ]]></artwork>
-          </figure>
-
-        </section>
-
-        <section title=" Template URL and Digest">
-          <t>The digest data for a CX Template MUST be provided through the
-          discovery process. The default digest algorithm is SHA256.</t>
-
-          <t>Contract Template URL should be in the form of</t>
-
-          <figure>
-            <artwork><![CDATA[http://uri_of_contract_template#digest_algorithm:digest]]></artwork>
-          </figure>
-
-          <t>For example:</t>
-
-          <figure>
-            <artwork><![CDATA[http://example.com/contract/ToS.rst#sha256:cd825a6919f0483208a42145500555ab381ce99983036f9ff996a206cb436929]]></artwork>
-          </figure>
-
-          <t />
-        </section>
-      </section>
-
-      <section title="Contract Document Constructs">
-        <t>Because the CX protocol can be used for web services for critical
-        business transactions, a CX Contract document SHOULD be a &ldquo;legal
-        contract&rdquo; which contains obligations of each parties including
-        the remedy to the cases where it has been breached.</t>
-
-        <section title="Common Contract Constructs">
-          <t>CX Contracts and CX Templates include common contract constructs
-          like warranty , disclaimer or other legal and business statements
-          based on the Common Law(Anglo-American Law).</t>
-
-          <t>Examples of common contract constructs used in CX are listed at
-          Appendix. B&lt;common_contract_constructs&gt;,</t>
-        </section>
-      </section>
-
-      <section title="Contract Document Structure">
-        <t>The default format for Contract Exchange (CX) document is XML. The
-        non-repudiation for the XML document in CX is achieved by XML
-        Signature Syntax and Processing(Second Edition) (xmldsig-core).</t>
-
-        <t>CX uses Enveloped Signature defined in xmldsig-core .
-        Canonicalization method MUST be Exclusive Canonicalization.</t>
-
-        <t>Note c14n- may have multiple dialects: need to check.</t>
-
-        <section title="Original Document and Counter Signature">
-          <t>To achieve mutual non-repudiation, the contract document needs to
-          be mutually digitally signed. In CX, this is achieved through signing
-          the document that includes the original signed proposal in Base 64
-          format. The specifics will be defined below.</t>
-        </section>
-
-        <section title="Contract XML Basic Structure">
-          <t>The basic structure of Contract XML is defined as following XML
-          Schema:</t>
-
-          <figure>
-            <artwork><![CDATA[
-
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#">
-  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" />
-  <xs:element name="Contract">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Type" minOccurs="1" maxOccurs="1" />
-        <xs:element ref="Datetime" minOccurs="1" maxOccurs="1" />
-        <xs:element maxOccurs="unbounded" ref="Party"/>
-        <xs:element ref="Service" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="Original" minOccurs="0" maxOccurs="1" />
-      </xs:sequence>
-      <xs:attribute name="id" use="required" type="xs:anyURI"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Datetime" type="xs:dateTime" />
-  <xs:element name="Party">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Rel" minOccurs="1" maxOccurs="1"/>
-        <xs:element ref="ReturnTo" minOccurs="1" maxOccurs="1"/>
-        <xs:element ref="obligations" minOccurs="1" maxOccurs="unbounded"  />
-        <xs:element ref="xmldsig:Signature" minOccurs="0" maxOccurs="1" />
-      </xs:sequence>
-      <xs:attribute name="id" use="required" type="xs:anyURI"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Rel"  type="xs:anyURI" />
-  <xs:element name="ReturnTo"  type="xs:anyURI" />
-  <xs:element name="obligations">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
-        <xs:element ref="endpoint" minOccurs="0" maxOccurs="unbounded" />
-        <xs:element ref="to" minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="param">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:string">
-          <xs:attribute name="id" use="required" type="xs:string" />
-          <xs:attribute name="type" use="required" type="xs:anyURI" />
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="endpoint"  type="xs:anyURI" />
-  <xs:element name="to"  type="xs:anyURI" />
-  <xs:element name="Service">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Type"  />
-        <xs:element ref="URL"   />
-        <xs:element ref="Template"   />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Template" type="xs:base64Binary" />
-  <xs:element name="Original" type="xs:base64Binary" />
-  <xs:element name="Type"  type="xs:anyURI" />
-  <xs:element name="URL"  type="xs:anyURI" />
-</xs:schema>
-                  ]]></artwork>
-          </figure>
-
-          <t>Each attribute and element is described as following with
-          cardinality:</t>
-
-          <t>
-            <list style="symbols">
-              <t>/Contract/@id [Required]<list style="empty">
-                  <t>A global unique Identifier of type string that identifies
-                  this contract.</t>
-                </list></t>
-
-              <t>/Contract/Type [One]<list style="empty">
-                  <t>Either http://openid.net/srv/cx/1.0/#proposal or
-                  http://opeind.net/srv/cx/1.0#agreement</t>
-                </list></t>
-
-              <t>/Contract/DateTime<list style="empty">
-                  <t>The creation dateTime of this Proposal or Agreement.</t>
-                </list></t>
-
-              <t>/Contract/Party [Two or More]<list style="empty">
-                  <t>A placeholder for the information related to the party.
-                  While a proposal may include two or more Parties, an
-                  Agreement may contain only one.</t>
-                </list></t>
-
-              <t>/Contract/Party/@id [One]<list style="empty">
-                  <t>This attribute is the URI (or XRI) which specify the
-                  composing parties.</t>
-                </list></t>
-
-              <t>/Contract/Party/Rel [One]<list style="empty">
-                  <t>Indicates the type of the party. One of followings:</t>
-
-                  <t><list style="empty">
-                  <t>http://openid.net/srv/cx/1.0/#proposer</t>
-                  <t>http://openid.net/srv/cx/1.0/#acceptor</t>
-                  </list></t>
-
-                </list></t>
-
-              <t>/Contract/Party/ReturnTo [One]<list style="empty">
-                  <t>URI to which a party MAY notify message.  </t>
-                </list></t>
-
-              <t>/Contract/Party/xmldsig:Signature [One]<list style="empty">
-                  <t>Signature are applied in the same way as defined in XRD
-                  1.0 &ldquo;XRD Signature&ldquo;.</t>
-                </list></t>
-
-              <t>/Contract/Party/obligations [One]<list style="empty">
-                  <t>Placeholder for specifying the obligation of the
-                  party.</t>
-                </list></t>
-
-              <t>/Contract/Party/obligations/param [Zero or More]<list
-                  style="empty">
-                  <t>0 or more of the parameters that describes a portion of
-                  the party&rsquo;s obligation.</t>
-                </list></t>
-
-              <t>/Contract/Party/obligations/param/@type [One]<list
-                  style="empty">
-                  <t>Parameter type URL of this particular parameter. Some of
-                  them are defined in the appendix of this specification.
-                  Notably, http://openid.net/srv/cx/1.0/axreq MUST be
-                  supported by all implementations.</t>
-                </list></t>
-
-              <t>/Contract/Party/obligations/param/@id [One]<list
-                  style="empty">
-                  <t>Shortcut name of this parameter. {{parameter_name}}s in
-                  CX Template CAN be replaced by the value of this
-                  element.</t>
-                </list></t>
-
-              <t>/Contract/Party/obligations/endpoint [Zero or More]<list style="empty">
-                  <t>URI from which other party MAY request data declared by the obligation. </t>
-                </list></t>
-
-              <t>/Contract/Party/obligations/to [Zero or More]<list style="empty">
-                  <t> Identifiers of a party to which this party owe an obligation. This MUST be equal to one of /Contrat/Party/@id. 
-                    If there is no element under an obligations, any party bound to this CX contract MAY request data of this obligations.
-                  </t>
-                </list></t>
-
-              <t>/Contract/Service/Type [One]<list style="empty">
-                  <t>URI which specify which CX Service is used by a Relying Party </t>
-                </list></t>
-
-              <t>/Contract/Service/URL [One]<list style="empty">
-                  <t>OP service endpoint reuqested by a Relying Party</t>
-                </list></t>
-
-              <t>/Contract/Service/Template [Zero or One]<list style="empty">
-                  <t>Base64 encoded CX Template text. Template text MUST be in
-                  UTF-8 encoding. {{name}}s in CX Template is replaced by the
-                  value of the element of which the @id is equal to
-                  &lsquo;name&rsquo;. Exists only in a proposal.</t>
-                </list></t>
-
-              <t>/Contract/Original [Zero or One]<list style="empty">
-                  <t>The requesting document has no Original element. The
-                  base64-encoded original requesting XML document.</t>
-                </list></t>
-            </list>
-          </t>
-        </section>
-      </section>
-
-      <section title="Proposal and Agreement Validation">
-        <t>Signature for each of Proposal and Agreement should be validated
-        according to XML Signature. The validity of the respective ds:KeyInfo
-        is determined by first obtaining the signed XRD from the Party&rsquo;s
-        identity url and performing following comparison operation.</t>
-
-        <t>
-          <list style="symbols">
-            <t>/XRD/Subject == /Contract/Party/@id</t>
-
-            <t>/XRD/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate ==
-            /Contract/Party/ds:Signature/ds:KeyInfo/ds:X509Data/ds:X509Certificate.
-            When there is a certificate chain in the ds:X509Data, the chain
-            must be checked in the same manner.</t>
-
-          </list>
-        </t>
-      </section>
-
-      <section title="Storage and Timestamping">
-        <t>The Contract is supposed to act as a proof of agreement in case of
-        dispute at a later date. Since contracts may be long term documents,
-        there is a risk that are not so relevant in transient processing, such
-        as Algorithm Compromise. Thus, care should be taken to appropriately
-        process the contract through Timestamping etc.</t>
-      </section>
-    </section>
-
-    <section title="Protocol">
-      <section title="Discovery">
-        <t>Discovery of the contract exchange service extension is achieved
-        via the mechanism described in [OpenID.authentication2.0]
-        (specs@openid.net, OpenID Authentication 2.0 - Final, August 2007.).
-        </t>
-        <t>
-        The contract exchange namespace
-        &ldquo;http://openid.net/srv/cx/1.0/&rdquo; MUST be listed as
-        /xrds/xrd/Service/Type element in the XRDS discovery document or
-        /xrd/Link/rel element in the XRD 1.0 discovery document. 
-        </t>
-        <t>
-        The discovered XRDS MUST have an XRD/CanonicalID. Also a XRDS document MUST be signed 
-        using XML Signature and have a XRD/ds:Signature element in it.
-        All of the party involved, including Relying Parties, MUST publish an XRD.</t>
-
-        <figure><artwork>Note Discussion: RP Discovery needed for contract invalidation, RP
-        Verification by OP, etc. (=nat, 2009-08-12)
-        </artwork>
-        </figure>
-
-        <t />
-      </section>
-
-      <section title="Sending Proposal">
-        <t>A CX Proposal document is sent as the parameter of AX fetch
-        request. The details of AX fetch request parameters are as
-        follows:</t>
-
-        <t>
-          <list style="symbols">
-            <t>openid.ax.mode<list style="empty">
-                <t>REQUIRED. Value: &ldquo;fetch_request&rdquo;</t>
-              </list></t>
-
-            <t>openid.ax.type.cx<list style="empty">
-                <t>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#proposal&rdquo; .</t>
-              </list></t>
-
-            <t>openid.ax.value.cx<list style="empty">
-                <t>REQUIRED. Value: Actual CX proposal document. Base64
-                encoded.</t>
-              </list></t>
-
-            <t>openid.ax.required<list style="empty">
-                <t>REQUIRED. Value: &lsquo;cx&rsquo; MUST be included in the
-                AX required list.</t>
-              </list></t>
-
-            <t>openid.ax.update_url<list style="empty">
-                <t>OPTIONAL. Value: The URL which an OP MAY send a message to notify the change of status. 
-                The paramters of this message is described in "Notify the Contract Status".  </t>
-              </list></t>
-
-          </list>
-        </t>
-      </section>
-
-      <section title="Writing Agreement">
-        <t>The end user who has logged into the OP MUST be prompted to browse
-        and agree to the proposal sent from the RP. OP MUST verify if the end
-        user has enough right to authorize the signing before creating the
-        counter signature.</t>
-      </section>
-
-      <section title="Receiving Contract">
-        <t>CX Contract is returned as the value of AX fetch request. The
-        details of AX fetch response parameters are as follows:.</t>
-
-        <t>
-          <list style="symbols">
-            <t>openid.ax.mode<list style="empty">
-                <t>REQUIRED. Value: &ldquo;fetch_response&rdquo;</t>
-              </list></t>
-
-            <t>openid.ax.type.cx<list style="empty">
-                <t>REQUIRED. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#contract&rdquo; .</t>
-              </list></t>
-
-            <t>openid.ax.value.cx<list style="empty">
-                <t>REQUIRED. Value: Actual CX Contract document. Base64
-                encoded.</t>
-              </list></t>
-          </list>
-        </t>
-      </section>
-
-      <section title="Encrypting the payload">
-        <t>The CX Payload can be sent or returned in encrypted text. In
-        addition to the usual AX fetch request and response parameters, the
-        following parameters MUST be sent to enable the decryption of the
-        payload.</t>
-
-        <t>
-          <list style="symbols">
-            <t>openid.ax.type.cx_encoding<list style="empty">
-                <t>Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#encoding&ldquo;.</t>
-              </list></t>
-
-            <t>openid.ax.value.cx_encoding<list style="empty">
-                <t>Value: &ldquo;Base64&rdquo;,
-                &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;.</t>
-
-                <t>If cx_encoding is &ldquo;CBC-256-128-PKCS5_PADDING&rdquo;,
-                the following parameters MUST be returned in addition.</t>
-              </list></t>
-
-            <t>openid.ax.type.cx_enc_key<list style="empty">
-                <t>Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#enc_key&ldquo;.</t>
-              </list></t>
-
-            <t>openid.ax.value.cx_enc_key<list style="empty">
-                <t>Shared key to encrypt the message in &ldquo;Encryption Base
-                String&rdquo; form. This key itself is encrypted
-                asymmetrically with decryptors&rsquo; public key included in
-                the Contract and base 64 encoded. Value: base64 string.</t>
-              </list></t>
-
-            <t>openid.ax.type.cx_enc_iv<list style="empty">
-                <t>Type URI for initialization vector used in a block
-                encryption. Value:
-                &ldquo;http://openid.net/srv/cx/1.0/#enc_iv&ldquo;.</t>
-              </list></t>
-
-            <t>openid.ax.value.cx_enc_iv<list style="empty">
-                <t>Value: base64 stringValue: base64 string</t>
-              </list></t>
-          </list>
-        </t>
-     </section>
-
-     <section title="Notify the Contract Status">
-          <t>The OP can notify the status of the contract to the RP using OpenID AX update_url. 
-            As with the case of other AX, the notfication message is unsolicited possitive assertion 
-            including the following parameters.  </t>
-
-          <t>
-            <list style="symbols">
-                <t>openid.ax.mode<list style="empty">
-                    <t>REQUIRED Value: "fetch_response" </t> 
-                  </list></t>
-
-                <t>openid.ax.type.cxid<list style="empty">
-                    <t>REQUIRED Value: "http://openid.net/srv/cx/1.0/#id".  </t> 
-                  </list></t>
-
-                <t>openid.ax.value.cxid<list style="empty">
-                    <t>REQUIRED Value: Any URI to specify the Contract but MUST be unique in the OP.</t> 
-                  </list></t>
-
-                <t>openid.ax.type.cxstat<list style="empty">
-                    <t>REQUIRED Value: "http://openid.net/srv/cx/1.0/#status".  </t> 
-                  </list></t>
-
-                <t>openid.ax.value.cxstat<list style="empty">
-                    <t>REQUIRED Value: Any string to specify the Contract's status. </t>
-                  </list></t>
-            </list>
-          </t>
-
-          <t>If the RP receives this message and verify that it is a valid unsolicited possitive assertion message, the RP SHOULD request the contract and its status by requesting a Direct Assertion Request, or any party bound to a CX Contract MAY request data or contract itself by requesting to obligation endpoint described in the section of "Data Request" in this document.    RP SHOULD describe the contract and its status to the End User, but the procedure is out of the scope of this specification.  </t>
-      </section>
-
-        <section title="Data Request">
-            <t>A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract</t>
-
-            <t>A request MUST be formed in a HTTP GET request defined in the following URL. </t>
-            <figure>
-                <artwork><![CDATA[endpoint?party=_party_identfier_&cxid=_cx_identifier_]]></artwork>
-            </figure>
-
-            <t>where parameters are definend in the following.
-            <list style="symbols">
-                <t>endpoint<list style="empty">
-                    <t>REQUIRED Value: URI. Either of the followings.
-                        <list style="symbols">
-                            <t>Contract identfier 
-                                <list style="empty"><t>The OP MUST return the CX Contract specified by this identfiier.</t></list>
-                            </t>
-                            <t>Obligation endpoint
-                                <list style="empty"><t>A party MUST return the data for the obligation specified in the CX Contract.</t></list>
-                            </t>
-                        </list>
-                    </t> 
-                  </list></t>
-
-                <t>_party_identifier_<list style="empty">
-                    <t>REQUIRED Value: An identfier of a party bound to the CX Contract. 
-                    The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string  and returns in text/plain content type.</t>
-                  </list></t>
-
-                <t>_cx_identifier_<list style="empty">
-                    <t>REQUIRED for the obligation endpoint.  Value: CX Contract identfier including the obligation.</t>
-                  </list></t>
-
-            </list>
+    <section title="Files">
+        <t>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended Magic Singatures is used for digital signature and the extended JSON Encrypted Envelope is used for asymmetric encryption with public key infrastructure.</t>
+
+<section title="JSON">
+    <t>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
+
+<figure>
+    <artwork><![CDATA[
+http://specs.openid.net/cx/1.0/#
+    ]]></artwork>
+</figure>
+
+<t>And CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
+
+<t>So, a generic CX JSON object likes like the following</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#",
+    "id"   : "http://rp.net/432144395df"
+}
+    ]]></artwork>
+</figure>
+
+<section title="Extending CX JSON">
+<t>
+Although any CX JSON object MUST have members specified for  "type", any other member MAY be used if parties agree the meaning of it.  Any CX JSON MAY has any other JSON object as a member in itself. If a member is a JSON object,  "type" and "id" SHOULD be checked firstly and this should be done recursively.
+</t>
+</section>
+
+<section title="Signed JSON">
+<t>
+Some CX  JSON object MUST be digitally signed  to prove a particular JSON object's composer.
+Magic Envelope is the default format. Like other CX JSON,  Magic Envelopes used for CX MUST have "type" and MAY optionally have "id".
+</t>
+<t>
+Other JSON member  used for particular CX JSON Magic Envelope file are identified by its "type".
+</t>
+</section>
+
+<section title="Encrypted JSON">
+<t>
+Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
+JSON Encryption Envelope  is the default format.
+Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
+</t>
+<t>
+Other JSON member used for particular CX JSON Encryption Envelope file are identified by its "type".
+</t>
+</section>
+</section>
+<section title="Structures">
+    <section title="Non-Normative Examples">
+    <t>TODO: Here should be a sample use case description for a CX transaction for non-normative examples in this section and delivered to the RP from OP in an OpenID Artifact Binding assertion.</t>
+<t> An OpenID Artifact Binding assertion holding a CX Contract might be described here .</t>
+
+<t>
+Here is a  non-normative example of a CX Contract which is actually the Magic Enveloped version of CX Acceptance.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" :  "http://specs.openid.net/cx/1.0/#contract",
+    "id" : "http://op.com/contract/f43213214",
+    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
+     ...    (other Magic Envelop JSON MEMBERS )   ...
+}
+    ]]></artwork>
+</figure>
+
+
+<t>
+Here is a non-normative example of a CX Acceptance which is composed by the OP.
+</t>
+<figure>
+    <artwork><![CDATA[
+{
+   // sample of a Acceptance
+}
+    ]]></artwork>
+</figure>
+
+<t>
+Each privacy data encrypted and held in CX Acceptance and Response is originally formed like the following JSON object
+</t>
+<figure>
+    <artwork><![CDATA[
+{
+    // sample of a Sdata
+}
+
+    ]]></artwork>
+</figure>
+
+<t>Also original request files are formed like the following JSON before they are digitally signed</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    // sample of a Sdata
+}
+    ]]></artwork>
+</figure>
+</section>
+<section title="Request">
+    <t>
+A CX Request is a extended OpenID Artifact Binding Request file.
+Every party bound to a CX Contract MUST prepare a CX Request.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>http://specs.openid.net/cx/1.0/#request"
+</t>
+                    
+                </list>
             </t>
-
-            <t>Encryption parameters MUST be returned HTTP response headers. Following are response header keys. 
-            All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
-            <list style="symbols">
-                <t>cx_enc_key</t>
-                <t>cx_enc_iv</t>
-                <t>cx_encoding</t>
-            </list>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>optional,string(URI))</t>
+                    
+                        <t>Identifier for the particular CX Request file
+</t>
+                    
+                </list>
             </t>
-        </section> 
+        
+            <t> client_id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>Identifier for the requesting party.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> server_id
+                <list style="symbols">
+                    
+                        <t>optional,string(URI)</t>
+                    
+                        <t>Identifier for the responding party</t>
+                    
+                        <t>This parameter MAY be specified only  when a requesting party want the End User to use a particular service.</t>
+                    
+                        <t>In this case, the requesting party has already known the service endpoint.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> payment_to
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User SHOULD be given "payment_to" from the party specified by  "client_id" for every CX service request to the service endpoint provided the party  identified by "server_id".
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> payment_from
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User SHOULD pay  "payment_from" to  the party specified by  "client_id" for every CX service request
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> template
+                <list style="symbols">
+                    
+                        <t>optional,string(any)</t>
+                    
+                        <t>End User MAY read "template" text to accept a CX Contract.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> related_requests
+                <list style="symbols">
+                    
+                        <t>optional,array of string(URI)</t>
+                    
+                        <t>"related_requests" contains ids of the sibling CX Signed Requests.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> related_signs
+                <list style="symbols">
+                    
+                        <t>optional,array of string(base64url)</t>
+                    
+                        <t>"related_signs" contains signatures of "related_requests". The order in this array MUST reserved the same order as in "related_requests".</t>
+                    
+                        <t>Only proposing party (RP) may use.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
 
+<t>The following is a non-normative sample for CX Request JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#request",   
+    "client_id" : "http://rp.net",
+    "server_id": "http://op.com",
+    "payment_from" : "500JPY",
+    "payment_to"     :  "5PT",
+    "template" : " ... (base64 encoded text for End User to grant the CX contract)...."
+    "related_requests" : [ ...( ARRAY OF STRING(URI) ...      ],
+    "related_signs" : [ ...( ARAY OF STRING)... ],
+    ...( OTHER OPENID REQUEST PARAMTERS ) ...,
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+<section title="Signed Request">
+    <t>
+A CX Signed Request is a Magic Enveloped version of a CX Request file.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#signed_request"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>URI which specify this signed request</t>
+                    
+                        <t>This  MAY is used by other CX Requests for describing the relation ships.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> client_certs
+                <list style="symbols">
+                    
+                        <t>string(base64url)</t>
+                    
+                        <t>The PEM formatted string version of client_id's X.509 certificate used for this Magic Envelope JSON.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> server_certs
+                <list style="symbols">
+                    
+                        <t>optional,string(base64url)</t>
+                    
+                        <t>The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Request JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#signed_request",   
+    "id" : "http://requesting.com/432143",
+    "client_certs" : ".... ( PEM STRING OF client_id's X.509 CERTIFICATE) ...",
+    "server_certs" : "... ( PEM STRING OF server_id's X.509 CERTIFICATE ) ...",
+     ... ( OTHER Magic Envelop PARAMTERS ) ...
+}
+    ]]></artwork>
+</figure>
+</section>
+<section title="Proposal">
+    <t>
+A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>http://specs.openid.net/cx/1.0/#proposal
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>unique identifier specified by the RP
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> reqs
+                <list style="symbols">
+                    
+                        <t>array of object(Signed Request)</t>
+                    
+                        <t>JSON array of  CX  Signed Requests
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> sighash
+                <list style="symbols">
+                    
+                        <t>string(base64url)</t>
+                    
+                        <t>SHA256( reqs[0].sigs + reqs[1].sigs ... + reqs[n].sigs)
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> hashalg
+                <list style="symbols">
+                    
+                        <t>optional,string</t>
+                    
+                        <t>A hash algorithm used for calculating sighash member.</t>
+                    
+                        <t>"SHA256" is default.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> endpoint
+                <list style="symbols">
+                    
+                        <t>optional,string(URI)</t>
+                    
+                        <t>OP MAY directly send message to this URI.  As described later in Notification, an OP MAY notify the status of a CX Contract to the RP.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Proposal JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+      "type": "http://specs.openid.net/cx/1.0/#proposal",
+      "id" : http://rp.net/432143214321",
+      "reqs": [ 
+              {
+                     "type" : "http://specs.openid.net/cx/1.0/#signed_request",
+                      ...(OTHER SIGNED REQUEST PARAMETERS)...
+              },
+              {
+                     "type" : "http://specs.openid.net/cx/1.0/#signed_request",
+                      ...(OTHER SIGNED REQUEST PARAMETERS)...
+              }
+      ] 
+      "sighash" : " ",
+      "hashalg" : "",
+      .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
+
+}
+    ]]></artwork>
+</figure>
+
+</section>
+<section title="Response">
+    <t>
+A CX Response is a reply to each CX Request and holds privacy information only accessible to a particular party. 
+Privacy data SHOULD be asymmetrically encrypted JSON called "Encrypted Sdata" described later in this document. 
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#response"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> sdatas
+                <list style="symbols">
+                    
+                        <t>array of object(Encrypted Sdata)</t>
+                    
+                        <t>JSON array of CX Encrytped Sdata.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX ResponseJSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#response",   
+    "sdatas" :  [ ....( JSON ARRAY OF ENCRYPTED sdata) ... ],
+}
+    ]]></artwork>
+</figure>
+
+
+<section title="Sdata">
+    <t>
+A CX Sdata holds privacy data only accessible to the receipient.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#data"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> endpoints
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>This MUST be given to "client_id"'
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> identfier
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>End User's identfier which MUST be given to "server_id".</t>
+                    
+                        <t>This is Mostly PPID</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Sdata JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#sdata",   
+    "identifier" : "http://op.com/user/432fdede3",
+    "endpoints" : ["http://service.com/cxdata"],
+     ..( JSON MEMBER OF OTHER PRIVATE DATA  SHARED WITH THE PARTY )...
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+
+<section title="Encrypted Sdata">
+    <t>
+Actually Sdata JSON MUST be encrypted with "server_id"'s public key in JSON Encrypted Envelop format.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#encrytped_sdata"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> party
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>This member specifies the recipient of the private data.
+</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Encrypted Sdata JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#encrytped_sdata",   
+    "party" : "http://rp.com",
+    ...(OTHER JSON ENCRYPTED ENVELOPE MEMBERS  )...",
+}
+    ]]></artwork>
+</figure>
+</section>
+
+
+
+</section>
+<section title="Keys">
+    <t>
+OP SHOULD hold all shared keys used JSON Encrypted Envelope for itself to decrypt all privacy information later.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#keys",
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> parties
+                <list style="symbols">
+                    
+                        <t>array of string(URI)</t>
+                    
+                        <t>JSON array of URI specifying  paties.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> keys
+                <list style="symbols">
+                    
+                        <t>array of string</t>
+                    
+                        <t>JSON array of base64 form of shared keys.</t>
+                    
+                        <t>So,   the same shared key MUST be used for the JSON Encrypted Envelope dedicated for the same party.</t>
+                    
+                        <t>The order in keys MUST correspond the order of parties member.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Keysobject:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#keys",   
+    "parties"  : [       ],
+    "keys":  [     ],
+    ...(ANY OTHER MEMBERS ) ...
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+<section title="Encrypted Keys">
+    <t>
+Actually CX Keys MUST be encrypted with OP's public key into a form of JSON Encrypted Envelope .
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#encrytped_keys"</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Encrypted KeysJSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" : "http://specs.openid.net/cx/1.0/#encrytped_keys",   
+    ...(OTHER JSON ENCRYPTED ENVELOPE MEMBERS )...",
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+<section title="Acceptance">
+    <t>
+A CX Acceptance is a container JSON to hold all CX Response and CX Encpyted Keys. 
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>"http://specs.openid.net/cx/1.0/#acceptance"
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>unique identifier given by OP
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> proposal
+                <list style="symbols">
+                    
+                        <t>object(Proposal)</t>
+                    
+                        <t>Simple copy of the requested CX Proposal JSON object
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> keys
+                <list style="symbols">
+                    
+                        <t>object(Encrypted Keys)</t>
+                    
+                        <t>Holds  a CX Encrypted Keys
+</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Request JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+   "type" : "http://specs.openid.net/cx/1.0/#acceptance",
+   "id": "http://op.com/acceptance/4321fd3439dg",
+   "res": [
+                 {
+                      "type" :  "http://specs.openid.net/cx/1.0/#response",
+                      ...(OTHER RESPONSE PARAMETERS) ...
+                 },
+                 {
+                      "type" :  "http://specs.openid.net/cx/1.0/#response",
+                      ...(OTHER RESPONSE PARAMETERS) ...
+                 }
+            ],
+    "proposal":  ... (COPY OF THE REQUESTED CX PROPOSAL ) ...,
+    "keys" : ...( ENCRYPTED KEYS JSON )...
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+<section title="Contract">
+    <t>
+A CX Contract is a  Magic Enveloped version of Acceptance and  is returned by the OP in OpenID Artifact Binding assertion.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>http://specs.openid.net/cx/1.0/#contract
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>unique URL given by OP</t>
+                    
+                        <t>OP MUST return this CX Contract in encrypted payload using requester's public key. A request MUST be a party bound to this CX Contract.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> signatory_certs
+                <list style="symbols">
+                    
+                        <t>stirng(base64url)</t>
+                    
+                        <t>Base 65 form of  the OP's X.509 certificate</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Contract JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" :  "http://specs.openid.net/cx/1.0/#contract",
+    "id" : "http://op.com/contract/f43213214",
+    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
+     ...    (other Magic Envelop JSON MEMBERS )   ...
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+<section title="Status">
+    <t>
+A CX Status  is a simple CX JSON object to describe the status of the contract.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>http://specs.openid.net/cx/1.0/#status
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>This is an unique identifier referring CX Contract given by OP
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> proposal_id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> status
+                <list style="symbols">
+                    
+                        <t>string</t>
+                    
+                        <t>status description about proposal or contract</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Status JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    "type" :  "http://specs.openid.net/cx/1.0/#status",
+    "id" : "http://op.com/contract/f43213214",
+    "proposal_id" :  "http://rp.net/cx/54643",
+    "status" : "pending" , 
+     ...    (other  JSON MEMBERS )   ...
+}
+    ]]></artwork>
+</figure>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+</section>
+<section title="Storage and Timestamping">
+    <t>
+The Contract is supposed to act as a proof of agreement in case of dispute at a later date. 
+Since contracts may be long term documents, there is a risk that are not so relevant in transient processing, 
+such as Algorithm Compromise. Thus, care should be taken to appropriately process the contract through Timestamping etc.</t>
+
+</section>
     </section>
 
+    <section title="Protocal">
+        <section title="Sending Proposal">
+    <section title="Advertising Service">
+
+<t>Before advertising CX Service, a RP MUST collect all Signed Request files related to that service.</t>
+
+<t>
+A RP MUST prepare its own CX Request file which SHOULD refer signatures of all other Signed Request files in "related_requests" and "related_signs". "server_id" MAY be used when a particular service endpoint has been already known by the RP. "payment_from" and "payment_to" SHOULD be provided to know what exact benefit is given to an End User and what exact obligation MUST be paid by an End User. A text describing the overview of the service and contract of the service MUST be provided and encoded into "template" member in the base64 encoding.
+</t>
+
+<t>
+The RP finally digitally sign the CX Request using Magic Signatures to provide CX Signed Request for the service.
+</t>
+
+<t>
+All other parties referred by a CX Request MUST have prepared CX Signed Requests in the same procedure.
+</t>
+
+<t>
+A RP finally provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
+</t>
+
+</section>
+
+<section title="Providing CX Proposal">
+
+<t>
+When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. Depending on the web application provided by the RP for the CX Service, the RP creates CX Request file and sign it into CX Signed Request file. Otherwise the PR simply copies a predefined CX Signed Request file. All CX Signed Request file to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. "sighash" member SHOULD be calculated with the hash algorithm specified in "hashlag" which is "SHA256" as default if not specified. Hash base string is the simple concatenation of "sig" member of CX Signed Request in the same order in "reqs" array.
+</t>
+</section>
+
+
+<section title="Start OpenID Artifact Binding Session">
+
+<t>
+A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member of Artifact Binding Request file JSON object like in the following sample JSON:
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  REQUEST FILE JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#proposal",
+                 ... ( OTHER CX PROPOSAL JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+<t>
+OpenID authentication request session MUST be started to the OP specified by the End User at the RP's CX service page.
+</t>
+</section>
+</section>
+<section title="Accepting Proposal">
+    <section title="Accepting OpenID Artifact Binding Request">
+
+<t>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions. As described in "Sending Proposal", a CX Proposal JSON object has a member named "type" whose value is "http://specs.openid.net/cx/1.0/#proposal".
+</t>
+
+</section>
+
+
+<section title="Verify Proposal">
+
+<t>
+If CX Proposal is contained as a OpenID extention and the End User is authenticated properly, OP SHOULD veify the proposal. "sighash" SHOULD be verify for no alteration.
+</t>
+
+<t>
+All CX Signed Reqeust in "reqs" array MUST be verified. Because JSON objects in "reqs" are Magic Envelope, "sigs" of each JSON object MUST be verified with X.509 certificate decoded from "client_certs".
+</t>
+
+<t>
+If Magic Envelope is valid, "data" MUST be decoded into CX Request and checked its content.
+</t>
+
+<t>
+If there is "related_signs" array, each value of the array MUST be equal to the first "value" of "signs" member of CX Signed Request JSON object specified by corresponding "related_request" .
+</t>
+</section>
+
+<section title="Grants from End User">
+<t>
+If CX Proposal is valid, OP MUST display "template" and what exactly each party requests. To compose a contract, the End User MUST agree the content displayed by OP.
+</t>
+
+</section>
+
+<section title="Compose Response for Each Request">
+
+<t>
+If the End User agree, OP creates CX Response JSON objects for each CX Request. For each client(RP) and servers of CX Request, OP provides CX Sdata JSON object to store privacy data like PPID. CX Sdata JSON object MUST be encrypted using corresponding party's public key into CX Encrytped Sdata based on JSON Encryption Envelope procedure. Public key for client is extracted from "client_cert" of CX Signed Request. Public keys for servers MUST be discovered by OP or extracted from "server_cert" of CX Signed Request if the trivial endpoint is specified by RP. All CX Singed Sdata MUST be stored in "sdatas" array of CX Response JSON object.
+</t>
+
+<t>
+All shared keys used for creating CX Encrypted Sdata JSON object MUST be stored in "keys" array of CX Key JSON object. Also identifier of parties of "keys" MUST be stored in "parties" array of the same CX Key JSON object. This CX Key JSON object itself MUST be encrypted into CX Encrypted Key JSON object using OP's public key in the process of JSON Encryption Envelope.
+</t>
+</section>
+
+
+<section title="Compose Acceptance and Contract">
+
+<t>
+OP provides a CX Acceptance JSON object and allocates unique URI for "id" member of it. All CX Reponse JSON objects are stored in "res" array member of that JSON object. A CX Encrypted Key JSON object is stored in "keys" member.
+</t>
+
+<t>
+The original CX Proposal JSON object MUST be stored in "proposal" member of that JSON object.
+</t>
+
+<t>
+That CX Acceptance JSON object MUST be signed with OP's private key into CX Contracct JSON object like other Magic Envelope JSON object.
+</t>
+
+<t>
+OP MUST allocate an unique URI to "id" of CX Contract JSON object. That URI works as the endpoint where other parties bound to the contract request the CX Contract JSON object. X.509 certificate MUST be encoded by base64url and stored "signatory_certs" of CX Contract JSON object.
+</t>
+
+</section>
+</section>
+<section title="Receiving Contract">
+    <section title="Responding a CX Contract in OpenID Assertion">
+<t>
+If a RP request OpenID Artifact Binding assertion request and there is a CX Contract to be bound to that, the OP MUST return it as a "cx" member of the assertion JSON object.
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#contract",
+                 ... ( OTHER CX CONTRACT JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+
+<t>
+But if no CX Contract is available at the time when RP requests the assertion, OP MUST return CX Status JSON object as "cx" member of assertion JSON object.
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#status",
+                 ... ( OTHER CX STATUS JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+</section>
+
+<section title="Verifying Contract">
+
+<t>
+If the "cx" member of assertion JSON object is a CX Contract JSON object, RP MUST verify the signature of Magic Envelope first. RP MUST store the CX Contract if it is valid Magic Envelope.
+</t>
+
+<t>
+"data" member of a CX Contract MUST be decoded into CX Acceptance and RP SHOULD find own CX Encrypted Sdata and decrypt it if available. RP SHOULD store the decrypted CX Sdata for the purpose of saving computing resource again.
+</t>
+
+<t>
+RP SHOULD explain to the End User that a CX Contract has been successfully created and now RP is ready to request data according to the contract.
+</t>
+
+<t>
+If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User that a CX Contract has not been created yet and the reason by "status" member of the CX Status JSON object. RP MAY be notified later that a CX Contract is created by the OP.
+</t>
+
+</section>
+
+</section>
+
+<section title="Notify Contract Status">
+    <t>
+OP MAY send the status code of the CX Contract to the endpoint specified by "endpoint" member of CX Proposal. "code" query parameter SHOULD be artifact binding "code" and given to the endpoint URL. "status" query parameter SHOULD be the status of CX Contract.
+</t>
+
+<t>
+RP MAY request a direct assertion request using "code" query paramter to get JSON including CX Contract or CX Status JSON object.
+</t>
+</section>
+
+<section title="Data Request">
+    <section title="CX Data Request">
+
+<t>
+A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract
+A request MUST be formed in a HTTP GET request defined in the following URL.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+endpoint?party=_party_identfier_&cxid=_cx_identifier_
+    ]]></artwork>
+</figure>
+
+<t>where parameters are definend in the following.</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> endpoint
+                <list style="symbols">
+                    
+                        <t>REQUIRED Value: URI.</t>
+                    
+                        <t>If this uri is  a contract identfier, the OP MUST return the CX Contract specified by this identfiier.</t>
+                    
+                        <t>If this uri is  a endpoint of a CX Sdata, the party MUST return the data.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> party
+                <list style="symbols">
+                    
+                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string and returns in text/plain content type.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> cx_id
+                <list style="symbols">
+                    
+                        <t>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+
+<section title="Encrypted Response">
+<t>
+Encryption parameters MUST be returned HTTP response headers. Following are response header keys. All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
+</t>
+
+<t>
+    <list style="symbols">
+        
+            <t> cx_encoding
+                <list style="symbols">
+                    
+                        <t>Value: "Base64", "CBC-256-128-PKCS5_PADDING".</t>
+                    
+                        <t>If cx_encoding is "CBC-256-128-PKCS5_PADDING", the following parameters MUST be returned in addition.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> cx_enc_key
+                <list style="symbols">
+                    
+                        <t>Shared key to encrypt the message in "Encryption Base String" form. This key itself is encrypted asymmetrically with decryptors' public key included in the Contract and base 64 encoded.</t>
+                    
+                        <t>Value: base64 string.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> cx_enc_iv
+                <list style="symbols">
+                    
+                        <t>Type URI for initialization vector used in a block encryption.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
+</section>
+
+</section>
+
+
+<section title="OAuth">
+
+<t>If the "endpoint" is OAuth protocol base, the service party MUST follow OAuth 2.0 protocol and return a proper response message describing that the "endpoint" is an OAuth protected resource.</t>
+
+<t>And the requesting party MUST also follows OAuth 2.0 assertion flow protocol to get an authorized token and access protected resource at the "endpoint" </t>
+
+<t>A responding party MUST return the response in encrypted payload same as in CX Data Request or plaint text in SSL/TSL secured channel.</t>
+</section>
+
+
+
+
+</section>
+    </section>
 
     <section title="Security Considerations">
-      <t />
+        
+<section title="non-repudiation">
+<t>
+Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
+</t>
+</section>
 
-      <section title="Non-repudiation">
-        <t>Since CX is a message oriented public key based signing protocol,
-        it offers non-repudiation unlike plain OpenID Authentication 2.0.</t>
-      </section>
+<section title="Man-in-the-middle">
+<t>
+A RP must verify the validity of the OP's identity and public key and vice versa.
+</t>
+</section>
 
-      <section title="Man-in-the-middle">
-        <t>RP must verify the validity of the OP&rsquo;s identity and public
-        key and vice versa.</t>
-      </section>
+  
+<section title="Eavesdropping">
+<t>
+When encryption mode is used, the payload is encrypted and only the real recipient can decipher it. Thus, obtaining sensitive data through eavesdropping is very difficult.
 
-      <section title="Eavesdropping">
-        <t>When encryption mode is used, the payload is encrypted and only the
-        real recipient can decipher it. Thus, obtaining sensitive data through
-        eavesdropping is very difficult.</t>
-      </section>
+</t>
+</section>
+  
+<section title="Malicious Providers">
+<t>
+Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
+</t>
+</section>
 
-      <section title="Malicious Providers">
-        <t>Malicious Providers that is behaving correctly according to this
-        protocol cannot be coped within this protocol. It has to do the
-        checking of the certificate with some assurance services and/or
-        reputation services including RBL and white list.</t>
-      </section>
-
-      <section title="Phishing Attack">
-        <t>Phishing attack is a social engineering, so it should in principle
-        be dealt with the non-knowledge-based authentication mechanism. This
-        is clearly out of scope of this extension.</t>
-      </section>
-
-      <section title="Private key compromise">
-        <t>In the unlikely event of private key compromise, the party should
-        immediately notify the CA as well as the counter party stated in the
-        Contract document. This will minimize the damage by the incident.</t>
-      </section>
+<section title="Phishing Attack"> 
+<t>
+Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
+</t>
+</section>
+  
+<section title="Private Key Compromise">
+<t>
+In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
+</t>
+</section>
     </section>
-
-    <section title="Appendix A. Parameters">
-      <t>This specification defines a small set of common parameters that may
-      be generally useful for the contracting purposes.<list style="symbols">
-          <t>AX Request<list style="symbols">
-              <t>description: Used to convey the data that the requester
-              requests.</t>
-
-              <t>type URL: http://opneid.net/srv/cx/1.0#axreq</t>
-
-              <t>value: Attribute Exchange 1.1 string in
-              tag=value&amp;tag=value format as in X1.1</t>
-
-              <t>Conformance: MUST support.</t>
-            </list></t>
-
-          <t>Price to be paid by the party<list style="symbols">
-              <t>description: The price to be paid to execute this
-              contract.</t>
-
-              <t>type URL: http://openid.net/srv/cx/1.0/#price#currency where
-              currency is replaced by the ISO currency code or
-              &lsquo;other&rsquo;</t>
-
-              <t>value: Decimal string when #currency is ISO code, and
-              anyString when #currency is &lsquo;other&rsquo;</t>
-
-              <t>Conformance: MUST support</t>
-            </list></t>
-
-          <t>Maximum Liability assumed by the party<list style="symbols">
-              <t>description: The maximum liability assumed by the party when
-              there was a breach in the contract.</t>
-
-              <t>type URL: http://openid.net/srv/cx/1.0/#damageslimit#currency
-              where currency is replaced by the ISO currency code or
-              &lsquo;other&rsquo;</t>
-
-              <t>value: Decimal string when #currency is ISO code, and
-              anyString when #currency is &lsquo;other&rsquo;</t>
-
-              <t>Conformance: MUST support</t>
-            </list></t>
-
-          <t>Contact<list style="symbols">
-              <t>description: The address at which the party can be reached
-              at.</t>
-
-              <t>type URL: http://openid.net/srv/cx/1.0/#contact</t>
-
-              <t>value: xs:string</t>
-
-              <t>Conformance: MUST support</t>
-            </list></t>
-
-          <t>Datetime<list style="symbols">
-              <t>type URL: http://www.w3.orgg/TR/xmlschema-2/#datetime</t>
-
-              <t>value: The value defined as xs:dateTime in W3C XML Schema
-              Datatypes specification, and MUST be expressed in UTC form, with
-              no time zone component (represented by the UTC &lsquo;Z&rsquo;
-              timezone). It must not specify the time instants that
-              corresponds to leap seconds.</t>
-
-              <t>Conformance: MUST support.</t>
-            </list></t>
-
-          <t>String<list style="symbols">
-              <t>type URL: http://www.w3.orgg/TR/xmlschema-2/#string</t>
-
-              <t>value: UTF-8 string.</t>
-
-              <t>Conformance: MUST support.</t>
-            </list></t>
-        </list></t>
-
-      <t />
-    </section>
-
-    <section title="Appendix B. Examples">
-      <section title="Proposal Sample">
-        <t>A sample Contract XML Proposal would look like as follows:</t>
-
-        <figure>
-          <artwork><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<Contract id="e4bf53a8e97211de93e00800272c981e">
-    <Type>http://openid.net/srv/cx/1.0/#proposal</Type>
-    <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-    <Party id='http://netshop.com' >
-        <Rel>http://openid.net/srv/cx/1.0/#proposer</Rel>
-        <obligations>
-            <param type="http://cxop.net/cx/payment/totalamount" id="taotalamount">500.0</param>
-            <param type="http://cxop.net/cx/payment/title" id="title">Python Books</param>
-        </obligations>
-    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-<SignedInfo>
-<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
-<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-<Reference>
-<Transforms>
-<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-</Transforms>
-<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>vSS75vnUZ/OIAkkEGr4qUjr9O2c=</DigestValue>
-</Reference>
-</SignedInfo>
-<SignatureValue>gzfVURVGlKV7UCa7kj+TyHrHU/QmPDSDw85zPzjv+/qPpAQs+2RepfoZCfBqWE1H
-V1bl307CGPDBllg4Wd3IVZViInm4j1d28/M1BA45YJdD2BOhlkf6laFI5lKXwQQe
-oEgSDZ/6ll/+s1rCU6WfZK30x2eaa6j+ZM9njsosAyE=</SignatureValue>
-<KeyInfo>
-<X509Data>
-<X509Certificate>MIICEzCCAXwCCQDFGL222nxEqDANBgkqhkiG9w0BAQUFADBOMRUwEwYDVQQDEwxu
-ZXRzaG9wLmNvbSAxGTAXBgNVBAsTEHN5cy5uZXRzaG9wLmNvbSAxDTALBgNVBAoT
-BHN5cyAxCzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NFoXDTEwMDExNDEyMTA1
-NFowTjEVMBMGA1UEAxMMbmV0c2hvcC5jb20gMRkwFwYDVQQLExBzeXMubmV0c2hv
-cC5jb20gMQ0wCwYDVQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0B
-AQEFAAOBjQAwgYkCgYEAtsFDpf8IYU0GHpSZMM0PgWZ7ANvbnuqv2haiCmYvVjq3
-X8Lpwb8RZY9TN5nckuAeQcNlTh8lL6Bz3v/mgwvGLuM57rLt4Rj9cbQfF8V5T+oV
-wOxsLnQB9KJHzn21Y5LdpVgGpdCvT6h8Utw9+8EHovRd2IDo2g1Mn2NuLZNP13MC
-AwEAATANBgkqhkiG9w0BAQUFAAOBgQCd+et9R8fDuGH3jyw9xEgBF73fs/06U++X
-IyJyFGDQNIZf2iKm6ZJSzjCCQsoRUlu74NP34PAq3RcPe9g6+MpN45J51dlAG2Xm
-MZ+u3qaTaAM2PBDSZM0SAa5AeOZ3w53naoIHRQjRHTTWEcrY9PQatHajq+De5IZg
-uFAx2HjGzA==</X509Certificate>
-</X509Data>
-</KeyInfo>
-</Signature></Party>
-    <Party id="=hdknr" >
-        <rel>http://openid.net/srv/cx/1.0/#proposer</rel>
-        <obligations/>
-    </Party>
-    <Party id="http://cxop.com" >
-        <rel>http://openid.net/srv/cx/1.0/#proxy_proposer</rel>
-    </Party>
-    <Service>
-        <Type>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</Type>
-        <URL>http://cxop.net/openid/</URL>
-    </Service>
-    <TemplateURL>http://cxop.net/cx/payment#sha256:40ea725769e6221908f08675014cff1b13e8399a5eb5555c21687d487da0b66c</TemplateURL>
-    <Template>PT09PT09PT09PT09PT09PT09PT09PT09PT09CklOVEVSTkVUIFBBWU1NRU5UIEFHUkVFTUVOVAo9
-PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldoZXJlYXMge3tlbmRfdXNlcn19IHBheXMgZm9y
-IHRoZSBzZXJ2aWNlcyBwcm92aWRlZCBieSB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBhdCB0aGUge3sg
-b3BfcHJvdm9kZXJ9fSdzIHBheW1lbnQgc2VydmljZS4gCgogMS4gICB7e2VuZF91c2VyfX0gbXVz
-dCBwYXkgdG8ge3sgb3BfcHJvdmlkZXJ9fSB1bnRpbCB0aGUgZGF5IHNwZWNpZmllZCBpbiB0aGUg
-IkNyZWRpdCBDYXJkIFBheW1lbnQgQWdyZWVtZW50IiBiZXR3ZWVuIHt7IG9wX3Byb3ZpZGVyfX0g
-YW5kIAogICAgICB7e2VuZF91c2VyfX19LiBCb3RoIG9mIHRoZW0gbXVzdCBmb2xsb3cgYWxsIHdh
-cnJhbnRpZXMgYW5kIGRpc2NsYWltZXIgd3JpdHRlcm4gb24gdGhlIGFncmVlbWVudC4KCgogMi4g
-ICB7e3NlcnZpY2VfcHJvdmlkZXJ9fSBtdXN0IGJlIHBhaWQgYnkge3sgb3BfcHJvdmlkZXIgfX0g
-YmFzZWQgb24gdGhlICJEaWdpdGFsIFBheW1lbnQgU2VydmljZSBBZ3JlZW1lbnQiIGJldHdlZW4g
-e3sgb3BfcHJvdmlkZXIgfX0KICAgICAgYW5kIHt7IHNlcnZpY2VfcHJvdmlkZXIgfX0uIEJvdGgg
-b2YgdGhlbSBtdXN0IGZvbGxvdyBhbGwgd2FycmFudGllcyBhbmQgZGlzY2xhaW1lciAgd3JpdHRl
-cm4gb24gdGhlIGFncmVlbWVudC4KCiAzLiAgIHt7c2VydmljZV9wcm92aWRlcn19IG11c3QgZGln
-aXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBvbiB0aGlzIGRvY3VtZW50LgoKIDQuICAg
-e3tvcF9wcm92aWRlcn19IG11c3QgZGlnaXRhbGx5IHNpZ24gdGhlIGFncmVlbWVudCBiYXNlZCBv
-biB0aGlzIGRvY3VtZW50IG9uIHRoZSBiZWhhbGYgb2Yge3sgZW5kX3VzZXIgfX0uCgp7e3NlcnZp
-Y2VfcHJvdmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0tLS0tLQoKIEJ5OiAgICAgIHt7cHJvcG9zZXJf
-c2lnbmF0b3J5fX0KCiBUaXRsZTogICB7e3Byb3Bvc2VyX3RpdGxlfX0KCiBEYXRlOiAgICB7e25v
-d319Cgp7e2VuZF91c2VyfX0KLS0tLS0tLS0tLS0tCgogQnk6ICAgICAge3tlbmRfdXNlcn19Cgog
-VGl0bGU6ICAge3tlbmRfdXNlcl90aXRsZX19CgogRGF0ZTogICAge3tub3d9fQoKCnt7b3BfcHJv
-dmlkZXJ9fQotLS0tLS0tLS0tLS0tLS0KCiBCeTogICAgICB7e2FjY2VwdG9yX3NpZ25hdG9yeX19
-CiAKIFRpdGxlOiAgIHt7YWNjZXB0b3JfdGl0bGV9fQogIAogRGF0ZTogICAge3tub3d9fQoK
-</Template>
-</Contract>
-                
-
-]]></artwork>
-        </figure>
-      </section>
-
-      <section title="Contract Sample">
-        <t>A sample Contract XML Contract would look like as follows:</t>
-
-        <figure>
-          <artwork><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<Contract id="e5279de6e97211de93e00800272c981e">
-    <Type>http://openid.net/srv/cx/1.0/#contract</Type>
-    <Datetime>2009-12-15T21:10:54+9:00</Datetime>
-    <Party id="=hdknr" >
-        <rel>http://openid.net/srv/cx/1.0/#proposer</rel>
-        <obligations/>
-    </Party>
-    <Party id='http://cxop.net' >
-        <Rel>http://openid.net/srv/cx/1.0/#proxy_acceptor</Rel>
-        <obligations>
-            <param type="http://cxop.net/cx/payment/statuscode" id="statuscode">200</param>
-            <param type="http://cxop.net/cx/payment/description" id="description">OK</param>
-        </obligations>
-    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-<SignedInfo>
-<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
-<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-<Reference>
-<Transforms>
-<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-</Transforms>
-<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>qjE64vEk/1X6ZAoetneAeg8cYOY=</DigestValue>
-</Reference>
-</SignedInfo>
-<SignatureValue>IbqKT6o2pe/iSiNKA1JtQoUkCiEnMjZERbFBBaOgD6EmsyK2tIhwwHWGuAq0uAea
-kZVrCfeVw2Yck9RTk3f1zoqJVkmBcJOanuzshrh02hqtjp3wEEAwp4iXB/32qcEc
-scaV1iubMjI1abxHmzkhyDNZdTQ/fsuu1yTRhZcI3WU=</SignatureValue>
-<KeyInfo>
-<X509Data>
-<X509Certificate>MIICBzCCAXACCQCfVmQZ3hrYvTANBgkqhkiG9w0BAQUFADBIMRIwEAYDVQQDEwlj
-eG9wLm5ldCAxFjAUBgNVBAsTDXN5cy5jeG9wLm5ldCAxDTALBgNVBAoTBHN5cyAx
-CzAJBgNVBAYTAkpQMB4XDTA5MTIxNTEyMTA1NVoXDTEwMDExNDEyMTA1NVowSDES
-MBAGA1UEAxMJY3hvcC5uZXQgMRYwFAYDVQQLEw1zeXMuY3hvcC5uZXQgMQ0wCwYD
-VQQKEwRzeXMgMQswCQYDVQQGEwJKUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
-gYEAtNk+qHH/luZjt0IQEck6jjANJ2fQLG5oOyF80C/PA5sStoc6LLgh0VosDp/S
-ixTCuTs3NRk+9NtA0Ej0f9Z9sUgNTS9ybyY3QbMDn+rAbo+MZqXnyKeqt98O0SEr
-W2HB5Ucmk0pc20mS5GuJt3J3E6KIh3seWwINZfio3g3AcgECAwEAATANBgkqhkiG
-9w0BAQUFAAOBgQCI+Ztcpy+M2eW+fSm5JyS5YQm32ZFtyK6EtKLP4z5mqM9i+zvq
-i1Po7/KkpuVqCPjR/qmjplwgZj+7yDeecE8GsO1D6p07eaInF7GQr5wenI6O25c/
-FfUYATTzJCfDJDJy7mJDlZq9WIjXBV07ymAnV30HXObgauqyPYlHp6JH4g==</X509Certificate>
-</X509Data>
-</KeyInfo>
-</Signature></Party>
-    <Original>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbnRyYWN0IGlkPSJlNGJm
-NTNhOGU5NzIxMWRlOTNlMDA4MDAyNzJjOTgxZSI+CiAgICA8VHlwZT5odHRwOi8vb3BlbmlkLm5l
-dC9zcnYvY3gvMS4wLyNwcm9wb3NhbDwvVHlwZT4KICAgIDxEYXRldGltZT4yMDA5LTEyLTE1VDIx
-OjEwOjU0Kzk6MDA8L0RhdGV0aW1lPgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+aHR0cDovL25l
-dHNob3AuY29tPC9VUkw+CiAgICAgICAgPFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4w
-LyNwcm9wb3NlcjwvUmVsPgogICAgICAgIDxvYmxpZ2F0aW9ucz4KICAgICAgICAgICAgPHBhcmFt
-IHR5cGU9Imh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50L3RvdGFsYW1vdW50IiBpZD0idGFvdGFs
-YW1vdW50Ij41MDAuMDwvcGFyYW0+CiAgICAgICAgICAgIDxwYXJhbSB0eXBlPSJodHRwOi8vY3hv
-cC5uZXQvY3gvcGF5bWVudC90aXRsZSIgaWQ9InRpdGxlIj5QeXRob24gQm9va3M8L3BhcmFtPgog
-ICAgICAgIDwvb2JsaWdhdGlvbnM+CiAgICA8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3Lncz
-Lm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0
-aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+
-CjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
-bGRzaWcjcnNhLXNoYTEiLz4KPFJlZmVyZW5jZT4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxn
-b3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25h
-dHVyZSIvPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3
-LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIvPgo8RGlnZXN0VmFsdWU+dlNTNzV2blVaL09J
-QWtrRUdyNHFVanI5TzJjPTwvRGlnZXN0VmFsdWU+CjwvUmVmZXJlbmNlPgo8L1NpZ25lZEluZm8+
-CjxTaWduYXR1cmVWYWx1ZT5nemZWVVJWR2xLVjdVQ2E3a2orVHlIckhVL1FtUERTRHc4NXpQemp2
-Ky9xUHBBUXMrMlJlcGZvWkNmQnFXRTFIClYxYmwzMDdDR1BEQmxsZzRXZDNJVlpWaUlubTRqMWQy
-OC9NMUJBNDVZSmREMkJPaGxrZjZsYUZJNWxLWHdRUWUKb0VnU0RaLzZsbC8rczFyQ1U2V2ZaSzMw
-eDJlYWE2aitaTTluanNvc0F5RT08L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRh
-Pgo8WDUwOUNlcnRpZmljYXRlPk1JSUNFekNDQVh3Q0NRREZHTDIyMm54RXFEQU5CZ2txaGtpRzl3
-MEJBUVVGQURCT01SVXdFd1lEVlFRREV3eHUKWlhSemFHOXdMbU52YlNBeEdUQVhCZ05WQkFzVEVI
-TjVjeTV1WlhSemFHOXdMbU52YlNBeERUQUxCZ05WQkFvVApCSE41Y3lBeEN6QUpCZ05WQkFZVEFr
-cFFNQjRYRFRBNU1USXhOVEV5TVRBMU5Gb1hEVEV3TURFeE5ERXlNVEExCk5Gb3dUakVWTUJNR0Ex
-VUVBeE1NYm1WMGMyaHZjQzVqYjIwZ01Sa3dGd1lEVlFRTEV4QnplWE11Ym1WMGMyaHYKY0M1amIy
-MGdNUTB3Q3dZRFZRUUtFd1J6ZVhNZ01Rc3dDUVlEVlFRR0V3SktVRENCbnpBTkJna3Foa2lHOXcw
-QgpBUUVGQUFPQmpRQXdnWWtDZ1lFQXRzRkRwZjhJWVUwR0hwU1pNTTBQZ1daN0FOdmJudXF2Mmhh
-aUNtWXZWanEzClg4THB3YjhSWlk5VE41bmNrdUFlUWNObFRoOGxMNkJ6M3YvbWd3dkdMdU01N3JM
-dDRSajljYlFmRjhWNVQrb1YKd094c0xuUUI5S0pIem4yMVk1TGRwVmdHcGRDdlQ2aDhVdHc5KzhF
-SG92UmQySURvMmcxTW4yTnVMWk5QMTNNQwpBd0VBQVRBTkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FD
-ZCtldDlSOGZEdUdIM2p5dzl4RWdCRjczZnMvMDZVKytYCkl5SnlGR0RRTklaZjJpS202WkpTempD
-Q1Fzb1JVbHU3NE5QMzRQQXEzUmNQZTlnNitNcE40NUo1MWRsQUcyWG0KTVordTNxYVRhQU0yUEJE
-U1pNMFNBYTVBZU9aM3c1M25hb0lIUlFqUkhUVFdFY3JZOVBRYXRIYWpxK0RlNUlaZwp1RkF4Mkhq
-R3pBPT08L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVy
-ZT48L1BhcnR5PgogICAgPFBhcnR5PgogICAgICAgIDxVUkw+PWhka25yPC9VUkw+CiAgICAgICAg
-PFJlbD5odHRwOi8vb3BlbmlkLm5ldC9zcnYvY3gvMS4wLyNwcm9wb3NlcjwvUmVsPgogICAgICAg
-IDxvYmxpZ2F0aW9ucy8+CiAgICA8L1BhcnR5PgogICAgPFNlcnZpY2U+CiAgICAgICAgPFR5cGU+
-aHR0cDovL2N4b3AubmV0L2N4L3BheW1lbnQjc2hhMjU2OjQwZWE3MjU3NjllNjIyMTkwOGYwODY3
-NTAxNGNmZjFiMTNlODM5OWE1ZWI1NTU1YzIxNjg3ZDQ4N2RhMGI2NmM8L1R5cGU+CiAgICAgICAg
-PFVSTD5odHRwOi8vY3hvcC5uZXQvb3BlbmlkLzwvVVJMPgogICAgPC9TZXJ2aWNlPgogICAgPFRl
-bXBsYXRlVVJMPmh0dHA6Ly9jeG9wLm5ldC9jeC9wYXltZW50I3NoYTI1Njo0MGVhNzI1NzY5ZTYy
-MjE5MDhmMDg2NzUwMTRjZmYxYjEzZTgzOTlhNWViNTU1NWMyMTY4N2Q0ODdkYTBiNjZjPC9UZW1w
-bGF0ZVVSTD4KICAgIDxUZW1wbGF0ZT5QVDA5UFQwOVBUMDlQVDA5UFQwOVBUMDlQVDA5UFQwOVBU
-MDlDa2xPVkVWU1RrVlVJRkJCV1UxTlJVNVVJRUZIVWtWRlRVVk9WQW85ClBUMDlQVDA5UFQwOVBU
-MDlQVDA5UFQwOVBUMDlQVDA5UFQwS0NsZG9aWEpsWVhNZ2UzdGxibVJmZFhObGNuMTlJSEJoZVhN
-Z1ptOXkKSUhSb1pTQnpaWEoyYVdObGN5QndjbTkyYVdSbFpDQmllU0I3ZTNObGNuWnBZMlZmY0hK
-dmRtbGtaWEo5ZlNCaGRDQjBhR1VnZTNzZwpiM0JmY0hKdmRtOWtaWEo5ZlNkeklIQmhlVzFsYm5R
-Z2MyVnlkbWxqWlM0Z0Nnb2dNUzRnSUNCN2UyVnVaRjkxYzJWeWZYMGdiWFZ6CmRDQndZWGtnZEc4
-Z2Uzc2diM0JmY0hKdmRtbGtaWEo5ZlNCMWJuUnBiQ0IwYUdVZ1pHRjVJSE53WldOcFptbGxaQ0Jw
-YmlCMGFHVWcKSWtOeVpXUnBkQ0JEWVhKa0lGQmhlVzFsYm5RZ1FXZHlaV1Z0Wlc1MElpQmlaWFIz
-WldWdUlIdDdJRzl3WDNCeWIzWnBaR1Z5ZlgwZwpZVzVrSUFvZ0lDQWdJQ0I3ZTJWdVpGOTFjMlZ5
-ZlgxOUxpQkNiM1JvSUc5bUlIUm9aVzBnYlhWemRDQm1iMnhzYjNjZ1lXeHNJSGRoCmNuSmhiblJw
-WlhNZ1lXNWtJR1JwYzJOc1lXbHRaWElnZDNKcGRIUmxjbTRnYjI0Z2RHaGxJR0ZuY21WbGJXVnVk
-QzRLQ2dvZ01pNGcKSUNCN2UzTmxjblpwWTJWZmNISnZkbWxrWlhKOWZTQnRkWE4wSUdKbElIQmhh
-V1FnWW5rZ2Uzc2diM0JmY0hKdmRtbGtaWElnZlgwZwpZbUZ6WldRZ2IyNGdkR2hsSUNKRWFXZHBk
-R0ZzSUZCaGVXMWxiblFnVTJWeWRtbGpaU0JCWjNKbFpXMWxiblFpSUdKbGRIZGxaVzRnCmUzc2di
-M0JmY0hKdmRtbGtaWElnZlgwS0lDQWdJQ0FnWVc1a0lIdDdJSE5sY25acFkyVmZjSEp2ZG1sa1pY
-SWdmWDB1SUVKdmRHZ2cKYjJZZ2RHaGxiU0J0ZFhOMElHWnZiR3h2ZHlCaGJHd2dkMkZ5Y21GdWRH
-bGxjeUJoYm1RZ1pHbHpZMnhoYVcxbGNpQWdkM0pwZEhSbApjbTRnYjI0Z2RHaGxJR0ZuY21WbGJX
-VnVkQzRLQ2lBekxpQWdJSHQ3YzJWeWRtbGpaVjl3Y205MmFXUmxjbjE5SUcxMWMzUWdaR2xuCmFY
-UmhiR3g1SUhOcFoyNGdkR2hsSUdGbmNtVmxiV1Z1ZENCaVlYTmxaQ0J2YmlCMGFHbHpJR1J2WTNW
-dFpXNTBMZ29LSURRdUlDQWcKZTN0dmNGOXdjbTkyYVdSbGNuMTlJRzExYzNRZ1pHbG5hWFJoYkd4
-NUlITnBaMjRnZEdobElHRm5jbVZsYldWdWRDQmlZWE5sWkNCdgpiaUIwYUdseklHUnZZM1Z0Wlc1
-MElHOXVJSFJvWlNCaVpXaGhiR1lnYjJZZ2Uzc2daVzVrWDNWelpYSWdmWDB1Q2dwN2UzTmxjblpw
-ClkyVmZjSEp2ZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFFvS0lFSjVPaUFn
-SUNBZ0lIdDdjSEp2Y0c5elpYSmYKYzJsbmJtRjBiM0o1ZlgwS0NpQlVhWFJzWlRvZ0lDQjdlM0J5
-YjNCdmMyVnlYM1JwZEd4bGZYMEtDaUJFWVhSbE9pQWdJQ0I3ZTI1dgpkMzE5Q2dwN2UyVnVaRjkx
-YzJWeWZYMEtMUzB0TFMwdExTMHRMUzB0Q2dvZ1FuazZJQ0FnSUNBZ2UzdGxibVJmZFhObGNuMTlD
-Z29nClZHbDBiR1U2SUNBZ2UzdGxibVJmZFhObGNsOTBhWFJzWlgxOUNnb2dSR0YwWlRvZ0lDQWdl
-M3R1YjNkOWZRb0tDbnQ3YjNCZmNISnYKZG1sa1pYSjlmUW90TFMwdExTMHRMUzB0TFMwdExTMEtD
-aUJDZVRvZ0lDQWdJQ0I3ZTJGalkyVndkRzl5WDNOcFoyNWhkRzl5ZVgxOQpDaUFLSUZScGRHeGxP
-aUFnSUh0N1lXTmpaWEIwYjNKZmRHbDBiR1Y5ZlFvZ0lBb2dSR0YwWlRvZ0lDQWdlM3R1YjNkOWZR
-b0sKPC9UZW1wbGF0ZT4KPC9Db250cmFjdD4K
-</Original>
-</Contract>
-
-
-]]></artwork>
-        </figure>
-      </section>
-    </section>
-
-    <section title="Appendix C. Common Contract Constructs used in CX">
-      <t>Followings are the list of common contract constructs. Each contract
-      type should define some of the following as data type and utilize it in
-      the template.<list style="symbols">
-          <t>Contract Identifier (0 or more)<list style="empty">
-              <t>Defined as /Contract/Id in the core.</t>
-            </list></t>
-
-          <t>Parties ( 2 or more )<list style="empty">
-              <t>Stakeholders in a contract. Defined as /Contract/Party.</t>
-            </list></t>
-
-          <t>Individual Signatories ( 2 or more ) <list style="empty">
-              <t>The person who signs on behalf of one of the Party. Defined
-              as /Contract/Party/ds:Signature/ds:KeyInfo.</t>
-            </list></t>
-
-          <t>Title or Capacity of Signatories ( 0 or more ) <list style="empty">
-              <t>Signers responsibility.</t>
-            </list></t>
-
-          <t>Date of Signature ( 0 or more )<list style="empty">
-              <t>Date of Signature.</t>
-            </list></t>
-
-          <t>Contact Details (for notices) ( 0 or more )<list style="empty">
-              <t>The address at which the parties can be contacted.</t>
-            </list></t>
-
-          <t>Actions, or Other Items to be delivered ( 1 or more )<list style="empty">
-              <t>Description of goods, services.</t>
-            </list></t>
-
-          <t>Quantity to be Delivered ( 1 or more )</t>
-
-          <t>Price ( 1 or more ) <list style="empty">
-              <t>This should include denomination of currency [ex., USD$],
-              description of non-monetary consideration, any formula or
-              external reference for calculation</t>
-            </list></t>
-
-          <t>Date of delivery or other performance ( 0 or more )</t>
-
-          <t>Place of delivery or other performance ( 0 or more )</t>
-
-          <t>Definitions ( 0 or more )</t>
-
-          <t>Conditions ( 0 or more )<list style="empty">
-              <t>Ex., performance contingent on certain events, payment
-              contingent on standards of acceptance</t>
-            </list></t>
-
-          <t>Warranties ( 0 or more )<list style="empty">
-              <t>Ex., warranty of non-infringement, warranty of conformance to
-              stated specifications, warranty of legal authority, warranty of
-              insurance coverage</t>
-            </list></t>
-
-          <t>Relationship to other contracts ( 0 or more )<list style="empty">
-              <t>Ex., purchase order under a framework agreement</t>
-            </list></t>
-
-          <t>Term of contract ( 0 or more )<list style="empty">
-              <t>May include renewal provisions</t>
-            </list></t>
-
-          <t>Termination ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Billing and payment ( 0 or more )<list style="empty">
-              <t>Ex., net 30 days, discounts, late penalties, wire
-              transfers</t>
-            </list></t>
-
-          <t>Governing Law ( 0 or more )<list style="empty">
-              <t>Ex., English law, Japanese law, law of California, German
-              Civil Code</t>
-            </list></t>
-
-          <t>Jurisdiction and forum ( 0 or more )<list style="empty">
-              <t>Ex., courts of general jurisdiction located in New York
-              City</t>
-            </list></t>
-
-          <t>Waiver of Jury Trial ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Arbitration / alternative dispute resolution ( 0 or more )<list style="empty">
-              <t>Ex., ICC binding arbitration clause, arbitration to be
-              conducted in Geneva, Switzerland</t>
-            </list></t>
-
-          <t>Merger clause/ entire agreement ( 0 or more )<list style="empty">
-              <t>Provision stating that this is the entire agreement between
-              the parties and excluding claims based on statement in
-              advertising or negotiations.</t>
-            </list></t>
-
-          <t>Survival ( 0 or more )<list style="empty">
-              <t>Clauses providing that certain terms, such as indemnification
-              or confidentiality, survive expiration or termination of the
-              contract</t>
-            </list></t>
-
-          <t>Damages/Limitation of Liability ( 0 or more )<list style="empty">
-              <t>Provisions on calculation of damages, liquidated damages,
-              limitation or exclusion of certain kinds of damages</t>
-            </list></t>
-
-          <t>Warranty disclaimers ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Indemnification ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Third-party beneficiary rights ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Relationship of Parties ( 0 or more )<list style="empty">
-              <t>Ex., provisions creating or disclaiming agency or employment
-              relationship</t>
-            </list></t>
-
-          <t>Confidentiality / Nondisclosure Publicity ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Proprietary Rights, Ownership and Licensing of Intellectual
-          Propert ( 0 or more )y<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Assignment, Succession, Delegation ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Legal and Regulatory Compliance ( 0 or more )<list style="empty">
-              <t>Ex., licensing obligations, export controls, data
-              protection</t>
-            </list></t>
-
-          <t>Notice Requirements ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Force Majeure ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-
-          <t>Counterparts and Signatures ( 0 or more )<list style="empty">
-              <t>Provisions allowing signatures at different times; validity
-              of multiple copies or printouts</t>
-            </list></t>
-
-          <t>Other Terms ( 0 or more )<list style="empty">
-              <t />
-            </list></t>
-        </list></t>
-    </section>
-
-    <appendix anchor="examples" title="Examples" />
 
     <appendix title="Acknowledgements">
-      <t>Authors would like to thank [...] for their feedback when drafting this
-      specification.</t>
+        
     </appendix>
-  </middle>
 
+  </middle>
   <back>
     <references title="Normative References">
       <reference anchor="RFC2119">
