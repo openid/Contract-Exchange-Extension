@@ -1,6 +1,0 @@
-{
-    "type" : "http://specs.openid.net/cx/1.0/#keys",   
-    "parties"  : [       ],
-    "keys":  [     ],
-    ...(ANY OTHER MEMBERS ) ...
-}

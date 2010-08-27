@@ -1,7 +1,0 @@
-{
-    "type" : "http://specs.openid.net/cx/1.0/#signed_request",   
-    "id" : "http://requesting.com/432143",
-    "client_certs" : ".... ( PEM STRING OF client_id's X.509 CERTIFICATE) ...",
-    "server_certs" : "... ( PEM STRING OF server_id's X.509 CERTIFICATE ) ...",
-     ... ( OTHER Magic Envelop PARAMTERS ) ...
-}

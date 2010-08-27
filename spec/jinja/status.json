@@ -1,7 +1,0 @@
-{
-    "type" :  "http://specs.openid.net/cx/1.0/#status",
-    "id" : "http://op.com/contract/f43213214",
-    "proposal_id" :  "http://rp.net/cx/54643",
-    "status" : "pending" , 
-     ...    (other  JSON MEMBERS )   ...
-}
