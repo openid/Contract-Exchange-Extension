@@ -1,0 +1,38 @@
+
+<section title="non-repudiation">
+<t>
+Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
+</t>
+</section>
+
+<section title="Man-in-the-middle">
+<t>
+A RP must verify the validity of the OP's identity and public key and vice versa.
+</t>
+</section>
+
+  
+<section title="Eavesdropping">
+<t>
+When encryption mode is used, the payload is encrypted and only the real recipient can decipher it. Thus, obtaining sensitive data through eavesdropping is very difficult.
+
+</t>
+</section>
+  
+<section title="Malicious Providers">
+<t>
+Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
+</t>
+</section>
+
+<section title="Phishing Attack"> 
+<t>
+Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
+</t>
+</section>
+  
+<section title="Private Key Compromise">
+<t>
+In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
+</t>
+</section>

@@ -1,0 +1,53 @@
+<section title="Advertising Service">
+
+<t>Before advertising CX Service, a RP MUST collect all Signed Request files related to that service.</t>
+
+<t>
+A RP MUST prepare its own CX Request file which SHOULD refer signatures of all other Signed Request files in "related_requests" and "related_signs". "server_id" MAY be used when a particular service endpoint has been already known by the RP. "payment_from" and "payment_to" SHOULD be provided to know what exact benefit is given to an End User and what exact obligation MUST be paid by an End User. A text describing the overview of the service and contract of the service MUST be provided and encoded into "template" member in the base64 encoding.
+</t>
+
+<t>
+The RP finally digitally sign the CX Request using Magic Signatures to provide CX Signed Request for the service.
+</t>
+
+<t>
+All other parties referred by a CX Request MUST have prepared CX Signed Requests in the same procedure.
+</t>
+
+<t>
+A RP finally provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
+</t>
+
+</section>
+
+<section title="Providing CX Proposal">
+
+<t>
+When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. Depending on the web application provided by the RP for the CX Service, the RP creates CX Request file and sign it into CX Signed Request file. Otherwise the PR simply copies a predefined CX Signed Request file. All CX Signed Request file to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. "sighash" member SHOULD be calculated with the hash algorithm specified in "hashlag" which is "SHA256" as default if not specified. Hash base string is the simple concatenation of "sig" member of CX Signed Request in the same order in "reqs" array.
+</t>
+</section>
+
+
+<section title="Start OpenID Artifact Binding Session">
+
+<t>
+A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member of Artifact Binding Request file JSON object like in the following sample JSON:
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  REQUEST FILE JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#proposal",
+                 ... ( OTHER CX PROPOSAL JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+<t>
+OpenID authentication request session MUST be started to the OP specified by the End User at the RP's CX service page.
+</t>
+</section>

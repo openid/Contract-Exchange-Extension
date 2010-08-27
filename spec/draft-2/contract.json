@@ -1,0 +1,6 @@
+{
+    "type" :  "http://specs.openid.net/cx/1.0/#contract",
+    "id" : "http://op.com/contract/f43213214",
+    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
+     ...    (other Magic Envelop JSON MEMBERS )   ...
+}

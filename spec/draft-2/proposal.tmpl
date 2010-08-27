@@ -1,0 +1,26 @@
+<t>
+A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in proposal : %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Proposal JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "proposal.json" %}
+    ]]></artwork>
+</figure>
+
