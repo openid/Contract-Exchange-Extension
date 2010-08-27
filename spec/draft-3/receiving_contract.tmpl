@@ -1,0 +1,58 @@
+<section title="Responding a CX Contract in OpenID Assertion">
+<t>
+If a RP request OpenID Artifact Binding assertion request and there is a CX Contract to be bound to that, the OP MUST return it as a "cx" member of the assertion JSON object.
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#contract",
+                 ... ( OTHER CX CONTRACT JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+
+<t>
+But if no CX Contract is available at the time when RP requests the assertion, OP MUST return CX Status JSON object as "cx" member of assertion JSON object.
+</t>
+
+
+<figure>
+    <artwork><![CDATA[
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://specs.openid.net/cx/1.0/#status",
+                 ... ( OTHER CX STATUS JSON MEMBERS ) ...
+             } 
+}
+    ]]></artwork>
+</figure>
+
+</section>
+
+<section title="Verifying Contract">
+
+<t>
+If the "cx" member of assertion JSON object is a CX Contract JSON object, RP MUST verify the signature of Magic Envelope first. RP MUST store the CX Contract if it is valid Magic Envelope.
+</t>
+
+<t>
+"data" member of a CX Contract MUST be decoded into CX Acceptance and RP SHOULD find own CX Encrypted Sdata and decrypt it if available. RP SHOULD store the decrypted CX Sdata for the purpose of saving computing resource again.
+</t>
+
+<t>
+RP SHOULD explain to the End User that a CX Contract has been successfully created and now RP is ready to request data according to the contract.
+</t>
+
+<t>
+If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User that a CX Contract has not been created yet and the reason by "status" member of the CX Status JSON object. RP MAY be notified later that a CX Contract is created by the OP.
+</t>
+
+</section>
+

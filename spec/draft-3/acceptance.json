@@ -1,0 +1,16 @@
+{
+   "type" : "http://specs.openid.net/cx/1.0/#acceptance",
+   "id": "http://op.com/acceptance/4321fd3439dg",
+   "res": [
+                 {
+                      "type" :  "http://specs.openid.net/cx/1.0/#response",
+                      ...(OTHER RESPONSE PARAMETERS) ...
+                 },
+                 {
+                      "type" :  "http://specs.openid.net/cx/1.0/#response",
+                      ...(OTHER RESPONSE PARAMETERS) ...
+                 }
+            ],
+    "proposal":  ... (COPY OF THE REQUESTED CX PROPOSAL ) ...,
+    "keys" : ...( ENCRYPTED KEYS JSON )...
+}

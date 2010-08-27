@@ -1,0 +1,27 @@
+<t>
+A CX Acceptance is a container JSON to hold all CX Response and CX Encpyted Keys. 
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in acceptance: %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
+<t>The following is a non-normative sample for CX Request JSON object:</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "acceptance.json" %}
+    ]]></artwork>
+</figure>
+
+
