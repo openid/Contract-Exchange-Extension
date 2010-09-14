@@ -8,6 +8,7 @@ from docutils.utils import *
 
 
 def  load_params(name):
+    # name.rst ファイルを読み込みます。
     p = rst.Parser()
     doc = new_document( name )
     doc.settings.tab_width=4
@@ -18,9 +19,11 @@ def  load_params(name):
     params  = [ {'name': i[0].rawsource, 'note':[ j.rawsource for j in i[1][0]] } for i in doc[0] ]
     return params
 
-if __name__ == '__main__':
 
+def make():
     env = Environment(loader= FileSystemLoader(os.path.join(os.path.dirname(__file__), '')))
+
+    # rfc.tmpl がメインの枠のテンプレートです。
     t=env.get_template('rfc.tmpl')
     #t=env.get_template('abstract.tmpl')
     
@@ -33,4 +36,10 @@ if __name__ == '__main__':
                         'data_request','encrypted_response',
                     ] ] )  
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
-    print t.render(ctx).encode('utf-8')
+    return t.render(ctx).encode('utf-8')
+
+if __name__ == '__main__':
+    fname = "%s/openid-cx.%s.xml"% (
+                    os.path.dirname( os.path.dirname(os.path.abspath(__file__))),
+                    os.path.basename(os.path.dirname(os.path.abspath(__file__))).split('.')[0] )
+    open(fname,"w").write( make())
