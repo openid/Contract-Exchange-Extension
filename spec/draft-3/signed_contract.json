@@ -1,6 +1,7 @@
 {
-    "type"            : "http://specs.openid.net/cx/1.0/#signed_contract",   
-    "id"              : "http://op.com/contract/432143",
-    "signatory_certs" : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+    "type"  : "http://specs.openid.net/cx/1.0/#signed_contract",   
+    "id"    : "http://op.com/contract/432143",
+    "signatory_certs" 
+            : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
      ... ( OTHER Magic Envelop PARAMTERS ) ...
 }

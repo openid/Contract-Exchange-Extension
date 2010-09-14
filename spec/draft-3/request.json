@@ -4,6 +4,7 @@
     "server_id": "http://op.com",
     "payment_from" : "500JPY",
     "payment_to"     :  "5PT",
-    "template" : " ... (base64 encoded text for End User to grant the CX contract)...."
+    "template" : 
+        "...(base64 encoded text for End User to grant the CX contract)..."
     ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
