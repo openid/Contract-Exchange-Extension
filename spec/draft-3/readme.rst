@@ -1,14 +1,22 @@
 Draft-3
 =======
 
-- Partial Contract
+Partial Contract
+----------------
 
- - http://t.co/VRG8pgw
+- http://t.co/VRG8pgw
 
 - Proposal is referered by only its identifier with fragments.
 - A party MUST be given simple ordinal number or like that. 
 
  -  A partial contract is specified with CX Contract identifier with this ordinal number.
+
+
+Reuquest
+--------
+
+- Related Reuqest and their signatures are dropped.
+- endpoint added.
 
 OpenID Contract Exchange
 ========================

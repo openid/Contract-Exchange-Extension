@@ -35,13 +35,3 @@
     * optional,string(any)
     * End User MAY read "template" text to accept a CX Contract. 
 
-* related_requests
-
-    * optional,array of string(URI)
-    * "related_requests" contains ids of the sibling CX Signed Requests.
-
-* related_signs
-
-    * optional,array of string(base64url)
-    * "related_signs" contains signatures of "related_requests". The order in this array MUST reserved the same order as in "related_requests".
-    * Only proposing party (RP) may use.
