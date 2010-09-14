@@ -1,6 +1,11 @@
 Draft-3
 =======
 
+Knows Issue and TODO
+----------------------
+
+- "3.2.1.  Non-Normative Examples" MUST be rewritten.
+
 File Structure
 --------------
 
