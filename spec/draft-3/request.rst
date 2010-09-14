@@ -35,3 +35,12 @@
     * optional,string(any)
     * End User MAY read "template" text to accept a CX Contract. 
 
+* endpoint
+
+    * optional,string(URI)
+    * URI from which data is provieded at the responding party specified by 'server_id' 
+
+* identifier
+
+    * optional,string
+    * End user's identfier at the responding party specified by 'server_id'
