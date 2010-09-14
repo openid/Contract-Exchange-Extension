@@ -5,7 +5,5 @@
     "payment_from" : "500JPY",
     "payment_to"     :  "5PT",
     "template" : " ... (base64 encoded text for End User to grant the CX contract)...."
-    "related_requests" : [ ...( ARRAY OF STRING(URI) ...      ],
-    "related_signs" : [ ...( ARAY OF STRING)... ],
     ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
