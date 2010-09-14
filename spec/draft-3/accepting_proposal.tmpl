@@ -32,12 +32,10 @@ If CX Proposal is valid, OP MUST display "template" and what exactly each party 
 <section title="Compose Response for Each Request">
 
 <t>
-If the End User agree, OP creates CX Response JSON objects for each CX Request. For each client(RP) and servers of CX Request, OP provides CX Sdata JSON object to store privacy data like PPID. CX Sdata JSON object MUST be encrypted using corresponding party's public key into CX Encrytped Sdata based on JSON Encryption Envelope procedure. Public key for client is extracted from "client_cert" of CX Signed Request. Public keys for servers MUST be discovered by OP or extracted from "server_cert" of CX Signed Request if the trivial endpoint is specified by RP. All CX Singed Sdata MUST be stored in "sdatas" array of CX Response JSON object.
+If the End User agree, OP creates two CX Acceptance JSON objects for each CX Request, one for data requesting party and the other for data responding party. 
+
 </t>
 
-<t>
-All shared keys used for creating CX Encrypted Sdata JSON object MUST be stored in "keys" array of CX Key JSON object. Also identifier of parties of "keys" MUST be stored in "parties" array of the same CX Key JSON object. This CX Key JSON object itself MUST be encrypted into CX Encrypted Key JSON object using OP's public key in the process of JSON Encryption Envelope.
-</t>
 </section>
 
 
