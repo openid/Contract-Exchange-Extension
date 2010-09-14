@@ -1,6 +1,0 @@
-{
-    "type" : "http://specs.openid.net/cx/1.0/#sdata",   
-    "identifier" : "http://op.com/user/432fdede3",
-    "endpoints" : ["http://service.com/cxdata"],
-     ..( JSON MEMBER OF OTHER PRIVATE DATA  SHARED WITH THE PARTY )...
-}

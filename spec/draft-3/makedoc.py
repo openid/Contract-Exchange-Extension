@@ -30,8 +30,6 @@ def make():
     
     ctx = dict([ [r,load_params(r)]  
             for r in ['request','signed_request','proposal',
-                        'response','sdata','encrypted_sdata',
-                        'keys','encrypted_keys',
                         'acceptance','contract','status',
                         'data_request','encrypted_response',
                     ] ] )  
