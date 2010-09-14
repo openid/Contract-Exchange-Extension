@@ -8,6 +8,7 @@ doctrees
 ._*
 tmp
 source/sample/ax/xmlsig
+cx-doc/build/
 .certs
 .DS_Store
 
