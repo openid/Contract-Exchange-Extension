@@ -33,7 +33,7 @@ If CX Proposal is valid, OP MUST display "template" and what exactly each party 
 
 <t>
 If the End User agree, OP creates two CX Acceptance JSON objects for each CX Request, one for data requesting party and the other for data responding party. 
-
+Privacy parameter MAY be different from each other.
 </t>
 
 </section>
@@ -42,7 +42,8 @@ If the End User agree, OP creates two CX Acceptance JSON objects for each CX Req
 <section title="Compose Acceptance and Contract">
 
 <t>
-OP provides a CX Acceptance JSON object and allocates unique URI for "id" member of it. All CX Reponse JSON objects are stored in "res" array member of that JSON object. A CX Encrypted Key JSON object is stored in "keys" member.
+OP provides  CX Contract JSON objects for all binding parties. Each Contract shares unique URI for "contract_id" member of it. 
+All CX Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
 </t>
 
 <t>
