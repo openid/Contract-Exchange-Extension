@@ -22,7 +22,7 @@ File Structure
 Some template(.tmpl file) include sample JSON files (.json).
 Some template referes external parameters defined ReST file ( .rst ) which are processed in makedoc.py before Jinja2 processing.
 
-.. block:: 
+::
 
         rfc.tmpl  
          |
