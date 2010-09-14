@@ -47,15 +47,11 @@ All CX Acceptance JSON objects are stored in "acceptances" array member of that 
 </t>
 
 <t>
-The original CX Proposal JSON object MUST be stored in "proposal" member of that JSON object.
+The original CX Proposal MUST be refered as "proposal_id" with its identifier. The digest of the Prooposal content MUST be appended as URI fragment.
 </t>
 
 <t>
-That CX Acceptance JSON object MUST be signed with OP's private key into CX Contracct JSON object like other Magic Envelope JSON object.
-</t>
-
-<t>
-OP MUST allocate an unique URI to "id" of CX Contract JSON object. That URI works as the endpoint where other parties bound to the contract request the CX Contract JSON object. X.509 certificate MUST be encoded by base64url and stored "signatory_certs" of CX Contract JSON object.
+OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of Signed Contract which is the Magic Enveloped verion of the party's Contract.
 </t>
 
 </section>
