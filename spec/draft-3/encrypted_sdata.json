@@ -1,5 +1,0 @@
-{
-    "type" : "http://specs.openid.net/cx/1.0/#encrytped_sdata",   
-    "party" : "http://rp.com",
-    ...(OTHER JSON ENCRYPTED ENVELOPE MEMBERS  )...",
-}
