@@ -24,7 +24,7 @@
 * proposal_id
 
     * string(URI) 
-    * Identifier to original Request
+    * Identifier to original Proposal. Fragment(#) MUST be appended to the end of the original Proposal URI. The value of the fragment is the digest of the Propsal itself after optional digesting prefix separated colon(":").  Default digesting algorithm is SHA-256, so default prefix is "sha256:" if it is not specified.
 
 * acceptances
 
