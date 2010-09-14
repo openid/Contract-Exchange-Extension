@@ -1,16 +1,12 @@
 {
-   "type" : "http://specs.openid.net/cx/1.0/#acceptance",
-   "id": "http://op.com/acceptance/4321fd3439dg",
-   "res": [
-                 {
-                      "type" :  "http://specs.openid.net/cx/1.0/#response",
-                      ...(OTHER RESPONSE PARAMETERS) ...
-                 },
-                 {
-                      "type" :  "http://specs.openid.net/cx/1.0/#response",
-                      ...(OTHER RESPONSE PARAMETERS) ...
-                 }
-            ],
-    "proposal":  ... (COPY OF THE REQUESTED CX PROPOSAL ) ...,
-    "keys" : ...( ENCRYPTED KEYS JSON )...
+    "type"              : "http://specs.openid.net/cx/1.0/#acceptance",   
+    "client_id"         : "http://rp.net",
+    "server_id"         : "http://op.com",
+    "payment_from"      : "500JPY",
+    "payment_to"        :  "5PT",
+    "template"          : " ... (base64 encoded text for End User to grant the CX contract)....",
+    "request_id"        : "http://rp.net/proposal/i393", 
+    "endpoint"          : "http://op.com/endpoint/",
+    "identifier"        : "http://op.com/user/g3430",
+    ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
