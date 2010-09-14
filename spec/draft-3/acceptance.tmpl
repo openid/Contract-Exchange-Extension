@@ -1,7 +1,12 @@
 <t>
-A CX Acceptance is a container JSON to hold all CX Response and CX Encpyted Keys. 
+A CX Acceptance is a copy form original CX Request with extra parameters including End User's privacy data added by OP and End User.
+OP MUST produce two CX Acceptances for requesting party for a single CX Request. Each of them is to be included in CX Contract for proper party.
+Privacy data like canonical identifier SHOULD be different from each other.
 </t>
 
+<t>
+Other paramters  than the following have same meaning as ones defined in CX Reuest.
+</t>
 <t>
     <list style="symbols">
         {% for p in acceptance: %}
@@ -23,5 +28,4 @@ A CX Acceptance is a container JSON to hold all CX Response and CX Encpyted Keys
 {% include "acceptance.json" %}
     ]]></artwork>
 </figure>
-
 
