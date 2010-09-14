@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from datetime import datetime
 from jinja2 import Environment,FileSystemLoader
 from jinja2 import Template
 #
@@ -35,6 +36,7 @@ def make():
                         'acceptance','contract','signed_contract','status',
                         'data_request','encrypted_response',
                     ] ] )  
+    ctx.update( dict(zip(['Year','Month','Day'],datetime.now().today().strftime("%Y %B %d").split(' '))) )
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
     return t.render(ctx).encode('utf-8')
 
