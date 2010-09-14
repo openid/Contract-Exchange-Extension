@@ -1,6 +1,61 @@
 Draft-3
 =======
 
+File Structure
+--------------
+
+
+1. README
+~~~~~~~~~
+
+- readme.rst
+
+2. GENERATOR
+~~~~~~~~~~~~
+
+- __init__.py           
+- makedoc.py  
+
+3. Jinja Template
+~~~~~~~~~~~~~~~~~~
+
+Some template(.tmpl file) include sample JSON files (.json).
+Some template referes external parameters defined ReST file ( .rst ) which are processed in makedoc.py before Jinja2 processing.
+
+.. block:: 
+
+        rfc.tmpl  
+         |
+         +--  front.tmpl  
+         |     +-- abstract.tmpl
+         +--  middle.tmpl
+         |     |
+         |     +-- requirement_notation.tmpl 
+         |     +--  definition_convention.tmpl
+         |     +-- overview.tmpl
+         |     +-- files.tmpl
+         |     |     +-- json.tmpl
+         |     |     +-- structures.tmpl
+         |     |     |     +-- non-normative_examples.tmpl
+         |     |     |     +-- request.tmpl ( request.rst / request.json )
+         |     |     |     +-- signed_request.tmpl  ( signed_request.rst / signed_request.json )
+         |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
+         |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
+         |     |     |     +-- contract.tmpl (contract.rst / contract.json )
+         |     |     |     +-- status.tmpl (status.rst / status.json )
+         |     |     |
+         |     |     +-- storage_timestamping.tmpl
+         |     +-- protocol.tmpl
+         |     |           +-- sending_proposal.tmpl
+         |     |           +-- accepting_proposal.tmpl
+         |     |           +-- receiving_contract.tmpl
+         |     |           +-- notify_contract_status.tmpl
+         |     |           +-- data_request.tmpl ( data_request.rst , encrypted_response.rst    )
+         |     +-- security_considerations.tmpl
+         |     +-- acknowlegements.tmpl
+         +-- back.tmpl
+
+
 Partial Contract
 ----------------
 
