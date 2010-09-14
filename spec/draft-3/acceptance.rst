@@ -7,3 +7,8 @@
 
     * string(URI) 
     * unique identifier given by OP
+
+* request_id
+
+    * string(URI)
+    * Identifier to original Request
