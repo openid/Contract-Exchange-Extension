@@ -42,6 +42,7 @@ Some template referes external parameters defined ReST file ( .rst ) which are p
          |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
          |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
          |     |     |     +-- contract.tmpl (contract.rst / contract.json )
+         |     |     |     +-- signed_contract.tmpl (signed_contract.rst / signed_contract.json )
          |     |     |     +-- status.tmpl (status.rst / status.json )
          |     |     |
          |     |     +-- storage_timestamping.tmpl
