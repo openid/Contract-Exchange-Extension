@@ -32,7 +32,7 @@ def make():
     
     ctx = dict([ [r,load_params(r)]  
             for r in ['request','signed_request','proposal',
-                        'acceptance','contract','status',
+                        'acceptance','contract','signed_contract','status',
                         'data_request','encrypted_response',
                     ] ] )  
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
