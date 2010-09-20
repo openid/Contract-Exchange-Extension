@@ -186,21 +186,21 @@ Receiving Contract<br />
 Notify Contract Status<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor36">4.5.</a>&nbsp;
 Data Request<br />
-<a href="#anchor40">5.</a>&nbsp;
+<a href="#anchor39">5.</a>&nbsp;
 Security Considerations<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor40">5.1.</a>&nbsp;
 non-repudiation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.2.</a>&nbsp;
 Man-in-the-middle<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.3.</a>&nbsp;
 Eavesdropping<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.4.</a>&nbsp;
 Malicious Providers<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.5.</a>&nbsp;
 Phishing Attack<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor46">5.6.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.6.</a>&nbsp;
 Private Key Compromise<br />
-<a href="#anchor47">Appendix&nbsp;A.</a>&nbsp;
+<a href="#anchor46">Appendix&nbsp;A.</a>&nbsp;
 Acknowledgements<br />
 <a href="#rfc.references1">6.</a>&nbsp;
 Normative References<br />
@@ -978,9 +978,20 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
 <li> proposal_id
                 
 <ul class="text">
-<li>string(URI)
+<li>optional,string(URI)
 </li>
 <li>This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>This identifier is an unique identifier referring CX Contract.
 
 </li>
 </ul>
@@ -1211,7 +1222,7 @@ OP and other bound party MAY send the status of the CX Contract to the endpoint 
 
 </p>
 <p>
-RP and other bound party  MAY request the CX Contract using Data Request mechanizm.
+RP and other bound party  MAY request the CX Contract using Data Request mechanism.
 
 </p>
 <a name="anchor36"></a><br /><hr />
@@ -1275,62 +1286,15 @@ endpoint?party=_party_identfier_&amp;cxid=_cx_identifier_
 Encrypted Response</h3>
 
 <p>
-Encryption parameters MUST be returned HTTP response headers. Following are response header keys. All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
-
-</p>
-<p>
-    </p>
-<ul class="text">
-<li> cx_encoding
-                
-<ul class="text">
-<li>Value: "Base64", "CBC-256-128-PKCS5_PADDING".
-</li>
-<li>If cx_encoding is "CBC-256-128-PKCS5_PADDING", the following parameters MUST be returned in addition.
-
-</li>
-</ul>
-            
-</li>
-<li> cx_enc_key
-                
-<ul class="text">
-<li>Shared key to encrypt the message in "Encryption Base String" form. This key itself is encrypted asymmetrically with decryptors' public key included in the Contract and base 64 encoded.
-</li>
-<li>Value: base64 string.
-
-</li>
-</ul>
-            
-</li>
-<li> cx_enc_iv
-                
-<ul class="text">
-<li>Type URI for initialization vector used in a block encryption.
-</li>
-</ul>
-            
-</li>
-</ul><p>
+Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request.
 
 </p>
 <a name="anchor39"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.4.5.2"></a><h3>4.5.2.&nbsp;
-OAuth</h3>
-
-<p>If the "endpoint" is OAuth protocol base, the service party MUST follow OAuth 2.0 protocol and return a proper response message describing that the "endpoint" is an OAuth protected resource.
-</p>
-<p>And the requesting party MUST also follows OAuth 2.0 assertion flow protocol to get an authorized token and access protected resource at the "endpoint" 
-</p>
-<p>A responding party MUST return the response in encrypted payload same as in CX Data Request or plaint text in SSL/TSL secured channel.
-</p>
-<a name="anchor40"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5"></a><h3>5.&nbsp;
 Security Considerations</h3>
 
-<a name="anchor41"></a><br /><hr />
+<a name="anchor40"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
 non-repudiation</h3>
@@ -1339,7 +1303,7 @@ non-repudiation</h3>
 Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
 
 </p>
-<a name="anchor42"></a><br /><hr />
+<a name="anchor41"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
 Man-in-the-middle</h3>
@@ -1348,7 +1312,7 @@ Man-in-the-middle</h3>
 A RP must verify the validity of the OP's identity and public key and vice versa.
 
 </p>
-<a name="anchor43"></a><br /><hr />
+<a name="anchor42"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
 Eavesdropping</h3>
@@ -1358,7 +1322,7 @@ When encryption mode is used, the payload is encrypted and only the real recipie
 
 
 </p>
-<a name="anchor44"></a><br /><hr />
+<a name="anchor43"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
 Malicious Providers</h3>
@@ -1367,7 +1331,7 @@ Malicious Providers</h3>
 Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
 
 </p>
-<a name="anchor45"></a><br /><hr />
+<a name="anchor44"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
 Phishing Attack</h3>
@@ -1376,7 +1340,7 @@ Phishing Attack</h3>
 Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
 
 </p>
-<a name="anchor46"></a><br /><hr />
+<a name="anchor45"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
 Private Key Compromise</h3>
@@ -1385,7 +1349,7 @@ Private Key Compromise</h3>
 In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
 
 </p>
-<a name="anchor47"></a><br /><hr />
+<a name="anchor46"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
 Acknowledgements</h3>

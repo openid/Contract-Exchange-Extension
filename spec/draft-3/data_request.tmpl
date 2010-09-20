@@ -30,37 +30,8 @@ endpoint?party=_party_identfier_&cxid=_cx_identifier_
 
 <section title="Encrypted Response">
 <t>
-Encryption parameters MUST be returned HTTP response headers. Following are response header keys. All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
+Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request.
 </t>
-
-<t>
-    <list style="symbols">
-        {% for p in encrypted_response : %}
-            <t> {{p.name}}
-                <list style="symbols">
-                    {% for v in p.note: %}
-                        <t>{{v}}</t>
-                    {% endfor %}
-                </list>
-            </t>
-        {% endfor %}
-    </list>
-</t>
-
 </section>
 
 </section>
-
-
-<section title="OAuth">
-
-<t>If the "endpoint" is OAuth protocol base, the service party MUST follow OAuth 2.0 protocol and return a proper response message describing that the "endpoint" is an OAuth protected resource.</t>
-
-<t>And the requesting party MUST also follows OAuth 2.0 assertion flow protocol to get an authorized token and access protected resource at the "endpoint" </t>
-
-<t>A responding party MUST return the response in encrypted payload same as in CX Data Request or plaint text in SSL/TSL secured channel.</t>
-</section>
-
-
-
-

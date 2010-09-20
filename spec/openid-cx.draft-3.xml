@@ -829,9 +829,20 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
             <t> proposal_id
                 <list style="symbols">
                     
-                        <t>string(URI)</t>
+                        <t>optional,string(URI)</t>
                     
                         <t>This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> contract_id
+                <list style="symbols">
+                    
+                        <t>string(URI)</t>
+                    
+                        <t>This identifier is an unique identifier referring CX Contract.
 </t>
                     
                 </list>
@@ -1057,7 +1068,7 @@ OP and other bound party MAY send the status of the CX Contract to the endpoint 
 </t>
 
 <t>
-RP and other bound party  MAY request the CX Contract using Data Request mechanizm.
+RP and other bound party  MAY request the CX Contract using Data Request mechanism.
 </t>
 </section>
 
@@ -1116,62 +1127,11 @@ endpoint?party=_party_identfier_&cxid=_cx_identifier_
 
 <section title="Encrypted Response">
 <t>
-Encryption parameters MUST be returned HTTP response headers. Following are response header keys. All of these have the same meaning of the same parameter name defined "Encrypting the payload" section in this document.
+Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request.
 </t>
-
-<t>
-    <list style="symbols">
-        
-            <t> cx_encoding
-                <list style="symbols">
-                    
-                        <t>Value: "Base64", "CBC-256-128-PKCS5_PADDING".</t>
-                    
-                        <t>If cx_encoding is "CBC-256-128-PKCS5_PADDING", the following parameters MUST be returned in addition.
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> cx_enc_key
-                <list style="symbols">
-                    
-                        <t>Shared key to encrypt the message in "Encryption Base String" form. This key itself is encrypted asymmetrically with decryptors' public key included in the Contract and base 64 encoded.</t>
-                    
-                        <t>Value: base64 string.
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> cx_enc_iv
-                <list style="symbols">
-                    
-                        <t>Type URI for initialization vector used in a block encryption.</t>
-                    
-                </list>
-            </t>
-        
-    </list>
-</t>
-
 </section>
 
 </section>
-
-
-<section title="OAuth">
-
-<t>If the "endpoint" is OAuth protocol base, the service party MUST follow OAuth 2.0 protocol and return a proper response message describing that the "endpoint" is an OAuth protected resource.</t>
-
-<t>And the requesting party MUST also follows OAuth 2.0 assertion flow protocol to get an authorized token and access protected resource at the "endpoint" </t>
-
-<t>A responding party MUST return the response in encrypted payload same as in CX Data Request or plaint text in SSL/TSL secured channel.</t>
-</section>
-
-
-
-
 </section>
     </section>
 
