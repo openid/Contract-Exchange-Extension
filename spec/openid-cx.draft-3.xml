@@ -333,6 +333,17 @@ Every party bound to a CX Contract MUST prepare a CX Request.
                 </list>
             </t>
         
+            <t> notify
+                <list style="symbols">
+                    
+                        <t>optional,string(URI)</t>
+                    
+                        <t>Notifiation endpoint directely called by RP if CX Contract is provieded.
+</t>
+                    
+                </list>
+            </t>
+        
             <t> identifier
                 <list style="symbols">
                     
@@ -498,7 +509,7 @@ A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
                 </list>
             </t>
         
-            <t> endpoint
+            <t> notify
                 <list style="symbols">
                     
                         <t>optional,string(URI)</t>
@@ -1041,11 +1052,12 @@ If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User
 
 <section title="Notify Contract Status">
     <t>
-OP MAY send the status code of the CX Contract to the endpoint specified by "endpoint" member of CX Proposal. "code" query parameter SHOULD be artifact binding "code" and given to the endpoint URL. "status" query parameter SHOULD be the status of CX Contract.
+OP and other bound party MAY send the status of the CX Contract to the endpoint specified by "notify" member of CX Proposal or CX Request. 
+"status" query parameter MUST be a CX Status JSON object.
 </t>
 
 <t>
-RP MAY request a direct assertion request using "code" query paramter to get JSON including CX Contract or CX Status JSON object.
+RP and other bound party  MAY request the CX Contract using Data Request mechanizm.
 </t>
 </section>
 

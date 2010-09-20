@@ -40,6 +40,11 @@
     * optional,string(URI)
     * URI from which data is provieded at the responding party specified by 'server_id' 
 
+* notify
+
+    * optional,string(URI)
+    * Notifiation endpoint directely called by RP if CX Contract is provieded.
+
 * identifier
 
     * optional,string

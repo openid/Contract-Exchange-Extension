@@ -10,8 +10,13 @@
 
 * proposal_id
 
-    * string(URI)
+    * optional,string(URI)
     * This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+
+* contract_id
+
+    * string(URI)
+    * This identifier is an unique identifier referring CX Contract.
 
 * status
 
