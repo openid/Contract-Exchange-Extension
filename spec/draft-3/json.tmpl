@@ -10,7 +10,6 @@ http://specs.openid.net/cx/1.0/#
 
 <t>So, a generic CX JSON object likes like the following</t>
 
-
 <figure>
     <artwork><![CDATA[
 {
@@ -19,6 +18,25 @@ http://specs.openid.net/cx/1.0/#
 }
     ]]></artwork>
 </figure>
+
+<section title="OpenID Extention">
+<t>
+As an extension of OpenID, CX JSON object must be included as "cx" member of OpenID JSON object.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    ... OpenID JSON object parameters ...
+    "cx" : {
+       type : "http://specs.openid.net/cx/1.0/#",
+       ... OpenID CX JSON object parameters ...
+    }
+}
+    ]]></artwork>
+</figure>
+
+</section>
 
 <section title="Extending CX JSON">
 <t>

@@ -146,7 +146,7 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">September 15, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">September 21, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
@@ -170,37 +170,37 @@ Overview<br />
 Files<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor6">3.1.</a>&nbsp;
 JSON<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor10">3.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor11">3.2.</a>&nbsp;
 Structures<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor19">3.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor20">3.3.</a>&nbsp;
 Storage and Timestamping<br />
-<a href="#anchor20">4.</a>&nbsp;
+<a href="#anchor21">4.</a>&nbsp;
 Protocal<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor21">4.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor22">4.1.</a>&nbsp;
 Sending Proposal<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor25">4.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor26">4.2.</a>&nbsp;
 Accepting Proposal<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor31">4.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor32">4.3.</a>&nbsp;
 Receiving Contract<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor34">4.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor35">4.4.</a>&nbsp;
 Notify Contract Status<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor35">4.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor36">4.5.</a>&nbsp;
 Data Request<br />
-<a href="#anchor39">5.</a>&nbsp;
+<a href="#anchor40">5.</a>&nbsp;
 Security Considerations<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor40">5.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.1.</a>&nbsp;
 non-repudiation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.2.</a>&nbsp;
 Man-in-the-middle<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.3.</a>&nbsp;
 Eavesdropping<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.4.</a>&nbsp;
 Malicious Providers<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.5.</a>&nbsp;
 Phishing Attack<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.6.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor46">5.6.</a>&nbsp;
 Private Key Compromise<br />
-<a href="#anchor46">Appendix&nbsp;A.</a>&nbsp;
+<a href="#anchor47">Appendix&nbsp;A.</a>&nbsp;
 Acknowledgements<br />
 <a href="#rfc.references1">6.</a>&nbsp;
 Normative References<br />
@@ -280,15 +280,32 @@ http://specs.openid.net/cx/1.0/#
 <a name="anchor7"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.1.1"></a><h3>3.1.1.&nbsp;
+OpenID Extention</h3>
+
+<p>
+As an extension of OpenID, CX JSON object must be included as "cx" member of OpenID JSON object.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    ... OpenID JSON object parameters ...
+    "cx" : {
+       type : "http://specs.openid.net/cx/1.0/#",
+       ... OpenID CX JSON object parameters ...
+    }
+}
+</pre></div>
+<a name="anchor8"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.2"></a><h3>3.1.2.&nbsp;
 Extending CX JSON</h3>
 
 <p>
 Although any CX JSON object MUST have members specified for  "type", any other member MAY be used if parties agree the meaning of it.  Any CX JSON MAY has any other JSON object as a member in itself. If a member is a JSON object,  "type" and "id" SHOULD be checked firstly and this should be done recursively.
 
 </p>
-<a name="anchor8"></a><br /><hr />
+<a name="anchor9"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.3.1.2"></a><h3>3.1.2.&nbsp;
+<a name="rfc.section.3.1.3"></a><h3>3.1.3.&nbsp;
 Signed JSON</h3>
 
 <p>
@@ -300,9 +317,9 @@ Magic Envelope is the default format. Like other CX JSON,  Magic Envelopes used 
 Other JSON member  used for particular CX JSON Magic Envelope file are identified by its "type".
 
 </p>
-<a name="anchor9"></a><br /><hr />
+<a name="anchor10"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.3.1.3"></a><h3>3.1.3.&nbsp;
+<a name="rfc.section.3.1.4"></a><h3>3.1.4.&nbsp;
 Encrypted JSON</h3>
 
 <p>
@@ -315,12 +332,12 @@ Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type"
 Other JSON member used for particular CX JSON Encryption Envelope file are identified by its "type".
 
 </p>
-<a name="anchor10"></a><br /><hr />
+<a name="anchor11"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
 Structures</h3>
 
-<a name="anchor11"></a><br /><hr />
+<a name="anchor12"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.1"></a><h3>3.2.1.&nbsp;
 Non-Normative Examples</h3>
@@ -363,7 +380,7 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
     // sample of a Sdata
 }
 </pre></div>
-<a name="anchor12"></a><br /><hr />
+<a name="anchor13"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.2"></a><h3>3.2.2.&nbsp;
 Request</h3>
@@ -494,7 +511,7 @@ Every party bound to a CX Contract MUST prepare a CX Request.
     ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
 </pre></div>
-<a name="anchor13"></a><br /><hr />
+<a name="anchor14"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.3"></a><h3>3.2.3.&nbsp;
 Signed Request</h3>
@@ -564,7 +581,7 @@ A CX Signed Request is a Magic Enveloped version of a CX Request file.
      ... ( OTHER Magic Envelop PARAMTERS ) ...
 }
 </pre></div>
-<a name="anchor14"></a><br /><hr />
+<a name="anchor15"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.4"></a><h3>3.2.4.&nbsp;
 Proposal</h3>
@@ -667,7 +684,7 @@ A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
 
 }
 </pre></div>
-<a name="anchor15"></a><br /><hr />
+<a name="anchor16"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.5"></a><h3>3.2.5.&nbsp;
 Acceptance</h3>
@@ -736,7 +753,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
     ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
 </pre></div>
-<a name="anchor16"></a><br /><hr />
+<a name="anchor17"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.6"></a><h3>3.2.6.&nbsp;
 Contract</h3>
@@ -854,7 +871,7 @@ A CX Contract is a container of Acceptances. Every party is provided its own con
 }
 
 </pre></div>
-<a name="anchor17"></a><br /><hr />
+<a name="anchor18"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.7"></a><h3>3.2.7.&nbsp;
 Signed Contract</h3>
@@ -913,7 +930,7 @@ When a party requests its Contract for contract_id and partty_id, OP MUST respon
      ... ( OTHER Magic Envelop PARAMTERS ) ...
 }
 </pre></div>
-<a name="anchor18"></a><br /><hr />
+<a name="anchor19"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.8"></a><h3>3.2.8.&nbsp;
 Status</h3>
@@ -981,7 +998,7 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
      ...    (other  JSON MEMBERS )   ...
 }
 </pre></div>
-<a name="anchor19"></a><br /><hr />
+<a name="anchor20"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
 Storage and Timestamping</h3>
@@ -991,17 +1008,17 @@ The Contract is supposed to act as a proof of agreement in case of dispute at a 
 Since contracts may be long term documents, there is a risk that are not so relevant in transient processing, 
 such as Algorithm Compromise. Thus, care should be taken to appropriately process the contract through Timestamping etc.
 </p>
-<a name="anchor20"></a><br /><hr />
+<a name="anchor21"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4"></a><h3>4.&nbsp;
 Protocal</h3>
 
-<a name="anchor21"></a><br /><hr />
+<a name="anchor22"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
 Sending Proposal</h3>
 
-<a name="anchor22"></a><br /><hr />
+<a name="anchor23"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
 Advertising Service</h3>
@@ -1024,7 +1041,7 @@ All other parties referred by a CX Request MUST have prepared CX Signed Requests
 A RP finally provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
 
 </p>
-<a name="anchor23"></a><br /><hr />
+<a name="anchor24"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1.2"></a><h3>4.1.2.&nbsp;
 Providing CX Proposal</h3>
@@ -1033,7 +1050,7 @@ Providing CX Proposal</h3>
 When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. Depending on the web application provided by the RP for the CX Service, the RP creates CX Request file and sign it into CX Signed Request file. Otherwise the PR simply copies a predefined CX Signed Request file. All CX Signed Request file to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. "sighash" member SHOULD be calculated with the hash algorithm specified in "hashlag" which is "SHA256" as default if not specified. Hash base string is the simple concatenation of "sig" member of CX Signed Request in the same order in "reqs" array.
 
 </p>
-<a name="anchor24"></a><br /><hr />
+<a name="anchor25"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1.3"></a><h3>4.1.3.&nbsp;
 Start OpenID Artifact Binding Session</h3>
@@ -1054,12 +1071,12 @@ A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member o
 OpenID authentication request session MUST be started to the OP specified by the End User at the RP's CX service page.
 
 </p>
-<a name="anchor25"></a><br /><hr />
+<a name="anchor26"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
 Accepting Proposal</h3>
 
-<a name="anchor26"></a><br /><hr />
+<a name="anchor27"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2.1"></a><h3>4.2.1.&nbsp;
 Accepting OpenID Artifact Binding Request</h3>
@@ -1067,7 +1084,7 @@ Accepting OpenID Artifact Binding Request</h3>
 <p>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions. As described in "Sending Proposal", a CX Proposal JSON object has a member named "type" whose value is "http://specs.openid.net/cx/1.0/#proposal".
 
 </p>
-<a name="anchor27"></a><br /><hr />
+<a name="anchor28"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2.2"></a><h3>4.2.2.&nbsp;
 Verify Proposal</h3>
@@ -1084,7 +1101,7 @@ All CX Signed Reqeust in "reqs" array MUST be verified. Because JSON objects in 
 If Magic Envelope is valid, "data" MUST be decoded into CX Request and checked its content.
 
 </p>
-<a name="anchor28"></a><br /><hr />
+<a name="anchor29"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2.3"></a><h3>4.2.3.&nbsp;
 Grants from End User</h3>
@@ -1093,7 +1110,7 @@ Grants from End User</h3>
 If CX Proposal is valid, OP MUST display "template" and what exactly each party requests. To compose a contract, the End User MUST agree the content displayed by OP.
 
 </p>
-<a name="anchor29"></a><br /><hr />
+<a name="anchor30"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2.4"></a><h3>4.2.4.&nbsp;
 Compose Acceptance for Each Request</h3>
@@ -1103,7 +1120,7 @@ If the End User agree, OP creates two CX Acceptance JSON objects for each CX Req
 Privacy parameter MAY be different from each other.
 
 </p>
-<a name="anchor30"></a><br /><hr />
+<a name="anchor31"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2.5"></a><h3>4.2.5.&nbsp;
 Compose Contracts</h3>
@@ -1121,12 +1138,12 @@ The original CX Proposal MUST be refered as "proposal_id" with its identifier. T
 OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of Signed Contract which is the Magic Enveloped verion of the party's Contract.
 
 </p>
-<a name="anchor31"></a><br /><hr />
+<a name="anchor32"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
 Receiving Contract</h3>
 
-<a name="anchor32"></a><br /><hr />
+<a name="anchor33"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.3.1"></a><h3>4.3.1.&nbsp;
 Responding a CX Contract in OpenID Assertion</h3>
@@ -1155,7 +1172,7 @@ But if no CX Signed Contract is available at the time when RP requests the asser
              }
 }
 </pre></div>
-<a name="anchor33"></a><br /><hr />
+<a name="anchor34"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.3.2"></a><h3>4.3.2.&nbsp;
 Verifying Contract</h3>
@@ -1172,7 +1189,7 @@ RP SHOULD explain to the End User that a CX Contract has been successfully creat
 If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User that a CX Contract has not been created yet at OP  and the reason by "status" member of the CX Status JSON object. RP MAY be notified later that a CX Contract is created by the OP.
 
 </p>
-<a name="anchor34"></a><br /><hr />
+<a name="anchor35"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
 Notify Contract Status</h3>
@@ -1185,12 +1202,12 @@ OP MAY send the status code of the CX Contract to the endpoint specified by "end
 RP MAY request a direct assertion request using "code" query paramter to get JSON including CX Contract or CX Status JSON object.
 
 </p>
-<a name="anchor35"></a><br /><hr />
+<a name="anchor36"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
 Data Request</h3>
 
-<a name="anchor36"></a><br /><hr />
+<a name="anchor37"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
 CX Data Request</h3>
@@ -1240,7 +1257,7 @@ endpoint?party=_party_identfier_&amp;cxid=_cx_identifier_
 </ul><p>
 
 </p>
-<a name="anchor37"></a><br /><hr />
+<a name="anchor38"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1.1"></a><h3>4.5.1.1.&nbsp;
 Encrypted Response</h3>
@@ -1285,7 +1302,7 @@ Encryption parameters MUST be returned HTTP response headers. Following are resp
 </ul><p>
 
 </p>
-<a name="anchor38"></a><br /><hr />
+<a name="anchor39"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.2"></a><h3>4.5.2.&nbsp;
 OAuth</h3>
@@ -1296,12 +1313,12 @@ OAuth</h3>
 </p>
 <p>A responding party MUST return the response in encrypted payload same as in CX Data Request or plaint text in SSL/TSL secured channel.
 </p>
-<a name="anchor39"></a><br /><hr />
+<a name="anchor40"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5"></a><h3>5.&nbsp;
 Security Considerations</h3>
 
-<a name="anchor40"></a><br /><hr />
+<a name="anchor41"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
 non-repudiation</h3>
@@ -1310,7 +1327,7 @@ non-repudiation</h3>
 Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
 
 </p>
-<a name="anchor41"></a><br /><hr />
+<a name="anchor42"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
 Man-in-the-middle</h3>
@@ -1319,7 +1336,7 @@ Man-in-the-middle</h3>
 A RP must verify the validity of the OP's identity and public key and vice versa.
 
 </p>
-<a name="anchor42"></a><br /><hr />
+<a name="anchor43"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
 Eavesdropping</h3>
@@ -1329,7 +1346,7 @@ When encryption mode is used, the payload is encrypted and only the real recipie
 
 
 </p>
-<a name="anchor43"></a><br /><hr />
+<a name="anchor44"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
 Malicious Providers</h3>
@@ -1338,7 +1355,7 @@ Malicious Providers</h3>
 Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
 
 </p>
-<a name="anchor44"></a><br /><hr />
+<a name="anchor45"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
 Phishing Attack</h3>
@@ -1347,7 +1364,7 @@ Phishing Attack</h3>
 Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
 
 </p>
-<a name="anchor45"></a><br /><hr />
+<a name="anchor46"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
 Private Key Compromise</h3>
@@ -1356,7 +1373,7 @@ Private Key Compromise</h3>
 In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
 
 </p>
-<a name="anchor46"></a><br /><hr />
+<a name="anchor47"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
 Acknowledgements</h3>

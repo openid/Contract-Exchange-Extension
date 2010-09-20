@@ -1,6 +1,12 @@
 OpenID CX 
 =========
 
+RFC Format
+----------
+
+- XML is rendered into HTML at http://xml.resource.org/ .
+
+
 History
 -------
 
