@@ -19,39 +19,28 @@ http://specs.openid.net/cx/1.0/#
     ]]></artwork>
 </figure>
 
-<section title="OpenID Extention">
-<t>
-As an extension of OpenID, CX JSON object must be included as "cx" member of OpenID JSON object.
-</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    ... OpenID JSON object parameters ...
-    "cx" : {
-       type : "http://specs.openid.net/cx/1.0/#",
-       ... OpenID CX JSON object parameters ...
-    }
-}
-    ]]></artwork>
-</figure>
-
-</section>
-
 <section title="Extending CX JSON">
 <t>
 Although any CX JSON object MUST have members specified for  "type", any other member MAY be used if parties agree the meaning of it.  Any CX JSON MAY has any other JSON object as a member in itself. If a member is a JSON object,  "type" and "id" SHOULD be checked firstly and this should be done recursively.
 </t>
 </section>
 
-<section title="Signed JSON">
+<section title="Signed JSON  and Token">
 <t>
-Some CX  JSON object MUST be digitally signed  to prove a particular JSON object's composer.
-Magic Envelope is the default format. Like other CX JSON,  Magic Envelopes used for CX MUST have "type" and MAY optionally have "id".
+Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
+OAuth Signagure Envelope is  the default format. Like other CX JSON,  OAuth Signature Envlope used for CX MUST have "type" and MAY optionally have "id".
 </t>
 <t>
-Other JSON member  used for particular CX JSON Magic Envelope file are identified by its "type".
+OAuth Signature Envelope is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by OAuth Signature Envelope looks like following string:
 </t>
+<figure>
+    <artwork><![CDATA[
+{
+      6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==
+}
+    ]]></artwork>
+</figure>
+
 </section>
 
 <section title="Encrypted JSON">
@@ -60,7 +49,22 @@ Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the r
 JSON Encryption Envelope  is the default format.
 Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
 </t>
+</section>
+
+<section title="OpenID Extention">
 <t>
-Other JSON member used for particular CX JSON Encryption Envelope file are identified by its "type".
+As an extension of OpenID, CX JSON object must be included as "cx" member of OpenID JSON object.
+Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually a token string.
 </t>
+
+<figure>
+    <artwork><![CDATA[
+{
+    ... OpenID JSON object parameters ...
+    "cx" : "crypto_segment.claim_segment",
+
+}
+    ]]></artwork>
+</figure>
+
 </section>
