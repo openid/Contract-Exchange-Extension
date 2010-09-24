@@ -30,3 +30,9 @@
 
     * array of object(Acceptance)
     * JSON array of  CX Acceptance  
+
+* signatory_certs
+
+    * string(base64url)
+    * The PEM formatted string version of OP's X.509 certificate used for this Magic Envelope JSON.
+

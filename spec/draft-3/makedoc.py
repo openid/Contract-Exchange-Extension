@@ -32,8 +32,8 @@ def make():
     
     
     ctx = dict([ [r,load_params(r)]  
-            for r in ['request','signed_request','proposal',
-                        'acceptance','contract','signed_contract','status',
+            for r in ['request','proposal',
+                        'acceptance','contract','status',
                         'data_request','encrypted_response',
                     ] ] )  
     ctx.update( dict(zip(['Year','Month','Day'],datetime.now().today().strftime("%Y %B %d").split(' '))) )

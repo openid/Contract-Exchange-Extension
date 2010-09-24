@@ -6,5 +6,8 @@
     "payment_to"     :  "5PT",
     "template" : 
         "...(base64 encoded text for End User to grant the CX contract)..."
-    ...( OTHER OPENID REQUEST PARAMTERS ) ...,
+    "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
+    "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+    ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+    ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
 }

@@ -10,8 +10,8 @@
 
 * reqs
 
-    * array of object(Signed Request)
-    *  JSON array of  CX  Signed Requests
+    * array of object(OAuth Signature Envelope Token)
+    * JSON array of  CX Requests in token string format.
 
 * sighash 
 

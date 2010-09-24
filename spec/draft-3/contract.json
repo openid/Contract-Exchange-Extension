@@ -23,7 +23,10 @@
                 "identifier": "http://op.com/user/y43432",
                     .....
             }
-        ]
+        ],
+        "signatory_certs" 
+            : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+
+        ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
     }
 }
-    

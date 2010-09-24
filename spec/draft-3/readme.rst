@@ -43,11 +43,12 @@ Some template referes external parameters defined ReST file ( .rst ) which are p
          |     |     +-- structures.tmpl
          |     |     |     +-- non-normative_examples.tmpl
          |     |     |     +-- request.tmpl ( request.rst / request.json )
-         |     |     |     +-- signed_request.tmpl  ( signed_request.rst / signed_request.json )
+         |     |     |     +-- signing_request.tmpl  ( signing_request.rst / signing_request.json )
          |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
+         |     |     |     +-- signing_proposal.tmpl ( signing_proposal.rst / signing_proposal.json )
          |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
          |     |     |     +-- contract.tmpl (contract.rst / contract.json )
-         |     |     |     +-- signed_contract.tmpl (signed_contract.rst / signed_contract.json )
+         |     |     |     +-- signing_contract.tmpl (signing_contract.rst / signing_contract.json )
          |     |     |     +-- status.tmpl (status.rst / status.json )
          |     |     |
          |     |     +-- storage_timestamping.tmpl

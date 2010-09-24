@@ -49,3 +49,13 @@
 
     * optional,string
     * End user's identfier at the responding party specified by 'server_id'
+
+* client_certs
+
+    * string(base64url)
+    * The PEM formatted string version of client_id's X.509 certificate used for this Magic Envelope JSON.
+
+* server_certs
+
+    * optional,string(base64url)
+    * The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request. 
