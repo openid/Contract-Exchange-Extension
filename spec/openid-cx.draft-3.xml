@@ -238,8 +238,8 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 </section>
 <section title="Request">
     <t>
-A CX Request is a extended OpenID Artifact Binding Request file.
-Every party bound to a CX Contract MUST prepare a CX Request.
+A CX Request is a extended OpenID Artifact Binding Request file as well as OAuth Signature Envelope. 
+Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
 </t>
 
 <t>
@@ -353,58 +353,7 @@ Every party bound to a CX Contract MUST prepare a CX Request.
                     
                         <t>optional,string</t>
                     
-                        <t>End user's identfier at the responding party specified by 'server_id'</t>
-                    
-                </list>
-            </t>
-        
-    </list>
-</t>
-
-<t>The following is a non-normative sample for CX Request JSON object:</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    "type" : "http://specs.openid.net/cx/1.0/#request",   
-    "client_id" : "http://rp.net",
-    "server_id": "http://op.com",
-    "payment_from" : "500JPY",
-    "payment_to"     :  "5PT",
-    "template" : 
-        "...(base64 encoded text for End User to grant the CX contract)..."
-    ...( OTHER OPENID REQUEST PARAMTERS ) ...,
-}
-    ]]></artwork>
-</figure>
-</section>
-<section title="Signed Request">
-    <t>
-A CX Signed Request is a Magic Enveloped version of a CX Request file.
-</t>
-
-<t>
-    <list style="symbols">
-        
-            <t> type
-                <list style="symbols">
-                    
-                        <t>string(URI)</t>
-                    
-                        <t>"http://specs.openid.net/cx/1.0/#signed_request"
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> id
-                <list style="symbols">
-                    
-                        <t>string(URI)</t>
-                    
-                        <t>URI which specify this signed request</t>
-                    
-                        <t>This  MAY is used by other CX Requests for describing the relation ships.
+                        <t>End user's identfier at the responding party specified by 'server_id'
 </t>
                     
                 </list>
@@ -439,18 +388,24 @@ A CX Signed Request is a Magic Enveloped version of a CX Request file.
 <figure>
     <artwork><![CDATA[
 {
-    "type" : "http://specs.openid.net/cx/1.0/#signed_request",   
-    "id" : "http://requesting.com/432143",
+    "type" : "http://specs.openid.net/cx/1.0/#request",   
+    "client_id" : "http://rp.net",
+    "server_id": "http://op.com",
+    "payment_from" : "500JPY",
+    "payment_to"     :  "5PT",
+    "template" : 
+        "...(base64 encoded text for End User to grant the CX contract)..."
     "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
     "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
-     ... ( OTHER Magic Envelop PARAMTERS ) ...
+    ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+    ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
 }
     ]]></artwork>
 </figure>
 </section>
 <section title="Proposal">
     <t>
-A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
+A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 </t>
 
 <t>
@@ -481,9 +436,9 @@ A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
             <t> reqs
                 <list style="symbols">
                     
-                        <t>array of object(Signed Request)</t>
+                        <t>array of object(OAuth Signature Envelope Token)</t>
                     
-                        <t>JSON array of  CX  Signed Requests
+                        <t>JSON array of  CX Requests in token string format.
 </t>
                     
                 </list>
@@ -534,14 +489,8 @@ A CX Proposal is a contrainer JSON to hold CX Singed Request of parties.
       "type": "http://specs.openid.net/cx/1.0/#proposal",
       "id" : http://rp.net/432143214321",
       "reqs": [ 
-        {
-            "type" : "http://specs.openid.net/cx/1.0/#signed_request",
-            ...(OTHER SIGNED REQUEST PARAMETERS)...
-         },
-         {
-            "type" : "http://specs.openid.net/cx/1.0/#signed_request",
-            ...(OTHER SIGNED REQUEST PARAMETERS)...
-         }
+        "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
+        "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
       "sighash" : " ",
       "hashalg" : "",
@@ -623,7 +572,8 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 </section>
 <section title="Contract">
     <t>
-A CX Contract is a container of Acceptances. Every party is provided its own contract which share the same contract identifier.
+A CX Contract is an OAuth Signature Envelope JSON object and  a container of Acceptances. 
+Every party is provided its own contract which share the same contract identifier.
 </t>
 
 <t>
@@ -695,7 +645,19 @@ A CX Contract is a container of Acceptances. Every party is provided its own con
                     
                         <t>array of object(Acceptance)</t>
                     
-                        <t>JSON array of  CX Acceptance</t>
+                        <t>JSON array of  CX Acceptance
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> signatory_certs
+                <list style="symbols">
+                    
+                        <t>string(base64url)</t>
+                    
+                        <t>The PEM formatted string version of OP's X.509 certificate used for this Magic Envelope JSON.
+</t>
                     
                 </list>
             </t>
@@ -732,70 +694,12 @@ A CX Contract is a container of Acceptances. Every party is provided its own con
                 "identifier": "http://op.com/user/y43432",
                     .....
             }
-        ]
-    }
-}
-    
-    ]]></artwork>
-</figure>
-
-
-</section>
-<section title="Signed Contract">
-    <t>
-A CX Signed Contract is a Magic Enveloped version of a CX Contract.
-When a party requests its Contract for contract_id and partty_id, OP MUST response it in Signed Contract format.
-</t>
-
-<t>
-    <list style="symbols">
-        
-            <t> type
-                <list style="symbols">
-                    
-                        <t>string(URI)</t>
-                    
-                        <t>"http://specs.openid.net/cx/1.0/#signed_contract"
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> id
-                <list style="symbols">
-                    
-                        <t>optional,string(URI)</t>
-                    
-                        <t>URI which specify this signed contract.
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> signatory_certs
-                <list style="symbols">
-                    
-                        <t>string(base64url)</t>
-                    
-                        <t>The PEM formatted string version of OP's X.509 certificate used for this Magic Envelope JSON.
-</t>
-                    
-                </list>
-            </t>
-        
-    </list>
-</t>
-
-<t>The following is a non-normative sample for CX Contract JSON object:</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    "type"  : "http://specs.openid.net/cx/1.0/#signed_contract",   
-    "id"    : "http://op.com/contract/432143",
-    "signatory_certs" 
+        ],
+        "signatory_certs" 
             : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
-     ... ( OTHER Magic Envelop PARAMTERS ) ...
+
+        ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+    }
 }
     ]]></artwork>
 </figure>
