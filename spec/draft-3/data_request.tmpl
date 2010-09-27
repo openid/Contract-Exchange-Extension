@@ -1,18 +1,19 @@
 <section title="CX Data Request">
 
+<section title="Endpoint">
 <t>
-A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract
-A request MUST be formed in a HTTP GET request defined in the following URL.
+A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract.  The endpoint of End User's privacy data is specified "endpoint" parameter of CX Request and Acceptance JSON. 
 </t>
+<t>
+Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
+</t>
+<t>
+Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contract_id" itself.
+</t>
+</section>
 
-<figure>
-    <artwork><![CDATA[
-endpoint?party=_party_identfier_&cxid=_cx_identifier_
-    ]]></artwork>
-</figure>
-
-<t>where parameters are definend in the following.</t>
-
+<section title="Parameters">
+<t>CX data request parameters to be sent to URI described "Endpoint" section  are definend in the following.</t>
 <t>
     <list style="symbols">
         {% for p in data_request: %}
@@ -26,11 +27,18 @@ endpoint?party=_party_identfier_&cxid=_cx_identifier_
         {% endfor %}
     </list>
 </t>
-
+</section>
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request.
+Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in JSON Encryption Envelope with using valid public key of specified party.
+</t>
+</section>
+
+
+<section title="Access Log Record Format">
+<t>
+ToDO: describe later.
 </t>
 </section>
 

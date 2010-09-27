@@ -468,8 +468,6 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
-      "sighash" : " ",
-      "hashalg" : "",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
 }
@@ -776,22 +774,10 @@ such as Algorithm Compromise. Thus, care should be taken to appropriately proces
         <section title="Sending Proposal">
     <section title="Advertising Service">
 
-<t>Before advertising CX Service, a RP MUST collect all Signed Request files related to that service.</t>
+<t>Before advertising CX Service, a RP MUST collect all CX Request token related to that service. Some CX Request token MAY be provided by any party other than the RP itself.</t>
 
 <t>
-A RP MUST prepare its own CX Request file which SHOULD refer signatures of all other Signed Request files in "related_requests" and "related_signs". "server_id" MAY be used when a particular service endpoint has been already known by the RP. "payment_from" and "payment_to" SHOULD be provided to know what exact benefit is given to an End User and what exact obligation MUST be paid by an End User. A text describing the overview of the service and contract of the service MUST be provided and encoded into "template" member in the base64 encoding.
-</t>
-
-<t>
-The RP finally digitally sign the CX Request using Magic Signatures to provide CX Signed Request for the service.
-</t>
-
-<t>
-All other parties referred by a CX Request MUST have prepared CX Signed Requests in the same procedure.
-</t>
-
-<t>
-A RP finally provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
+A RP SHOULD provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
 </t>
 
 </section>
@@ -799,7 +785,9 @@ A RP finally provide an user interface like image button for End Users to click 
 <section title="Providing CX Proposal">
 
 <t>
-When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. Depending on the web application provided by the RP for the CX Service, the RP creates CX Request file and sign it into CX Signed Request file. Otherwise the PR simply copies a predefined CX Signed Request file. All CX Signed Request file to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. "sighash" member SHOULD be calculated with the hash algorithm specified in "hashlag" which is "SHA256" as default if not specified. Hash base string is the simple concatenation of "sig" member of CX Signed Request in the same order in "reqs" array.
+When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. 
+All CX Request token to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. 
+CX Proposal JSON MUST be finally singed into a CX Proposal Token.
 </t>
 </section>
 
@@ -815,10 +803,7 @@ A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member o
     <artwork><![CDATA[
 {
     ...( OPENID ARTIFACT BINDING  REQUEST FILE JSON MEMBERS ) ...,
-    "cx" : {
-                "type" :   "http://specs.openid.net/cx/1.0/#proposal",
-                 ... ( OTHER CX PROPOSAL JSON MEMBERS ) ...
-             } 
+    "cx" : "crypto_segment_of_cx_proposal_token.claim_segment_of_cx_proposal_token",
 }
     ]]></artwork>
 </figure>
@@ -831,7 +816,7 @@ OpenID authentication request session MUST be started to the OP specified by the
 <section title="Accepting Proposal">
     <section title="Accepting OpenID Artifact Binding Request">
 
-<t>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions. As described in "Sending Proposal", a CX Proposal JSON object has a member named "type" whose value is "http://specs.openid.net/cx/1.0/#proposal".
+<t>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions named "cx".
 </t>
 
 </section>
@@ -840,22 +825,17 @@ OpenID authentication request session MUST be started to the OP specified by the
 <section title="Verify Proposal">
 
 <t>
-If CX Proposal is contained as a OpenID extention and the End User is authenticated properly, OP SHOULD veify the proposal. "sighash" SHOULD be verify for no alteration.
+If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in OAuth Signature Envelope.  
 </t>
-
 <t>
-All CX Signed Reqeust in "reqs" array MUST be verified. Because JSON objects in "reqs" are Magic Envelope, "sigs" of each JSON object MUST be verified with X.509 certificate decoded from "client_certs".
-</t>
-
-<t>
-If Magic Envelope is valid, "data" MUST be decoded into CX Request and checked its content.
+All CX Reqeust Tokens in "reqs" array MUST be verified. 
 </t>
 
 </section>
 
 <section title="Grants from End User">
 <t>
-If CX Proposal is valid, OP MUST display "template" and what exactly each party requests. To compose a contract, the End User MUST agree the content displayed by OP.
+If CX Proposal and CX Requests in it are valid, OP MUST display "template" and what exactly each party requests to the End User. To compose a contract, the End User MUST agree the content displayed by OP.
 </t>
 
 </section>
@@ -882,7 +862,7 @@ The original CX Proposal MUST be refered as "proposal_id" with its identifier. T
 </t>
 
 <t>
-OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of Signed Contract which is the Magic Enveloped verion of the party's Contract.
+OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of OAuth Signature Envelope.
 </t>
 
 </section>
@@ -898,10 +878,7 @@ If a RP request OpenID Artifact Binding assertion request and there is a CX Sign
     <artwork><![CDATA[
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
-    "cx" : {
-                "type" :   "http://specs.openid.net/cx/1.0/#signed_contract",
-                 ... ( OTHER CX SIGNED CONTRACT JSON MEMBERS ) ...
-             } 
+    "cx" : "crypto_segment_of_cx_contract_token.claim_segment_of_cx_contract_token",
 }
     ]]></artwork>
 </figure>
@@ -929,7 +906,7 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 <section title="Verifying Contract">
 
 <t>
-If the "cx" member of assertion JSON object is a CX Signed Contract JSON object, RP MUST verify the signature of Magic Envelope first. RP MUST store the CX Signed Contract if it is valid Magic Envelope.
+If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of OAuth Signature Envelope first. RP MUST store the CX Contract Token if it is valid OAuth Signature Evelope.
 </t>
 
 
@@ -959,39 +936,27 @@ RP and other bound party  MAY request the CX Contract using Data Request mechani
 <section title="Data Request">
     <section title="CX Data Request">
 
+<section title="Endpoint">
 <t>
-A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract
-A request MUST be formed in a HTTP GET request defined in the following URL.
+A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract.  The endpoint of End User's privacy data is specified "endpoint" parameter of CX Request and Acceptance JSON. 
 </t>
+<t>
+Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
+</t>
+<t>
+Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contract_id" itself.
+</t>
+</section>
 
-<figure>
-    <artwork><![CDATA[
-endpoint?party=_party_identfier_&cxid=_cx_identifier_
-    ]]></artwork>
-</figure>
-
-<t>where parameters are definend in the following.</t>
-
+<section title="Parameters">
+<t>CX data request parameters to be sent to URI described "Endpoint" section  are definend in the following.</t>
 <t>
     <list style="symbols">
-        
-            <t> endpoint
-                <list style="symbols">
-                    
-                        <t>REQUIRED Value: URI.</t>
-                    
-                        <t>If this uri is  a contract identfier, the OP MUST return the CX Contract specified by this identfiier.</t>
-                    
-                        <t>If this uri is  a endpoint of a CX Sdata, the party MUST return the data.
-</t>
-                    
-                </list>
-            </t>
         
             <t> party
                 <list style="symbols">
                     
-                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party, encode into a base64 string and returns in text/plain content type.
+                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in JSON Ecncryption Envelope.
 </t>
                     
                 </list>
@@ -1000,18 +965,52 @@ endpoint?party=_party_identfier_&cxid=_cx_identifier_
             <t> cx_id
                 <list style="symbols">
                     
-                        <t>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.</t>
+                        <t>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> log
+                <list style="symbols">
+                    
+                        <t>Optional. If this is set "true", access log records MUST be returned.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> from
+                <list style="symbols">
+                    
+                        <t>Optional. This is the "from date" of access log records to be returned.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> to
+                <list style="symbols">
+                    
+                        <t>Optional. This is the "to date" of access log records to be returned.</t>
                     
                 </list>
             </t>
         
     </list>
 </t>
-
+</section>
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request.
+Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in JSON Encryption Envelope with using valid public key of specified party.
+</t>
+</section>
+
+
+<section title="Access Log Record Format">
+<t>
+ToDO: describe later.
 </t>
 </section>
 

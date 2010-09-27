@@ -34,7 +34,7 @@ def make():
     ctx = dict([ [r,load_params(r)]  
             for r in ['request','proposal',
                         'acceptance','contract','status',
-                        'data_request','encrypted_response',
+                        'data_request',
                     ] ] )  
     ctx.update( dict(zip(['Year','Month','Day'],datetime.now().today().strftime("%Y %B %d").split(' '))) )
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }

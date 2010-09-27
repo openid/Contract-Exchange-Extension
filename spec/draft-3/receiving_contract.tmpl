@@ -8,10 +8,7 @@ If a RP request OpenID Artifact Binding assertion request and there is a CX Sign
     <artwork><![CDATA[
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
-    "cx" : {
-                "type" :   "http://specs.openid.net/cx/1.0/#signed_contract",
-                 ... ( OTHER CX SIGNED CONTRACT JSON MEMBERS ) ...
-             } 
+    "cx" : "crypto_segment_of_cx_contract_token.claim_segment_of_cx_contract_token",
 }
     ]]></artwork>
 </figure>
@@ -39,7 +36,7 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 <section title="Verifying Contract">
 
 <t>
-If the "cx" member of assertion JSON object is a CX Signed Contract JSON object, RP MUST verify the signature of Magic Envelope first. RP MUST store the CX Signed Contract if it is valid Magic Envelope.
+If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of OAuth Signature Envelope first. RP MUST store the CX Contract Token if it is valid OAuth Signature Evelope.
 </t>
 
 
