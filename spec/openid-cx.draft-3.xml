@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="25" month="September" year="2010" />
+    <date day="27" month="September" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
@@ -444,30 +444,6 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
                 </list>
             </t>
         
-            <t> sighash
-                <list style="symbols">
-                    
-                        <t>string(base64url)</t>
-                    
-                        <t>SHA256( reqs[0].sigs + reqs[1].sigs ... + reqs[n].sigs)
-</t>
-                    
-                </list>
-            </t>
-        
-            <t> hashalg
-                <list style="symbols">
-                    
-                        <t>optional,string</t>
-                    
-                        <t>A hash algorithm used for calculating sighash member.</t>
-                    
-                        <t>"SHA256" is default.
-</t>
-                    
-                </list>
-            </t>
-        
             <t> notify
                 <list style="symbols">
                     
@@ -504,7 +480,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 <section title="Acceptance">
     <t>
 A CX Acceptance is a copy form original CX Request with extra parameters including End User's privacy data added by OP and End User.
-OP MUST produce two CX Acceptances for requesting party for a single CX Request. Each of them is to be included in CX Contract for proper party.
+OP MUST produce two CX Acceptances for a single CX Request. Each of them is to be included in CX Contract for proper party.
 Privacy data like canonical identifier SHOULD be different from each other.
 </t>
 
