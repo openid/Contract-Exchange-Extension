@@ -1,8 +1,8 @@
-* party
+* party_id
 
-    * REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in JSON Ecncryption Envelope.
+    * REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
 
-* cx_id
+* contract_id
 
     * REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation. 
 

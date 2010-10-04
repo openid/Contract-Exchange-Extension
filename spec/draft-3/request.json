@@ -9,5 +9,5 @@
     "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
     "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
     ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
 }

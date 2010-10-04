@@ -53,7 +53,7 @@
 * client_certs
 
     * string(base64url)
-    * The PEM formatted string version of client_id's X.509 certificate used for this Magic Envelope JSON.
+    * The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 
 * server_certs
 

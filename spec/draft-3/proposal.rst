@@ -10,7 +10,7 @@
 
 * reqs
 
-    * array of object(OAuth Signature Envelope Token)
+    * array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} }
     * JSON array of  CX Requests in token string format.
 
 * notify

@@ -146,7 +146,7 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">September 27, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">October 04, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
@@ -257,7 +257,7 @@ Overview</h3>
 <a name="rfc.section.3"></a><h3>3.&nbsp;
 Files</h3>
 
-<p>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended Magic Singatures is used for digital signature and the extended JSON Encrypted Envelope is used for asymmetric encryption with public key infrastructure.
+<p>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is used for digital signature and the extended <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is used for asymmetric encryption with public key infrastructure.
 </p>
 <a name="anchor6"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -293,11 +293,11 @@ Signed JSON  and Token</h3>
 
 <p>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
-OAuth Signagure Envelope is  the default format. Like other CX JSON,  OAuth Signature Envlope used for CX MUST have "type" and MAY optionally have "id".
+ <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is the default format. Like other CX JSON,  <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] used for CX MUST have "type" and MAY optionally have "id".
 
 </p>
 <p>
-OAuth Signature Envelope is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by OAuth Signature Envelope looks like following string:
+<a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] looks like following string:
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
@@ -311,8 +311,8 @@ Encrypted JSON</h3>
 
 <p>
 Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
-JSON Encryption Envelope  is the default format.
-Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
+<a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is the default format.
+Like other CX JSON object, <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] used for CX MUST have "type" and MAY optionally have "id".
 
 </p>
 <a name="anchor10"></a><br /><hr />
@@ -346,14 +346,14 @@ Non-Normative Examples</h3>
 <p> An OpenID Artifact Binding assertion holding a CX Contract might be described here .
 </p>
 <p>
-Here is a  non-normative example of a CX Contract which is actually the Magic Enveloped version of CX Acceptance.
+Here is a  non-normative example of a CX Contract which is actually the <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]version of CX Acceptance.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     "type" :  "http://specs.openid.net/cx/1.0/#contract",
     "id" : "http://op.com/contract/f43213214",
     "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " ,
-     ...    (other Magic Envelop JSON MEMBERS )   ...
+     ...    (other JSON SIMPLE SIGN MEMBERS )   ...
 }
 </pre></div>
 <p>
@@ -385,7 +385,7 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 Request</h3>
 
 <p>
-A CX Request is a extended OpenID Artifact Binding Request file as well as OAuth Signature Envelope. 
+A CX Request is a extended OpenID Artifact Binding Request file as well as <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
 Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
 
 </p>
@@ -511,7 +511,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of client_id's X.509 certificate used for this Magic Envelope JSON.
+<li>The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 
 </li>
 </ul>
@@ -543,7 +543,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
     "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
     "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
     ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
 }
 </pre></div>
 <a name="anchor14"></a><br /><hr />
@@ -583,7 +583,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 <li> reqs
                 
 <ul class="text">
-<li>array of object(OAuth Signature Envelope Token)
+<li>array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} }
 </li>
 <li>JSON array of  CX Requests in token string format.
 
@@ -692,7 +692,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 Contract</h3>
 
 <p>
-A CX Contract is an OAuth Signature Envelope JSON object and  a container of Acceptances. 
+A CX Contract is an <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON object and  a container of Acceptances. 
 Every party is provided its own contract which share the same contract identifier.
 
 </p>
@@ -776,7 +776,7 @@ Every party is provided its own contract which share the same contract identifie
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of OP's X.509 certificate used for this Magic Envelope JSON.
+<li>The PEM formatted string version of OP's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 
 </li>
 </ul>
@@ -816,7 +816,7 @@ Every party is provided its own contract which share the same contract identifie
         "signatory_certs"
             : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
 
-        ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
     }
 }
 </pre></div>
@@ -978,7 +978,7 @@ Accepting OpenID Artifact Binding Request</h3>
 Verify Proposal</h3>
 
 <p>
-If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in OAuth Signature Envelope.  
+If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </p>
 <p>
@@ -1019,7 +1019,7 @@ The original CX Proposal MUST be refered as "proposal_id" with its identifier. T
 
 </p>
 <p>
-OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of OAuth Signature Envelope.
+OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
 
 </p>
 <a name="anchor30"></a><br /><hr />
@@ -1059,7 +1059,7 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 Verifying Contract</h3>
 
 <p>
-If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of OAuth Signature Envelope first. RP MUST store the CX Contract Token if it is valid OAuth Signature Evelope.
+If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] first. RP MUST store the CX Contract Token if it is valid <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </p>
 <p>
@@ -1121,16 +1121,16 @@ Parameters</h3>
 <p>
     </p>
 <ul class="text">
-<li> party
+<li> party_id
                 
 <ul class="text">
-<li>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in JSON Ecncryption Envelope.
+<li>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
 
 </li>
 </ul>
             
 </li>
-<li> cx_id
+<li> contract_id
                 
 <ul class="text">
 <li>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.
@@ -1174,7 +1174,7 @@ Parameters</h3>
 Encrypted Response</h3>
 
 <p>
-Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in JSON Encryption Envelope with using valid public key of specified party.
+Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
 
 </p>
 <a name="anchor39"></a><br /><hr />
@@ -1183,7 +1183,76 @@ Data response MUST be formed in JSON Encryption Envelope and encrypted for "part
 Access Log Record Format</h3>
 
 <p>
-ToDO: describe later.
+Every data endpoint MUST provid access log record if requested by bound party.
+Access log records MUST be also encrypted in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> msg_id
+                
+<ul class="text">
+<li>Unique identifier for the endpoint given by data providing party.
+
+</li>
+</ul>
+            
+</li>
+<li> request_id
+                
+<ul class="text">
+<li>Privacy data reqquet msg_id specified by requesting party.
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>Contract identifier.
+
+</li>
+</ul>
+            
+</li>
+<li> party
+                
+<ul class="text">
+<li>requesting party
+
+</li>
+</ul>
+            
+</li>
+<li> datetime
+                
+<ul class="text">
+<li>requested date and time.
+
+</li>
+</ul>
+            
+</li>
+<li> status
+                
+<ul class="text">
+<li>response status.
+
+</li>
+</ul>
+            
+</li>
+<li> reason
+                
+<ul class="text">
+<li>reason of the status
+</li>
+</ul>
+            
+</li>
+</ul><p>
 
 </p>
 <a name="anchor40"></a><br /><hr />
@@ -1255,6 +1324,10 @@ Acknowledgements</h3>
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <h3>6.&nbsp;Normative References</h3>
 <table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_ENC_1_0">[JSON_SIMPLE_ENC_1_0]</a></td>
+<td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html">JSON Simple Encryption ver.1 draft00</a>,&rdquo; September&nbsp;2010.</td></tr>
+<tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_SIGN_1_0">[JSON_SIMPLE_SIGN_1_0]</a></td>
+<td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html">JSON Simple Sign ver.1 draft00</a>,&rdquo; September&nbsp;2010.</td></tr>
 <tr><td class="author-text" valign="top"><a name="OAEP">[OAEP]</a></td>
 <td class="author-text">Bellare, M. and <a href="mailto:">P. Rogaway</a>, &ldquo;Optimal Asymmetric Encryption -- How to encrypt with RSA.
           Extended abstract in Advances in Cryptology - Eurocrypt '94

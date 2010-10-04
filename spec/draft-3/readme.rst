@@ -5,6 +5,13 @@ Knows Issue and TODO
 ----------------------
 
 - "3.2.1.  Non-Normative Examples" MUST be rewritten.
+- Signature is going to be based on "JSON Simple Sign 1.0<json-simple-sign-1_0_>"
+- Encryption is going to be based on "JSON Simple Encryption 1.0<json-simple-enc-1_0_>".
+
+.. _json-simple-sign-1_0 : http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html
+.. _json-simple-enc-1_0 : http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html
+   
+
 
 File Structure
 --------------

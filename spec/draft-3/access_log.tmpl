@@ -1,0 +1,19 @@
+<t>
+Every data endpoint MUST provid access log record if requested by bound party.
+Access log records MUST be also encrypted in {{ xref.JSON_SIMPLE_ENC_1_0 }}.
+</t>
+
+<t>
+    <list style="symbols">
+        {% for p in access_log : %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+

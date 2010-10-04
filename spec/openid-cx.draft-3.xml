@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="27" month="September" year="2010" />
+    <date day="04" month="October" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
@@ -108,7 +108,7 @@
     </section>
 
     <section title="Files">
-        <t>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended Magic Singatures is used for digital signature and the extended JSON Encrypted Envelope is used for asymmetric encryption with public key infrastructure.</t>
+        <t>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is used for digital signature and the extended <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> is used for asymmetric encryption with public key infrastructure.</t>
 
 <section title="JSON and Token">
     <t>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
@@ -141,10 +141,10 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 <section title="Signed JSON  and Token">
 <t>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
-OAuth Signagure Envelope is  the default format. Like other CX JSON,  OAuth Signature Envlope used for CX MUST have "type" and MAY optionally have "id".
+ <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is the default format. Like other CX JSON,  <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> used for CX MUST have "type" and MAY optionally have "id".
 </t>
 <t>
-OAuth Signature Envelope is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by OAuth Signature Envelope looks like following string:
+<xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> looks like following string:
 </t>
 <figure>
     <artwork><![CDATA[
@@ -159,8 +159,8 @@ OAuth Signature Envelope is formated into a string token as described in the spe
 <section title="Encrypted JSON">
 <t>
 Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
-JSON Encryption Envelope  is the default format.
-Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
+<xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> is the default format.
+Like other CX JSON object, <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> used for CX MUST have "type" and MAY optionally have "id".
 </t>
 </section>
 
@@ -188,7 +188,7 @@ Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually 
 <t> An OpenID Artifact Binding assertion holding a CX Contract might be described here .</t>
 
 <t>
-Here is a  non-normative example of a CX Contract which is actually the Magic Enveloped version of CX Acceptance.
+Here is a  non-normative example of a CX Contract which is actually the <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>version of CX Acceptance.
 </t>
 
 <figure>
@@ -197,7 +197,7 @@ Here is a  non-normative example of a CX Contract which is actually the Magic En
     "type" :  "http://specs.openid.net/cx/1.0/#contract",
     "id" : "http://op.com/contract/f43213214",
     "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
-     ...    (other Magic Envelop JSON MEMBERS )   ...
+     ...    (other JSON SIMPLE SIGN MEMBERS )   ...
 }
     ]]></artwork>
 </figure>
@@ -238,7 +238,7 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 </section>
 <section title="Request">
     <t>
-A CX Request is a extended OpenID Artifact Binding Request file as well as OAuth Signature Envelope. 
+A CX Request is a extended OpenID Artifact Binding Request file as well as <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
 </t>
 
@@ -364,7 +364,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of client_id's X.509 certificate used for this Magic Envelope JSON.
+                        <t>The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 </t>
                     
                 </list>
@@ -398,7 +398,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
     "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
     "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
     ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
 }
     ]]></artwork>
 </figure>
@@ -436,7 +436,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
             <t> reqs
                 <list style="symbols">
                     
-                        <t>array of object(OAuth Signature Envelope Token)</t>
+                        <t>array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} }</t>
                     
                         <t>JSON array of  CX Requests in token string format.
 </t>
@@ -546,7 +546,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 </section>
 <section title="Contract">
     <t>
-A CX Contract is an OAuth Signature Envelope JSON object and  a container of Acceptances. 
+A CX Contract is an <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON object and  a container of Acceptances. 
 Every party is provided its own contract which share the same contract identifier.
 </t>
 
@@ -630,7 +630,7 @@ Every party is provided its own contract which share the same contract identifie
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of OP's X.509 certificate used for this Magic Envelope JSON.
+                        <t>The PEM formatted string version of OP's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 </t>
                     
                 </list>
@@ -672,7 +672,7 @@ Every party is provided its own contract which share the same contract identifie
         "signatory_certs" 
             : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
 
-        ... ( OTHER OAUTH SIGNATURE ENVELOPE PARAMTERS ) ...
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
     }
 }
     ]]></artwork>
@@ -825,7 +825,7 @@ OpenID authentication request session MUST be started to the OP specified by the
 <section title="Verify Proposal">
 
 <t>
-If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in OAuth Signature Envelope.  
+If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 </t>
 <t>
 All CX Reqeust Tokens in "reqs" array MUST be verified. 
@@ -862,7 +862,7 @@ The original CX Proposal MUST be refered as "proposal_id" with its identifier. T
 </t>
 
 <t>
-OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of OAuth Signature Envelope.
+OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref>.
 </t>
 
 </section>
@@ -906,7 +906,7 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 <section title="Verifying Contract">
 
 <t>
-If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of OAuth Signature Envelope first. RP MUST store the CX Contract Token if it is valid OAuth Signature Evelope.
+If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> first. RP MUST store the CX Contract Token if it is valid <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 </t>
 
 
@@ -953,16 +953,16 @@ Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contr
 <t>
     <list style="symbols">
         
-            <t> party
+            <t> party_id
                 <list style="symbols">
                     
-                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in JSON Ecncryption Envelope.
+                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
 </t>
                     
                 </list>
             </t>
         
-            <t> cx_id
+            <t> contract_id
                 <list style="symbols">
                     
                         <t>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.
@@ -1003,15 +1003,85 @@ Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contr
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in JSON Encryption Envelope with using valid public key of specified party.
+Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> with using valid public key of specified party.
 </t>
 </section>
 
 
 <section title="Access Log Record Format">
-<t>
-ToDO: describe later.
+    <t>
+Every data endpoint MUST provid access log record if requested by bound party.
+Access log records MUST be also encrypted in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref>.
 </t>
+
+<t>
+    <list style="symbols">
+        
+            <t> msg_id
+                <list style="symbols">
+                    
+                        <t>Unique identifier for the endpoint given by data providing party.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> request_id
+                <list style="symbols">
+                    
+                        <t>Privacy data reqquet msg_id specified by requesting party.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> contract_id
+                <list style="symbols">
+                    
+                        <t>Contract identifier.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> party
+                <list style="symbols">
+                    
+                        <t>requesting party
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> datetime
+                <list style="symbols">
+                    
+                        <t>requested date and time.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> status
+                <list style="symbols">
+                    
+                        <t>response status.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> reason
+                <list style="symbols">
+                    
+                        <t>reason of the status</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
+
 </section>
 
 </section>
@@ -1165,6 +1235,41 @@ In the unlikely event of private key compromise, the party should immediately no
 
           <date month="September" year="2000" />
         </front>
+      </reference>
+
+      <reference anchor="JSON_SIMPLE_SIGN_1_0">
+        <front>
+          <title>JSON Simple Sign ver.1 draft00</title>
+
+          <author fullname="John BradeleyBurt" >
+            <organization>Protivity Government Services</organization>
+          </author>
+
+          <author fullname="Nat Sakimura" >
+            <organization>Nomura Research Institute</organization>
+          </author>
+
+          <date month="September" year="2010" />
+        </front>
+        <format target="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html" type="HTML" />
+      </reference>
+
+
+      <reference anchor="JSON_SIMPLE_ENC_1_0">
+        <front>
+          <title>JSON Simple Encryption ver.1 draft00</title>
+
+          <author fullname="John BradeleyBurt" >
+            <organization>Protivity Government Services</organization>
+          </author>
+
+          <author fullname="Nat Sakimura" >
+            <organization>Nomura Research Institute</organization>
+          </author>
+
+          <date month="September" year="2010" />
+        </front>
+        <format target="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html" type="HTML" />
       </reference>
 
       <reference anchor="OAEP">

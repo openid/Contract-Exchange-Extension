@@ -28,10 +28,10 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 <section title="Signed JSON  and Token">
 <t>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
-OAuth Signagure Envelope is  the default format. Like other CX JSON,  OAuth Signature Envlope used for CX MUST have "type" and MAY optionally have "id".
+ {{ xref.JSON_SIMPLE_SIGN_1_0 }} is the default format. Like other CX JSON,  {{ xref.JSON_SIMPLE_SIGN_1_0 }} used for CX MUST have "type" and MAY optionally have "id".
 </t>
 <t>
-OAuth Signature Envelope is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by OAuth Signature Envelope looks like following string:
+{{ xref.JSON_SIMPLE_SIGN_1_0 }} is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by {{ xref.JSON_SIMPLE_SIGN_1_0 }} looks like following string:
 </t>
 <figure>
     <artwork><![CDATA[
@@ -46,8 +46,8 @@ OAuth Signature Envelope is formated into a string token as described in the spe
 <section title="Encrypted JSON">
 <t>
 Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
-JSON Encryption Envelope  is the default format.
-Like other CX JSON object,  JSON Encrypted Envelope used for CX MUST have "type" and MAY optionally have "id".
+{{ xref.JSON_SIMPLE_ENC_1_0 }} is the default format.
+Like other CX JSON object, {{ xref.JSON_SIMPLE_ENC_1_0 }} used for CX MUST have "type" and MAY optionally have "id".
 </t>
 </section>
 

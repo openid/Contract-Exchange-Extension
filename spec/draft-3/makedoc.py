@@ -34,10 +34,18 @@ def make():
     ctx = dict([ [r,load_params(r)]  
             for r in ['request','proposal',
                         'acceptance','contract','status',
-                        'data_request',
+                        'data_request','access_log',
                     ] ] )  
     ctx.update( dict(zip(['Year','Month','Day'],datetime.now().today().strftime("%Y %B %d").split(' '))) )
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
+
+    xref = { 'JSON_SIMPLE_SIGN_1_0': 'JSON Simple Sign 1.0' ,
+             'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,}
+
+    for (k,v) in xref.iteritems():
+        xref[k] = '<xref target="%s">%s</xref>' % (k,v)
+
+    ctx['xref'] = xref
     return t.render(ctx).encode('utf-8')
 
 if __name__ == '__main__':

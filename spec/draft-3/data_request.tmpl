@@ -31,15 +31,13 @@ Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contr
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in JSON Encryption Envelope and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in JSON Encryption Envelope with using valid public key of specified party.
+Data response MUST be formed in {{ xref.JSON_SIMPLE_ENC_1_0 }} and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in {{ xref.JSON_SIMPLE_ENC_1_0 }} with using valid public key of specified party.
 </t>
 </section>
 
 
 <section title="Access Log Record Format">
-<t>
-ToDO: describe later.
-</t>
+    {% include "access_log.tmpl" %}
 </section>
 
 </section>
