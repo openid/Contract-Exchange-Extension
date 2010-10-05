@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="04" month="October" year="2010" />
+    <date day="05" month="October" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
@@ -364,7 +364,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+                        <t>The PEM formatted string version of client_id's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
                     
                 </list>
@@ -436,7 +436,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
             <t> reqs
                 <list style="symbols">
                     
-                        <t>array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} }</t>
+                        <t>array of object( <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> )</t>
                     
                         <t>JSON array of  CX Requests in token string format.
 </t>
@@ -630,7 +630,7 @@ Every party is provided its own contract which share the same contract identifie
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of OP's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+                        <t>The PEM formatted string version of OP's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
                     
                 </list>
@@ -956,7 +956,7 @@ Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contr
             <t> party_id
                 <list style="symbols">
                     
-                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
+                        <t>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> .
 </t>
                     
                 </list>

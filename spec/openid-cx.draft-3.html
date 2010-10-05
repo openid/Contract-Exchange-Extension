@@ -146,7 +146,7 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">October 04, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">October 05, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
@@ -511,7 +511,7 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+<li>The PEM formatted string version of client_id's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </li>
 </ul>
@@ -583,7 +583,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 <li> reqs
                 
 <ul class="text">
-<li>array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} }
+<li>array of object( <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] )
 </li>
 <li>JSON array of  CX Requests in token string format.
 
@@ -776,7 +776,7 @@ Every party is provided its own contract which share the same contract identifie
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of OP's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+<li>The PEM formatted string version of OP's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </li>
 </ul>
@@ -1124,7 +1124,7 @@ Parameters</h3>
 <li> party_id
                 
 <ul class="text">
-<li>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
+<li>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
 
 </li>
 </ul>

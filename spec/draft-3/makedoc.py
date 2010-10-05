@@ -10,7 +10,7 @@ from docutils.utils import *
 #
 
 
-def  load_params(name):
+def  load_params(name,p):
     # name.rst ファイルを読み込みます。
     p = rst.Parser()
     doc = new_document( name )
@@ -30,23 +30,27 @@ def make():
     t=env.get_template('rfc.tmpl')
     #t=env.get_template('abstract.tmpl')
     
+    # XREF
+    xref = { 'JSON_SIMPLE_SIGN_1_0': 'JSON Simple Sign 1.0' ,
+             'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,}
+    for (k,v) in xref.iteritems():
+        xref[k] = '<xref target="%s">%s</xref>' % (k,v)
     
-    ctx = dict([ [r,load_params(r)]  
+    #*.rst
+    p = {'xref': xref }
+    ctx = dict([ [r,load_params(r,p)]  
             for r in ['request','proposal',
                         'acceptance','contract','status',
                         'data_request','access_log',
                     ] ] )  
+
     ctx.update( dict(zip(['Year','Month','Day'],datetime.now().today().strftime("%Y %B %d").split(' '))) )
 #    ctx = {'request':load_params('request'), 'signed_request':load_params('signed_request'), }
 
-    xref = { 'JSON_SIMPLE_SIGN_1_0': 'JSON Simple Sign 1.0' ,
-             'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,}
-
-    for (k,v) in xref.iteritems():
-        xref[k] = '<xref target="%s">%s</xref>' % (k,v)
 
     ctx['xref'] = xref
-    return t.render(ctx).encode('utf-8')
+
+    return Template(t.render(ctx).encode('utf-8')).render(ctx).encode('utf-8')
 
 if __name__ == '__main__':
     fname = "%s/openid-cx.%s.xml"% (
