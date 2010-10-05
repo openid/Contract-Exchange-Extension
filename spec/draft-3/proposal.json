@@ -8,6 +8,8 @@
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
+      "proposer_certs": "...( PEM STRING OF RP's X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
+
     }
 }

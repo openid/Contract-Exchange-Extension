@@ -457,7 +457,18 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>OP MAY directly send message to this URI.  As described later in Notification, an OP MAY notify the status of a CX Contract to the RP.</t>
+                        <t>OP MAY directly send message to this URI.  As described later in Notification, an OP MAY notify the status of a CX Contract to the RP.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> proposer_certs
+                <list style="symbols">
+                    
+                        <t>string(base64url)</t>
+                    
+                        <t>The PEM formatted string version of RP's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
                     
                 </list>
             </t>
@@ -479,7 +490,9 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
+      "proposer_certs": "...( PEM STRING OF RP's X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
+
     }
 }
     ]]></artwork>
