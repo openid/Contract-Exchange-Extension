@@ -141,10 +141,8 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 <section title="Signed JSON  and Token">
 <t>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
- <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is the default format. Like other CX JSON,  <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> used for CX MUST have "type" and MAY optionally have "id".
-</t>
-<t>
-<xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> looks like following string:
+ <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is the default format. Some CX JSON is enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> .
+Signed CX JSON is formed in the "Web Token Serialization" defined in <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. Following the sample of signed and tokenized CX JSON.
 </t>
 <figure>
     <artwork><![CDATA[
@@ -160,7 +158,6 @@ Some CX JSON object MUST be digitally signed  to prove a particular JSON object'
 <t>
 Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
 <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> is the default format.
-Like other CX JSON object, <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> used for CX MUST have "type" and MAY optionally have "id".
 </t>
 </section>
 
@@ -238,8 +235,11 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 </section>
 <section title="Request">
     <t>
-A CX Request is a extended OpenID Artifact Binding Request file as well as <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
+A CX Request is a extended OpenID Artifact Binding Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
+</t>
+<t>
+Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
 
 <t>
@@ -388,24 +388,32 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
 <figure>
     <artwork><![CDATA[
 {
-    "type" : "http://specs.openid.net/cx/1.0/#request",   
-    "client_id" : "http://rp.net",
-    "server_id": "http://op.com",
-    "payment_from" : "500JPY",
-    "payment_to"     :  "5PT",
-    "template" : 
-        "...(base64 encoded text for End User to grant the CX contract)..."
-    "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-    "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
-    ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type" : "http://specs.openid.net/cx/1.0/#request",   
+        "client_id" : "http://rp.net",
+        "server_id": "http://op.com",
+        "payment_from" : "500JPY",
+        "payment_to"     :  "5PT",
+        "template" : 
+            "...(base64 encoded text for End User to grant the CX contract)..."
+        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
+        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    }
 }
     ]]></artwork>
 </figure>
 </section>
 <section title="Proposal">
     <t>
-A CX Proposal is a contrainer JSON to hold CX Request token of parties.
+A CX Proposal is a contrainer JSON to hold CX Request token of parties and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+</t>
+
+<t>
+Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
 
 <t>
@@ -462,6 +470,9 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 <figure>
     <artwork><![CDATA[
 {
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
       "type": "http://specs.openid.net/cx/1.0/#proposal",
       "id" : http://rp.net/432143214321",
       "reqs": [ 
@@ -469,7 +480,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
-
+    }
 }
     ]]></artwork>
 </figure>
@@ -477,7 +488,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 </section>
 <section title="Acceptance">
     <t>
-A CX Acceptance is a copy form original CX Request with extra parameters including End User's privacy data added by OP and End User.
+A CX Acceptance is a copy form original CX Request "payload"  with extra parameters including End User's privacy data added by OP and End User.
 OP MUST produce two CX Acceptances for a single CX Request. Each of them is to be included in CX Contract for proper party.
 Privacy data like canonical identifier SHOULD be different from each other.
 </t>
@@ -546,8 +557,12 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 </section>
 <section title="Contract">
     <t>
-A CX Contract is an <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON object and  a container of Acceptances. 
+A CX Contract is the container JSON object of CX Acceptances and enveloped by  <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 Every party is provided its own contract which share the same contract identifier.
+</t>
+
+<t>
+Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
 
 <t>
@@ -644,35 +659,39 @@ Every party is provided its own contract which share the same contract identifie
 <figure>
     <artwork><![CDATA[
 {
-    "type"        : "http://specs.openid.net/cx/1.0/#contract",
-    "id"          : "http://op.com/id/f43213214",
-    "contract_id" : "http://op.com/id/contract/x43513514",
-    "party_id:"   : "http://res.net/",
-    "acceptance"  : [
-            {
-                "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
-                "id"        : "http://op.com/id/f43213215",
-                "client_id" : "http://rp1.net/",
-                "server_id" : "http://res.net/",
-                "endpoint"  : "http://res.net/endpoint/",
-                "identifier": "http://op.com/user/x43432",
-                    .....
-                
-            },
-            {
-                "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
-                "id"        : "http://op.com/id/f43213216",
-                "client_id" : "http://rp2.net/",
-                "server_id" : "http://res.net/",
-                "endpoint"  : "http://res.net/endpoint/",
-                "identifier": "http://op.com/user/y43432",
-                    .....
-            }
-        ],
-        "signatory_certs" 
-            : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
-
-        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type"        : "http://specs.openid.net/cx/1.0/#contract",
+        "id"          : "http://op.com/id/f43213214",
+        "contract_id" : "http://op.com/id/contract/x43513514",
+        "party_id:"   : "http://res.net/",
+        "acceptance"  : [
+                {
+                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213215",
+                    "client_id" : "http://rp1.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identifier": "http://op.com/user/x43432",
+                        .....
+                    
+                },
+                {
+                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213216",
+                    "client_id" : "http://rp2.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identifier": "http://op.com/user/y43432",
+                        .....
+                }
+            ],
+            "signatory_certs" 
+                : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+    
+            ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+        }
     }
 }
     ]]></artwork>

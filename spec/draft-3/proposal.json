@@ -1,4 +1,7 @@
 {
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
       "type": "http://specs.openid.net/cx/1.0/#proposal",
       "id" : http://rp.net/432143214321",
       "reqs": [ 
@@ -6,5 +9,5 @@
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
-
+    }
 }

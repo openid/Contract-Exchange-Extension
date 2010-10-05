@@ -293,11 +293,8 @@ Signed JSON  and Token</h3>
 
 <p>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
- <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is the default format. Like other CX JSON,  <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] used for CX MUST have "type" and MAY optionally have "id".
-
-</p>
-<p>
-<a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is formated into a string token as described in the specification so that some CX JSON is brought in a token string and receiver MUST verify and decode it into original CX JSON object.  A token produced by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] looks like following string:
+ <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is the default format. Some CX JSON is enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] .
+Signed CX JSON is formed in the "Web Token Serialization" defined in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. Following the sample of signed and tokenized CX JSON.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
@@ -312,7 +309,6 @@ Encrypted JSON</h3>
 <p>
 Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
 <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is the default format.
-Like other CX JSON object, <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] used for CX MUST have "type" and MAY optionally have "id".
 
 </p>
 <a name="anchor10"></a><br /><hr />
@@ -385,8 +381,12 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 Request</h3>
 
 <p>
-A CX Request is a extended OpenID Artifact Binding Request file as well as <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
+A CX Request is a extended OpenID Artifact Binding Request file enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
 Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </p>
 <p>
@@ -533,17 +533,21 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
 <p>The following is a non-normative sample for CX Request JSON object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
-    "type" : "http://specs.openid.net/cx/1.0/#request",
-    "client_id" : "http://rp.net",
-    "server_id": "http://op.com",
-    "payment_from" : "500JPY",
-    "payment_to"     :  "5PT",
-    "template" :
-        "...(base64 encoded text for End User to grant the CX contract)..."
-    "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-    "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
-    ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type" : "http://specs.openid.net/cx/1.0/#request",
+        "client_id" : "http://rp.net",
+        "server_id": "http://op.com",
+        "payment_from" : "500JPY",
+        "payment_to"     :  "5PT",
+        "template" :
+            "...(base64 encoded text for End User to grant the CX contract)..."
+        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
+        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    }
 }
 </pre></div>
 <a name="anchor14"></a><br /><hr />
@@ -552,7 +556,11 @@ Every party bound to a CX Contract MUST prepare a CX Request in signed token for
 Proposal</h3>
 
 <p>
-A CX Proposal is a contrainer JSON to hold CX Request token of parties.
+A CX Proposal is a contrainer JSON to hold CX Request token of parties and enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </p>
 <p>
@@ -607,6 +615,9 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 <p>The following is a non-normative sample for CX Proposal JSON object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
       "type": "http://specs.openid.net/cx/1.0/#proposal",
       "id" : http://rp.net/432143214321",
       "reqs": [
@@ -614,7 +625,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ]
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
-
+    }
 }
 </pre></div>
 <a name="anchor15"></a><br /><hr />
@@ -623,7 +634,7 @@ A CX Proposal is a contrainer JSON to hold CX Request token of parties.
 Acceptance</h3>
 
 <p>
-A CX Acceptance is a copy form original CX Request with extra parameters including End User's privacy data added by OP and End User.
+A CX Acceptance is a copy form original CX Request "payload"  with extra parameters including End User's privacy data added by OP and End User.
 OP MUST produce two CX Acceptances for a single CX Request. Each of them is to be included in CX Contract for proper party.
 Privacy data like canonical identifier SHOULD be different from each other.
 
@@ -692,8 +703,12 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 Contract</h3>
 
 <p>
-A CX Contract is an <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON object and  a container of Acceptances. 
+A CX Contract is the container JSON object of CX Acceptances and enveloped by  <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 Every party is provided its own contract which share the same contract identifier.
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </p>
 <p>
@@ -788,35 +803,39 @@ Every party is provided its own contract which share the same contract identifie
 <p>The following is a non-normative sample for CX Contract JSON object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
-    "type"        : "http://specs.openid.net/cx/1.0/#contract",
-    "id"          : "http://op.com/id/f43213214",
-    "contract_id" : "http://op.com/id/contract/x43513514",
-    "party_id:"   : "http://res.net/",
-    "acceptance"  : [
-            {
-                "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
-                "id"        : "http://op.com/id/f43213215",
-                "client_id" : "http://rp1.net/",
-                "server_id" : "http://res.net/",
-                "endpoint"  : "http://res.net/endpoint/",
-                "identifier": "http://op.com/user/x43432",
-                    .....
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type"        : "http://specs.openid.net/cx/1.0/#contract",
+        "id"          : "http://op.com/id/f43213214",
+        "contract_id" : "http://op.com/id/contract/x43513514",
+        "party_id:"   : "http://res.net/",
+        "acceptance"  : [
+                {
+                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213215",
+                    "client_id" : "http://rp1.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identifier": "http://op.com/user/x43432",
+                        .....
 
-            },
-            {
-                "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
-                "id"        : "http://op.com/id/f43213216",
-                "client_id" : "http://rp2.net/",
-                "server_id" : "http://res.net/",
-                "endpoint"  : "http://res.net/endpoint/",
-                "identifier": "http://op.com/user/y43432",
-                    .....
-            }
-        ],
-        "signatory_certs"
-            : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+                },
+                {
+                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213216",
+                    "client_id" : "http://rp2.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identifier": "http://op.com/user/y43432",
+                        .....
+                }
+            ],
+            "signatory_certs"
+                : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
 
-        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+            ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+        }
     }
 }
 </pre></div>

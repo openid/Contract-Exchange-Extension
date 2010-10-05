@@ -1,13 +1,17 @@
 {
-    "type" : "http://specs.openid.net/cx/1.0/#request",   
-    "client_id" : "http://rp.net",
-    "server_id": "http://op.com",
-    "payment_from" : "500JPY",
-    "payment_to"     :  "5PT",
-    "template" : 
-        "...(base64 encoded text for End User to grant the CX contract)..."
-    "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-    "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
-    ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
-    ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type" : "http://specs.openid.net/cx/1.0/#request",   
+        "client_id" : "http://rp.net",
+        "server_id": "http://op.com",
+        "payment_from" : "500JPY",
+        "payment_to"     :  "5PT",
+        "template" : 
+            "...(base64 encoded text for End User to grant the CX contract)..."
+        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
+        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    }
 }
