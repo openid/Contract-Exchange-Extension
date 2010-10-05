@@ -5,7 +5,7 @@
         "type"        : "http://specs.openid.net/cx/1.0/#contract",
         "id"          : "http://op.com/id/f43213214",
         "contract_id" : "http://op.com/id/contract/x43513514",
-        "party_id:"   : "http://res.net/",
+        "party_id"    : "http://res.net/",
         "acceptances" : [
                 {
                     "type"      : "http://specs.openid.net/cx/1.0/#acceptance",

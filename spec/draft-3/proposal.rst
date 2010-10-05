@@ -6,7 +6,12 @@
 * id  
 
     * string(URI)
-    * unique identifier specified by the RP
+    * unique identifier for a specific CX Proposal specified by the RP
+
+* proposer_id 
+
+    * string(URI)
+    * Identifier for RP. 
 
 * reqs
 

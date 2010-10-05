@@ -18,7 +18,7 @@
 * party_id
 
     * string(URI)
-    * client_id or server id for a Proposal.
+    * client_id, server_id or proposer_id of this Contract.
     * contract_id + party_id MUST be globally unqiue.
 
 * proposal_id
