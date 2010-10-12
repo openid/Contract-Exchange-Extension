@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="05" month="October" year="2010" />
+    <date day="13" month="October" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
@@ -1057,7 +1057,37 @@ Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple E
 Every data endpoint MUST provid access log record if requested by bound party.
 Access log records MUST be also encrypted in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref>.
 </t>
+<t>
+Access log is JSON structured with followng parameters.
+</t>
+<t>
+    <list style="symbols">
+        
+            <t> type
+                <list style="symbols">
+                    
+                        <t>OPTIONAL,string(URI)</t>
+                    
+                        <t>This can be negotiable with this parameter between bound parties, but default is  http://specs.openid.net/cx/1.0/#access_log
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> logs
+                <list style="symbols">
+                    
+                        <t>Any type because negotiable with "type" parameters.</t>
+                    
+                </list>
+            </t>
+        
+    </list>
+</t>
 
+<t>
+Default "log" parameter is an array of arrays in which following data are contained in order.
+</t>
 <t>
     <list style="symbols">
         
@@ -1125,6 +1155,23 @@ Access log records MUST be also encrypted in <xref target="JSON_SIMPLE_ENC_1_0">
         
     </list>
 </t>
+
+<t>
+The following is a non-normative sample of CX Acesss Log.
+</t>
+<figure>
+    <artwork><![CDATA[
+{
+     "type" : "http://specs.openid.net/cx/1.0/#acess_log",   
+     "log"  : [
+        [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
+        [ "http://sp.com/res/4322","http://rp.com/req/344","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:40+09:00',"200 OK",""],
+     ]
+}
+    ]]></artwork>
+</figure>
 
 </section>
 

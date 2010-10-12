@@ -146,7 +146,7 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">October 05, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">October 13, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
@@ -1232,6 +1232,39 @@ Access log records MUST be also encrypted in <a class='info' href='#JSON_SIMPLE_
 
 </p>
 <p>
+Access log is JSON structured with followng parameters.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>OPTIONAL,string(URI)
+</li>
+<li>This can be negotiable with this parameter between bound parties, but default is  http://specs.openid.net/cx/1.0/#access_log
+
+</li>
+</ul>
+            
+</li>
+<li> logs
+                
+<ul class="text">
+<li>Any type because negotiable with "type" parameters.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>
+Default "log" parameter is an array of arrays in which following data are contained in order.
+
+</p>
+<p>
     </p>
 <ul class="text">
 <li> msg_id
@@ -1299,6 +1332,20 @@ Access log records MUST be also encrypted in <a class='info' href='#JSON_SIMPLE_
 </ul><p>
 
 </p>
+<p>
+The following is a non-normative sample of CX Acesss Log.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+     "type" : "http://specs.openid.net/cx/1.0/#acess_log",
+     "log"  : [
+        [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
+        [ "http://sp.com/res/4322","http://rp.com/req/344","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:40+09:00',"200 OK",""],
+     ]
+}
+</pre></div>
 <a name="anchor40"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5"></a><h3>5.&nbsp;

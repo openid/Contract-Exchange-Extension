@@ -2,7 +2,26 @@
 Every data endpoint MUST provid access log record if requested by bound party.
 Access log records MUST be also encrypted in {{ xref.JSON_SIMPLE_ENC_1_0 }}.
 </t>
+<t>
+Access log is JSON structured with followng parameters.
+</t>
+<t>
+    <list style="symbols">
+        {% for p in access_log_file : %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
 
+<t>
+Default "log" parameter is an array of arrays in which following data are contained in order.
+</t>
 <t>
     <list style="symbols">
         {% for p in access_log : %}
@@ -16,4 +35,13 @@ Access log records MUST be also encrypted in {{ xref.JSON_SIMPLE_ENC_1_0 }}.
         {% endfor %}
     </list>
 </t>
+
+<t>
+The following is a non-normative sample of CX Acesss Log.
+</t>
+<figure>
+    <artwork><![CDATA[
+{% include "access_log_file.json" %}
+    ]]></artwork>
+</figure>
 
