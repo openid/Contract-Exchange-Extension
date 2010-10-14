@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="13" month="October" year="2010" />
+    <date day="14" month="October" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
