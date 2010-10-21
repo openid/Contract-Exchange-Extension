@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="19" month="October" year="2010" />
+    <date day="22" month="October" year="2010" />
 
     <abstract>
     <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
@@ -97,6 +97,11 @@
 <t/>
 <t> Variety of sub class message contains fragments at the end of the type URI.</t>
       </section>
+
+      <section title="Terms">
+        <t>In addition to the terminology used in <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref>, following terms are used. </t>
+      </section>
+
     </section>
 
     <section title="Overview">
@@ -1052,7 +1057,7 @@ Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple E
 
 <section title="Access Log Record Format">
     <t>
-Every data endpoint MUST provid access log record if requested by bound party.
+Every data endpoint MUST provide access log record if it is requested by bound party.
 Access log records MUST be also encrypted in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref>.
 </t>
 <t>
@@ -1324,6 +1329,23 @@ In the unlikely event of private key compromise, the party should immediately no
 
           <date month="September" year="2000" />
         </front>
+      </reference>
+
+      <reference anchor="OPENID_AB">
+        <front>
+          <title> OpenID Artifact Binding 1.0 </title>
+
+          <author fullname="John BradeleyBurt" >
+            <organization>Protivity Government Services</organization>
+          </author>
+
+          <author fullname="Nat Sakimura" >
+            <organization>Nomura Research Institute</organization>
+          </author>
+
+          <date month="September" year="2010" />
+        </front>
+        <format target="http://bitbucket.org/openid/ab/raw/4325e6a219dd/openid-artifact-binding-1_0.html" type="HTML" />
       </reference>
 
       <reference anchor="JSON_SIMPLE_SIGN_1_0">

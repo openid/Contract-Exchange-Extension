@@ -32,7 +32,8 @@ def make():
     
     # XREF
     xref = { 'JSON_SIMPLE_SIGN_1_0': 'JSON Simple Sign 1.0' ,
-             'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,}
+             'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,
+             'OPENID_AB' : 'OpenID Artifact Binding 1.0',}
     for (k,v) in xref.iteritems():
         xref[k] = '<xref target="%s">%s</xref>' % (k,v)
     
