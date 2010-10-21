@@ -40,7 +40,7 @@ def make():
     #*.rst
     p = {'xref': xref }
     ctx = dict([ [r,load_params(r,p)]  
-            for r in ['request','proposal',
+            for r in [ 'terms','request','proposal',
                         'acceptance','contract','status',
                         'data_request','access_log_file','access_log',
                     ] ] )  

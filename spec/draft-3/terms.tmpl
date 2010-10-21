@@ -1,1 +1,15 @@
 <t>In addition to the terminology used in {{ xref.OPENID_AB }}, following terms are used. </t>
+<t>
+    <list style="symbols">
+        {% for p in terms: %}
+            <t> {{p.name}}
+                <list style="symbols">
+                    {% for v in p.note: %}
+                        <t>{{v}}</t>
+                    {% endfor %}
+                </list>
+            </t>
+        {% endfor %}
+    </list>
+</t>
+
