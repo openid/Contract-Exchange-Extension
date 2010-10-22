@@ -114,10 +114,19 @@
                 </list>
             </t>
         
+            <t> End User
+                <list style="symbols">
+                    
+                        <t>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+</t>
+                    
+                </list>
+            </t>
+        
             <t> Privacy Data
                 <list style="symbols">
                     
-                        <t>Data  which is own by End user and  can be accessed to permitted Party.
+                        <t>Data  which is own by End User and  can be accessed to permitted Party.
 </t>
                     
                 </list>
@@ -214,16 +223,16 @@
     <section title="Overview">
         <t>The contract exchange extension(CX) is OpenID extension identified by the URI "http://openid.net/srv/cx/1.0/#". The contract is the document to prove that all parties bound to that have rights and obligations on consuming and providing services between each other.</t>
 <t/>
-<t>CX protocol is based on  <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> and some <xref target="JSON">JSON(Javascript Object Notation)</xref> messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
+<t>CX protocol is based on  <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> and some <xref target="JSON">JSON(Javascript Object Notation)</xref> messages structure used in CX are defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP(Proposer), the RP compose a Proposal JSON which is compiled with OpenID Artifact Binding Request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the Proposal to the OP(Signatory) specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
 <t/>
-<t>With presenting the CX Contract at specified endpoints, the RP and other parties bound to the contract can be authenticated and request data services.</t>
+<t>With sharing Contract in advance and presenting Contract identfier at specified endpoints, the RP and other Parties bound to the Contract can be authenticated and request data services.</t>
     </section>
 
     <section title="Files">
-        <t>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is used for digital signature and the extended <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> is used for asymmetric encryption with public key infrastructure.</t>
+        <t>CX exchange Contract JSON by extending <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> protocol. <xref target="JSON">JSON(Javascript Object Notation)</xref> is the default document format, the extended <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is used for digital signature and the extended <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> is used for asymmetric encryption with public key infrastructure.</t>
 
 <section title="JSON and Token">
-    <t>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
+    <t>CX uses JSON format which is used in <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
 
 <figure>
     <artwork><![CDATA[
@@ -231,7 +240,7 @@ http://specs.openid.net/cx/1.0/#
     ]]></artwork>
 </figure>
 
-<t>And CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
+<t>CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
 
 <t>So, a generic CX JSON object likes like the following</t>
 
@@ -250,7 +259,7 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 </t>
 </section>
 
-<section title="Signed JSON  and Token">
+<section title="Signed JSON and Token">
 <t>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
  <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> is the default format. Some CX JSON is enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> .

@@ -28,7 +28,7 @@
                 }
             ],
             "signatory_certs" 
-                : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
     
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }

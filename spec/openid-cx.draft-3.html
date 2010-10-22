@@ -260,10 +260,19 @@ Terms</h3>
 </ul>
             
 </li>
+<li> End User
+                
+<ul class="text">
+<li>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+
+</li>
+</ul>
+            
+</li>
 <li> Privacy Data
                 
 <ul class="text">
-<li>Data  which is own by End user and  can be accessed to permitted Party.
+<li>Data  which is own by End User and  can be accessed to permitted Party.
 
 </li>
 </ul>
@@ -362,29 +371,29 @@ Overview</h3>
 </p>
 <p>
 </p>
-<p>CX protocol is based on  <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] and some <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.
+<p>CX protocol is based on  <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] and some <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] messages structure used in CX are defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP(Proposer), the RP compose a Proposal JSON which is compiled with OpenID Artifact Binding Request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the Proposal to the OP(Signatory) specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.
 </p>
 <p>
 </p>
-<p>With presenting the CX Contract at specified endpoints, the RP and other parties bound to the contract can be authenticated and request data services.
+<p>With sharing Contract in advance and presenting Contract identfier at specified endpoints, the RP and other Parties bound to the Contract can be authenticated and request data services.
 </p>
 <a name="anchor6"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3"></a><h3>3.&nbsp;
 Files</h3>
 
-<p>CX exchange contract data by extending OpenID Artifact Binding protocol. JSON is the default document , the extended <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is used for digital signature and the extended <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is used for asymmetric encryption with public key infrastructure.
+<p>CX exchange Contract JSON by extending <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] protocol. <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] is the default document format, the extended <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is used for digital signature and the extended <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is used for asymmetric encryption with public key infrastructure.
 </p>
 <a name="anchor7"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
 JSON and Token</h3>
 
-<p>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :
+<p>CX uses JSON format which is used in <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 http://specs.openid.net/cx/1.0/#
 </pre></div>
-<p>And CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.
+<p>CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.
 </p>
 <p>So, a generic CX JSON object likes like the following
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
@@ -405,7 +414,7 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 <a name="anchor9"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.1.2"></a><h3>3.1.2.&nbsp;
-Signed JSON  and Token</h3>
+Signed JSON and Token</h3>
 
 <p>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.

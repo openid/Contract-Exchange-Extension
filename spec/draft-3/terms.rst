@@ -3,9 +3,13 @@
     * Entity which is bound to a contract and one of Client , Server , Proposer and Signatory. 
     * Party may be a web server or a smart device client.
 
+* End User
+
+    * Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+
 * Privacy Data
 
-    * Data  which is own by End user and  can be accessed to permitted Party.
+    * Data  which is own by End User and  can be accessed to permitted Party.
 
 * Contract
 

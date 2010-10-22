@@ -6,49 +6,54 @@
 * id
 
     * optional,string(URI))
-    *  Identifier for the particular CX Request file
+    *  Identifier for the particular Request file
 
 * client_id
 
     * string(URI)
-    * Identifier for the requesting party.
+    * Identifier for Client.
 
 * server_id
 
     * optional,string(URI) 
-    * Identifier for the responding party
-    * This parameter MAY be specified only  when a requesting party want the End User to use a particular service.
-    * In this case, the requesting party has already known the service endpoint.
+    * Identifier for Server.
+    * This parameter MAY be specified only when Client wants End User to permit to use a particular service.
+    * In this case, Client has already known the service endpoint.
 
 * payment_to
 
     * optional,string(any)
-    * End User SHOULD be given "payment_to" from the party specified by  "client_id" for every CX service request to the service endpoint provided the party  identified by "server_id".
+    * End User SHOULD be given "payment_to" from  Client for every CX service request to the service endpoint of Contract.
 
 * payment_from
 
     * optional,string(any)
-    * End User SHOULD pay  "payment_from" to  the party specified by  "client_id" for every CX service request 
+    * End User SHOULD pay  "payment_from" to  Client for every CX service request of Contract. 
 
 * template
 
     * optional,string(any)
-    * End User MAY read "template" text to accept a CX Contract. 
+    * End User MAY read "template" text to agree to create  Contract. 
+
+* template_type
+
+    * optiona,string(Content-Type)
+    * Type of text provided by "template". Default is "text/plain".
 
 * endpoint
 
     * optional,string(URI)
-    * URI from which data is provieded at the responding party specified by 'server_id' 
+    * URI from which data is provieded at Server.
 
 * notify
 
     * optional,string(URI)
-    * Notifiation endpoint directely called by RP if CX Contract is provieded.
+    * Notifiation endpoint directely called by Party like Propose if Contract is provieded.
 
-* identifier
+* identity
 
     * optional,string
-    * End user's identfier at the responding party specified by 'server_id'
+    * End user's OpenID identfier at Server
 
 * client_certs
 

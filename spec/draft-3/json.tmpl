@@ -1,4 +1,4 @@
-<t>CX uses JSON format which is used in OpenID Artifact Binding request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
+<t>CX uses JSON format which is used in {{ xref.OPENID_AB }} Request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :</t>
 
 <figure>
     <artwork><![CDATA[
@@ -6,7 +6,7 @@ http://specs.openid.net/cx/1.0/#
     ]]></artwork>
 </figure>
 
-<t>And CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
+<t>CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.</t>
 
 <t>So, a generic CX JSON object likes like the following</t>
 
@@ -25,7 +25,7 @@ Although any CX JSON object MUST have members specified for  "type", any other m
 </t>
 </section>
 
-<section title="Signed JSON  and Token">
+<section title="Signed JSON and Token">
 <t>
 Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
  {{ xref.JSON_SIMPLE_SIGN_1_0 }} is the default format. Some CX JSON is enveloped by {{ xref.JSON_SIMPLE_SIGN_1_0 }} .

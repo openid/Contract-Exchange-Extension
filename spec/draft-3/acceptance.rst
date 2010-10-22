@@ -6,7 +6,7 @@
 * id 
 
     * string(URI) 
-    * unique identifier given by OP
+    * unique identifier given by Signatory
 
 * request_id
 

@@ -1,7 +1,7 @@
 * type
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#contract
+    * http://specs.openid.net/cx/1.0/#contract_part
 
 * id 
 
@@ -11,15 +11,12 @@
 * contract_id
 
     * string(URI) 
-    * unique URL given by OP
-    * OP MUST return this CX Contract in encrypted payload using requester's public key. A request MUST be a party bound to this CX Contract.
-    * All Contracts produced from a Proposal MUST be same id.
+    * Unique URL given by Signatory. All Contract Part provided to each Party from Proposal MUST be same. 
 
 * party_id
 
     * string(URI)
-    * client_id, server_id or proposer_id of this Contract.
-    * contract_id + party_id MUST be globally unqiue.
+    * client_id, server_id or proposer_id of this Contract.   
 
 * proposal_id
 
@@ -29,10 +26,10 @@
 * acceptances
 
     * array of object(Acceptance)
-    * JSON array of  CX Acceptance  
+    * JSON array of Acceptance  
 
 * signatory_certs
 
     * string(base64url)
-    * The PEM formatted string version of OP's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+    * The PEM formatted string version of Signatory's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 
