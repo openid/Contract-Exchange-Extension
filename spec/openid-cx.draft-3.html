@@ -504,8 +504,8 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 Request</h3>
 
 <p>
-A CX Request is a extended OpenID Artifact Binding Request file enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
-Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
+Request is a extended <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Request file enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
+Every party bound to  Contract MUST prepare  Request in signed token format.
 
 </p>
 <p>
@@ -531,7 +531,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI))
 </li>
-<li>Identifier for the particular CX Request file
+<li>Identifier for the particular Request file
 
 </li>
 </ul>
@@ -542,7 +542,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>Identifier for the requesting party.
+<li>Identifier for Client.
 
 </li>
 </ul>
@@ -553,11 +553,11 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>Identifier for the responding party
+<li>Identifier for Server.
 </li>
-<li>This parameter MAY be specified only  when a requesting party want the End User to use a particular service.
+<li>This parameter MAY be specified only when Client wants End User to permit to use a particular service.
 </li>
-<li>In this case, the requesting party has already known the service endpoint.
+<li>In this case, Client has already known the service endpoint.
 
 </li>
 </ul>
@@ -568,7 +568,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(any)
 </li>
-<li>End User SHOULD be given "payment_to" from the party specified by  "client_id" for every CX service request to the service endpoint provided the party  identified by "server_id".
+<li>End User SHOULD be given "payment_to" from  Client for every CX service request to the service endpoint of Contract.
 
 </li>
 </ul>
@@ -579,7 +579,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(any)
 </li>
-<li>End User SHOULD pay  "payment_from" to  the party specified by  "client_id" for every CX service request
+<li>End User SHOULD pay  "payment_from" to  Client for every CX service request of Contract.
 
 </li>
 </ul>
@@ -590,7 +590,18 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(any)
 </li>
-<li>End User MAY read "template" text to accept a CX Contract.
+<li>End User MAY read "template" text to agree to create  Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> template_type
+                
+<ul class="text">
+<li>optiona,string(Content-Type)
+</li>
+<li>Type of text provided by "template". Default is "text/plain".
 
 </li>
 </ul>
@@ -601,7 +612,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>URI from which data is provieded at the responding party specified by 'server_id'
+<li>URI from which data is provieded at Server.
 
 </li>
 </ul>
@@ -612,18 +623,18 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>Notifiation endpoint directely called by RP if CX Contract is provieded.
+<li>Notifiation endpoint directely called by Party like Propose if Contract is provieded.
 
 </li>
 </ul>
             
 </li>
-<li> identifier
+<li> identity
                 
 <ul class="text">
 <li>optional,string
 </li>
-<li>End user's identfier at the responding party specified by 'server_id'
+<li>End user's OpenID identfier at Server
 
 </li>
 </ul>
@@ -679,7 +690,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 Proposal</h3>
 
 <p>
-A CX Proposal is a contrainer JSON to hold CX Request token of parties and enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+Proposal is a contrainer JSON to hold Request token of parties and enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </p>
 <p>
@@ -705,7 +716,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>unique identifier for a specific CX Proposal specified by the RP
+<li>unique identifier for a specific Proposal specified by Proposer
 
 </li>
 </ul>
@@ -716,7 +727,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>Identifier for RP.
+<li>Identifier for Proposer
 
 </li>
 </ul>
@@ -727,7 +738,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>array of object( <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] )
 </li>
-<li>JSON array of  CX Requests in token string format.
+<li>JSON array of Requests in token string format.
 
 </li>
 </ul>
@@ -738,7 +749,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>OP MAY directly send message to this URI.  As described later in Notification, an OP MAY notify the status of a CX Contract to the RP.
+<li>Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
 
 </li>
 </ul>
@@ -749,7 +760,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of RP's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] envelope.
+<li>The PEM formatted string version of Proposer's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] envelope.
 </li>
 </ul>
             
@@ -757,7 +768,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </ul><p>
 
 </p>
-<p>The following is a non-normative sample for CX Proposal JSON object:
+<p>The following is a non-normative sample for Proposal JSON object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     "type": "http://jsonenc.info/jss/",
@@ -770,7 +781,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ]
-      "proposer_certs": "...( PEM STRING OF RP's X.509 CERTIFICATE )...",
+      "proposer_certs": "...( PEM STRING OF PROPOSER's X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
     }
@@ -782,13 +793,13 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 Acceptance</h3>
 
 <p>
-A CX Acceptance is a copy form original CX Request "payload"  with extra parameters including End User's privacy data added by OP and End User.
-OP MUST produce two CX Acceptances for a single CX Request. Each of them is to be included in CX Contract for proper party.
+Acceptance is a copy form original Request "payload"  with extra parameters including End User's privacy data added by Signagory and End User.
+Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
 Privacy data like canonical identifier SHOULD be different from each other.
 
 </p>
 <p>
-Other paramters  than the following have same meaning as ones defined in CX Reuest.
+Other paramters  than the following have same meaning as ones defined in Request.
 
 </p>
 <p>
@@ -810,7 +821,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 <ul class="text">
 <li>string(URI)
 </li>
-<li>unique identifier given by OP
+<li>unique identifier given by Signatory
 
 </li>
 </ul>
@@ -829,7 +840,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 </ul><p>
 
 </p>
-<p>The following is a non-normative sample for CX Request JSON object:
+<p>The following is a non-normative sample for Acceptance object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     "type"              : "http://specs.openid.net/cx/1.0/#acceptance",
@@ -848,11 +859,10 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 <a name="anchor17"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.2.5"></a><h3>3.2.5.&nbsp;
-Contract</h3>
+Contract Part</h3>
 
 <p>
-A CX Contract is the container JSON object of CX Acceptances and enveloped by  <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
-Every party is provided its own contract which share the same contract identifier.
+Contract Part is container JSON object of Acceptances and enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
 
 </p>
 <p>
@@ -867,7 +877,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>http://specs.openid.net/cx/1.0/#contract
+<li>http://specs.openid.net/cx/1.0/#contract_part
 
 </li>
 </ul>
@@ -878,7 +888,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>opitinal,string(URI)
 </li>
-<li>Identifier to this Contract
+<li>Identifier to this Contract Part
 
 </li>
 </ul>
@@ -889,11 +899,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>unique URL given by OP
-</li>
-<li>OP MUST return this CX Contract in encrypted payload using requester's public key. A request MUST be a party bound to this CX Contract.
-</li>
-<li>All Contracts produced from a Proposal MUST be same id.
+<li>Unique URL given by Signatory. All Contract Part provided to each Party for a Proposal MUST be same.
 
 </li>
 </ul>
@@ -905,8 +911,6 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <li>string(URI)
 </li>
 <li>client_id, server_id or proposer_id of this Contract.
-</li>
-<li>contract_id + party_id MUST be globally unqiue.
 
 </li>
 </ul>
@@ -928,7 +932,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>array of object(Acceptance)
 </li>
-<li>JSON array of  CX Acceptance
+<li>JSON array of Acceptance
 
 </li>
 </ul>
@@ -939,7 +943,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of OP's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+<li>The PEM formatted string version of Signatory's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </li>
 </ul>
@@ -948,7 +952,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </ul><p>
 
 </p>
-<p>The following is a non-normative sample for CX Contract JSON object:
+<p>The following is a non-normative sample for Contract Part object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     "type": "http://jsonenc.info/jss/",
@@ -980,7 +984,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                 }
             ],
             "signatory_certs"
-                : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
 
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }
@@ -993,7 +997,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 Status</h3>
 
 <p>
-A CX Status  is a simple CX JSON object to describe the status of the contract.
+Status  is a simple JSON object to describe the status of Contract.
 
 </p>
 <p>
@@ -1010,23 +1014,12 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
 </ul>
             
 </li>
-<li> id
-                
-<ul class="text">
-<li>string(URI)
-</li>
-<li>This is an unique identifier referring CX Contract given by OP
-
-</li>
-</ul>
-            
-</li>
 <li> proposal_id
                 
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+<li>This identifier is an unique identifier referring Proposal which Contract is being created for.
 
 </li>
 </ul>
@@ -1037,7 +1030,7 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
 <ul class="text">
 <li>string(URI)
 </li>
-<li>This identifier is an unique identifier referring CX Contract.
+<li>This identifier is an unique identifier referring Contract.
 
 </li>
 </ul>
@@ -1048,7 +1041,9 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
 <ul class="text">
 <li>string
 </li>
-<li>status description about proposal or contract
+<li>status description about proposal or contract.
+</li>
+<li>[[TODO]] created,canceled,pending,..... MUST be specified.
 </li>
 </ul>
             
@@ -1056,12 +1051,12 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
 </ul><p>
 
 </p>
-<p>The following is a non-normative sample for CX Status JSON object:
+<p>The following is a non-normative sample for Status object:
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     "type" :  "http://specs.openid.net/cx/1.0/#status",
-    "id" : "http://op.com/contract/f43213214",
     "proposal_id" :  "http://rp.net/cx/54643",
+    "contract_id" : "http://op.com/contract/f43213214",
     "status" : "pending" ,
      ...    (other  JSON MEMBERS )   ...
 }

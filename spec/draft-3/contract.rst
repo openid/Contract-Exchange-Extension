@@ -6,12 +6,12 @@
 * id 
 
     * opitinal,string(URI) 
-    * Identifier to this Contract
+    * Identifier to this Contract Part
 
 * contract_id
 
     * string(URI) 
-    * Unique URL given by Signatory. All Contract Part provided to each Party from Proposal MUST be same. 
+    * Unique URL given by Signatory. All Contract Part provided to each Party for a Proposal MUST be same. 
 
 * party_id
 

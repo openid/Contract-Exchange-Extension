@@ -354,8 +354,8 @@ Each privacy data encrypted and held in CX Acceptance and Response is originally
 </section>
 <section title="Request">
     <t>
-A CX Request is a extended OpenID Artifact Binding Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
-Every party bound to a CX Contract MUST prepare a CX Request in signed token format.
+Request is a extended <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
+Every party bound to  Contract MUST prepare  Request in signed token format.
 </t>
 <t>
 Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
@@ -380,7 +380,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI))</t>
                     
-                        <t>Identifier for the particular CX Request file
+                        <t>Identifier for the particular Request file
 </t>
                     
                 </list>
@@ -391,7 +391,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>Identifier for the requesting party.
+                        <t>Identifier for Client.
 </t>
                     
                 </list>
@@ -402,11 +402,11 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Identifier for the responding party</t>
+                        <t>Identifier for Server.</t>
                     
-                        <t>This parameter MAY be specified only  when a requesting party want the End User to use a particular service.</t>
+                        <t>This parameter MAY be specified only when Client wants End User to permit to use a particular service.</t>
                     
-                        <t>In this case, the requesting party has already known the service endpoint.
+                        <t>In this case, Client has already known the service endpoint.
 </t>
                     
                 </list>
@@ -417,7 +417,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(any)</t>
                     
-                        <t>End User SHOULD be given "payment_to" from the party specified by  "client_id" for every CX service request to the service endpoint provided the party  identified by "server_id".
+                        <t>End User SHOULD be given "payment_to" from  Client for every CX service request to the service endpoint of Contract.
 </t>
                     
                 </list>
@@ -428,7 +428,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(any)</t>
                     
-                        <t>End User SHOULD pay  "payment_from" to  the party specified by  "client_id" for every CX service request
+                        <t>End User SHOULD pay  "payment_from" to  Client for every CX service request of Contract.
 </t>
                     
                 </list>
@@ -439,7 +439,18 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(any)</t>
                     
-                        <t>End User MAY read "template" text to accept a CX Contract.
+                        <t>End User MAY read "template" text to agree to create  Contract.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> template_type
+                <list style="symbols">
+                    
+                        <t>optiona,string(Content-Type)</t>
+                    
+                        <t>Type of text provided by "template". Default is "text/plain".
 </t>
                     
                 </list>
@@ -450,7 +461,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>URI from which data is provieded at the responding party specified by 'server_id'
+                        <t>URI from which data is provieded at Server.
 </t>
                     
                 </list>
@@ -461,18 +472,18 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Notifiation endpoint directely called by RP if CX Contract is provieded.
+                        <t>Notifiation endpoint directely called by Party like Propose if Contract is provieded.
 </t>
                     
                 </list>
             </t>
         
-            <t> identifier
+            <t> identity
                 <list style="symbols">
                     
                         <t>optional,string</t>
                     
-                        <t>End user's identfier at the responding party specified by 'server_id'
+                        <t>End user's OpenID identfier at Server
 </t>
                     
                 </list>
@@ -528,7 +539,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Proposal">
     <t>
-A CX Proposal is a contrainer JSON to hold CX Request token of parties and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+Proposal is a contrainer JSON to hold Request token of parties and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 </t>
 
 <t>
@@ -554,7 +565,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>unique identifier for a specific CX Proposal specified by the RP
+                        <t>unique identifier for a specific Proposal specified by Proposer
 </t>
                     
                 </list>
@@ -565,7 +576,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>Identifier for RP.
+                        <t>Identifier for Proposer
 </t>
                     
                 </list>
@@ -576,7 +587,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object( <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> )</t>
                     
-                        <t>JSON array of  CX Requests in token string format.
+                        <t>JSON array of Requests in token string format.
 </t>
                     
                 </list>
@@ -587,7 +598,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>OP MAY directly send message to this URI.  As described later in Notification, an OP MAY notify the status of a CX Contract to the RP.
+                        <t>Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
 </t>
                     
                 </list>
@@ -598,7 +609,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of RP's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
+                        <t>The PEM formatted string version of Proposer's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
                     
                 </list>
             </t>
@@ -606,7 +617,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     </list>
 </t>
 
-<t>The following is a non-normative sample for CX Proposal JSON object:</t>
+<t>The following is a non-normative sample for Proposal JSON object:</t>
 
 <figure>
     <artwork><![CDATA[
@@ -621,7 +632,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
-      "proposer_certs": "...( PEM STRING OF RP's X.509 CERTIFICATE )...",
+      "proposer_certs": "...( PEM STRING OF PROPOSER's X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
     }
@@ -632,13 +643,13 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Acceptance">
     <t>
-A CX Acceptance is a copy form original CX Request "payload"  with extra parameters including End User's privacy data added by OP and End User.
-OP MUST produce two CX Acceptances for a single CX Request. Each of them is to be included in CX Contract for proper party.
+Acceptance is a copy form original Request "payload"  with extra parameters including End User's privacy data added by Signagory and End User.
+Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
 Privacy data like canonical identifier SHOULD be different from each other.
 </t>
 
 <t>
-Other paramters  than the following have same meaning as ones defined in CX Reuest.
+Other paramters  than the following have same meaning as ones defined in Request.
 </t>
 <t>
     <list style="symbols">
@@ -659,7 +670,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
                     
                         <t>string(URI)</t>
                     
-                        <t>unique identifier given by OP
+                        <t>unique identifier given by Signatory
 </t>
                     
                 </list>
@@ -678,7 +689,7 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
     </list>
 </t>
 
-<t>The following is a non-normative sample for CX Request JSON object:</t>
+<t>The following is a non-normative sample for Acceptance object:</t>
 
 <figure>
     <artwork><![CDATA[
@@ -699,10 +710,9 @@ Other paramters  than the following have same meaning as ones defined in CX Reue
 </figure>
 
 </section>
-<section title="Contract">
+<section title="Contract Part">
     <t>
-A CX Contract is the container JSON object of CX Acceptances and enveloped by  <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
-Every party is provided its own contract which share the same contract identifier.
+Contract Part is container JSON object of Acceptances and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
 </t>
 
 <t>
@@ -717,7 +727,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#contract
+                        <t>http://specs.openid.net/cx/1.0/#contract_part
 </t>
                     
                 </list>
@@ -728,7 +738,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>opitinal,string(URI)</t>
                     
-                        <t>Identifier to this Contract
+                        <t>Identifier to this Contract Part
 </t>
                     
                 </list>
@@ -739,11 +749,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>unique URL given by OP</t>
-                    
-                        <t>OP MUST return this CX Contract in encrypted payload using requester's public key. A request MUST be a party bound to this CX Contract.</t>
-                    
-                        <t>All Contracts produced from a Proposal MUST be same id.
+                        <t>Unique URL given by Signatory. All Contract Part provided to each Party for a Proposal MUST be same.
 </t>
                     
                 </list>
@@ -754,9 +760,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>client_id, server_id or proposer_id of this Contract.</t>
-                    
-                        <t>contract_id + party_id MUST be globally unqiue.
+                        <t>client_id, server_id or proposer_id of this Contract.
 </t>
                     
                 </list>
@@ -778,7 +782,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object(Acceptance)</t>
                     
-                        <t>JSON array of  CX Acceptance
+                        <t>JSON array of Acceptance
 </t>
                     
                 </list>
@@ -789,7 +793,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of OP's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
+                        <t>The PEM formatted string version of Signatory's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
                     
                 </list>
@@ -798,7 +802,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     </list>
 </t>
 
-<t>The following is a non-normative sample for CX Contract JSON object:</t>
+<t>The following is a non-normative sample for Contract Part object:</t>
 
 <figure>
     <artwork><![CDATA[
@@ -832,7 +836,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                 }
             ],
             "signatory_certs" 
-                : ".... ( PEM STRING OF OP's X.509 CERTIFICATE) ...",
+                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
     
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }
@@ -843,7 +847,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Status">
     <t>
-A CX Status  is a simple CX JSON object to describe the status of the contract.
+Status  is a simple JSON object to describe the status of Contract.
 </t>
 
 <t>
@@ -860,23 +864,12 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
                 </list>
             </t>
         
-            <t> id
-                <list style="symbols">
-                    
-                        <t>string(URI)</t>
-                    
-                        <t>This is an unique identifier referring CX Contract given by OP
-</t>
-                    
-                </list>
-            </t>
-        
             <t> proposal_id
                 <list style="symbols">
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>This identifier is an unique identifier referring CX Proposal which CX Contract is created for.
+                        <t>This identifier is an unique identifier referring Proposal which Contract is being created for.
 </t>
                     
                 </list>
@@ -887,7 +880,7 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
                     
                         <t>string(URI)</t>
                     
-                        <t>This identifier is an unique identifier referring CX Contract.
+                        <t>This identifier is an unique identifier referring Contract.
 </t>
                     
                 </list>
@@ -898,7 +891,9 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
                     
                         <t>string</t>
                     
-                        <t>status description about proposal or contract</t>
+                        <t>status description about proposal or contract.</t>
+                    
+                        <t>[[TODO]] created,canceled,pending,..... MUST be specified.</t>
                     
                 </list>
             </t>
@@ -906,14 +901,14 @@ A CX Status  is a simple CX JSON object to describe the status of the contract.
     </list>
 </t>
 
-<t>The following is a non-normative sample for CX Status JSON object:</t>
+<t>The following is a non-normative sample for Status object:</t>
 
 <figure>
     <artwork><![CDATA[
 {
     "type" :  "http://specs.openid.net/cx/1.0/#status",
-    "id" : "http://op.com/contract/f43213214",
     "proposal_id" :  "http://rp.net/cx/54643",
+    "contract_id" : "http://op.com/contract/f43213214",
     "status" : "pending" , 
      ...    (other  JSON MEMBERS )   ...
 }
