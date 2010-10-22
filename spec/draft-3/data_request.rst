@@ -1,10 +1,10 @@
 * party_id
 
-    * REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
+    * REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
 
 * contract_id
 
-    * REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation. 
+    * REQUIRED.  Value: Contract identfier.
 
 * log
 

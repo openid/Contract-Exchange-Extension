@@ -359,6 +359,15 @@ Terms</h3>
 </ul>
             
 </li>
+<li> Token
+                
+<ul class="text">
+<li>Signed JSON object which serialized into a formated string. Format is defined i n<a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+
+</li>
+</ul>
+            
+</li>
 <li> Service
                 
 <ul class="text">
@@ -929,7 +938,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(URI)
 </li>
-<li>Identifier to original Proposal. Fragment(#) MUST be appended to the end of the original Proposal URI. The value of the fragment is the digest of the Propsal itself after optional digesting prefix separated colon(":").  Default digesting algorithm is SHA-256, so default prefix is "sha256:" if it is not specified.
+<li>Identifier to original Proposal. The signature segment of the original Proposal Token  MUST be appended to the end of the original Proposal URI as URI fragment.
 
 </li>
 </ul>
@@ -1094,10 +1103,11 @@ Sending Proposal</h3>
 <a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
 Advertising Service</h3>
 
-<p>Before advertising CX Service, a RP MUST collect all CX Request token related to that service. Some CX Request token MAY be provided by any party other than the RP itself.
+<p>Before advertising CX Service, Proposer  MUST collect all Request token related to that Service. 
+Some Request token MAY be provided by any party other than the Proposeritself.
 </p>
 <p>
-A RP SHOULD provide an user interface like image button for End Users to click to go the CX service and the RP starts providing CX Proposal.
+Proposer SHOULD provide an user interface like image button for End Users to click to go to the Service and Proposer starts providing Proposal and CX process.
 
 </p>
 <a name="anchor23"></a><br /><hr />
@@ -1106,9 +1116,9 @@ A RP SHOULD provide an user interface like image button for End Users to click t
 Providing CX Proposal</h3>
 
 <p>
-When an End User visits the particular CX Service at the RP, the RP firstly composes the CX Proposal for the End User. 
-All CX Request token to be bound to the CX Contract MUST be included in "reqs" member of CX Proposal JSON object. 
-CX Proposal JSON MUST be finally singed into a CX Proposal Token.
+When an End User visits the particular CX Service at the Proposer, the Proposer firstly composes a Proposal for the End User. 
+All Request Token to be bound to the Contract MUST be included in "reqs" member of Proposal JSON object. 
+Proposal JSON MUST be finally singed into a Proposal Token.
 
 </p>
 <a name="anchor24"></a><br /><hr />
@@ -1117,7 +1127,7 @@ CX Proposal JSON MUST be finally singed into a CX Proposal Token.
 Start OpenID Artifact Binding Session</h3>
 
 <p>
-A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member of Artifact Binding Request file JSON object like in the following sample JSON:
+A Proposal Token is a extension of OpenID Artifact Binding. It SHOULD be a member of Artifact Binding Request file JSON object like in the following sample JSON:
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
@@ -1126,7 +1136,7 @@ A CX Proposal is a extension of OpenID Artifact Binding. It SHOULD be a member o
 }
 </pre></div>
 <p>
-OpenID authentication request session MUST be started to the OP specified by the End User at the RP's CX service page.
+OpenID authentication request session MUST be started to the Signatory specified by the End User at the Proposer's CX Service page.
 
 </p>
 <a name="anchor25"></a><br /><hr />
@@ -1139,7 +1149,7 @@ Accepting Proposal</h3>
 <a name="rfc.section.4.2.1"></a><h3>4.2.1.&nbsp;
 Accepting OpenID Artifact Binding Request</h3>
 
-<p>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions named "cx".
+<p>When an End User request a OpenID Artifact Binding request, the Signatory as OP SHOULD check if that request includes extensions named "cx".
 
 </p>
 <a name="anchor27"></a><br /><hr />
@@ -1148,11 +1158,11 @@ Accepting OpenID Artifact Binding Request</h3>
 Verify Proposal</h3>
 
 <p>
-If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+If the End User is authenticated properly and OpenID request file containes "cx" extension,the Proposal Token signature MUST be verified in the way described in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </p>
 <p>
-All CX Reqeust Tokens in "reqs" array MUST be verified. 
+All Reqeust Tokens in "reqs" array MUST be verified. 
 
 </p>
 <a name="anchor28"></a><br /><hr />
@@ -1161,7 +1171,7 @@ All CX Reqeust Tokens in "reqs" array MUST be verified.
 Grants from End User</h3>
 
 <p>
-If CX Proposal and CX Requests in it are valid, OP MUST display "template" and what exactly each party requests to the End User. To compose a contract, the End User MUST agree the content displayed by OP.
+If Proposal and all Requests in it are valid, the Signatory MUST display "template" and what exactly each Party requests to the End User. To compose a Contract, the End User MUST agree the content displayed by Signatory.
 
 </p>
 <a name="anchor29"></a><br /><hr />
@@ -1170,7 +1180,7 @@ If CX Proposal and CX Requests in it are valid, OP MUST display "template" and w
 Compose Acceptance for Each Request</h3>
 
 <p>
-If the End User agree, OP creates two CX Acceptance JSON objects for each CX Request, one for data requesting party and the other for data responding party. 
+If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
 Privacy parameter MAY be different from each other.
 
 </p>
@@ -1180,16 +1190,16 @@ Privacy parameter MAY be different from each other.
 Compose Contracts</h3>
 
 <p>
-OP provides  CX Contract JSON objects for all binding parties. Each Contract shares unique URI for "contract_id" member of it. 
-All CX Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
+Signatory provides Contract Part JSON objects for all Parties. Each Contract Part  shares unique URI, Contract Identifier,  as "contract_id" member of it. 
+All Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
 
 </p>
 <p>
-The original CX Proposal MUST be refered as "proposal_id" with its identifier. The digest of the Prooposal content MUST be appended as URI fragment.
+The original Proposal MUST be refered as "proposal_id" with its identifier. The digest segment of the Proposal Token MUST be appended as URI fragment.
 
 </p>
 <p>
-OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
+Signatory MUST publish Contract Part in exchange for "contract_id" and "party_id" from a Party in the form of Contract Token which is the product of <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
 
 </p>
 <a name="anchor31"></a><br /><hr />
@@ -1203,16 +1213,16 @@ Receiving Contract</h3>
 Responding a CX Contract in OpenID Assertion</h3>
 
 <p>
-If a RP request OpenID Artifact Binding assertion request and there is a CX Signed Contract to be bound to that, the OP MUST return it as a "cx" member of the assertion JSON object.
+If Proposer as RP request OpenID Artifact Binding assertion request and there is a Contract Part Token to be bound to that, the OP as  Signatory MUST return it as a "cx" member of the assertion JSON object.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
-    "cx" : "crypto_segment_of_cx_contract_token.claim_segment_of_cx_contract_token",
+    "cx" : "crypto_segment_of_cx_contract_part_token.claim_segment_of_cx_contract_part_token",
 }
 </pre></div>
 <p>
-But if no CX Signed Contract is available at the time when RP requests the assertion, OP MUST return CX Status JSON object as "cx" member of assertion JSON object.
+But if no Contract Part is available at the time when RP requests the assertion, OP MUST return Status JSON object as "cx" member of assertion JSON object.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
@@ -1229,15 +1239,15 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 Verifying Contract</h3>
 
 <p>
-If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] first. RP MUST store the CX Contract Token if it is valid <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+If the "cx" member of assertion JSON object is a Contract Part Token string , Proposer  MUST verify the signature of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] first. Proposer MUST store the Contract Part Token if it is valid <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </p>
 <p>
-RP SHOULD explain to the End User that a CX Contract has been successfully created and now RP is ready to request data according to the contract.
+Proposer SHOULD explain to the End User that a Contract has been successfully created and now Proposer or Cleints is ready to request data according to the Contract.
 
 </p>
 <p>
-If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User that a CX Contract has not been created yet at OP  and the reason by "status" member of the CX Status JSON object. RP MAY be notified later that a CX Contract is created by the OP.
+If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End User that a Contract has not been created yet at Signagory  and the reason by "status" member of Status JSON object. Signatory MAY be notified later that the Contract is created by the Signatory.
 
 </p>
 <a name="anchor34"></a><br /><hr />
@@ -1246,12 +1256,12 @@ If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User
 Notify Contract Status</h3>
 
 <p>
-OP and other bound party MAY send the status of the CX Contract to the endpoint specified by "notify" member of CX Proposal or CX Request. 
-"status" query parameter MUST be a CX Status JSON object.
+Signatory and other Party MAY send the status of Contract to the endpoint specified by "notify" member of Proposal or Request. 
+"status" query parameter MUST be a Status JSON object.
 
 </p>
 <p>
-RP and other bound party  MAY request the CX Contract using Data Request mechanism.
+Signatory and Party MAY request their Contract Party Token using Data Request mechanism.
 
 </p>
 <a name="anchor35"></a><br /><hr />
@@ -1270,7 +1280,8 @@ CX Data Request</h3>
 Endpoint</h3>
 
 <p>
-A party bound to a CX Contract MAY request data from a endpoint exposed by the other party bound to the same CX Contract.  The endpoint of End User's privacy data is specified "endpoint" parameter of CX Request and Acceptance JSON. 
+Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
+The endpoint of End User's Privacy Data is specified "endpoint" parameter of Request and Acceptance JSON. 
 
 </p>
 <p>
@@ -1278,7 +1289,7 @@ Access log records MAY be requested in the same endpoint when "log" parameter is
 
 </p>
 <p>
-Also bound parties MAY request CX Contract dicrectly. The endpoint URL is "contract_id" itself.
+Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpoint URL for Contract Part Token  is "contract_id" itself.
 
 </p>
 <a name="anchor38"></a><br /><hr />
@@ -1294,7 +1305,7 @@ Parameters</h3>
 <li> party_id
                 
 <ul class="text">
-<li>REQUIRED Value: An identfier of a party bound to the CX Contract. The data responding party MUST encrypt the data ith the public key of this party in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
+<li>REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
 
 </li>
 </ul>
@@ -1303,7 +1314,7 @@ Parameters</h3>
 <li> contract_id
                 
 <ul class="text">
-<li>REQUIRED for the obligation endpoint. Value: CX Contract identfier including the obligation.
+<li>REQUIRED.  Value: Contract identfier.
 
 </li>
 </ul>
@@ -1344,7 +1355,7 @@ Parameters</h3>
 Encrypted Response</h3>
 
 <p>
-Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Privacy data, CX Contract Token and CX access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
+Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Privacy data, Contract Part  Token and access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
 
 </p>
 <a name="anchor40"></a><br /><hr />
@@ -1353,7 +1364,7 @@ Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON
 Access Log Record Format</h3>
 
 <p>
-Every data endpoint MUST provide access log record if it is requested by bound party.
+Every data endpoint MUST provide access log record if it is requested by Signatory.
 Access log records MUST be also encrypted in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
 
 </p>
@@ -1369,7 +1380,7 @@ Access log is JSON structured with followng parameters.
 <ul class="text">
 <li>OPTIONAL,string(URI)
 </li>
-<li>This can be negotiable with this parameter between bound parties, but default is  http://specs.openid.net/cx/1.0/#access_log
+<li>This can be negotiable with this parameter between Parities, but default is  http://specs.openid.net/cx/1.0/#access_log
 
 </li>
 </ul>
@@ -1459,7 +1470,7 @@ Default "log" parameter is an array of arrays in which following data are contai
 
 </p>
 <p>
-The following is a non-normative sample of CX Acesss Log.
+The following is a non-normative sample of acesss log.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {

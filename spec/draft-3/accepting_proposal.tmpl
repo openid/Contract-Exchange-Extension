@@ -1,6 +1,6 @@
 <section title="Accepting OpenID Artifact Binding Request">
 
-<t>When an End User request a OpenID Artifact Binding request, the OP SHOULD check if that request includes extensions named "cx".
+<t>When an End User request a OpenID Artifact Binding request, the Signatory as OP SHOULD check if that request includes extensions named "cx".
 </t>
 
 </section>
@@ -9,17 +9,17 @@
 <section title="Verify Proposal">
 
 <t>
-If the End User is authenticated properly and OpenID request file containes "cx" extension,the CX Proposal Token signature MUST be verified in the way described in {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
+If the End User is authenticated properly and OpenID request file containes "cx" extension,the Proposal Token signature MUST be verified in the way described in {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
 </t>
 <t>
-All CX Reqeust Tokens in "reqs" array MUST be verified. 
+All Reqeust Tokens in "reqs" array MUST be verified. 
 </t>
 
 </section>
 
 <section title="Grants from End User">
 <t>
-If CX Proposal and CX Requests in it are valid, OP MUST display "template" and what exactly each party requests to the End User. To compose a contract, the End User MUST agree the content displayed by OP.
+If Proposal and all Requests in it are valid, the Signatory MUST display "template" and what exactly each Party requests to the End User. To compose a Contract, the End User MUST agree the content displayed by Signatory.
 </t>
 
 </section>
@@ -27,7 +27,7 @@ If CX Proposal and CX Requests in it are valid, OP MUST display "template" and w
 <section title="Compose Acceptance for Each Request">
 
 <t>
-If the End User agree, OP creates two CX Acceptance JSON objects for each CX Request, one for data requesting party and the other for data responding party. 
+If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
 Privacy parameter MAY be different from each other.
 </t>
 
@@ -37,16 +37,16 @@ Privacy parameter MAY be different from each other.
 <section title="Compose Contracts">
 
 <t>
-OP provides  CX Contract JSON objects for all binding parties. Each Contract shares unique URI for "contract_id" member of it. 
-All CX Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
+Signatory provides Contract Part JSON objects for all Parties. Each Contract Part  shares unique URI, Contract Identifier,  as "contract_id" member of it. 
+All Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
 </t>
 
 <t>
-The original CX Proposal MUST be refered as "proposal_id" with its identifier. The digest of the Prooposal content MUST be appended as URI fragment.
+The original Proposal MUST be refered as "proposal_id" with its identifier. The digest segment of the Proposal Token MUST be appended as URI fragment.
 </t>
 
 <t>
-OP MUST publish the contract in exchange for "contract_id" and "party_id" from a party in the form of CX Contract Token which is the product of {{ xref.JSON_SIMPLE_ENC_1_0 }}.
+Signatory MUST publish Contract Part in exchange for "contract_id" and "party_id" from a Party in the form of Contract Token which is the product of {{ xref.JSON_SIMPLE_ENC_1_0 }}.
 </t>
 
 </section>

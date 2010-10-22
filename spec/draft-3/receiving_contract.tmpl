@@ -1,6 +1,6 @@
 <section title="Responding a CX Contract in OpenID Assertion">
 <t>
-If a RP request OpenID Artifact Binding assertion request and there is a CX Signed Contract to be bound to that, the OP MUST return it as a "cx" member of the assertion JSON object.
+If Proposer as RP request OpenID Artifact Binding assertion request and there is a Contract Part Token to be bound to that, the OP as  Signatory MUST return it as a "cx" member of the assertion JSON object.
 </t>
 
 
@@ -8,14 +8,14 @@ If a RP request OpenID Artifact Binding assertion request and there is a CX Sign
     <artwork><![CDATA[
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
-    "cx" : "crypto_segment_of_cx_contract_token.claim_segment_of_cx_contract_token",
+    "cx" : "crypto_segment_of_cx_contract_part_token.claim_segment_of_cx_contract_part_token",
 }
     ]]></artwork>
 </figure>
 
 
 <t>
-But if no CX Signed Contract is available at the time when RP requests the assertion, OP MUST return CX Status JSON object as "cx" member of assertion JSON object.
+But if no Contract Part is available at the time when RP requests the assertion, OP MUST return Status JSON object as "cx" member of assertion JSON object.
 </t>
 
 
@@ -36,16 +36,16 @@ But if no CX Signed Contract is available at the time when RP requests the asser
 <section title="Verifying Contract">
 
 <t>
-If the "cx" member of assertion JSON object is a CX Contract Token string , RP MUST verify the signature of {{ xref.JSON_SIMPLE_SIGN_1_0 }} first. RP MUST store the CX Contract Token if it is valid {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
+If the "cx" member of assertion JSON object is a Contract Part Token string , Proposer  MUST verify the signature of {{ xref.JSON_SIMPLE_SIGN_1_0 }} first. Proposer MUST store the Contract Part Token if it is valid {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
 </t>
 
 
 <t>
-RP SHOULD explain to the End User that a CX Contract has been successfully created and now RP is ready to request data according to the contract.
+Proposer SHOULD explain to the End User that a Contract has been successfully created and now Proposer or Cleints is ready to request data according to the Contract.
 </t>
 
 <t>
-If the "cx" member is a CX Status JSON object, RP SHOULD explain to the End User that a CX Contract has not been created yet at OP  and the reason by "status" member of the CX Status JSON object. RP MAY be notified later that a CX Contract is created by the OP.
+If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End User that a Contract has not been created yet at Signagory  and the reason by "status" member of Status JSON object. Signatory MAY be notified later that the Contract is created by the Signatory.
 </t>
 
 </section>

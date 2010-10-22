@@ -47,6 +47,10 @@
  
     * Document which compose Contract and hold a couple of Acceptance and securely distributed to specific Party.
 
+* Token
+
+    * Signed JSON object which serialized into a formated string. Format is defined i n{{ xref.JSON_SIMPLE_SIGN_1_0 }}.
+
 * Service
 
     * Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
