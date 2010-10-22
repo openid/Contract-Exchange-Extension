@@ -214,7 +214,7 @@
     <section title="Overview">
         <t>The contract exchange extension(CX) is OpenID extension identified by the URI "http://openid.net/srv/cx/1.0/#". The contract is the document to prove that all parties bound to that have rights and obligations on consuming and providing services between each other.</t>
 <t/>
-<t>CX protocol is based on OpenID Artifact Binding and some JSON messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
+<t>CX protocol is based on  <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> and some <xref target="JSON">JSON(Javascript Object Notation)</xref> messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
 <t/>
 <t>With presenting the CX Contract at specified endpoints, the RP and other parties bound to the contract can be authenticated and request data services.</t>
     </section>
@@ -1407,6 +1407,16 @@ In the unlikely event of private key compromise, the party should immediately no
 
         <format target="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf"
                 type="PDF" />
+      </reference>
+
+      <reference anchor="JSON">
+        <front>
+          <title>The application/json Media Type for JavaScript Object Notation (JSON) </title>
+          <author fullname="Douglas Crockford" >
+            <organization></organization>
+          </author>
+        </front>
+        <seriesInfo name="RFC" value="4627" />
       </reference>
 
       <reference anchor="RFC3339">

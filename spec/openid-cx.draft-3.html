@@ -362,7 +362,7 @@ Overview</h3>
 </p>
 <p>
 </p>
-<p>CX protocol is based on OpenID Artifact Binding and some JSON messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.
+<p>CX protocol is based on  <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] and some <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] messages structure used in CX is defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP, the RP compose a CX Proposal JSON which is compiled with OpenID request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the CX Proposal to the OP specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.
 </p>
 <p>
 </p>
@@ -1529,6 +1529,8 @@ Acknowledgements</h3>
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <h3>6.&nbsp;Normative References</h3>
 <table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="JSON">[JSON]</a></td>
+<td class="author-text">&ldquo;<a href="http://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>,&rdquo; RFC&nbsp;4627.</td></tr>
 <tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_ENC_1_0">[JSON_SIMPLE_ENC_1_0]</a></td>
 <td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html">JSON Simple Encryption ver.1 draft00</a>,&rdquo; September&nbsp;2010.</td></tr>
 <tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_SIGN_1_0">[JSON_SIMPLE_SIGN_1_0]</a></td>

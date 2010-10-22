@@ -43,7 +43,8 @@ Some template referes external parameters defined ReST file ( .rst ) which are p
          +--  middle.tmpl
          |     |
          |     +-- requirement_notation.tmpl 
-         |     +--  definition_convention.tmpl
+         |     +-- definition_convention.tmpl
+         |     +-- terms.tmpl ( terms.rst )
          |     +-- overview.tmpl
          |     +-- files.tmpl
          |     |     +-- json.tmpl
