@@ -1,6 +1,6 @@
 <section title="Accepting OpenID Artifact Binding Request">
 
-<t>When an End User request a OpenID Artifact Binding request, the Signatory as OP SHOULD check if that request includes extensions named "cx".
+<t>When an End User request a OpenID Artifact Binding request or a Proposer directly sends Request Registration request, Signatory SHOULD check if that request includes extensions named "cx".
 </t>
 
 </section>
@@ -9,17 +9,23 @@
 <section title="Verify Proposal">
 
 <t>
-If the End User is authenticated properly and OpenID request file containes "cx" extension,the Proposal Token signature MUST be verified in the way described in {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
+If OpenID request file containes "cx" extension,the Proposal Token signature MUST be verified in the way described in {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
 </t>
 <t>
 All Reqeust Tokens in "reqs" array MUST be verified. 
 </t>
 
+<section title="Policy Based Contract">
+<t>
+If End User configures his/her policy at Signatory to issued Contract for specific claims's condition, Signatory MAY issue Contract without authenticating End User. Signatory MAY return OpenID Assertion including CX Contract in such case. 
+</t>
 </section>
 
-<section title="Grants from End User">
+</section>
+
+<section title="Grants from Authenticated End User">
 <t>
-If Proposal and all Requests in it are valid, the Signatory MUST display "template" and what exactly each Party requests to the End User. To compose a Contract, the End User MUST agree the content displayed by Signatory.
+If Proposal and all Requests in it are valid, End User MUST be authenticated. Signatory MUST display "template" what exactly each Party requests to the authenticated End User. To compose a Contract, the End User MUST agree the content displayed by Signatory.
 </t>
 
 </section>
