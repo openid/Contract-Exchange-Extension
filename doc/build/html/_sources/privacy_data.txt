@@ -1,0 +1,29 @@
+.. _privacy_data_and_contract:
+
+=========================
+Privacy Data and Contract
+=========================
+
+Privacy Data Sharing
+====================
+
+- Meaning : What is your privacy data? How should your privacy data structured for sharing?
+- Discovering : Where is your privacy data stored? 
+- Granting : Who can access your privacy data?  
+- Accessing : Does he have proper right to copy your privacy data?
+- Using : Is he keeping the privacy policy which you have enforced?  
+
+CX for Privacy Data Sharing
+============================
+
+- Meaning : Out of scope. OpenID AX with typeURI or other starndard can be used to negotiate.
+- Discovering : Out of scope. :term:`Signatory` can be found by OpenID Authentication protocol. Privacy data source is to be bound at :term:`Signatory` in some way.
+- Granting : :term:`Contract Part` is access token.
+- Accessing : :term:`Client` who has his/her :term:`Contract Part` can request privacy data with :term:`Contract Identifier` in REST call specifeid by CX.
+- Using :  :term:`Proposal` can describe or refer conditions under which privacy data is used and penalty when the condisions is breached. CX also provide access log rule.
+
+So What is Contract?
+============================
+
+- Access token to your privacy data.
+- Statement of the utilization of your privacy data.

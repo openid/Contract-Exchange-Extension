@@ -7,8 +7,7 @@ doctrees
 *.net
 ._*
 tmp
-source/sample/ax/xmlsig
-cx-doc/build/
 .certs
+log.txt
 .DS_Store
 

@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contract Exchange &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Privacy Data and Contract" href="privacy_data_and_contract.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>OpenID CX v1 documentation</span></a></h1>
+        <h2 class="heading"><span>Contract Exchange</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="privacy_data_and_contract.html">Privacy Data and Contract</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="glossary.html">Glossary</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="contract-exchange">
+<span id="id1"></span><h1>Contract Exchange<a class="headerlink" href="#contract-exchange" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="protocal">
+<h2>Protocal<a class="headerlink" href="#protocal" title="Permalink to this headline">¶</a></h2>
+<p>Contract Exchange(CX) is a protocol to create <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a>, share privacy data and  provide access log.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>CX consists of the following components.</p>
+<ul class="simple">
+<li>OpenID Artifact Binding</li>
+<li>JSON</li>
+<li>X.509 and PKI</li>
+<li>JSON Simple Sign</li>
+<li>JSON Simple Encryption</li>
+</ul>
+</div>
+<div class="section" id="process">
+<h2>Process<a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> provides <a class="reference internal" href="glossary.html#term-request"><em class="xref std std-term">Request</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> collects all necessary <a class="reference internal" href="glossary.html#term-request"><em class="xref std std-term">Request</em></a> from all <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> advertise his service.</li>
+<li><a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> starts CX procedure for the service provied by <a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> agrees the <a class="reference internal" href="glossary.html#term-proposal"><em class="xref std std-term">Proposal</em></a> and <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> creates a <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> gets his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> is notified his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
+<li><a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a> is notified his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
+<li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> request <a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> s privacy data at <a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> collects all access log from all <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> and <a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a>.</li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="privacy_data_and_contract.html">Privacy Data and Contract</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="glossary.html">Glossary</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2010, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>

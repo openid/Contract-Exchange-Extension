@@ -1,0 +1,105 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Glossary &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
+    <link rel="prev" title="Contract Exchange" href="contract_exchange.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>OpenID CX v1 documentation</span></a></h1>
+        <h2 class="heading"><span>Glossary</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="contract_exchange.html">Contract Exchange</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="glossary">
+<span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-party">Party</dt>
+<dd>Entity which is bound to a contract and one of Client , Server , Proposer and Signatory.
+Party may be a web server or a smart device client.</dd>
+<dt id="term-end-user">End User</dt>
+<dd>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.</dd>
+<dt id="term-privacy-data">Privacy Data</dt>
+<dd>Data which is own by End User and can be accessed to permitted Party.</dd>
+<dt id="term-contract">Contract</dt>
+<dd>Document to prove that Party can access Privacy Data under stated condition.</dd>
+<dt id="term-contract-identifier">Contract Identifier</dt>
+<dd>Unique URI to specify a particular contract. All <a class="reference internal" href="#term-contract-part"><em class="xref std std-term">Contract Part</em></a> has the same contract identfier.
+<a class="reference internal" href="#term-contract"><em class="xref std std-term">Contract</em></a> can be transmitted from this URI as data endpoint.</dd>
+<dt id="term-client">Client</dt>
+<dd>Privacy Data user.</dd>
+<dt id="term-server">Server</dt>
+<dd>Privacy data holder. Exposes the Privacy Data endpoint.</dd>
+<dt id="term-proposer">Proposer</dt>
+<dd>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. OpenID Artifact Binding 1.0 (Protivity Government Services and Nomura Research Institute, “OpenID Artifact Binding 1.0,” September 2010.) [OPENID_AB]Relying Party.</dd>
+<dt id="term-signatory">Signatory</dt>
+<dd>Contract signer in the charge of the End User. OpenID Artifact Binding 1.0 (Protivity Government Services and Nomura Research Institute, “OpenID Artifact Binding 1.0,” September 2010.) [OPENID_AB] Provider.</dd>
+<dt id="term-request">Request</dt>
+<dd>Document to describe what data is wanted by Client</dd>
+<dt id="term-proposal">Proposal</dt>
+<dd>Document to hold a couple of Request and delivered to Signatory by Proposer to start the CX process.</dd>
+<dt id="term-acceptance">Acceptance</dt>
+<dd>Document to describe how the privacy data can be accessed.</dd>
+<dt id="term-contract-part">Contract Part</dt>
+<dd>Document which compose Contract and hold a couple of Acceptance and securely distributed to specific Party.</dd>
+<dt id="term-token">Token</dt>
+<dd>Signed JSON object which serialized into a formated string. Format is defined i nJSON Simple Sign 1.0 (Protivity Government Services and Nomura Research Institute, “JSON Simple Sign ver.1 draft00,” September 2010.) [JSON_SIMPLE_SIGN_1_0].</dd>
+<dt id="term-service">Service</dt>
+<dd>Data or experience provided by Proposer to End User. Some Services consist of couple of End User&#8217;s Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</dd>
+</dl>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="contract_exchange.html">Contract Exchange</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2010, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>

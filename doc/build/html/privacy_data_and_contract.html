@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Privacy Data and Contract &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
+    <link rel="next" title="Contract Exchange" href="contract_exchange.html" />
+    <link rel="prev" title="Welcome to OpenID CX’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>OpenID CX v1 documentation</span></a></h1>
+        <h2 class="heading"><span>Privacy Data and Contract</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="contract_exchange.html">Contract Exchange</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="privacy-data-and-contract">
+<span id="id1"></span><h1>Privacy Data and Contract<a class="headerlink" href="#privacy-data-and-contract" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="privacy-data-sharing">
+<h2>Privacy Data Sharing<a class="headerlink" href="#privacy-data-sharing" title="Permalink to this headline">¶</a></h2>
+<p>When sharing your privacy data, the following items must be considered.</p>
+<ul class="simple">
+<li>Meaning : What is your privacy data? How should your privacy data structured for sharing?</li>
+<li>Discovering : Where is your privacy data stored?</li>
+<li>Granting : Who can access your privacy data?</li>
+<li>Accessing : Does he have proper right to copy your privacy data?</li>
+<li>Using : Is he keeping the privacy policy which you have enforced?</li>
+</ul>
+</div>
+<div class="section" id="openid-cx-for-privacy-data-sharing">
+<h2>OpenID CX for Privacy Data Sharing<a class="headerlink" href="#openid-cx-for-privacy-data-sharing" title="Permalink to this headline">¶</a></h2>
+<p>OpenID CX protocol resolve like this.</p>
+<ul class="simple">
+<li>Meaning : Out of scope. OpenID AX with typeURI or other starndard can be used to negotiate.</li>
+<li>Discovering : Out of scope. <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> can be found by OpenID Authentication protocol. Privacy data source is to be bound at <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> in some way.</li>
+<li>Granting : <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> is access token.</li>
+<li>Accessing : <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> who has his/her <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> can request privacy data with <a class="reference internal" href="glossary.html#term-contract-identifier"><em class="xref std std-term">Contract Identifier</em></a> in REST call specifeid by CX.</li>
+<li>Using :  <a class="reference internal" href="glossary.html#term-proposal"><em class="xref std std-term">Proposal</em></a> can describe or refer conditions under which privacy data is used and penalty when the condisions is breached. CX also provide access log rule.</li>
+</ul>
+</div>
+<div class="section" id="so-what-is-contract">
+<h2>So What is Contract?<a class="headerlink" href="#so-what-is-contract" title="Permalink to this headline">¶</a></h2>
+<p>Contract is token with statement.</p>
+<ul class="simple">
+<li>Access token to your privacy data.</li>
+<li>Statement of the utilization of your privacy data.</li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="contract_exchange.html">Contract Exchange</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2010, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>
