@@ -70,10 +70,15 @@
       </address>
     </author>
 
-    <date day="27" month="October" year="2010" />
+    <date day="04" month="November" year="2010" />
 
     <abstract>
-    <t> This extension defines 1) An extensible Contract format, 2) Protocol to exchange the Contract. Contact consists of Proposal and Agreement. The Proposer creates a signed Proposal and send it to the counter party. The counter party, upon agreeing to it, signs the Agreement. The combination of the Proposal and Agreement is the mutually signed contract, which is potentially legally binding. This Contract needs to be stored by both parties for a given length of time, usually spanning over many years depending on jurisdictions. </t>
+    <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
+The Proposer creates a signed Proposal which describes  what privacy data is wanted and send it to the Signatory specified the End User.
+The Signatory, upon agreeing to it, signs agreements and provides the Contract.
+The combination of the Proposal and Contract is the mutually signed and is potentially legally binding.
+This Contract needs to be stored by all bound parties for a given length of time, usually spanning over many years depending on jurisdictions.
+</t>
 <t> As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called "Artifact" through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended. </t>
     </abstract>
   </front>
