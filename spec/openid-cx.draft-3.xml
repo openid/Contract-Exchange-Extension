@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="04" month="November" year="2010" />
+    <date day="10" month="November" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
@@ -725,7 +725,7 @@ Other paramters  than the following have same meaning as ones defined in Request
        " ... (base64 encoded text for End User to grant the CX contract)....",
     "request_id"        : "http://rp.net/proposal/i393", 
     "endpoint"          : "http://op.com/endpoint/",
-    "identifier"        : "http://op.com/user/g3430",
+    "identity"          : "http://op.com/user/g3430",
     ...( OTHER OPENID REQUEST PARAMTERS ) ...,
 }
     ]]></artwork>
