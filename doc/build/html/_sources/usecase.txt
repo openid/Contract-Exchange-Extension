@@ -1,0 +1,32 @@
+=============================================================
+Use Case: Print service for diary with private anniversaries.
+=============================================================
+
+Parties
+=======
+
+Client
+-------
+
+ - yourbook.com
+
+
+Server
+-------
+
+ - remember.com
+
+Proposer
+--------
+
+ - stationary.com 
+
+Signatory
+---------
+
+ - yahoo.com
+
+End User
+--------
+
+ - me@yahoo.com
