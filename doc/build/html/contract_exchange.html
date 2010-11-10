@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
-    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="next" title="Providing Request File" href="providing_request.html" />
     <link rel="prev" title="Privacy Data and Contract" href="privacy_data_and_contract.html" /> 
   </head>
   <body>
@@ -40,7 +40,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="glossary.html">Glossary</a>&#160;&#160;»
+        <a href="providing_request.html">Providing Request File</a>&#160;&#160;»
         </p>
 
       </div>
@@ -49,9 +49,27 @@
         
   <div class="section" id="contract-exchange">
 <span id="id1"></span><h1>Contract Exchange<a class="headerlink" href="#contract-exchange" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="protocal">
-<h2>Protocal<a class="headerlink" href="#protocal" title="Permalink to this headline">¶</a></h2>
-<p>Contract Exchange(CX) is a protocol to create <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a>, share privacy data and  provide access log.</p>
+<div class="section" id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
+<p>Contract Exchange(CX) is a protocol to create <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a>, to share privacy data and to provide access log.</p>
+<blockquote>
+<ul class="simple">
+<li>Creating Contact<ul>
+<li>Proposal process &amp; Agreement process</li>
+<li>Contract provisioning with encrypted JSON</li>
+</ul>
+</li>
+<li>Sharing privacy data<ul>
+<li>Encrypted JSON</li>
+</ul>
+</li>
+<li>Access log<ul>
+<li>Negotiating metadata</li>
+<li>Encypted JSON</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="components">
 <h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
@@ -62,22 +80,95 @@
 <li>X.509 and PKI</li>
 <li>JSON Simple Sign</li>
 <li>JSON Simple Encryption</li>
+<li>Token</li>
 </ul>
+<blockquote>
+<ul class="simple">
+<li>Token is a serialization format in the process of JSON SImple Sign.</li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="process">
 <h2>Process<a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li>Service Advertisement<ul>
 <li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> provides <a class="reference internal" href="glossary.html#term-request"><em class="xref std std-term">Request</em></a>.</li>
 <li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> collects all necessary <a class="reference internal" href="glossary.html#term-request"><em class="xref std std-term">Request</em></a> from all <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a>.</li>
 <li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> advertise his service.</li>
+</ul>
+</li>
+<li>Proposal<ul>
 <li><a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> starts CX procedure for the service provied by <a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a>.</li>
+</ul>
+</li>
+<li>Agreement<ul>
 <li><a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> agrees the <a class="reference internal" href="glossary.html#term-proposal"><em class="xref std std-term">Proposal</em></a> and <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> creates a <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a>.</li>
+</ul>
+</li>
+<li>Contract Provisioning</li>
+</ul>
+<blockquote>
+<ul class="simple">
 <li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> gets his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> is notified his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
 <li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> is notified his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
-<li><a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a> is notified his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
+<li><a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a> realizes that  his <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> available.</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>Privacy Data Sharing</li>
+</ul>
+<blockquote>
+<ul class="simple">
 <li><a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> request <a class="reference internal" href="glossary.html#term-end-user"><em class="xref std std-term">End User</em></a> s privacy data at <a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a>.</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>Log Gathering</li>
+</ul>
+<blockquote>
+<ul class="simple">
 <li><a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> collects all access log from all <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> and <a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a>.</li>
 </ul>
+</blockquote>
+</div>
+<div class="section" id="party">
+<h2>Party<a class="headerlink" href="#party" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="client">
+<h3>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Client describe what privacy data he want to provide some services in Request token .</li>
+<li>Client request privacy data to  Server.</li>
+</ul>
+<p class="graphviz">
+<img src="_images/graphviz-342dd2517f2ef4e5c19110b0ed69d8fe17258db8.png" alt="digraph {
+   graph [ rankdir = LR ];
+   Client [shape = box ,height=1.0 ,width=1.0];
+   Server [shape = box ,height=1.0 ,width=1.0];
+   &quot;Privacy Data&quot; [shape = hexagon];
+
+   &quot;Client&quot; -&gt; &quot;Server&quot; [label = &quot;request(client id + contract id)&quot;];
+   &quot;Server&quot; -&gt; &quot;Privacy Data&quot; [arrowhead=&quot;none&quot;];
+}" />
+</p>
+</div>
+<div class="section" id="server">
+<h3>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Server response encrypted privacy data to Client.</li>
+</ul>
+<p class="graphviz">
+<img src="_images/graphviz-8c19eb8d3f177e34c201da2938e3bac0b21bd25b.png" alt="digraph {
+   graph [ rankdir = LR ];
+   Client [shape = box ,height=1.0 ,width=1.0];
+   Server [shape = box ,height=1.0 ,width=1.0];
+   &quot;Privacy Data&quot; [shape = hexagon];
+
+   &quot;Client&quot; -&gt; &quot;Server&quot; [label = &quot;response(encypted privacy data)&quot;,arrowhead=none,arrowtail=normal];
+   &quot;Server&quot; -&gt; &quot;Privacy Data&quot; [arrowhead=&quot;none&quot;];
+}" />
+</p>
+</div>
 </div>
 </div>
 
@@ -90,7 +181,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="glossary.html">Glossary</a>&#160;&#160;»
+        <a href="providing_request.html">Providing Request File</a>&#160;&#160;»
         </p>
 
       </div>

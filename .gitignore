@@ -10,4 +10,5 @@ tmp
 .certs
 log.txt
 .DS_Store
+pip-log.txt
 

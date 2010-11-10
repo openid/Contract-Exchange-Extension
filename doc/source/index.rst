@@ -15,6 +15,9 @@ Contents:
    
     privacy_data_and_contract
     contract_exchange
+    providing_request
+
+    sample_printing/index
 
     glossary
 
