@@ -13,7 +13,7 @@
                     "client_id" : "http://rp1.net/",
                     "server_id" : "http://res.net/",
                     "endpoint"  : "http://res.net/endpoint/",
-                    "identifier": "http://op.com/user/x43432",
+                    "identity"  : "http://op.com/user/x43432",
                         .....
                     
                 },
@@ -23,7 +23,7 @@
                     "client_id" : "http://rp2.net/",
                     "server_id" : "http://res.net/",
                     "endpoint"  : "http://res.net/endpoint/",
-                    "identifier": "http://op.com/user/y43432",
+                    "identity"  : "http://op.com/user/y43432",
                         .....
                 }
             ],
