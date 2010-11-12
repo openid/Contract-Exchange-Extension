@@ -5,6 +5,13 @@ Knows Issue and TODO
 ----------------------
 
 - "3.2.1.  Non-Normative Examples" MUST be rewritten.
+
+ - 3.2.1 SHOULD be dropped. Because ,
+
+    - Each JSON has non-normative example. 
+    - Mostly "token" is used for serialization format.
+    - Some JSON contains another tokens. 
+
 - Signature is going to be based on "JSON Simple Sign 1.0<json-simple-sign-1_0_>"
 - Encryption is going to be based on "JSON Simple Encryption 1.0<json-simple-enc-1_0_>".
 

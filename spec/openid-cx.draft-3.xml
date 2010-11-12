@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="10" month="November" year="2010" />
+    <date day="12" month="November" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
@@ -321,60 +321,7 @@ Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually 
 </section>
 </section>
 <section title="Structures">
-    <section title="Non-Normative Examples">
-    <t>TODO: Here should be a sample use case description for a CX transaction for non-normative examples in this section and delivered to the RP from OP in an OpenID Artifact Binding assertion.</t>
-<t> An OpenID Artifact Binding assertion holding a CX Contract might be described here .</t>
-
-<t>
-Here is a  non-normative example of a CX Contract which is actually the <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>version of CX Acceptance.
-</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    "type" :  "http://specs.openid.net/cx/1.0/#contract",
-    "id" : "http://op.com/contract/f43213214",
-    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
-     ...    (other JSON SIMPLE SIGN MEMBERS )   ...
-}
-    ]]></artwork>
-</figure>
-
-
-<t>
-Here is a non-normative example of a CX Acceptance which is composed by the OP.
-</t>
-<figure>
-    <artwork><![CDATA[
-{
-   // sample of a Acceptance
-}
-    ]]></artwork>
-</figure>
-
-<t>
-Each privacy data encrypted and held in CX Acceptance and Response is originally formed like the following JSON object
-</t>
-<figure>
-    <artwork><![CDATA[
-{
-    // sample of a Sdata
-}
-
-    ]]></artwork>
-</figure>
-
-<t>Also original request files are formed like the following JSON before they are digitally signed</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    // sample of a Sdata
-}
-    ]]></artwork>
-</figure>
-</section>
-<section title="Request">
+    <section title="Request">
     <t>
 Request is a extended <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
