@@ -464,7 +464,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of client_id's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
+                        <t>Base64URL formatted string version of client_id's DER( defined in <xref target="X_690">X.690</xref> )  encoded  X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
                     
                 </list>
@@ -475,7 +475,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(base64url)</t>
                     
-                        <t>The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request.</t>
+                        <t>Base64URL formatted string version of server_id's DER( defined in <xref target="X_690">X.690</xref> )  encoded X.509 certificate used when "server_id" specified in Request.</t>
                     
                 </list>
             </t>
@@ -498,8 +498,8 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "payment_to"     :  "5PT",
         "template" : 
             "...(base64 encoded text for End User to grant the CX contract)..."
-        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        "client_certs" : "...( Base64URL STRING OF client_id's DER ENCODED X.509 CERTIFICATE)...",
+        "server_certs" : "...( Base64URL STRING OF server_id's DER ENCODED X.509 CERTIFICATE )...",
         ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
         ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
     }
@@ -579,7 +579,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of Proposer's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
+                        <t>Base64URL formatted string version of Proposer's DER (defined in <xref target="X_690">X.690</xref> ) encoded X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
                     
                 </list>
             </t>
@@ -602,7 +602,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
-      "proposer_certs": "...( PEM STRING OF PROPOSER's X.509 CERTIFICATE )...",
+      "proposer_certs": "...( BASE64URL STRING OF PROPOSER's DER ENCODED X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
     }
@@ -763,7 +763,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of Signatory's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.</t>
+                        <t>Base64URL formatted string of Signatory's DER( defined in <xref target="X_690">X.690</xref> ) encoded X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.</t>
                     
                 </list>
             </t>
@@ -805,7 +805,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                 }
             ],
             "signatory_certs" 
-                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
+                : ".... ( BASE64URL STRING OF SIGNATORY's DER ENCODED X.509 CERTIFICATE ) ...",
     
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }
@@ -1479,6 +1479,18 @@ In the unlikely event of private key compromise, the party should immediately no
           <date month="September" year="2010" />
         </front>
         <format target="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html" type="HTML" />
+      </reference>
+
+    
+      <reference anchor="X_690">
+        <front>
+          <title> X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)</title>
+            <author fullname="ITU">
+                <organization>INTERNATIONAL TELECOMMUNICATION UNION</organization>
+            </author>
+          <date month="July" year="2002" />
+        </front>
+        <format target="http://www.itu.int/rec/T-REC-X.690-200207-S/en" type="PDF" />
       </reference>
 
       <reference anchor="OAEP">

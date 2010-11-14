@@ -625,7 +625,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of client_id's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+<li>Base64URL formatted string version of client_id's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] )  encoded  X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 
 </li>
 </ul>
@@ -636,7 +636,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(base64url)
 </li>
-<li>The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request.
+<li>Base64URL formatted string version of server_id's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] )  encoded X.509 certificate used when "server_id" specified in Request.
 </li>
 </ul>
             
@@ -657,8 +657,8 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "payment_to"     :  "5PT",
         "template" :
             "...(base64 encoded text for End User to grant the CX contract)..."
-        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        "client_certs" : "...( Base64URL STRING OF client_id's DER ENCODED X.509 CERTIFICATE)...",
+        "server_certs" : "...( Base64URL STRING OF server_id's DER ENCODED X.509 CERTIFICATE )...",
         ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
         ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
     }
@@ -740,7 +740,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of Proposer's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] envelope.
+<li>Base64URL formatted string version of Proposer's DER (defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] ) encoded X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] envelope.
 </li>
 </ul>
             
@@ -761,7 +761,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ]
-      "proposer_certs": "...( PEM STRING OF PROPOSER's X.509 CERTIFICATE )...",
+      "proposer_certs": "...( BASE64URL STRING OF PROPOSER's DER ENCODED X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
     }
@@ -923,7 +923,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>string(base64url)
 </li>
-<li>The PEM formatted string version of Signatory's X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+<li>Base64URL formatted string of Signatory's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] ) encoded X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
 </li>
 </ul>
             
@@ -963,7 +963,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                 }
             ],
             "signatory_certs"
-                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
+                : ".... ( BASE64URL STRING OF SIGNATORY's DER ENCODED X.509 CERTIFICATE ) ...",
 
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }
@@ -1549,6 +1549,8 @@ Acknowledgements</h3>
 <tr><td class="author-text" valign="top"><a name="XRIResolution2.0">[XRIResolution2.0]</a></td>
 <td class="author-text">Reed, D. and G. Wachob, Ed., &ldquo;<a href="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf">Extensible Resource Identifier (XRI) Resolution Version
           2.0</a>,&rdquo; April&nbsp;2008.</td></tr>
+<tr><td class="author-text" valign="top"><a name="X_690">[X_690]</a></td>
+<td class="author-text">INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;<a href="http://www.itu.int/rec/T-REC-X.690-200207-S/en">X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>,&rdquo; July&nbsp;2002.</td></tr>
 <tr><td class="author-text" valign="top"><a name="Yadis">[Yadis]</a></td>
 <td class="author-text">Miller, J., Ed., &ldquo;Yadis Specification 1.0,&rdquo; 2005 (<a href="http://yadis.org/papers/yadis-v1.0.pdf">PDF</a>, <a href="http://yadis.org/papers/yadis-v1.0.odt">ODT</a>).</td></tr>
 </table>

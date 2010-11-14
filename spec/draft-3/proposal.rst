@@ -26,4 +26,4 @@
 * proposer_certs
 
     * string(base64url)
-    * The PEM formatted string version of Proposer's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} envelope.
+    * Base64URL formatted string version of Proposer's DER (defined in {{ xref.X_690 }} ) encoded X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} envelope.

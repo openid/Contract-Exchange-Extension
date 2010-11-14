@@ -28,7 +28,7 @@
                 }
             ],
             "signatory_certs" 
-                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
+                : ".... ( BASE64URL STRING OF SIGNATORY's DER ENCODED X.509 CERTIFICATE ) ...",
     
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }

@@ -58,9 +58,9 @@
 * client_certs
 
     * string(base64url)
-    * The PEM formatted string version of client_id's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
+    * Base64URL formatted string version of client_id's DER( defined in {{ xref.X_690 }} )  encoded  X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
 
 * server_certs
 
     * optional,string(base64url)
-    * The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request. 
+    * Base64URL formatted string version of server_id's DER( defined in {{ xref.X_690 }} )  encoded X.509 certificate used when "server_id" specified in Request. 
