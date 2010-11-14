@@ -1194,7 +1194,7 @@ Default "log" parameter is an array of arrays in which following data are contai
             <t> request_id
                 <list style="symbols">
                     
-                        <t>Privacy data reqquet msg_id specified by requesting party.
+                        <t>Privacy data request msg_id specified by requesting party.
 </t>
                     
                 </list>
