@@ -32,4 +32,3 @@
 
     * string(base64url)
     * The PEM formatted string version of Signatory's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
-

@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="12" month="November" year="2010" />
+    <date day="15" month="November" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
@@ -325,6 +325,7 @@ Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually 
     <t>
 Request is a extended <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
+Request should be prepared in the course of the process described in " <xref target="advertising_service">Advertising Service</xref>". 
 </t>
 <t>
 Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
@@ -762,8 +763,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of Signatory's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
-</t>
+                        <t>The PEM formatted string version of Signatory's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.</t>
                     
                 </list>
             </t>
@@ -899,7 +899,7 @@ such as Algorithm Compromise. Thus, care should be taken to appropriately proces
 
     <section title="Protocal">
         <section title="Sending Proposal">
-    <section title="Advertising Service">
+    <section title="Advertising Service" anchor="advertising_service">
 
 <t>Before advertising CX Service, Proposer  MUST collect all Request token related to that Service. 
 Some Request token MAY be provided by any party other than the Proposeritself.</t>
