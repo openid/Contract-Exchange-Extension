@@ -1248,13 +1248,13 @@ Default "log" parameter is an array of arrays in which following data are contai
 </t>
 
 <t>
-The following is a non-normative sample of acesss log.
+The following is a non-normative sample of access log.
 </t>
 <figure>
     <artwork><![CDATA[
 {
-     "type" : "http://specs.openid.net/cx/1.0/#acess_log",   
-     "log"  : [
+     "type" : "http://specs.openid.net/cx/1.0/#access_log",   
+     "logs"  : [
         [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
             "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
         [ "http://sp.com/res/4322","http://rp.com/req/344","http://op.com/contract/93",
