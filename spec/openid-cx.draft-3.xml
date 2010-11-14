@@ -862,7 +862,7 @@ Status  is a simple JSON object to describe the status of Contract.
                     
                         <t>status description about proposal or contract.</t>
                     
-                        <t>[[TODO]] created,canceled,pending,..... MUST be specified.</t>
+                        <t>One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".</t>
                     
                 </list>
             </t>

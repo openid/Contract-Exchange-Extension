@@ -17,4 +17,4 @@
 
     * string
     * status description about proposal or contract.
-    * [[TODO]] created,canceled,pending,..... MUST be specified.
+    * One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".

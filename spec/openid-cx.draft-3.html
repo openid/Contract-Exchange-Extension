@@ -1022,7 +1022,7 @@ Status  is a simple JSON object to describe the status of Contract.
 </li>
 <li>status description about proposal or contract.
 </li>
-<li>[[TODO]] created,canceled,pending,..... MUST be specified.
+<li>One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".
 </li>
 </ul>
             
@@ -1441,11 +1441,11 @@ Default "log" parameter is an array of arrays in which following data are contai
 
 </p>
 <p>
-The following is a non-normative sample of acesss log.
+The following is a non-normative sample of access log.
 
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
 {
-     "type" : "http://specs.openid.net/cx/1.0/#acess_log",
+     "type" : "http://specs.openid.net/cx/1.0/#access_log",
      "logs"  : [
         [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
             "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
