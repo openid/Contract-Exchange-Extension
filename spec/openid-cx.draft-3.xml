@@ -70,11 +70,11 @@
       </address>
     </author>
 
-    <date day="15" month="November" year="2010" />
+    <date day="16" month="November" year="2010" />
 
     <abstract>
-    <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
-The Proposer creates a signed Proposal which describes  what privacy data is wanted and send it to the Signatory specified the End User.
+    <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
+The Proposer creates a signed Proposal which describes  what personal information is wanted and send it to the Signatory specified the End User.
 The Signatory, upon agreeing to it, signs agreements and provides the Contract.
 The combination of the Proposal and Contract is the mutually signed and is potentially legally binding.
 This Contract needs to be stored by all bound parties for a given length of time, usually spanning over many years depending on jurisdictions.
@@ -122,16 +122,16 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> End User
                 <list style="symbols">
                     
-                        <t>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+                        <t>Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
 </t>
                     
                 </list>
             </t>
         
-            <t> Privacy Data
+            <t> Personal Information
                 <list style="symbols">
                     
-                        <t>Data  which is own by End User and  can be accessed to permitted Party.
+                        <t>Data which is own by End User and  can be accessed to permitted Party.
 </t>
                     
                 </list>
@@ -140,7 +140,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Contract
                 <list style="symbols">
                     
-                        <t>Document to prove that Party can access Privacy Data under stated condition.
+                        <t>Document to prove that Party can access Personal Information under stated condition.
 </t>
                     
                 </list>
@@ -149,7 +149,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Client
                 <list style="symbols">
                     
-                        <t>Privacy Data user.
+                        <t>Personal Information user.
 </t>
                     
                 </list>
@@ -158,7 +158,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Server
                 <list style="symbols">
                     
-                        <t>Privacy data holder.  Exposes the Privacy Data endpoint.
+                        <t>Personal Information keeper.  Exposes the Personal Information endpoint.
 </t>
                     
                 </list>
@@ -203,7 +203,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Acceptance
                 <list style="symbols">
                     
-                        <t>Document to describe how the privacy data can be accessed.
+                        <t>Document to describe how the personal information can be accessed.
 </t>
                     
                 </list>
@@ -230,7 +230,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Service
                 <list style="symbols">
                     
-                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</t>
+                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</t>
                     
                 </list>
             </t>
@@ -613,9 +613,9 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Acceptance">
     <t>
-Acceptance is a copy form original Request "payload"  with extra parameters including End User's privacy data added by Signagory and End User.
+Acceptance is a copy form original Request "payload"  with extra parameters including End User's personal information added by Signagory and End User.
 Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
-Privacy data like canonical identifier SHOULD be different from each other.
+Personla information like canonical identifier SHOULD be different from each other.
 </t>
 
 <t>
@@ -978,7 +978,7 @@ If Proposal and all Requests in it are valid, End User MUST be authenticated. Si
 
 <t>
 If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
-Privacy parameter MAY be different from each other.
+Personal information parameter MAY be different from each other.
 </t>
 
 </section>
@@ -1073,7 +1073,7 @@ Signatory and Party MAY request their Contract Party Token using Data Request me
 <section title="Endpoint">
 <t>
 Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
-The endpoint of End User's Privacy Data is specified "endpoint" parameter of Request and Acceptance JSON. 
+The endpoint of End User's Personal Information is specified "endpoint" parameter of Request and Acceptance JSON. 
 </t>
 <t>
 Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
@@ -1091,7 +1091,7 @@ Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpo
             <t> party_id
                 <list style="symbols">
                     
-                        <t>REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> .
+                        <t>REQUIRED Value: An identfier of Party. Server MUST encrypt Personal Information with the public key of Client in the way defined in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> .
 </t>
                     
                 </list>
@@ -1138,7 +1138,7 @@ Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpo
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> and encrypted for "party" in the request. Privacy data, Contract Part  Token and access log MUST be returned in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> with using valid public key of specified party.
+Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> with using valid public key of specified party.
 </t>
 </section>
 
@@ -1194,7 +1194,7 @@ Default "log" parameter is an array of arrays in which following data are contai
             <t> request_id
                 <list style="symbols">
                     
-                        <t>Privacy data request msg_id specified by requesting party.
+                        <t>Personal information request msg_id specified by requesting party.
 </t>
                     
                 </list>

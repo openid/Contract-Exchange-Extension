@@ -3,7 +3,7 @@
 <section title="Endpoint">
 <t>
 Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
-The endpoint of End User's Privacy Data is specified "endpoint" parameter of Request and Acceptance JSON. 
+The endpoint of End User's Personal Information is specified "endpoint" parameter of Request and Acceptance JSON. 
 </t>
 <t>
 Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
@@ -32,7 +32,7 @@ Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpo
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in {{ xref.JSON_SIMPLE_ENC_1_0 }} and encrypted for "party" in the request. Privacy data, Contract Part  Token and access log MUST be returned in {{ xref.JSON_SIMPLE_ENC_1_0 }} with using valid public key of specified party.
+Data response MUST be formed in {{ xref.JSON_SIMPLE_ENC_1_0 }} and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in {{ xref.JSON_SIMPLE_ENC_1_0 }} with using valid public key of specified party.
 </t>
 </section>
 

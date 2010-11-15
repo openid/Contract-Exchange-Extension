@@ -146,14 +146,14 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">November 15, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">November 16, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
 <h3>Abstract</h3>
 
-<p> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
-The Proposer creates a signed Proposal which describes  what privacy data is wanted and send it to the Signatory specified the End User.
+<p> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
+The Proposer creates a signed Proposal which describes  what personal information is wanted and send it to the Signatory specified the End User.
 The Signatory, upon agreeing to it, signs agreements and provides the Contract.
 The combination of the Proposal and Contract is the mutually signed and is potentially legally binding.
 This Contract needs to be stored by all bound parties for a given length of time, usually spanning over many years depending on jurisdictions.
@@ -268,16 +268,16 @@ Terms</h3>
 <li> End User
                 
 <ul class="text">
-<li>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+<li>Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
 
 </li>
 </ul>
             
 </li>
-<li> Privacy Data
+<li> Personal Information
                 
 <ul class="text">
-<li>Data  which is own by End User and  can be accessed to permitted Party.
+<li>Data which is own by End User and  can be accessed to permitted Party.
 
 </li>
 </ul>
@@ -286,7 +286,7 @@ Terms</h3>
 <li> Contract
                 
 <ul class="text">
-<li>Document to prove that Party can access Privacy Data under stated condition.
+<li>Document to prove that Party can access Personal Information under stated condition.
 
 </li>
 </ul>
@@ -295,7 +295,7 @@ Terms</h3>
 <li> Client
                 
 <ul class="text">
-<li>Privacy Data user.
+<li>Personal Information user.
 
 </li>
 </ul>
@@ -304,7 +304,7 @@ Terms</h3>
 <li> Server
                 
 <ul class="text">
-<li>Privacy data holder.  Exposes the Privacy Data endpoint.
+<li>Personal Information keeper.  Exposes the Personal Information endpoint.
 
 </li>
 </ul>
@@ -349,7 +349,7 @@ Terms</h3>
 <li> Acceptance
                 
 <ul class="text">
-<li>Document to describe how the privacy data can be accessed.
+<li>Document to describe how the personal information can be accessed.
 
 </li>
 </ul>
@@ -376,7 +376,7 @@ Terms</h3>
 <li> Service
                 
 <ul class="text">
-<li>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+<li>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
 </li>
 </ul>
             
@@ -773,9 +773,9 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 Acceptance</h3>
 
 <p>
-Acceptance is a copy form original Request "payload"  with extra parameters including End User's privacy data added by Signagory and End User.
+Acceptance is a copy form original Request "payload"  with extra parameters including End User's personal information added by Signagory and End User.
 Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
-Privacy data like canonical identifier SHOULD be different from each other.
+Personla information like canonical identifier SHOULD be different from each other.
 
 </p>
 <p>
@@ -1152,7 +1152,7 @@ Compose Acceptance for Each Request</h3>
 
 <p>
 If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
-Privacy parameter MAY be different from each other.
+Personal information parameter MAY be different from each other.
 
 </p>
 <a name="anchor29"></a><br /><hr />
@@ -1252,7 +1252,7 @@ Endpoint</h3>
 
 <p>
 Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
-The endpoint of End User's Privacy Data is specified "endpoint" parameter of Request and Acceptance JSON. 
+The endpoint of End User's Personal Information is specified "endpoint" parameter of Request and Acceptance JSON. 
 
 </p>
 <p>
@@ -1276,7 +1276,7 @@ Parameters</h3>
 <li> party_id
                 
 <ul class="text">
-<li>REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
+<li>REQUIRED Value: An identfier of Party. Server MUST encrypt Personal Information with the public key of Client in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
 
 </li>
 </ul>
@@ -1326,7 +1326,7 @@ Parameters</h3>
 Encrypted Response</h3>
 
 <p>
-Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Privacy data, Contract Part  Token and access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
+Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
 
 </p>
 <a name="anchor39"></a><br /><hr />
@@ -1387,7 +1387,7 @@ Default "log" parameter is an array of arrays in which following data are contai
 <li> request_id
                 
 <ul class="text">
-<li>Privacy data request msg_id specified by requesting party.
+<li>Personal information request msg_id specified by requesting party.
 
 </li>
 </ul>

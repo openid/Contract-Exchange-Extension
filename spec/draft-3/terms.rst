@@ -5,23 +5,23 @@
 
 * End User
 
-    * Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+    * Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
 
-* Privacy Data
+* Personal Information
 
-    * Data  which is own by End User and  can be accessed to permitted Party.
+    * Data which is own by End User and  can be accessed to permitted Party.
 
 * Contract
 
-    * Document to prove that Party can access Privacy Data under stated condition.
+    * Document to prove that Party can access Personal Information under stated condition.
 
 * Client
 
-    * Privacy Data user.
+    * Personal Information user.
 
 * Server
 
-    * Privacy data holder.  Exposes the Privacy Data endpoint.
+    * Personal Information keeper.  Exposes the Personal Information endpoint.
 
 * Proposer
 
@@ -41,7 +41,7 @@
 
 * Acceptance
  
-    * Document to describe how the privacy data can be accessed.
+    * Document to describe how the personal information can be accessed.
 
 * Contract Part
  
@@ -53,4 +53,4 @@
 
 * Service
 
-    * Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+    * Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
