@@ -17,15 +17,15 @@
 
 * Client
 
-    * Personal Information user.
+    * Personal Information user. {{ xref.OPENID_AB }} Relying Party.
 
 * Server
 
-    * Personal Information keeper.  Exposes the Personal Information endpoint.
+    * Personal Information keeper.  Exposes the Personal Information endpoint. {{ xref.OPENID_AB }} Relying Party.
 
 * Proposer
 
-    * Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. {{ xref.OPENID_AB }}Relying Party.
+    * Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. {{ xref.OPENID_AB }} Relying Party.
 
 * Signatory
 
@@ -49,8 +49,12 @@
 
 * Token
 
-    * Signed JSON object which serialized into a formated string. Format is defined i n{{ xref.JSON_SIMPLE_SIGN_1_0 }}.
+    * Signed JSON object which serialized into a formated string. Format is defined in {{ xref.JSON_SIMPLE_SIGN_1_0 }}.
 
 * Service
 
     * Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+
+* PPID
+
+    * Stands for "Pairwise Pseudonymous Identifier" or "Private Personal Identifier". It is End User's identifier asserted by Signatory to each specific OpenID Relying party including Client, Server or Proposer.

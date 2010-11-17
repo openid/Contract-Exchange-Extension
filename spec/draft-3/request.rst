@@ -17,8 +17,7 @@
 
     * optional,string(URI) 
     * Identifier for Server.
-    * This parameter MAY be specified only when Client wants End User to permit to use a particular service.
-    * In this case, Client has already known the service endpoint.
+    * This parameter MAY be specified only when Client wants End User to permit to use a particular service.  In this case, Client has already known the service endpoint.
 
 * payment_to
 
@@ -33,7 +32,7 @@
 * template
 
     * optional,string(any)
-    * End User MAY read "template" text to agree to create  Contract. 
+    * This describes what Client wants as Presonal Information. Also conditions or jurisdic statement SHOULD be stated or refered for utilizing End User's Personal Information.  End User MAY read this text to agree to create  Contract. 
 
 * template_type
 
@@ -43,17 +42,17 @@
 * endpoint
 
     * optional,string(URI)
-    * URI from which data is provieded at Server.
+    * URI from which data is provieded at Server. Specified only when Client want Personal Information from a specific Server.
 
 * notify
 
     * optional,string(URI)
-    * Notifiation endpoint directely called by Party like Propose if Contract is provieded.
+    * Notifiation endpoint directely called by Party like Propose if Contract is provieded. Notification protocol described in "{{ xref.notify_contract_status }}" section later.
 
 * identity
 
     * optional,string
-    * End user's OpenID identfier at Server
+    * End user's OpenID identfier at Server.  Mostly is not specified.
 
 * client_certs
 

@@ -146,7 +146,7 @@
 <tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">November 16, 2010</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">November 18, 2010</td></tr>
 </table></td></tr></table>
 <h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
 
@@ -189,25 +189,25 @@ Sending Proposal<br />
 Accepting Proposal<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor30">4.3.</a>&nbsp;
 Receiving Contract<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor33">4.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#notify_contract_status">4.4.</a>&nbsp;
 Notify Contract Status<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor34">4.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor33">4.5.</a>&nbsp;
 Data Request<br />
-<a href="#anchor40">5.</a>&nbsp;
+<a href="#anchor39">5.</a>&nbsp;
 Security Considerations<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor40">5.1.</a>&nbsp;
 non-repudiation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor41">5.2.</a>&nbsp;
 Man-in-the-middle<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor42">5.3.</a>&nbsp;
 Eavesdropping<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.4.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor43">5.4.</a>&nbsp;
 Malicious Providers<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor44">5.5.</a>&nbsp;
 Phishing Attack<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor46">5.6.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor45">5.6.</a>&nbsp;
 Private Key Compromise<br />
-<a href="#anchor47">Appendix&nbsp;A.</a>&nbsp;
+<a href="#anchor46">Appendix&nbsp;A.</a>&nbsp;
 Acknowledgements<br />
 <a href="#rfc.references1">6.</a>&nbsp;
 Normative References<br />
@@ -295,7 +295,7 @@ Terms</h3>
 <li> Client
                 
 <ul class="text">
-<li>Personal Information user.
+<li>Personal Information user. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
 
 </li>
 </ul>
@@ -304,7 +304,7 @@ Terms</h3>
 <li> Server
                 
 <ul class="text">
-<li>Personal Information keeper.  Exposes the Personal Information endpoint.
+<li>Personal Information keeper.  Exposes the Personal Information endpoint. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
 
 </li>
 </ul>
@@ -313,7 +313,7 @@ Terms</h3>
 <li> Proposer
                 
 <ul class="text">
-<li>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB]Relying Party.
+<li>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
 
 </li>
 </ul>
@@ -367,7 +367,7 @@ Terms</h3>
 <li> Token
                 
 <ul class="text">
-<li>Signed JSON object which serialized into a formated string. Format is defined i n<a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+<li>Signed JSON object which serialized into a formated string. Format is defined in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
 
 </li>
 </ul>
@@ -377,6 +377,15 @@ Terms</h3>
                 
 <ul class="text">
 <li>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+
+</li>
+</ul>
+            
+</li>
+<li> PPID
+                
+<ul class="text">
+<li>Stands for "Pairwise Pseudonymous Identifier" or "Private Personal Identifier". It is End User's identifier asserted by Signatory to each specific OpenID Relying party including Client, Server or Proposer.
 </li>
 </ul>
             
@@ -483,9 +492,13 @@ Structures</h3>
 Request</h3>
 
 <p>
+Request is a file to declare what Personal Information a Client wants. After Request is delivered to Signatory which End User specified, the contents of Request MUST be displayed to the End User to help him to agree the request and specify the endpoint from which his Personal Infromation is accessed from Client. In special case, Client MAY specify Server and endpoint for Personal Information it wants.
+
+</p>
+<p>
 Request is a extended <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Request file enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
-Request should be prepared in the course of the process described in " <a class='info' href='#advertising_service'>Advertising Service<span> (</span><span class='info'>Advertising Service</span><span>)</span></a>". 
+Request shouldfdsa be prepared in the course of the process described in "<a class='info' href='#advertising_service'>Advertising Service<span> (</span><span class='info'>Advertising Service</span><span>)</span></a>".
 
 </p>
 <p>
@@ -535,9 +548,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </li>
 <li>Identifier for Server.
 </li>
-<li>This parameter MAY be specified only when Client wants End User to permit to use a particular service.
-</li>
-<li>In this case, Client has already known the service endpoint.
+<li>This parameter MAY be specified only when Client wants End User to permit to use a particular service.  In this case, Client has already known the service endpoint.
 
 </li>
 </ul>
@@ -570,7 +581,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(any)
 </li>
-<li>End User MAY read "template" text to agree to create  Contract.
+<li>This describes what Client wants as Presonal Information. Also conditions or jurisdic statement SHOULD be stated or refered for utilizing End User's Personal Information.  End User MAY read this text to agree to create  Contract.
 
 </li>
 </ul>
@@ -592,7 +603,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>URI from which data is provieded at Server.
+<li>URI from which data is provieded at Server. Specified only when Client want Personal Information from a specific Server.
 
 </li>
 </ul>
@@ -603,7 +614,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string(URI)
 </li>
-<li>Notifiation endpoint directely called by Party like Propose if Contract is provieded.
+<li>Notifiation endpoint directely called by Party like Propose if Contract is provieded. Notification protocol described in "<a class='info' href='#notify_contract_status'>Notify Contract Status<span> (</span><span class='info'>Notify Contract Status</span><span>)</span></a>" section later.
 
 </li>
 </ul>
@@ -614,7 +625,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 <ul class="text">
 <li>optional,string
 </li>
-<li>End user's OpenID identfier at Server
+<li>End user's OpenID identfier at Server.  Mostly is not specified.
 
 </li>
 </ul>
@@ -1221,7 +1232,7 @@ Proposer SHOULD explain to the End User that a Contract has been successfully cr
 If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End User that a Contract has not been created yet at Signagory  and the reason by "status" member of Status JSON object. Signatory MAY be notified later that the Contract is created by the Signatory.
 
 </p>
-<a name="anchor33"></a><br /><hr />
+<a name="notify_contract_status"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
 Notify Contract Status</h3>
@@ -1235,17 +1246,17 @@ Signatory and other Party MAY send the status of Contract to the endpoint specif
 Signatory and Party MAY request their Contract Party Token using Data Request mechanism.
 
 </p>
-<a name="anchor34"></a><br /><hr />
+<a name="anchor33"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
 Data Request</h3>
 
-<a name="anchor35"></a><br /><hr />
+<a name="anchor34"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
 CX Data Request</h3>
 
-<a name="anchor36"></a><br /><hr />
+<a name="anchor35"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1.1"></a><h3>4.5.1.1.&nbsp;
 Endpoint</h3>
@@ -1263,7 +1274,7 @@ Access log records MAY be requested in the same endpoint when "log" parameter is
 Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpoint URL for Contract Part Token  is "contract_id" itself.
 
 </p>
-<a name="anchor37"></a><br /><hr />
+<a name="anchor36"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1.2"></a><h3>4.5.1.2.&nbsp;
 Parameters</h3>
@@ -1320,7 +1331,7 @@ Parameters</h3>
 </ul><p>
 
 </p>
-<a name="anchor38"></a><br /><hr />
+<a name="anchor37"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1.3"></a><h3>4.5.1.3.&nbsp;
 Encrypted Response</h3>
@@ -1329,7 +1340,7 @@ Encrypted Response</h3>
 Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
 
 </p>
-<a name="anchor39"></a><br /><hr />
+<a name="anchor38"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5.1.4"></a><h3>4.5.1.4.&nbsp;
 Access Log Record Format</h3>
@@ -1454,12 +1465,12 @@ The following is a non-normative sample of access log.
      ]
 }
 </pre></div>
-<a name="anchor40"></a><br /><hr />
+<a name="anchor39"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5"></a><h3>5.&nbsp;
 Security Considerations</h3>
 
-<a name="anchor41"></a><br /><hr />
+<a name="anchor40"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
 non-repudiation</h3>
@@ -1468,7 +1479,7 @@ non-repudiation</h3>
 Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
 
 </p>
-<a name="anchor42"></a><br /><hr />
+<a name="anchor41"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
 Man-in-the-middle</h3>
@@ -1477,7 +1488,7 @@ Man-in-the-middle</h3>
 A RP must verify the validity of the OP's identity and public key and vice versa.
 
 </p>
-<a name="anchor43"></a><br /><hr />
+<a name="anchor42"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
 Eavesdropping</h3>
@@ -1487,7 +1498,7 @@ When encryption mode is used, the payload is encrypted and only the real recipie
 
 
 </p>
-<a name="anchor44"></a><br /><hr />
+<a name="anchor43"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
 Malicious Providers</h3>
@@ -1496,7 +1507,7 @@ Malicious Providers</h3>
 Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
 
 </p>
-<a name="anchor45"></a><br /><hr />
+<a name="anchor44"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
 Phishing Attack</h3>
@@ -1505,7 +1516,7 @@ Phishing Attack</h3>
 Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
 
 </p>
-<a name="anchor46"></a><br /><hr />
+<a name="anchor45"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
 Private Key Compromise</h3>
@@ -1514,7 +1525,7 @@ Private Key Compromise</h3>
 In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
 
 </p>
-<a name="anchor47"></a><br /><hr />
+<a name="anchor46"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
 Acknowledgements</h3>

@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="16" month="November" year="2010" />
+    <date day="18" month="November" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
@@ -149,7 +149,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Client
                 <list style="symbols">
                     
-                        <t>Personal Information user.
+                        <t>Personal Information user. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -158,7 +158,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Server
                 <list style="symbols">
                     
-                        <t>Personal Information keeper.  Exposes the Personal Information endpoint.
+                        <t>Personal Information keeper.  Exposes the Personal Information endpoint. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -167,7 +167,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Proposer
                 <list style="symbols">
                     
-                        <t>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref>Relying Party.
+                        <t>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -221,7 +221,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Token
                 <list style="symbols">
                     
-                        <t>Signed JSON object which serialized into a formated string. Format is defined i n<xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+                        <t>Signed JSON object which serialized into a formated string. Format is defined in <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 </t>
                     
                 </list>
@@ -230,7 +230,16 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Service
                 <list style="symbols">
                     
-                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</t>
+                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> PPID
+                <list style="symbols">
+                    
+                        <t>Stands for "Pairwise Pseudonymous Identifier" or "Private Personal Identifier". It is End User's identifier asserted by Signatory to each specific OpenID Relying party including Client, Server or Proposer.</t>
                     
                 </list>
             </t>
@@ -323,9 +332,12 @@ Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually 
 <section title="Structures">
     <section title="Request">
     <t>
+Request is a file to declare what Personal Information a Client wants. After Request is delivered to Signatory which End User specified, the contents of Request MUST be displayed to the End User to help him to agree the request and specify the endpoint from which his Personal Infromation is accessed from Client. In special case, Client MAY specify Server and endpoint for Personal Information it wants.
+</t>
+<t>
 Request is a extended <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
-Request should be prepared in the course of the process described in " <xref target="advertising_service">Advertising Service</xref>". 
+Request shouldfdsa be prepared in the course of the process described in "<xref target="advertising_service">Advertising Service</xref>".
 </t>
 <t>
 Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
@@ -374,9 +386,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>Identifier for Server.</t>
                     
-                        <t>This parameter MAY be specified only when Client wants End User to permit to use a particular service.</t>
-                    
-                        <t>In this case, Client has already known the service endpoint.
+                        <t>This parameter MAY be specified only when Client wants End User to permit to use a particular service.  In this case, Client has already known the service endpoint.
 </t>
                     
                 </list>
@@ -409,7 +419,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(any)</t>
                     
-                        <t>End User MAY read "template" text to agree to create  Contract.
+                        <t>This describes what Client wants as Presonal Information. Also conditions or jurisdic statement SHOULD be stated or refered for utilizing End User's Personal Information.  End User MAY read this text to agree to create  Contract.
 </t>
                     
                 </list>
@@ -431,7 +441,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>URI from which data is provieded at Server.
+                        <t>URI from which data is provieded at Server. Specified only when Client want Personal Information from a specific Server.
 </t>
                     
                 </list>
@@ -442,7 +452,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Notifiation endpoint directely called by Party like Propose if Contract is provieded.
+                        <t>Notifiation endpoint directely called by Party like Propose if Contract is provieded. Notification protocol described in "<xref target="notify_contract_status">Notify Contract Status</xref>" section later.
 </t>
                     
                 </list>
@@ -453,7 +463,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string</t>
                     
-                        <t>End user's OpenID identfier at Server
+                        <t>End user's OpenID identfier at Server.  Mostly is not specified.
 </t>
                     
                 </list>
@@ -1056,7 +1066,7 @@ If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End U
 
 </section>
 
-<section title="Notify Contract Status">
+<section title="Notify Contract Status" anchor="notify_contract_status"  >
     <t>
 Signatory and other Party MAY send the status of Contract to the endpoint specified by "notify" member of Proposal or Request. 
 "status" query parameter MUST be a Status JSON object.

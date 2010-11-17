@@ -36,6 +36,8 @@ def make():
              'OPENID_AB' : 'OpenID Artifact Binding 1.0',
              'JSON': 'JSON(Javascript Object Notation)',
              'X_690': 'X.690',
+             'advertising_service' : 'Advertising Service',
+             'notify_contract_status' : 'Notify Contract Status',
             }
     for (k,v) in xref.iteritems():
         xref[k] = '<xref target="%s">%s</xref>' % (k,v)
