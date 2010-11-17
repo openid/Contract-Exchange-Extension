@@ -519,7 +519,8 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Proposal">
     <t>
-Proposal is a contrainer JSON to hold Request token of parties and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+Proposal is a contrainer JSON to hold Request Token of parties from all Client.  
+Proposal itself MUST be a Token to be conveyed in OpenID Artifact Binding request file to Signatory.
 </t>
 
 <t>
@@ -567,7 +568,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object( <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> )</t>
                     
-                        <t>JSON array of Requests in token string format.
+                        <t>JSON array of Requests Token.
 </t>
                     
                 </list>
@@ -578,7 +579,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
+                        <t>Signatory MAY directly send message to this URI.  As described later in "<xref target="notify_contract_status">Notify Contract Status</xref>" section later, Signatory MAY notify the status of  Contract to Proposer.
 </t>
                     
                 </list>
@@ -623,9 +624,10 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Acceptance">
     <t>
-Acceptance is a copy form original Request "payload"  with extra parameters including End User's personal information added by Signagory and End User.
-Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
-Personla information like canonical identifier SHOULD be different from each other.
+Acceptance is a response file of original Request "payload" and describes what is End User's PPID, where End User's Personal Information comes from and any other data required to response End User's Personal Information by Server.
+
+Signatory MUST produce two Acceptances for a single Request, one is for Client's Contract Part and the other is for Server's Contract Part.
+Personal information like canonical identifier SHOULD be different from each other.
 </t>
 
 <t>
@@ -661,7 +663,7 @@ Other paramters  than the following have same meaning as ones defined in Request
                     
                         <t>string(URI)</t>
                     
-                        <t>Identifier to original Request</t>
+                        <t>Identifier to refer to original Request.</t>
                     
                 </list>
             </t>

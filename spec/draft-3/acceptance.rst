@@ -11,4 +11,4 @@
 * request_id
 
     * string(URI)
-    * Identifier to original Request
+    * Identifier to refer to original Request.

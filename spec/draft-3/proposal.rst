@@ -16,12 +16,12 @@
 * reqs
 
     * array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} )
-    * JSON array of Requests in token string format.
+    * JSON array of Requests Token.
 
 * notify
 
     * optional,string(URI)
-    * Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
+    * Signatory MAY directly send message to this URI.  As described later in "{{ xref.notify_contract_status }}" section later, Signatory MAY notify the status of  Contract to Proposer.
 
 * proposer_certs
 
