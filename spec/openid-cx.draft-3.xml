@@ -694,7 +694,8 @@ Other paramters  than the following have same meaning as ones defined in Request
 </section>
 <section title="Contract Part">
     <t>
-Contract Part is container JSON object of Acceptances and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
+Contract Part is container JSON object of Acceptances and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
+Contract Part is a part of Contract  and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
 </t>
 
 <t>
@@ -764,7 +765,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object(Acceptance)</t>
                     
-                        <t>JSON array of Acceptance
+                        <t>JSON array of Acceptance JSON object.
 </t>
                     
                 </list>

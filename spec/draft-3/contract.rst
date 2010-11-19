@@ -26,7 +26,7 @@
 * acceptances
 
     * array of object(Acceptance)
-    * JSON array of Acceptance  
+    * JSON array of Acceptance JSON object. 
 
 * signatory_certs
 
