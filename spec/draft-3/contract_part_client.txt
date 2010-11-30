@@ -1,5 +1,8 @@
 +------------------------------------+
-| <Contract Part>(Server N)          |
+| <Contract Part>                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Client A"               |
 |                                    |
 |  contract_id :                     |
 |    http://op.net/contract/4321435  |
@@ -8,15 +11,15 @@
 |  +----------------------------+    |
 |  | +------------------------+ |    |
 |  | | <Acceptance>           | |    |
-|  | | (Client a - Server N)) | |    | 
+|  | | (Client A - Server 1)) | |    | 
 |  | +------------------------+ |    |
 |  | | <Acceptance>           | |    |
-|  | | (Client b - Server N)) | |    | 
+|  | | (Client A - Server 2)) | |    | 
 |  | +------------------------+ |    |
 |  | | ............           | |    |
 |  | +------------------------+ |    |
 |  | | <Acceptance>           | |    |
-|  | | (Client z - Server N)) | |    | 
+|  | | (Client A - Server N)) | |    | 
 |  | +------------------------+ |    |
 |  +----------------------------+    |
 |                                    |

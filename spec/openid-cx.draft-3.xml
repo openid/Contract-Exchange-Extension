@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="29" month="November" year="2010" />
+    <date day="30" month="November" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
@@ -317,13 +317,19 @@ OpenID Artifact Binding request is sent to Signatory which is an OpenID OP in CX
 If the End User agree to create Contract,  Signatory provides Contract Part for each Proposer and Client. 
 Contract Part includes Acceptance file in which End Users identifier  and the endpoint of his/her Personal Information are stated.
 All Contract Parts share a single identifier, Contract Identifier, which ensure all parties are bound to a single Contract.
+</t>
 
+<t>
+Here is a sample Contract Part to be provieded to Server N which is going to be requested Personal Information by several Clients.
 </t>
 
 <figure>
     <artwork><![CDATA[
 +------------------------------------+
-| <Contract Part>(Server N)          |
+| <Contract Part>                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Server N"               |
 |                                    |
 |  contract_id :                     |
 |    http://op.net/contract/4321435  |
@@ -341,6 +347,41 @@ All Contract Parts share a single identifier, Contract Identifier, which ensure 
 |  | +------------------------+ |    |
 |  | | <Acceptance>           | |    |
 |  | | (Client z - Server N)) | |    | 
+|  | +------------------------+ |    |
+|  +----------------------------+    |
+|                                    |
++------------------------------------+
+    ]]></artwork>
+</figure>
+
+<t>
+Also here is a sample Contract Part to be provieded to Client A which is going to request Personal Information to several Servers.
+</t>
+
+<figure>
+    <artwork><![CDATA[
++------------------------------------+
+| <Contract Part>                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Client A"               |
+|                                    |
+|  contract_id :                     |
+|    http://op.net/contract/4321435  |
+|                                    |
+|  acceptances:                      |
+|  +----------------------------+    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server 1)) | |    | 
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server 2)) | |    | 
+|  | +------------------------+ |    |
+|  | | ............           | |    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server N)) | |    | 
 |  | +------------------------+ |    |
 |  +----------------------------+    |
 |                                    |

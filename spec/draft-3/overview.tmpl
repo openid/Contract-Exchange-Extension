@@ -45,12 +45,25 @@ OpenID Artifact Binding request is sent to Signatory which is an OpenID OP in CX
 If the End User agree to create Contract,  Signatory provides Contract Part for each Proposer and Client. 
 Contract Part includes Acceptance file in which End Users identifier  and the endpoint of his/her Personal Information are stated.
 All Contract Parts share a single identifier, Contract Identifier, which ensure all parties are bound to a single Contract.
+</t>
 
+<t>
+Here is a sample Contract Part to be provieded to Server N which is going to be requested Personal Information by several Clients.
 </t>
 
 <figure>
     <artwork><![CDATA[
-{% include "contract.txt" %}
+{% include "contract_part_server.txt" %}
+    ]]></artwork>
+</figure>
+
+<t>
+Also here is a sample Contract Part to be provieded to Client A which is going to request Personal Information to several Servers.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "contract_part_client.txt" %}
     ]]></artwork>
 </figure>
 
