@@ -4,20 +4,28 @@ Draft-3
 Knows Issue and TODO
 ----------------------
 
-- "3.2.1.  Non-Normative Examples" MUST be rewritten.
+1.  Request is to be copied, or to be refered, or to be included to provide Acceptance.
 
- - 3.2.1 SHOULD be dropped. Because ,
-
-    - Each JSON has non-normative example. 
-    - Mostly "token" is used for serialization format.
-    - Some JSON contains another tokens. 
-
-- Signature is going to be based on "JSON Simple Sign 1.0<json-simple-sign-1_0_>"
-- Encryption is going to be based on "JSON Simple Encryption 1.0<json-simple-enc-1_0_>".
-
-.. _json-simple-sign-1_0 : http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html
-.. _json-simple-enc-1_0 : http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html
+  - Curently "copied"
+  - =Nat suggested to be refered.
+  - It should better to be included in Acceptance.
    
+     - Point is "refering parameters in Request if those are not described in Acceptance".
+     - If Proposer MUST provide the original Proposal endpoint, any party can download. Proposal contains Requests.
+     - In such a case, a smart client can't be a Proposer.
+
+2. Client can be notified by Proposer. How about Servers ?
+
+  - Currently a Server gets to know when it firstly is requested Personal Information.
+  - But someone may think it is too late.
+  - At the time when Client's Request is bound to a Server's service ?
+
+3. Service binding
+
+  - What Personal Information is hosted by which Server.
+  - Currently no discovery mechanizm is provied in CX.
+  - At least, Signatory(OP) must catalog the list of Personal Information Server, endopint and X.509 certificate. The list must be indexed or selected by the type of Personal Information.
+  - XRD,XRDS,..... some descripter should be defined? 
 
 
 File Structure
@@ -53,10 +61,12 @@ Some template referes external parameters defined ReST file ( .rst ) which are p
          |     +-- definition_convention.tmpl
          |     +-- terms.tmpl ( terms.rst )
          |     +-- overview.tmpl
+         |     |     +-- proposal.txt
+         |     |     +-- contract_part_client.txt 
+         |     |     +-- contract_part_server.txt 
          |     +-- files.tmpl
          |     |     +-- json.tmpl
          |     |     +-- structures.tmpl
-         |     |     |     +-- non-normative_examples.tmpl
          |     |     |     +-- request.tmpl ( request.rst / request.json )
          |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
          |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
@@ -69,7 +79,9 @@ Some template referes external parameters defined ReST file ( .rst ) which are p
          |     |           +-- accepting_proposal.tmpl
          |     |           +-- receiving_contract.tmpl
          |     |           +-- notify_contract_status.tmpl
-         |     |           +-- data_request.tmpl ( data_request.rst , encrypted_response.rst    )
+         |     |           +-- data_request.tmpl ( data_request.rst  )
+         |     |                      +--- access_log.templ 
+         |     |                      ( access_log.rst,access_log_file.rst, access_log_file.jsong )
          |     +-- security_considerations.tmpl
          |     +-- acknowlegements.tmpl
          +-- back.tmpl
