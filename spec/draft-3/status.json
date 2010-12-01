@@ -1,5 +1,5 @@
 {
-    "type" :  "http://specs.openid.net/cx/1.0/#status",
+    "type" :  "{{cxurl}}#status",
     "proposal_id" :  "http://rp.net/cx/54643",
     "contract_id" : "http://op.com/contract/f43213214",
     "status" : "pending" , 

@@ -2,7 +2,7 @@
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-      "type": "http://specs.openid.net/cx/1.0/#proposal",
+      "type": "{{cxurl}}#proposal",
       "id" : "http://rp.net/432143214321",
       "proposer_id" : "http://rp.net/",
       "reqs": [ 

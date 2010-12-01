@@ -55,6 +55,7 @@ def make():
 
 
     ctx['xref'] = xref
+    ctx['cxurl'] = 'http://openid.net/specs/cx/1.0/' 
 
     return Template(t.render(ctx).encode('utf-8')).render(ctx).encode('utf-8')
 

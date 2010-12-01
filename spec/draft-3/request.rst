@@ -1,7 +1,7 @@
 * type
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#request"
+    * {{cxurl}}#request"
 
 * id
 

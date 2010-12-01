@@ -2,13 +2,13 @@
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-        "type"        : "http://specs.openid.net/cx/1.0/#contract",
+        "type"        : "http://openid.net/specs/cx/1.0/#contract",
         "id"          : "http://op.com/id/f43213214",
         "contract_id" : "http://op.com/id/contract/x43513514",
         "party_id"    : "http://res.net/",
         "acceptances" : [
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213215",
                     "client_id" : "http://rp1.net/",
                     "server_id" : "http://res.net/",
@@ -18,7 +18,7 @@
                     
                 },
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213216",
                     "client_id" : "http://rp2.net/",
                     "server_id" : "http://res.net/",

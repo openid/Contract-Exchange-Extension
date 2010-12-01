@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="30" month="November" year="2010" />
+    <date day="01" month="December" year="2010" />
 
     <abstract>
     <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
@@ -96,7 +96,7 @@ This Contract needs to be stored by all bound parties for a given length of time
         <t> All OpenID 2.0 Artifact Binding messages that contain OpenID Contract Exchange (CX) JSON node MUST contain "type" member starts with the following URI.</t>
 <figure>
     <artwork><![CDATA[
-            http://specs.openid.net/extensions/cx/1.0/
+http://openid.net/specs/cx/1.0/ 
     ]]></artwork>
 </figure>
 <t/>
@@ -432,7 +432,7 @@ Servers MUST provide access log bound to the Contract to at least Signatory. Sig
 
 <figure>
     <artwork><![CDATA[
-http://specs.openid.net/cx/1.0/#
+http://openid.net/specs/cx/1.0/
     ]]></artwork>
 </figure>
 
@@ -443,7 +443,7 @@ http://specs.openid.net/cx/1.0/#
 <figure>
     <artwork><![CDATA[
 {
-    "type" : "http://specs.openid.net/cx/1.0/#",
+    "type" : "http://openid.net/specs/cx/1.0/",
     "id"   : "http://rp.net/432144395df"
 }
     ]]></artwork>
@@ -516,7 +516,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#request"
+                        <t>http://openid.net/specs/cx/1.0/#request"
 </t>
                     
                 </list>
@@ -666,7 +666,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-        "type" : "http://specs.openid.net/cx/1.0/#request",   
+        "type" : "http://openid.net/specs/cx/1.0/#request",   
         "client_id" : "http://rp.net",
         "server_id": "http://op.com",
         "payment_from" : "500JPY",
@@ -700,7 +700,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#proposal
+                        <t>http://openid.net/specs/cx/1.0/#proposal
 </t>
                     
                 </list>
@@ -771,7 +771,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-      "type": "http://specs.openid.net/cx/1.0/#proposal",
+      "type": "http://openid.net/specs/cx/1.0/#proposal",
       "id" : "http://rp.net/432143214321",
       "proposer_id" : "http://rp.net/",
       "reqs": [ 
@@ -806,7 +806,7 @@ Other paramters  than the following have same meaning as ones defined in Request
                     
                         <t>string(URI)</t>
                     
-                        <t>"http://specs.openid.net/cx/1.0/#acceptance"
+                        <t>"http://openid.net/specs/cx/1.0/#acceptance"
 </t>
                     
                 </list>
@@ -841,7 +841,7 @@ Other paramters  than the following have same meaning as ones defined in Request
 <figure>
     <artwork><![CDATA[
 {
-    "type"              : "http://specs.openid.net/cx/1.0/#acceptance",   
+    "type"              : "http://openid.net/specs/cx/1.0/#acceptance",   
     "client_id"         : "http://rp.net",
     "server_id"         : "http://op.com",
     "payment_from"      : "500JPY",
@@ -875,7 +875,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#contract_part
+                        <t>http://openid.net/specs/cx/1.0/#contract_part
 </t>
                     
                 </list>
@@ -957,13 +957,13 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-        "type"        : "http://specs.openid.net/cx/1.0/#contract",
+        "type"        : "http://openid.net/specs/cx/1.0/#contract",
         "id"          : "http://op.com/id/f43213214",
         "contract_id" : "http://op.com/id/contract/x43513514",
         "party_id"    : "http://res.net/",
         "acceptances" : [
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213215",
                     "client_id" : "http://rp1.net/",
                     "server_id" : "http://res.net/",
@@ -973,7 +973,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                 },
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213216",
                     "client_id" : "http://rp2.net/",
                     "server_id" : "http://res.net/",
@@ -1005,7 +1005,7 @@ Status  is a simple JSON object to describe the status of Contract.
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#status
+                        <t>http://openid.net/specs/cx/1.0/#status
 </t>
                     
                 </list>
@@ -1053,7 +1053,7 @@ Status  is a simple JSON object to describe the status of Contract.
 <figure>
     <artwork><![CDATA[
 {
-    "type" :  "http://specs.openid.net/cx/1.0/#status",
+    "type" :  "http://openid.net/specs/cx/1.0/#status",
     "proposal_id" :  "http://rp.net/cx/54643",
     "contract_id" : "http://op.com/contract/f43213214",
     "status" : "pending" , 
@@ -1206,7 +1206,7 @@ But if no Contract Part is available at the time when RP requests the assertion,
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
     "cx" : {
-                "type" :   "http://specs.openid.net/cx/1.0/#status",
+                "type" :   "http://openid.net/specs/cx/1.0/#status",
                  ... ( OTHER CX STATUS JSON MEMBERS ) ...
              } 
 }
@@ -1337,7 +1337,7 @@ Access log is JSON structured with followng parameters.
                     
                         <t>OPTIONAL,string(URI)</t>
                     
-                        <t>This can be negotiable with this parameter between Parities, but default is  http://specs.openid.net/cx/1.0/#access_log
+                        <t>This can be negotiable with this parameter between Parities, but default is http://openid.net/specs/cx/1.0/
 </t>
                     
                 </list>
@@ -1431,7 +1431,7 @@ The following is a non-normative sample of access log.
 <figure>
     <artwork><![CDATA[
 {
-     "type" : "http://specs.openid.net/cx/1.0/#access_log",   
+     "type" : "http://openid.net/specs/cx/1.0/#access_log",   
      "logs"  : [
         [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
             "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],

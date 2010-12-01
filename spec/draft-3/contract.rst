@@ -1,7 +1,7 @@
 * type
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#contract_part
+    * {{ cxurl }}#contract_part
 
 * id 
 
