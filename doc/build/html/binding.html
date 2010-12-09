@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Binding(Draft) &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/openid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
+    <link rel="next" title="Use Case: Print service for diary with private anniversaries." href="sample_printing/index.html" />
+    <link rel="prev" title="Providing Request File" href="providing_request.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>OpenID CX v1 documentation</span></a></h1>
+        <h2 class="heading"><span>Binding(Draft)</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="providing_request.html">Providing Request File</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="sample_printing/index.html">Use Case: Print service for diary with private anniversaries.</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="binding-draft">
+<h1>Binding(Draft)<a class="headerlink" href="#binding-draft" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>THIS IS UNDER RESEARCH AND NOT DEFINED IN THE SPEC.</li>
+</ul>
+<div class="section" id="binding">
+<h2>Binding<a class="headerlink" href="#binding" title="Permalink to this headline">¶</a></h2>
+<p>Binding is a process for <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a></p>
+<blockquote>
+<ul class="simple">
+<li>to discover a <a class="reference internal" href="glossary.html#term-server"><em class="xref std std-term">Server</em></a> and an endpoint for the requested <a class="reference internal" href="glossary.html#term-personal-information"><em class="xref std std-term">Personal Information</em></a> stated in <a class="reference internal" href="glossary.html#term-request"><em class="xref std std-term">Request</em></a> by a <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> , and</li>
+<li>to create <a class="reference internal" href="glossary.html#term-acceptance"><em class="xref std std-term">Acceptance</em></a> for the Server and Client to share Personal Information.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="personal-information">
+<h2>Personal Information<a class="headerlink" href="#personal-information" title="Permalink to this headline">¶</a></h2>
+<p>To share Personal Information between parties, the following itmes MUST be negotiated at least.</p>
+<blockquote>
+<ul class="simple">
+<li>Data type</li>
+<li>Data format</li>
+</ul>
+</blockquote>
+<p>Data type SHOULD be understood by human as well as machines. At least the <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> and <a class="reference internal" href="glossary.html#term-proposer"><em class="xref std std-term">Proposer</em></a> MUST be able to tell an End User what exactly the service he is going to use expects as his Personal Information.</p>
+<p>Data format MUST be negotiable between a Server and a Client to process a given Personal Information into service experiences.</p>
+</div>
+<div class="section" id="client">
+<h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
+<p>Client should be able to describe what Personal Information it wants and what format it expects in Request file in someway.</p>
+<p><a class="reference internal" href="glossary.html#term-openid-ax"><em class="xref std std-term">OpenID AX</em></a> <a class="reference internal" href="glossary.html#term-typeuri"><em class="xref std std-term">typeURI</em></a> is a way to specify the type and format of data an entity expects.</p>
+</div>
+<div class="section" id="proposer">
+<h2>Proposer<a class="headerlink" href="#proposer" title="Permalink to this headline">¶</a></h2>
+<p>A Proposer is the entity providing service experiences to End Users with helps of some Clients. When an End User visits the Proposer to use advertised service, the Proposer MUST describe what is the provided service  and what Personal Information MUST be expected to provide that service.  Only when the End User can understood what he must to do, a process is going to be proceeded.</p>
+</div>
+<div class="section" id="signatory">
+<h2>Signatory<a class="headerlink" href="#signatory" title="Permalink to this headline">¶</a></h2>
+<p>A Signatory MUST tell the End User what his Personal Information is expected again at the time when the <a class="reference internal" href="glossary.html#term-contract"><em class="xref std std-term">Contract</em></a> is created after or before he is authenticated at the Signatory.</p>
+<p>When creating <a class="reference internal" href="glossary.html#term-acceptance"><em class="xref std std-term">Acceptance</em></a> for the Contract, Signatory MUST state the endpoint from which the Personl Information is published, user identifier of whom End User is identfied at the entity and other parameter related to the End User and entities. To discover the endpoint, the Signatory MUST know the exact type of Personal Information, which Server manages the data and whether the Server publish the data in the format requested by a Client.</p>
+<p>This is the Binding process.</p>
+<div class="section" id="static-binding">
+<h3>Static Binding<a class="headerlink" href="#static-binding" title="Permalink to this headline">¶</a></h3>
+<p>One possible binding is a static binding. Static binding table should be provided by Signatory in advance  and End User just select a Server to create a Contract for a particular Request.  In this binding, End User don&#8217;t have to know exact data type and format. Only Signatory MUST know that.</p>
+</div>
+<div class="section" id="dynamic-binding">
+<h3>Dynamic Binding<a class="headerlink" href="#dynamic-binding" title="Permalink to this headline">¶</a></h3>
+<p>Another possible binding is a dynamic one. In this binding, an End User should expect which Server manages his requested Personal Information and be able to specify the Server identfier.</p>
+<p>A discovery process MUST be defined for this binding. What? <a class="reference internal" href="glossary.html#term-lrdd"><em class="xref std std-term">LRDD</em></a> with some extensions?</p>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="providing_request.html">Providing Request File</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="sample_printing/index.html">Use Case: Print service for diary with private anniversaries.</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2010, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>
