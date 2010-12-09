@@ -19,6 +19,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
     (r'^$', 'django.views.static.serve', {'document_root': os.path.join( os.path.dirname(__file__),'build/html'),'path':'index.html',}),
-    (r'^spec/$', 'django.views.static.serve', {'document_root': SPEC_ROOT ,'path': SPEC_FILE,}),
+#    (r'^spec/$', 'django.views.static.serve', {'document_root': SPEC_ROOT ,'path': SPEC_FILE,}),
     (r'(?P<path>.*)', 'django.views.static.serve', {'document_root': os.path.join( os.path.dirname(__file__),'build/html'),}),
 )

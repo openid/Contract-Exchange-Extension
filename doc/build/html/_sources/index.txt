@@ -8,6 +8,9 @@
 Welcome to OpenID CX's documentation!
 =====================================
 
+
+`SPEC <_static/hoge.txt>`_
+
 Contents:
 
 .. toctree::
@@ -18,6 +21,8 @@ Contents:
     privacy_data_and_contract
     contract_exchange
     providing_request
+
+    binding 
 
     sample_printing/index
 

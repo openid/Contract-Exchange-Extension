@@ -23,9 +23,11 @@ Known Issue and TODO
 3. Service binding
 
   - What Personal Information is hosted by which Server.
-  - Currently no discovery mechanizm is provied in CX.
+  - Currently no discovery mechanizm is provided in CX.
   - At least, Signatory(OP) must catalog the list of Personal Information Server, endopint and X.509 certificate. The list must be indexed or selected by the type of Personal Information.
   - XRD,XRDS,..... some descripter should be defined? 
+
+    - Go to `Discovery <http://trac.hdknr.com/wiki/Discovery>`_
 
 
 File Structure

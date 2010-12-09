@@ -57,3 +57,12 @@ Terminology
     Service
         Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
 
+    OpenID AX
+        "OpenID Attribute Exchange is an OpenID service extension for exchanging identity information between endpoints. Messages for retrieval and storage of identity information are provided." - `OpenID Attribute Exchange 1.0 <http://openid.net/specs/openid-attribute-exchange-1_0.html>`_ .
+
+    typeURI
+        URI to describe data schema. Used in :term:`OpenID AX`. `AXSchema.org <http://www.axschema.org/>`_  is a community project to define attribute types for use with OpenID Attribute Exchange.
+
+    LRDD
+        LRDD (pronounced 'lard') provides a process for obtaining information  about a resource identified by a Uniform Resource Identifier (URI).
+        See http://www.delicious.com/hdknr/LRDD
