@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Draft-3 &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/openid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
+    <link rel="next" title="Personal Information and Contract" href="privacy_data_and_contract.html" />
+    <link rel="prev" title="Welcome to OpenID CX’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>OpenID CX v1 documentation</span></a></h1>
+        <h2 class="heading"><span>Draft-3</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a href="/spec/">Specification</a> |
+        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="privacy_data_and_contract.html">Personal Information and Contract</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="draft-3">
+<h1>Draft-3<a class="headerlink" href="#draft-3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="known-issue-and-todo">
+<h2>Known Issue and TODO<a class="headerlink" href="#known-issue-and-todo" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Request is to be copied, or to be refered, or to be included to provide Acceptance.</li>
+</ol>
+<blockquote>
+<ul>
+<li><p class="first">Curently &#8220;copied&#8221;</p>
+</li>
+<li><p class="first">=Nat suggested to be refered.</p>
+</li>
+<li><p class="first">It should better to be included in Acceptance.</p>
+<blockquote>
+<ul class="simple">
+<li>Point is &#8220;refering parameters in Request if those are not described in Acceptance&#8221;.</li>
+<li>If Proposer MUST provide the original Proposal endpoint, any party can download. Proposal contains Requests.</li>
+<li>In such a case, a smart client can&#8217;t be a Proposer.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>Client can be notified by Proposer. How about Servers ?</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>Currently a Server gets to know when it firstly is requested Personal Information.</li>
+<li>But someone may think it is too late.</li>
+<li>At the time when Client&#8217;s Request is bound to a Server&#8217;s service ?</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>Service binding</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>What Personal Information is hosted by which Server.</li>
+<li>Currently no discovery mechanizm is provied in CX.</li>
+<li>At least, Signatory(OP) must catalog the list of Personal Information Server, endopint and X.509 certificate. The list must be indexed or selected by the type of Personal Information.</li>
+<li>XRD,XRDS,..... some descripter should be defined?</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="file-structure">
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="readme">
+<h3>1. README<a class="headerlink" href="#readme" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>readme.rst</li>
+</ul>
+</div>
+<div class="section" id="generator">
+<h3>2. GENERATOR<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>__init__.py</li>
+<li>makedoc.py</li>
+</ul>
+</div>
+<div class="section" id="jinja-template">
+<h3>3. Jinja Template<a class="headerlink" href="#jinja-template" title="Permalink to this headline">¶</a></h3>
+<p>Some template(.tmpl file) include sample JSON files (.json).
+Some template referes external parameters defined ReST file ( .rst ) which are processed in makedoc.py before Jinja2 processing.</p>
+<div class="highlight-python"><pre>rfc.tmpl
+ |
+ +--  front.tmpl
+ |     +-- abstract.tmpl
+ +--  middle.tmpl
+ |     |
+ |     +-- requirement_notation.tmpl
+ |     +-- definition_convention.tmpl
+ |     +-- terms.tmpl ( terms.rst )
+ |     +-- overview.tmpl
+ |     |     +-- proposal.txt
+ |     |     +-- contract_part_client.txt
+ |     |     +-- contract_part_server.txt
+ |     +-- files.tmpl
+ |     |     +-- json.tmpl
+ |     |     +-- structures.tmpl
+ |     |     |     +-- request.tmpl ( request.rst / request.json )
+ |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
+ |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
+ |     |     |     +-- contract.tmpl (contract.rst / contract.json )
+ |     |     |     +-- status.tmpl (status.rst / status.json )
+ |     |     |
+ |     |     +-- storage_timestamping.tmpl
+ |     +-- protocol.tmpl
+ |     |           +-- sending_proposal.tmpl
+ |     |           +-- accepting_proposal.tmpl
+ |     |           +-- receiving_contract.tmpl
+ |     |           +-- notify_contract_status.tmpl
+ |     |           +-- data_request.tmpl ( data_request.rst  )
+ |     |                      +--- access_log.templ
+ |     |                      ( access_log.rst,access_log_file.rst, access_log_file.jsong )
+ |     +-- security_considerations.tmpl
+ |     +-- acknowlegements.tmpl
+ +-- back.tmpl</pre>
+</div>
+</div>
+</div>
+<div class="section" id="partial-contract">
+<h2>Partial Contract<a class="headerlink" href="#partial-contract" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://t.co/VRG8pgw">http://t.co/VRG8pgw</a></li>
+<li>Proposal is referered by only its identifier with fragments.</li>
+<li>A party MUST be given simple ordinal number or like that.</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>A partial contract is specified with CX Contract identifier with this ordinal number.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="reuquest">
+<h2>Reuquest<a class="headerlink" href="#reuquest" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Related Reuqest and their signatures are dropped.</li>
+<li>endpoint added.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="openid-contract-exchange">
+<h1>OpenID Contract Exchange<a class="headerlink" href="#openid-contract-exchange" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>makedoc.py genrate XML for RFC</li>
+<li>using Jinja2 for templating</li>
+<li>main template is &#8220;rfc.tmpl&#8221;</li>
+<li>python makedoc.py  &gt; openid-cx-draft-2.xml</li>
+</ul>
+</div>
+<div class="section" id="preparations">
+<h1>Preparations<a class="headerlink" href="#preparations" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Python</li>
+<li>Jinja2 ( for templating )</li>
+<li>docutils ( for reStructredText processing )</li>
+</ul>
+</div>
+<div class="section" id="structure">
+<h1>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>main tempalte is &#8220;rfc.tmpl&#8221; which is targed by &#8220;makedoc.py&#8221; to render.</li>
+<li>Parameter lists used in this document are simple reStrucuturedText file with &#8221;.rst&#8221; .</li>
+<li>Parameter lists are parsed into Python &#8216;dict&#8217;s.  Those are packed into Jinja2 &#8220;context&#8221; in &#8220;makedock.py&#8221;.</li>
+<li><cite>*.json</cite> files are inserted as non-normatived example in the spec document.</li>
+</ul>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a href="/spec/">Specification</a> |
+        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="privacy_data_and_contract.html">Personal Information and Contract</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2010, hdknr.com.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>
