@@ -1,0 +1,1814 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>Draft: Contract Exchange Extension 1.0 - Draft 3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Contract Exchange Extension 1.0 - Draft 3">
+<meta name="generator" content="xml2rfc v1.35 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Draft</td><td class="header">N. Sakimura</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">M. Nishitani</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">NRI</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">H. Nara</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">TACT Communications,Inc</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">December 01, 2010</td></tr>
+</table></td></tr></table>
+<h1><br />Contract Exchange Extension 1.0 - Draft 3</h1>
+
+<h3>Abstract</h3>
+
+<p> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
+The Proposer creates a signed Proposal which describes  what personal information is wanted and send it to the Signatory specified the End User.
+The Signatory, upon agreeing to it, signs agreements and provides the Contract.
+The combination of the Proposal and Contract is the mutually signed and is potentially legally binding.
+This Contract needs to be stored by all bound parties for a given length of time, usually spanning over many years depending on jurisdictions.
+
+</p>
+<p> As these document size may be large while the user agent capability may be limited (e.g., mobile phones), sending them via direct communication and passing only the small reference called "Artifact" through the user agents are advisable. Therefore, as the protocol, use of Artifact Binding is strongly recommended. 
+</p><a name="toc"></a><br /><hr />
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#anchor1">1.</a>&nbsp;
+Terminology<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor2">1.1.</a>&nbsp;
+Requirements Notation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor3">1.2.</a>&nbsp;
+Definitions and Conventions<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor4">1.3.</a>&nbsp;
+Terms<br />
+<a href="#anchor5">2.</a>&nbsp;
+Overview<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor6">2.1.</a>&nbsp;
+Propser and Clients<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor7">2.2.</a>&nbsp;
+OpenID Artifaict Binding<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor8">2.3.</a>&nbsp;
+Signatory and Contract Parts<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor9">2.4.</a>&nbsp;
+OpenID Assertion and Contract Parts<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor10">2.5.</a>&nbsp;
+Contract Identifier as Endpoint<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor11">2.6.</a>&nbsp;
+Personal Information Request<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor12">2.7.</a>&nbsp;
+Access Log<br />
+<a href="#anchor13">3.</a>&nbsp;
+Files<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor14">3.1.</a>&nbsp;
+JSON and Token<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor19">3.2.</a>&nbsp;
+Structures<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor25">3.3.</a>&nbsp;
+Storage and Timestamping<br />
+<a href="#anchor26">4.</a>&nbsp;
+Protocal<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor27">4.1.</a>&nbsp;
+Sending Proposal<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor30">4.2.</a>&nbsp;
+Accepting Proposal<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor37">4.3.</a>&nbsp;
+Receiving Contract<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#notify_contract_status">4.4.</a>&nbsp;
+Notify Contract Status<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor40">4.5.</a>&nbsp;
+Data Request<br />
+<a href="#anchor46">5.</a>&nbsp;
+Security Considerations<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor47">5.1.</a>&nbsp;
+non-repudiation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor48">5.2.</a>&nbsp;
+Man-in-the-middle<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor49">5.3.</a>&nbsp;
+Eavesdropping<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor50">5.4.</a>&nbsp;
+Malicious Providers<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor51">5.5.</a>&nbsp;
+Phishing Attack<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor52">5.6.</a>&nbsp;
+Private Key Compromise<br />
+<a href="#anchor53">Appendix&nbsp;A.</a>&nbsp;
+Acknowledgements<br />
+<a href="#rfc.references1">6.</a>&nbsp;
+Normative References<br />
+<a href="#rfc.authors">&#167;</a>&nbsp;
+Authors' Addresses<br />
+</p>
+<br clear="all" />
+
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Terminology</h3>
+
+<a name="anchor2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.1"></a><h3>1.1.&nbsp;
+Requirements Notation</h3>
+
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <a class='info' href='#RFC2119'>[RFC2119]<span> (</span><span class='info'>Bradner, B., &ldquo;Key words for use in RFCs to Indicate Requirement           Levels,&rdquo; 1997.</span><span>)</span></a> .
+        
+</p>
+<a name="anchor3"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.2"></a><h3>1.2.&nbsp;
+Definitions and Conventions</h3>
+
+<p> All OpenID 2.0 Artifact Binding messages that contain OpenID Contract Exchange (CX) JSON node MUST contain "type" member starts with the following URI.
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+http://openid.net/specs/cx/1.0/
+</pre></div>
+<p>
+</p>
+<p> Variety of sub class message contains fragments at the end of the type URI.
+</p>
+<a name="anchor4"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.3"></a><h3>1.3.&nbsp;
+Terms</h3>
+
+<p>In addition to the terminology used in <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB], following terms are used. 
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> Party
+                
+<ul class="text">
+<li>Entity which is bound to a contract and one of Client , Server , Proposer and Signatory.
+</li>
+<li>Party may be a web server or a smart device client.
+
+</li>
+</ul>
+            
+</li>
+<li> End User
+                
+<ul class="text">
+<li>Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+
+</li>
+</ul>
+            
+</li>
+<li> Personal Information
+                
+<ul class="text">
+<li>Data which is own by End User and  can be accessed to permitted Party.
+
+</li>
+</ul>
+            
+</li>
+<li> Contract
+                
+<ul class="text">
+<li>Document to prove that Party can access Personal Information under stated condition.
+
+</li>
+</ul>
+            
+</li>
+<li> Client
+                
+<ul class="text">
+<li>Personal Information user. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
+
+</li>
+</ul>
+            
+</li>
+<li> Server
+                
+<ul class="text">
+<li>Personal Information keeper.  Exposes the Personal Information endpoint. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
+
+</li>
+</ul>
+            
+</li>
+<li> Proposer
+                
+<ul class="text">
+<li>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Relying Party.
+
+</li>
+</ul>
+            
+</li>
+<li> Signatory
+                
+<ul class="text">
+<li>Contract signer in the charge of the End User. <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Provider.
+
+</li>
+</ul>
+            
+</li>
+<li> Request
+                
+<ul class="text">
+<li>Document to describe what data is wanted by Client
+
+</li>
+</ul>
+            
+</li>
+<li> Proposal
+                
+<ul class="text">
+<li>Document to hold a couple of Request and delivered to Signatory by Proposer to start the CX process.
+
+</li>
+</ul>
+            
+</li>
+<li> Acceptance
+                
+<ul class="text">
+<li>Document to describe how the personal information can be accessed.
+
+</li>
+</ul>
+            
+</li>
+<li> Contract Part
+                
+<ul class="text">
+<li>Document which compose Contract and hold a couple of Acceptance and securely distributed to specific Party.
+
+</li>
+</ul>
+            
+</li>
+<li> Token
+                
+<ul class="text">
+<li>Signed JSON object which serialized into a formated string. Format is defined in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+
+</li>
+</ul>
+            
+</li>
+<li> Service
+                
+<ul class="text">
+<li>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+
+</li>
+</ul>
+            
+</li>
+<li> PPID
+                
+<ul class="text">
+<li>Stands for "Pairwise Pseudonymous Identifier" or "Private Personal Identifier". It is End User's identifier asserted by Signatory to each specific OpenID Relying party including Client, Server or Proposer.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<a name="anchor5"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Overview</h3>
+
+<p>The contract exchange extension(CX) is OpenID extension identified by the URI "http://openid.net/srv/cx/1.0/#". The contract is the document to prove that all parties bound to that have rights and obligations on consuming and providing services between each other.
+</p>
+<p>
+</p>
+<p>CX protocol is based on  <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] and some <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] messages structure used in CX are defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP(Proposer), the RP compose a Proposal JSON which is compiled with OpenID Artifact Binding Request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the Proposal to the OP(Signatory) specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.
+</p>
+<p>
+</p>
+<p>With sharing Contract in advance and presenting Contract identfier at specified endpoints, the RP and other Parties bound to the Contract can be authenticated and request data services.
+</p>
+<p>
+The following is a squence of main flow of OpenID Contract Exchange.
+
+</p>
+<a name="anchor6"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.1"></a><h3>2.1.&nbsp;
+Propser and Clients</h3>
+
+<p>
+Proposer, as a OpenID Relying Party, provides service experience to End User who is asserted by OpenID OP and has a principal at the Proposer.
+Other OpenID Relying Parties, Clients, MAY teams with Proposer to provide those services.
+Proposer and Client MAY use Personal Information which End User manages at the other OpenID Relying Parties, Servers.
+
+</p>
+<p>
+To use Personal Information, Proposer and Clients MUST provide  Request file which describes what kind of Personal Information they want to use.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
++-------------------------------+
+| &lt;Proposal&gt;                    |
+|                               |
+|  reqs:                        |
+|  +-------------------------+  |
+|  | +---------------------+ |  |
+|  | | &lt;Request&gt;(Client 1) | |  |
+|  | +---------------------+ |  |
+|  | | &lt;Request&gt;(Client 2) | |  |
+|  | +---------------------+ |  |
+|  | | &lt;Request&gt;(........) | |  |
+|  | +---------------------+ |  |
+|  | | &lt;Request&gt;(Client N) | |  |
+|  | +---------------------+ |  |
+|  | | &lt;Request&gt;(Proposer) | |  |
+|  | +---------------------+ |  |
+|  +-------------------------+  |
+|                               |
++-------------------------------+
+</pre></div>
+<p>
+Because Proposer is just another Client when it want to use Personal Information, there is no difference in architecuture between Reqeust of Clients and Request of Proposer.
+
+</p>
+<a name="anchor7"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.2"></a><h3>2.2.&nbsp;
+OpenID Artifaict Binding</h3>
+
+<p>
+If End User want to use the service provided by Proposer,  Proposer initiates an OpenID Artifact Binding session.
+Proposer compiles all Request from Clients and Proposer itself to Proposal and add it OpenID request as CX extension.
+OpenID Artifact Binding request is sent to Signatory which is an OpenID OP in CX term because it signs contract in charge of End User.
+
+</p>
+<a name="anchor8"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.3"></a><h3>2.3.&nbsp;
+Signatory and Contract Parts</h3>
+
+<p>
+If the End User agree to create Contract,  Signatory provides Contract Part for each Proposer and Client. 
+Contract Part includes Acceptance file in which End Users identifier  and the endpoint of his/her Personal Information are stated.
+All Contract Parts share a single identifier, Contract Identifier, which ensure all parties are bound to a single Contract.
+
+</p>
+<p>
+Here is a sample Contract Part to be provieded to Server N which is going to be requested Personal Information by several Clients.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
++------------------------------------+
+| &lt;Contract Part&gt;                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Server N"               |
+|                                    |
+|  contract_id :                     |
+|    http://op.net/contract/4321435  |
+|                                    |
+|  acceptances:                      |
+|  +----------------------------+    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client a - Server N)) | |    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client b - Server N)) | |    |
+|  | +------------------------+ |    |
+|  | | ............           | |    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client z - Server N)) | |    |
+|  | +------------------------+ |    |
+|  +----------------------------+    |
+|                                    |
++------------------------------------+
+</pre></div>
+<p>
+Also here is a sample Contract Part to be provieded to Client A which is going to request Personal Information to several Servers.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
++------------------------------------+
+| &lt;Contract Part&gt;                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Client A"               |
+|                                    |
+|  contract_id :                     |
+|    http://op.net/contract/4321435  |
+|                                    |
+|  acceptances:                      |
+|  +----------------------------+    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client A - Server 1)) | |    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client A - Server 2)) | |    |
+|  | +------------------------+ |    |
+|  | | ............           | |    |
+|  | +------------------------+ |    |
+|  | | &lt;Acceptance&gt;           | |    |
+|  | | (Client A - Server N)) | |    |
+|  | +------------------------+ |    |
+|  +----------------------------+    |
+|                                    |
++------------------------------------+
+</pre></div>
+<p>
+All Clients, Proposer, Server and Signatory will have its own Contract Part. Acceptances are included only in requester parties or responder parties.
+
+</p>
+<a name="anchor9"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.4"></a><h3>2.4.&nbsp;
+OpenID Assertion and Contract Parts</h3>
+
+<p>
+Proposer MAY obtain its Contract Part which is included in OpenID Artifact Binding Assertion as an extension parameter.
+Proposer MAY notify Contract Identifier to Client in the other process.
+
+
+</p>
+<a name="anchor10"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.5"></a><h3>2.5.&nbsp;
+Contract Identifier as Endpoint</h3>
+
+<p>
+Because Contract Identifier is the endpoint of Contract Parts, any bound party MAY request its Contract Part to the endpoint.
+Contract Part MUST be encrypted in JSON Simple Encryption with the party's public key.
+
+
+</p>
+<a name="anchor11"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.6"></a><h3>2.6.&nbsp;
+Personal Information Request</h3>
+
+<p>
+Clients or Proposer MAY request Personal Information to the endpoint stated in Acceptance of its own Contract Part.
+Server MUST encrypt response  in JSON Simple Encryption with the requester's public key.
+
+</p>
+<a name="anchor12"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2.7"></a><h3>2.7.&nbsp;
+Access Log</h3>
+
+<p>
+Servers MUST provide access log bound to the Contract to at least Signatory. Signatory in turn MUST provide those log to End User in some way.
+
+</p>
+<a name="anchor13"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Files</h3>
+
+<p>CX exchange Contract JSON by extending <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] protocol. <a class='info' href='#JSON'>JSON(Javascript Object Notation)<span> (</span><span class='info'>, &ldquo;The application/json Media Type for JavaScript Object Notation (JSON),&rdquo; .</span><span>)</span></a> [JSON] is the default document format, the extended <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is used for digital signature and the extended <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is used for asymmetric encryption with public key infrastructure.
+</p>
+<a name="anchor14"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+JSON and Token</h3>
+
+<p>CX uses JSON format which is used in <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Request file and assertion. All file used for CX MUST have "type" member in a JSON object( enclosed in open and close curly braces ) and the value of "type" MUST be URI and start with :
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+http://openid.net/specs/cx/1.0/
+</pre></div>
+<p>CX JSON object MAY optionally have "id" member for specifying any particular JSON object. "id" MUST be a URI uniquely allocated by the creating party.
+</p>
+<p>So, a generic CX JSON object likes like the following
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type" : "http://openid.net/specs/cx/1.0/",
+    "id"   : "http://rp.net/432144395df"
+}
+</pre></div>
+<a name="anchor15"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.1"></a><h3>3.1.1.&nbsp;
+Extending CX JSON</h3>
+
+<p>
+Although any CX JSON object MUST have members specified for  "type", any other member MAY be used if parties agree the meaning of it.  Any CX JSON MAY has any other JSON object as a member in itself. If a member is a JSON object,  "type" and "id" SHOULD be checked firstly and this should be done recursively.
+
+</p>
+<a name="anchor16"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.2"></a><h3>3.1.2.&nbsp;
+Signed JSON and Token</h3>
+
+<p>
+Some CX JSON object MUST be digitally signed  to prove a particular JSON object's composer.
+ <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] is the default format. Some CX JSON is enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] .
+Signed CX JSON is formed in the "Web Token Serialization" defined in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. Following the sample of signed and tokenized CX JSON.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+      6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==
+</pre></div>
+<a name="anchor17"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.3"></a><h3>3.1.3.&nbsp;
+Encrypted JSON</h3>
+
+<p>
+Some CX JSON object SHOULD be asymmetrically encrypted to ensure that only the recipient can read the JSON object. 
+<a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] is the default format.
+
+</p>
+<a name="anchor18"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1.4"></a><h3>3.1.4.&nbsp;
+OpenID Extention</h3>
+
+<p>
+As an extension of OpenID, CX JSON object must be included as "cx" member of OpenID JSON object.
+Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually a token string.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    ... OpenID JSON object parameters ...
+    "cx" : "crypto_segment.claim_segment",
+
+}
+</pre></div>
+<a name="anchor19"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+Structures</h3>
+
+<a name="anchor20"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.1"></a><h3>3.2.1.&nbsp;
+Request</h3>
+
+<p>
+Request is a file to declare what Personal Information a Client wants. After Request is delivered to Signatory which End User specified, the contents of Request MUST be displayed to the End User to help him to agree the request and specify the endpoint from which his Personal Infromation is accessed from Client. In special case, Client MAY specify Server and endpoint for Personal Information it wants.
+
+</p>
+<p>
+Request is a extended <a class='info' href='#OPENID_AB'>OpenID Artifact Binding 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;OpenID Artifact Binding 1.0,&rdquo; September&nbsp;2010.</span><span>)</span></a> [OPENID_AB] Request file enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
+Every party bound to  Contract MUST prepare  Request in signed token format.
+Request shouldfdsa be prepared in the course of the process described in "<a class='info' href='#advertising_service'>Advertising Service<span> (</span><span class='info'>Advertising Service</span><span>)</span></a>".
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>http://openid.net/specs/cx/1.0/#request"
+
+</li>
+</ul>
+            
+</li>
+<li> id
+                
+<ul class="text">
+<li>optional,string(URI))
+</li>
+<li>Identifier for the particular Request file
+
+</li>
+</ul>
+            
+</li>
+<li> client_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>Identifier for Client.
+
+</li>
+</ul>
+            
+</li>
+<li> server_id
+                
+<ul class="text">
+<li>optional,string(URI)
+</li>
+<li>Identifier for Server.
+</li>
+<li>This parameter MAY be specified only when Client wants End User to permit to use a particular service.  In this case, Client has already known the service endpoint.
+
+</li>
+</ul>
+            
+</li>
+<li> payment_to
+                
+<ul class="text">
+<li>optional,string(any)
+</li>
+<li>End User SHOULD be given "payment_to" from  Client for every CX service request to the service endpoint of Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> payment_from
+                
+<ul class="text">
+<li>optional,string(any)
+</li>
+<li>End User SHOULD pay  "payment_from" to  Client for every CX service request of Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> template
+                
+<ul class="text">
+<li>optional,string(any)
+</li>
+<li>This describes what Client wants as Presonal Information. Also conditions or jurisdic statement SHOULD be stated or refered for utilizing End User's Personal Information.  End User MAY read this text to agree to create  Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> template_type
+                
+<ul class="text">
+<li>optiona,string(Content-Type)
+</li>
+<li>Type of text provided by "template". Default is "text/plain".
+
+</li>
+</ul>
+            
+</li>
+<li> endpoint
+                
+<ul class="text">
+<li>optional,string(URI)
+</li>
+<li>URI from which data is provieded at Server. Specified only when Client want Personal Information from a specific Server.
+
+</li>
+</ul>
+            
+</li>
+<li> notify
+                
+<ul class="text">
+<li>optional,string(URI)
+</li>
+<li>Notifiation endpoint directely called by Party like Propose if Contract is provieded. Notification protocol described in "<a class='info' href='#notify_contract_status'>Notify Contract Status<span> (</span><span class='info'>Notify Contract Status</span><span>)</span></a>" section later.
+
+</li>
+</ul>
+            
+</li>
+<li> identity
+                
+<ul class="text">
+<li>optional,string
+</li>
+<li>End user's OpenID identfier at Server.  Mostly is not specified.
+
+</li>
+</ul>
+            
+</li>
+<li> client_certs
+                
+<ul class="text">
+<li>string(base64url)
+</li>
+<li>Base64URL formatted string version of client_id's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] )  encoded  X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+
+</li>
+</ul>
+            
+</li>
+<li> server_certs
+                
+<ul class="text">
+<li>optional,string(base64url)
+</li>
+<li>Base64URL formatted string version of server_id's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] )  encoded X.509 certificate used when "server_id" specified in Request.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>The following is a non-normative sample for CX Request JSON object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type" : "http://openid.net/specs/cx/1.0/#request",
+        "client_id" : "http://rp.net",
+        "server_id": "http://op.com",
+        "payment_from" : "500JPY",
+        "payment_to"     :  "5PT",
+        "template" :
+            "...(base64 encoded text for End User to grant the CX contract)..."
+        "client_certs" : "...( Base64URL STRING OF client_id's DER ENCODED X.509 CERTIFICATE)...",
+        "server_certs" : "...( Base64URL STRING OF server_id's DER ENCODED X.509 CERTIFICATE )...",
+        ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
+        ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+    }
+}
+</pre></div>
+<a name="anchor21"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.2"></a><h3>3.2.2.&nbsp;
+Proposal</h3>
+
+<p>
+Proposal is a contrainer JSON to hold Request Token of parties from all Client.  
+Proposal itself MUST be a Token to be conveyed in OpenID Artifact Binding request file to Signatory.
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>http://openid.net/specs/cx/1.0/#proposal
+
+</li>
+</ul>
+            
+</li>
+<li> id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>unique identifier for a specific Proposal specified by Proposer
+
+</li>
+</ul>
+            
+</li>
+<li> proposer_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>Identifier for Proposer
+
+</li>
+</ul>
+            
+</li>
+<li> reqs
+                
+<ul class="text">
+<li>array of object( <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] )
+</li>
+<li>JSON array of Requests Token.
+
+</li>
+</ul>
+            
+</li>
+<li> notify
+                
+<ul class="text">
+<li>optional,string(URI)
+</li>
+<li>Signatory MAY directly send message to this URI.  As described later in "<a class='info' href='#notify_contract_status'>Notify Contract Status<span> (</span><span class='info'>Notify Contract Status</span><span>)</span></a>" section later, Signatory MAY notify the status of  Contract to Proposer.
+
+</li>
+</ul>
+            
+</li>
+<li> proposer_certs
+                
+<ul class="text">
+<li>string(base64url)
+</li>
+<li>Base64URL formatted string version of Proposer's DER (defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] ) encoded X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] envelope.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>The following is a non-normative sample for Proposal JSON object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+      "type": "http://openid.net/specs/cx/1.0/#proposal",
+      "id" : "http://rp.net/432143214321",
+      "proposer_id" : "http://rp.net/",
+      "reqs": [
+        "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
+        "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
+      ]
+      "proposer_certs": "...( BASE64URL STRING OF PROPOSER's DER ENCODED X.509 CERTIFICATE )...",
+      .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
+
+    }
+}
+</pre></div>
+<a name="anchor22"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.3"></a><h3>3.2.3.&nbsp;
+Acceptance</h3>
+
+<p>
+Acceptance is a response file of original Request "payload" and describes what is End User's PPID, where End User's Personal Information comes from and any other data required to response End User's Personal Information by Server.
+
+Signatory MUST produce two Acceptances for a single Request, one is for Client's Contract Part and the other is for Server's Contract Part.
+Personal information like canonical identifier SHOULD be different from each other.
+
+</p>
+<p>
+Other paramters  than the following have same meaning as ones defined in Request.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>"http://openid.net/specs/cx/1.0/#acceptance"
+
+</li>
+</ul>
+            
+</li>
+<li> id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>unique identifier given by Signatory
+
+</li>
+</ul>
+            
+</li>
+<li> request_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>Identifier to refer to original Request.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>The following is a non-normative sample for Acceptance object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type"              : "http://openid.net/specs/cx/1.0/#acceptance",
+    "client_id"         : "http://rp.net",
+    "server_id"         : "http://op.com",
+    "payment_from"      : "500JPY",
+    "payment_to"        :  "5PT",
+    "template"          :
+       " ... (base64 encoded text for End User to grant the CX contract)....",
+    "request_id"        : "http://rp.net/proposal/i393",
+    "endpoint"          : "http://op.com/endpoint/",
+    "identity"          : "http://op.com/user/g3430",
+    ...( OTHER OPENID REQUEST PARAMTERS ) ...,
+}
+</pre></div>
+<a name="anchor23"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.4"></a><h3>3.2.4.&nbsp;
+Contract Part</h3>
+
+<p>
+Contract Part is container JSON object of Acceptances and enveloped by <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0]. 
+Contract Part is a part of Contract  and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
+
+</p>
+<p>
+Following parameters are placed in a JSON object held by "payload" parameter  of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>http://openid.net/specs/cx/1.0/#contract_part
+
+</li>
+</ul>
+            
+</li>
+<li> id
+                
+<ul class="text">
+<li>opitinal,string(URI)
+</li>
+<li>Identifier to this Contract Part
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>Unique URL given by Signatory. All Contract Part provided to each Party for a Proposal MUST be same.
+
+</li>
+</ul>
+            
+</li>
+<li> party_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>client_id, server_id or proposer_id of this Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> proposal_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>Identifier to original Proposal. The signature segment of the original Proposal Token  MUST be appended to the end of the original Proposal URI as URI fragment.
+
+</li>
+</ul>
+            
+</li>
+<li> acceptances
+                
+<ul class="text">
+<li>array of object(Acceptance)
+</li>
+<li>JSON array of Acceptance JSON object.
+
+</li>
+</ul>
+            
+</li>
+<li> signatory_certs
+                
+<ul class="text">
+<li>string(base64url)
+</li>
+<li>Base64URL formatted string of Signatory's DER( defined in <a class='info' href='#X_690'>X.690<span> (</span><span class='info'>INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER),&rdquo; July&nbsp;2002.</span><span>)</span></a> [X_690] ) encoded X.509 certificate used for this <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] JSON.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>The following is a non-normative sample for Contract Part object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type": "http://jsonenc.info/jss/",
+     ....
+    "payload": {
+        "type"        : "http://openid.net/specs/cx/1.0/#contract",
+        "id"          : "http://op.com/id/f43213214",
+        "contract_id" : "http://op.com/id/contract/x43513514",
+        "party_id"    : "http://res.net/",
+        "acceptances" : [
+                {
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213215",
+                    "client_id" : "http://rp1.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identity"  : "http://op.com/user/x43432",
+                        .....
+
+                },
+                {
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
+                    "id"        : "http://op.com/id/f43213216",
+                    "client_id" : "http://rp2.net/",
+                    "server_id" : "http://res.net/",
+                    "endpoint"  : "http://res.net/endpoint/",
+                    "identity"  : "http://op.com/user/y43432",
+                        .....
+                }
+            ],
+            "signatory_certs"
+                : ".... ( BASE64URL STRING OF SIGNATORY's DER ENCODED X.509 CERTIFICATE ) ...",
+
+            ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
+        }
+    }
+}
+</pre></div>
+<a name="anchor24"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2.5"></a><h3>3.2.5.&nbsp;
+Status</h3>
+
+<p>
+Status  is a simple JSON object to describe the status of Contract.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>http://openid.net/specs/cx/1.0/#status
+
+</li>
+</ul>
+            
+</li>
+<li> proposal_id
+                
+<ul class="text">
+<li>optional,string(URI)
+</li>
+<li>This identifier is an unique identifier referring Proposal which Contract is being created for.
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>string(URI)
+</li>
+<li>This identifier is an unique identifier referring Contract.
+
+</li>
+</ul>
+            
+</li>
+<li> status
+                
+<ul class="text">
+<li>string
+</li>
+<li>status description about proposal or contract.
+</li>
+<li>One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>The following is a non-normative sample for Status object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    "type" :  "http://openid.net/specs/cx/1.0/#status",
+    "proposal_id" :  "http://rp.net/cx/54643",
+    "contract_id" : "http://op.com/contract/f43213214",
+    "status" : "pending" ,
+     ...    (other  JSON MEMBERS )   ...
+}
+</pre></div>
+<a name="anchor25"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
+Storage and Timestamping</h3>
+
+<p>
+The Contract is supposed to act as a proof of agreement in case of dispute at a later date. 
+Since contracts may be long term documents, there is a risk that are not so relevant in transient processing, 
+such as Algorithm Compromise. Thus, care should be taken to appropriately process the contract through Timestamping etc.
+</p>
+<a name="anchor26"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Protocal</h3>
+
+<a name="anchor27"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
+Sending Proposal</h3>
+
+<a name="advertising_service"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
+Advertising Service</h3>
+
+<p>Before advertising CX Service, Proposer  MUST collect all Request token related to that Service. 
+Some Request token MAY be provided by any party other than the Proposeritself.
+</p>
+<p>
+Proposer SHOULD provide an user interface like image button for End Users to click to go to the Service and Proposer starts providing Proposal and CX process.
+
+</p>
+<p>
+Also Signatory party MUST advertise it can be a OpenID CX Signatory OP. In the case of using XRDS, Type element MUST be http://openid.net/specs/cx/1.0/.
+
+</p>
+<a name="anchor28"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.2"></a><h3>4.1.2.&nbsp;
+Providing CX Proposal</h3>
+
+<p>
+When an End User visits the particular CX Service at the Proposer, the Proposer firstly composes a Proposal for the End User. 
+All Request Token to be bound to the Contract MUST be included in "reqs" member of Proposal JSON object. 
+Proposal JSON MUST be finally singed into a Proposal Token.
+
+</p>
+<a name="anchor29"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.3"></a><h3>4.1.3.&nbsp;
+Start OpenID Artifact Binding Session</h3>
+
+<p>
+A Proposal Token is a extension of OpenID Artifact Binding. It SHOULD be a member of Artifact Binding Request file JSON object like in the following sample JSON:
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    ...( OPENID ARTIFACT BINDING  REQUEST FILE JSON MEMBERS ) ...,
+    "cx" : "crypto_segment_of_cx_proposal_token.claim_segment_of_cx_proposal_token",
+}
+</pre></div>
+<p>
+OpenID authentication request session MUST be started to the Signatory specified by the End User at the Proposer's CX Service page.
+
+</p>
+<a name="anchor30"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
+Accepting Proposal</h3>
+
+<a name="anchor31"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.1"></a><h3>4.2.1.&nbsp;
+Accepting OpenID Artifact Binding Request</h3>
+
+<p>When an End User request a OpenID Artifact Binding request or a Proposer directly sends Request Registration request, Signatory SHOULD check if that request includes extensions named "cx".
+
+</p>
+<a name="anchor32"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.2"></a><h3>4.2.2.&nbsp;
+Verify Proposal</h3>
+
+<p>
+If OpenID request file containes "cx" extension,the Proposal Token signature MUST be verified in the way described in <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+
+</p>
+<p>
+All Reqeust Tokens in "reqs" array MUST be verified. 
+
+</p>
+<a name="anchor33"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.2.1"></a><h3>4.2.2.1.&nbsp;
+Policy Based Contract</h3>
+
+<p>
+If End User configures his/her policy at Signatory to issued Contract for specific claims's condition, Signatory MAY issue Contract without authenticating End User. Signatory MAY return OpenID Assertion including CX Contract in such case. 
+
+</p>
+<a name="anchor34"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.3"></a><h3>4.2.3.&nbsp;
+Grants from Authenticated End User</h3>
+
+<p>
+If Proposal and all Requests in it are valid, End User MUST be authenticated. Signatory MUST display "template" what exactly each Party requests to the authenticated End User. To compose a Contract, the End User MUST agree the content displayed by Signatory.
+
+</p>
+<a name="anchor35"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.4"></a><h3>4.2.4.&nbsp;
+Compose Acceptance for Each Request</h3>
+
+<p>
+If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
+Personal information parameter MAY be different from each other.
+
+</p>
+<a name="anchor36"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.5"></a><h3>4.2.5.&nbsp;
+Compose Contracts</h3>
+
+<p>
+Signatory provides Contract Part JSON objects for all Parties. Each Contract Part  shares unique URI, Contract Identifier,  as "contract_id" member of it. 
+All Acceptance JSON objects are stored in "acceptances" array member of that JSON object.
+
+</p>
+<p>
+The original Proposal MUST be refered as "proposal_id" with its identifier. The digest segment of the Proposal Token MUST be appended as URI fragment.
+
+</p>
+<p>
+Signatory MUST publish Contract Part in exchange for "contract_id" and "party_id" from a Party in the form of Contract Token which is the product of <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
+
+</p>
+<a name="anchor37"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
+Receiving Contract</h3>
+
+<a name="anchor38"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3.1"></a><h3>4.3.1.&nbsp;
+Responding a CX Contract in OpenID Assertion</h3>
+
+<p>
+If Proposer as RP request OpenID Artifact Binding assertion request and there is a Contract Part Token to be bound to that, the OP as  Signatory MUST return it as a "cx" member of the assertion JSON object.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : "crypto_segment_of_cx_contract_part_token.claim_segment_of_cx_contract_part_token",
+}
+</pre></div>
+<p>
+But if no Contract Part is available at the time when RP requests the assertion, OP MUST return Status JSON object as "cx" member of assertion JSON object.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+    ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
+    "cx" : {
+                "type" :   "http://openid.net/specs/cx/1.0/#status",
+                 ... ( OTHER CX STATUS JSON MEMBERS ) ...
+             }
+}
+</pre></div>
+<a name="anchor39"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3.2"></a><h3>4.3.2.&nbsp;
+Verifying Contract</h3>
+
+<p>
+If the "cx" member of assertion JSON object is a Contract Part Token string , Proposer  MUST verify the signature of <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0] first. Proposer MUST store the Contract Part Token if it is valid <a class='info' href='#JSON_SIMPLE_SIGN_1_0'>JSON Simple Sign 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Sign ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_SIGN_1_0].
+
+</p>
+<p>
+Proposer SHOULD explain to the End User that a Contract has been successfully created and now Proposer or Cleints is ready to request data according to the Contract.
+
+</p>
+<p>
+If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End User that a Contract has not been created yet at Signagory  and the reason by "status" member of Status JSON object. Signatory MAY be notified later that the Contract is created by the Signatory.
+
+</p>
+<a name="notify_contract_status"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
+Notify Contract Status</h3>
+
+<p>
+Signatory and other Party MAY send the status of Contract to the endpoint specified by "notify" member of Proposal or Request. 
+"status" query parameter MUST be a Status JSON object.
+
+</p>
+<p>
+Signatory and Party MAY request their Contract Party Token using Data Request mechanism.
+
+</p>
+<a name="anchor40"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
+Data Request</h3>
+
+<a name="anchor41"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1"></a><h3>4.5.1.&nbsp;
+CX Data Request</h3>
+
+<a name="anchor42"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1.1"></a><h3>4.5.1.1.&nbsp;
+Endpoint</h3>
+
+<p>
+Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
+The endpoint of End User's Personal Information is specified "endpoint" parameter of Request and Acceptance JSON. 
+
+</p>
+<p>
+Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
+
+</p>
+<p>
+Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpoint URL for Contract Part Token  is "contract_id" itself.
+
+</p>
+<a name="anchor43"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1.2"></a><h3>4.5.1.2.&nbsp;
+Parameters</h3>
+
+<p>CX data request parameters to be sent to URI described "Endpoint" section  are definend in the following.
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> party_id
+                
+<ul class="text">
+<li>REQUIRED Value: An identfier of Party. Server MUST encrypt Personal Information with the public key of Client in the way defined in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] .
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>REQUIRED.  Value: Contract identfier.
+
+</li>
+</ul>
+            
+</li>
+<li> log
+                
+<ul class="text">
+<li>Optional. If this is set "true", access log records MUST be returned.
+
+</li>
+</ul>
+            
+</li>
+<li> from
+                
+<ul class="text">
+<li>Optional. This is the "from date" of access log records to be returned.
+
+</li>
+</ul>
+            
+</li>
+<li> to
+                
+<ul class="text">
+<li>Optional. This is the "to date" of access log records to be returned.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<a name="anchor44"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1.3"></a><h3>4.5.1.3.&nbsp;
+Encrypted Response</h3>
+
+<p>
+Data response MUST be formed in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0] with using valid public key of specified party.
+
+</p>
+<a name="anchor45"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5.1.4"></a><h3>4.5.1.4.&nbsp;
+Access Log Record Format</h3>
+
+<p>
+Every data endpoint MUST provide access log record if it is requested by Signatory.
+Access log records MUST be also encrypted in <a class='info' href='#JSON_SIMPLE_ENC_1_0'>JSON Simple Encryption 1.0<span> (</span><span class='info'>Protivity Government Services and Nomura Research Institute, &ldquo;JSON Simple Encryption ver.1 draft00,&rdquo; September&nbsp;2010.</span><span>)</span></a> [JSON_SIMPLE_ENC_1_0].
+
+</p>
+<p>
+Access log is JSON structured with followng parameters.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> type
+                
+<ul class="text">
+<li>OPTIONAL,string(URI)
+</li>
+<li>This can be negotiable with this parameter between Parities, but default is http://openid.net/specs/cx/1.0/
+
+</li>
+</ul>
+            
+</li>
+<li> logs
+                
+<ul class="text">
+<li>Any type because negotiable with "type" parameters.
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>
+Default "log" parameter is an array of arrays in which following data are contained in order.
+
+</p>
+<p>
+    </p>
+<ul class="text">
+<li> msg_id
+                
+<ul class="text">
+<li>Unique identifier for the endpoint given by data providing party.
+
+</li>
+</ul>
+            
+</li>
+<li> request_id
+                
+<ul class="text">
+<li>Personal information request msg_id specified by requesting party.
+
+</li>
+</ul>
+            
+</li>
+<li> contract_id
+                
+<ul class="text">
+<li>Contract identifier.
+
+</li>
+</ul>
+            
+</li>
+<li> party
+                
+<ul class="text">
+<li>requesting party
+
+</li>
+</ul>
+            
+</li>
+<li> datetime
+                
+<ul class="text">
+<li>requested date and time.
+
+</li>
+</ul>
+            
+</li>
+<li> status
+                
+<ul class="text">
+<li>response status.
+
+</li>
+</ul>
+            
+</li>
+<li> reason
+                
+<ul class="text">
+<li>reason of the status
+</li>
+</ul>
+            
+</li>
+</ul><p>
+
+</p>
+<p>
+The following is a non-normative sample of access log.
+
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+{
+     "type" : "http://openid.net/specs/cx/1.0/#access_log",
+     "logs"  : [
+        [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
+        [ "http://sp.com/res/4322","http://rp.com/req/344","http://op.com/contract/93",
+            "http://rp.com/",'2010-10-13T05:10:40+09:00',"200 OK",""],
+     ]
+}
+</pre></div>
+<a name="anchor46"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Security Considerations</h3>
+
+<a name="anchor47"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
+non-repudiation</h3>
+
+<p>
+Since CX is a message oriented public key based signing protocol, it offers non-repudiation unlike plain OpenID Authentication 2.0.
+
+</p>
+<a name="anchor48"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
+Man-in-the-middle</h3>
+
+<p>
+A RP must verify the validity of the OP's identity and public key and vice versa.
+
+</p>
+<a name="anchor49"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
+Eavesdropping</h3>
+
+<p>
+When encryption mode is used, the payload is encrypted and only the real recipient can decipher it. Thus, obtaining sensitive data through eavesdropping is very difficult.
+
+
+</p>
+<a name="anchor50"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
+Malicious Providers</h3>
+
+<p>
+Malicious Providers that is behaving correctly according to this protocol cannot be coped within this protocol. It has to do the checking of the certificate with some assurance services and/or reputation services including RBL and white list.
+
+</p>
+<a name="anchor51"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
+Phishing Attack</h3>
+
+<p>
+Phishing attack is a social engineering, so it should in principle be dealt with the non-knowledge-based authentication mechanism. This is clearly out of scope of this extension.
+
+</p>
+<a name="anchor52"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
+Private Key Compromise</h3>
+
+<p>
+In the unlikely event of private key compromise, the party should immediately notify the CA as well as the counter party stated in the Contract document. This will minimize the damage by the incident.
+
+</p>
+<a name="anchor53"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
+Acknowledgements</h3>
+
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>6.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="JSON">[JSON]</a></td>
+<td class="author-text">&ldquo;<a href="http://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>,&rdquo; RFC&nbsp;4627.</td></tr>
+<tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_ENC_1_0">[JSON_SIMPLE_ENC_1_0]</a></td>
+<td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html">JSON Simple Encryption ver.1 draft00</a>,&rdquo; September&nbsp;2010.</td></tr>
+<tr><td class="author-text" valign="top"><a name="JSON_SIMPLE_SIGN_1_0">[JSON_SIMPLE_SIGN_1_0]</a></td>
+<td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html">JSON Simple Sign ver.1 draft00</a>,&rdquo; September&nbsp;2010.</td></tr>
+<tr><td class="author-text" valign="top"><a name="OAEP">[OAEP]</a></td>
+<td class="author-text">Bellare, M. and <a href="mailto:">P. Rogaway</a>, &ldquo;Optimal Asymmetric Encryption -- How to encrypt with RSA.
+          Extended abstract in Advances in Cryptology - Eurocrypt '94
+          Proceedings, Lecture Notes in Computer Science Vol. 950, A. De
+          Santis ed, Springer-Verlag, 1995,&rdquo; 1995.</td></tr>
+<tr><td class="author-text" valign="top"><a name="OPENID_AB">[OPENID_AB]</a></td>
+<td class="author-text">Protivity Government Services and Nomura Research Institute, &ldquo;<a href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/openid-artifact-binding-1_0.html">OpenID Artifact Binding 1.0</a>,&rdquo; September&nbsp;2010.</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenIDAuthentication2.0">[OpenIDAuthentication2.0]</a></td>
+<td class="author-text">specs@openid.net, &ldquo;OpenID Authentication 2.0,&rdquo; 2007 (<a href="http://www.openid.net/specs/openid-authentication-2_0.txt">TXT</a>, <a href="http://www.openid.net/specs/openid-authentication-2_0.html">HTML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text">Bradner, B., &ldquo;<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement
+          Levels</a>,&rdquo; RFC&nbsp;2119, 1997.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2898">[RFC2898]</a></td>
+<td class="author-text">Kaliski , B., &ldquo;PKCS #5: Password-Based Cryptography Specification Version
+          2.0,&rdquo; September&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3339">[RFC3339]</a></td>
+<td class="author-text">Klyne, G. and C. Newman, &ldquo;<a href="http://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>,&rdquo; RFC&nbsp;3339.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XRIResolution2.0">[XRIResolution2.0]</a></td>
+<td class="author-text">Reed, D. and G. Wachob, Ed., &ldquo;<a href="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.pdf">Extensible Resource Identifier (XRI) Resolution Version
+          2.0</a>,&rdquo; April&nbsp;2008.</td></tr>
+<tr><td class="author-text" valign="top"><a name="X_690">[X_690]</a></td>
+<td class="author-text">INTERNATIONAL TELECOMMUNICATION UNION, &ldquo;<a href="http://www.itu.int/rec/T-REC-X.690-200207-S/en">X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>,&rdquo; July&nbsp;2002.</td></tr>
+<tr><td class="author-text" valign="top"><a name="Yadis">[Yadis]</a></td>
+<td class="author-text">Miller, J., Ed., &ldquo;Yadis Specification 1.0,&rdquo; 2005 (<a href="http://yadis.org/papers/yadis-v1.0.pdf">PDF</a>, <a href="http://yadis.org/papers/yadis-v1.0.odt">ODT</a>).</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Authors' Addresses</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nat Sakimura</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nomura Research Institute,
+      Ltd.</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Chiyoda-ku, Tokyo  100-0005</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:n-sakimura@nri.co.jp">n-sakimura@nri.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Masaki Nishitani</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Nomura Research Institute,
+      Ltd.</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Marunouchi Kitaguchi Building, 1-6-5 Marunouchi</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Chiyoda-ku, Tokyo  100-0005</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:m-nishitani@nri.co.jp">m-nishitani@nri.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.nri.co.jp/">http://www.nri.co.jp/</a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Hideki Nara</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">TACT Communications,Inc</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Cross Side Building , 3-52-1 Sendagaya</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Shibuya-ku, Tokyo  151-0051</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Japan</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:hdknr@ic-tact.co.jp">hdknr@ic-tact.co.jp</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.ic-tact.co.jp">http://www.ic-tact.co.jp</a></td></tr>
+</table>
+</body></html>
+
