@@ -98,6 +98,56 @@
 <p>Another possible binding is a dynamic one. In this binding, an End User should expect which Server manages his requested Personal Information and be able to specify the Server identfier.</p>
 <p>A discovery process MUST be defined for this binding. What? <a class="reference internal" href="glossary.html#term-lrdd"><em class="xref std std-term">LRDD</em></a> with some extensions?</p>
 </div>
+<div class="section" id="lrdd-binding">
+<h3>LRDD Binding<a class="headerlink" href="#lrdd-binding" title="Permalink to this headline">¶</a></h3>
+<p>We can use <a class="reference internal" href="glossary.html#term-lrdd"><em class="xref std std-term">LRDD</em></a> to discover a server, its endpoitns and other paramters.</p>
+</div>
+</div>
+<div class="section" id="end-user-specifies-a-server-identifier">
+<h2>End User specifies a Server identifier<a class="headerlink" href="#end-user-specifies-a-server-identifier" title="Permalink to this headline">¶</a></h2>
+<p>After authenticated at <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a>, an End User may specifiy the identifier of a Server by which his Personal Information is managed.</p>
+<p>Alice has an account at a local storage and delivery company called &#8220;Agile Cats&#8221;.
+She is buying a cosmetics at Hawaii based caompany called &#8220;Welina&#8221; and that coampany want to know where to deliver and how much it cost to deliver.</p>
+<p>Alice has not registered her delivery service at the Signatory, she is asked to specifiy the delivery servier Server URL. She fills the following URI :</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="nl">http:</span><span class="c">//www.agile-cats.com/</span>
+</pre></div>
+</div>
+<p>Firstly, the Signatory checks if &#8220;Agile Cats&#8221; can provide <a class="reference internal" href="glossary.html#term-openid-cx"><em class="xref std std-term">OpenID CX</em></a> protocol and delivery service. So the Signatry makes HTTP &#8220;GET&#8221; request to <a class="reference internal" href="glossary.html#term-host-meta"><em class="xref std std-term">host-meta</em></a> of the &#8220;Agile Cats&#8221; like this:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="p">.</span><span class="n">well</span><span class="o">-</span><span class="n">known</span><span class="o">/</span><span class="n">host</span><span class="o">-</span><span class="n">meta</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nl">Host:</span> <span class="n">wwww</span><span class="p">.</span><span class="n">agile</span><span class="o">-</span><span class="n">cats</span><span class="p">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>In turn, the &#8220;Agile Cat&#8221; return the following <a class="reference internal" href="glossary.html#term-xrd"><em class="xref std std-term">XRD</em></a> descriptor :</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span class="nt">&lt;XRD</span> <span class="na">xmlns=</span><span class="s">&#39;http://docs.oasis-open.org/ns/xri/xrd-1.0&#39;</span>
+     <span class="na">xmlns:hm=</span><span class="s">&#39;http://host-meta.net/ns/1.0&#39;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;hm:Host&gt;</span>www.agile-cat.com<span class="nt">&lt;/hm:Host&gt;</span>
+    <span class="nt">&lt;Property</span> <span class="na">type=</span><span class="s">&#39;http://lrdd.net/priority/resource&#39;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;Link</span> <span class="na">rel=</span><span class="s">&#39;lrdd&#39;</span>     <span class="na">template=</span><span class="s">&#39;http://www.agile-cat.com?lrdd={uri}&#39;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;Link</span> <span class="na">rel=</span><span class="s">&#39;cx&#39;</span>     <span class="na">template=</span><span class="s">&#39;http://www.agile-cat.com?type={uri}&#39;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/XRD&gt;</span>
+</pre></div>
+</div>
+<p>Because the returned XRD has an Link element with &#8220;rel&#8221; attribute specified as &#8220;cx&#8221;, the Signatory knows OpenID CX protocal is provided by &#8220;Agile Cats&#8221;.
+The Signatory make reqeust to &#8220;template&#8221; URI template with &#8220;<a class="reference external" href="http://openid.net/specs/cx/service/delivery">http://openid.net/specs/cx/service/delivery</a>&#8221; because  &#8220;Welina&#8221; requests delivery service specified by that URI.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/?</span><span class="n">type</span><span class="o">=</span><span class="n">http</span><span class="o">%</span><span class="mi">3</span><span class="n">A</span><span class="o">%</span><span class="mf">2F</span><span class="o">%</span><span class="mf">2F</span><span class="n">openid</span><span class="p">.</span><span class="n">net</span><span class="o">%</span><span class="mf">2F</span><span class="n">specs</span><span class="o">%</span><span class="mf">2F</span><span class="n">cx</span><span class="o">%</span><span class="mf">2F</span><span class="n">service</span><span class="o">%</span><span class="mf">2F</span><span class="n">delivery</span>   <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nl">Host:</span> <span class="n">wwww</span><span class="p">.</span><span class="n">agile</span><span class="o">-</span><span class="n">cats</span><span class="p">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Then, a XRD for delivery service is returned like the followings.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span class="nt">&lt;XRD</span> <span class="na">xmlns=</span><span class="s">&#39;http://docs.oasis-open.org/ns/xri/xrd-1.0&#39;</span>
+     <span class="na">xmlns:hm=</span><span class="s">&#39;http://host-meta.net/ns/1.0&#39;</span><span class="nt">&gt;</span>
+
+     <span class="nt">&lt;Subject&gt;</span>http://openid.net/specs/cx/service/delivery<span class="nt">&lt;/Subject&gt;</span>
+     <span class="nt">&lt;Link</span> <span class="na">rel=</span><span class="s">&#39;endpoint&#39;</span> <span class="na">href=</span><span class="s">&quot;http://www.agile-cats.com/cx/service/delivery</span>  <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/XRD&gt;</span>
+</pre></div>
+</div>
 </div>
 </div>
 

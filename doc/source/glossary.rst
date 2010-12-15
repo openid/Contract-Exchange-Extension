@@ -66,3 +66,15 @@ Terminology
     LRDD
         LRDD (pronounced 'lard') provides a process for obtaining information  about a resource identified by a Uniform Resource Identifier (URI).
         See http://www.delicious.com/hdknr/LRDD
+
+
+    OpenID CX
+        Contract Excchange protocol described by this document.
+
+    host-meta
+        A "well-known" URI described at a IETF `memo <http://tools.ietf.org/html/draft-hammer-hostmeta-13>`_ .
+        "well-known" is defined at "Defining Well-Known Uniform Resource Identifiers (URIs)"( `RFC 5785 <http://tools.ietf.org/html/rfc5785>`_ ).
+    
+    XRD
+        A simple generic format for describing and discovering resources. Defined by OASIS.
+        XRD 1.0 is available at `here <http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html>`_ .
