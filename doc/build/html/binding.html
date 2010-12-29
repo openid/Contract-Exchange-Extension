@@ -138,15 +138,18 @@ The Signatory make reqeust to &#8220;template&#8221; URI template with &#8220;<a
 </pre></div>
 </div>
 <p>Then, a XRD for delivery service is returned like the followings.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
-<span class="nt">&lt;XRD</span> <span class="na">xmlns=</span><span class="s">&#39;http://docs.oasis-open.org/ns/xri/xrd-1.0&#39;</span>
-     <span class="na">xmlns:hm=</span><span class="s">&#39;http://host-meta.net/ns/1.0&#39;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><pre>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;XRD xmlns='http://docs.oasis-open.org/ns/xri/xrd-1.0'
+     xmlns:hm='http://host-meta.net/ns/1.0'&gt;
 
-     <span class="nt">&lt;Subject&gt;</span>http://openid.net/specs/cx/service/delivery<span class="nt">&lt;/Subject&gt;</span>
-     <span class="nt">&lt;Link</span> <span class="na">rel=</span><span class="s">&#39;endpoint&#39;</span> <span class="na">href=</span><span class="s">&quot;http://www.agile-cats.com/cx/service/delivery</span>  <span class="nt">/&gt;</span>
+     &lt;Subject&gt;http://openid.net/specs/cx/service/delivery&lt;/Subject&gt;
+     &lt;Link rel=http://openid.net/specs/cx/service/delivery&lt;/Subject&gt;
 
-<span class="nt">&lt;/XRD&gt;</span>
-</pre></div>
+     &lt;Link rel='endpoint' href="http://www.agile-cats.com/cx/service/de&gt;
+     &lt;Link rel='notify'   href="http://www.agile-cats.com/cx/service/delivery  /&gt;
+     &lt;Link rel='certs'    href="http://www.agile-cats.com/cx/cert/20101201 /&gt;
+
+&lt;/XRD&gt;</pre>
 </div>
 </div>
 </div>

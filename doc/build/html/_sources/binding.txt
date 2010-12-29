@@ -118,7 +118,11 @@ Then, a XRD for delivery service is returned like the followings.
         xmlns:hm='http://host-meta.net/ns/1.0'>
 
         <Subject>http://openid.net/specs/cx/service/delivery</Subject>
-        <Link rel='endpoint' href="http://www.agile-cats.com/cx/service/delivery  />
+        <Link rel=http://openid.net/specs/cx/service/delivery</Subject>
+
+        <Link rel='endpoint' href="http://www.agile-cats.com/cx/service/de>
+        <Link rel='notify'   href="http://www.agile-cats.com/cx/service/delivery  />
+        <Link rel='certs'    href="http://www.agile-cats.com/cx/cert/20101201 />
 
    </XRD>
 

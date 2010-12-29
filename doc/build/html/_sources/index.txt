@@ -8,9 +8,6 @@
 Welcome to OpenID CX's documentation!
 =====================================
 
-
-`SPEC <_static/hoge.txt>`_
-
 Contents:
 
 .. toctree::
