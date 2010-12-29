@@ -69,7 +69,7 @@ End User specifies a Server identifier
 After authenticated at :term:`Signatory`, an End User may specifiy the identifier of a Server by which his Personal Information is managed.
 
 Alice has an account at a local storage and delivery company called "Agile Cats". 
-She is buying a cosmetics at Hawaii based caompany called "Welina" and that coampany want to know where to deliver and how much it cost to deliver. 
+She is buying a cosmetics at Hawaii based company called "Welina" and that company want to know where to deliver and how much it cost to deliver. 
 
 Alice has not registered her delivery service at the Signatory, she is asked to specifiy the delivery servier Server URL. She fills the following URI :
 
@@ -126,4 +126,5 @@ Then, a XRD for delivery service is returned like the followings.
 
    </XRD>
 
+Now the Signatory knows 3 endpoint of "Agile Cats" service, i.e.,  "endpoint" for the service endpoint, "notify" for the notfication callback endpoint and "certs" for the certificate download endpoint.
 
