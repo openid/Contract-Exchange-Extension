@@ -4,6 +4,7 @@ Draft-3
 Known Issue and TODO
 ----------------------
 
+
 1.  Request is to be copied, or to be refered, or to be included to provide Acceptance.
 
   - Curently "copied"
@@ -28,6 +29,10 @@ Known Issue and TODO
   - XRD,XRDS,..... some descripter should be defined? 
 
     - Go to `Discovery <http://trac.hdknr.com/wiki/Discovery>`_
+
+4. contract_id may be not required for requesting a Contarct Part.
+
+    - Beause the endpoint itself is contract_id. 
 
 
 File Structure
