@@ -13,9 +13,13 @@ Contents:
 .. toctree::
     :maxdepth: 2
    
+    spec 
+
     privacy_data_and_contract
     contract_exchange
     providing_request
+
+    binding 
 
     sample_printing/index
 

@@ -4,7 +4,7 @@
 
 * request_id  
 
-    * Privacy data reqquet msg_id specified by requesting party. 
+    * Personal information request msg_id specified by requesting party. 
 
 * contract_id
 

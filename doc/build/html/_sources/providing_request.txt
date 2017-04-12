@@ -7,8 +7,8 @@ Request File
 
 Request file is JSON formated text file to describe what privacy data :term:`Client` want to use to provide some services.
 
-Privacy Data
-============
+Personal Information
+========================
 
 Reqeust file MUST describe what privacy data the Client want.
 

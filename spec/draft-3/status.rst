@@ -1,7 +1,7 @@
 * type
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#status
+    * {{cxurl}}#status
 
 * proposal_id
 
@@ -17,4 +17,4 @@
 
     * string
     * status description about proposal or contract.
-    * [[TODO]] created,canceled,pending,..... MUST be specified.
+    * One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".

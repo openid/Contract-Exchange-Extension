@@ -1,6 +1,10 @@
 <t>
+Request is a file to declare what Personal Information a Client wants. After Request is delivered to Signatory which End User specified, the contents of Request MUST be displayed to the End User to help him to agree the request and specify the endpoint from which his Personal Infromation is accessed from Client. In special case, Client MAY specify Server and endpoint for Personal Information it wants.
+</t>
+<t>
 Request is a extended {{ xref.OPENID_AB }} Request file enveloped by {{ xref.JSON_SIMPLE_SIGN_1_0 }}. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
+Request shouldfdsa be prepared in the course of the process described in "{{ xref.advertising_service }}".
 </t>
 <t>
 Following parameters are placed in a JSON object held by "payload" parameter  of {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.

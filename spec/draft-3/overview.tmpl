@@ -3,3 +3,100 @@
 <t>CX protocol is based on  {{ xref.OPENID_AB }} and some {{ xref.JSON }} messages structure used in CX are defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP(Proposer), the RP compose a Proposal JSON which is compiled with OpenID Artifact Binding Request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the Proposal to the OP(Signatory) specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
 <t/>
 <t>With sharing Contract in advance and presenting Contract identfier at specified endpoints, the RP and other Parties bound to the Contract can be authenticated and request data services.</t>
+
+
+<t>
+The following is a squence of main flow of OpenID Contract Exchange.
+</t>
+
+<section title="Propser and Clients">
+
+<t>
+Proposer, as a OpenID Relying Party, provides service experience to End User who is asserted by OpenID OP and has a principal at the Proposer.
+Other OpenID Relying Parties, Clients, MAY teams with Proposer to provide those services.
+Proposer and Client MAY use Personal Information which End User manages at the other OpenID Relying Parties, Servers.
+</t>
+<t>
+To use Personal Information, Proposer and Clients MUST provide  Request file which describes what kind of Personal Information they want to use.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "proposal.txt" %}
+    ]]></artwork>
+</figure>
+
+<t>
+Because Proposer is just another Client when it want to use Personal Information, there is no difference in architecuture between Reqeust of Clients and Request of Proposer.
+</t>
+
+</section>
+
+<section title="OpenID Artifaict Binding">
+<t>
+If End User want to use the service provided by Proposer,  Proposer initiates an OpenID Artifact Binding session.
+Proposer compiles all Request from Clients and Proposer itself to Proposal and add it OpenID request as CX extension.
+OpenID Artifact Binding request is sent to Signatory which is an OpenID OP in CX term because it signs contract in charge of End User.
+</t>
+</section>
+
+<section title="Signatory and Contract Parts">
+<t>
+If the End User agree to create Contract,  Signatory provides Contract Part for each Proposer and Client. 
+Contract Part includes Acceptance file in which End Users identifier  and the endpoint of his/her Personal Information are stated.
+All Contract Parts share a single identifier, Contract Identifier, which ensure all parties are bound to a single Contract.
+</t>
+
+<t>
+Here is a sample Contract Part to be provieded to Server N which is going to be requested Personal Information by several Clients.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "contract_part_server.txt" %}
+    ]]></artwork>
+</figure>
+
+<t>
+Also here is a sample Contract Part to be provieded to Client A which is going to request Personal Information to several Servers.
+</t>
+
+<figure>
+    <artwork><![CDATA[
+{% include "contract_part_client.txt" %}
+    ]]></artwork>
+</figure>
+
+<t>
+All Clients, Proposer, Server and Signatory will have its own Contract Part. Acceptances are included only in requester parties or responder parties.
+</t>
+</section>
+
+<section title="OpenID Assertion and Contract Parts">
+<t>
+Proposer MAY obtain its Contract Part which is included in OpenID Artifact Binding Assertion as an extension parameter.
+Proposer MAY notify Contract Identifier to Client in the other process.
+
+</t>
+</section>
+
+<section title="Contract Identifier as Endpoint">
+<t>
+Because Contract Identifier is the endpoint of Contract Parts, any bound party MAY request its Contract Part to the endpoint.
+Contract Part MUST be encrypted in JSON Simple Encryption with the party's public key.
+
+</t>
+</section>
+
+<section title="Personal Information Request">
+<t>
+Clients or Proposer MAY request Personal Information to the endpoint stated in Acceptance of its own Contract Part.
+Server MUST encrypt response  in JSON Simple Encryption with the requester's public key.
+</t>
+</section>
+
+<section title="Access Log">
+<t>
+Servers MUST provide access log bound to the Contract to at least Signatory. Signatory in turn MUST provide those log to End User in some way.
+</t>
+</section>

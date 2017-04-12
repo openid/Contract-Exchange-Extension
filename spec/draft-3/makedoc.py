@@ -35,6 +35,9 @@ def make():
              'JSON_SIMPLE_ENC_1_0' : 'JSON Simple Encryption 1.0' ,
              'OPENID_AB' : 'OpenID Artifact Binding 1.0',
              'JSON': 'JSON(Javascript Object Notation)',
+             'X_690': 'X.690',
+             'advertising_service' : 'Advertising Service',
+             'notify_contract_status' : 'Notify Contract Status',
             }
     for (k,v) in xref.iteritems():
         xref[k] = '<xref target="%s">%s</xref>' % (k,v)
@@ -52,6 +55,7 @@ def make():
 
 
     ctx['xref'] = xref
+    ctx['cxurl'] = 'http://openid.net/specs/cx/1.0/' 
 
     return Template(t.render(ctx).encode('utf-8')).render(ctx).encode('utf-8')
 

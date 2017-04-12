@@ -1,7 +1,7 @@
 * type 
 
     *  string(URI) 
-    *  "http://specs.openid.net/cx/1.0/#acceptance"
+    *  "{{cxurl}}#acceptance"
 
 * id 
 
@@ -11,4 +11,4 @@
 * request_id
 
     * string(URI)
-    * Identifier to original Request
+    * Identifier to refer to original Request.

@@ -291,11 +291,47 @@ ul.auto-toc {
 <h1>Draft-3</h1>
 <div class="section" id="knows-issue-and-todo">
 <h2>Knows Issue and TODO</h2>
+<ol class="arabic simple">
+<li>Request is to be copied, or to be refered, or to be included to provide Acceptance.</li>
+</ol>
+<blockquote>
+<ul>
+<li><p class="first">Curently &quot;copied&quot;</p>
+</li>
+<li><p class="first">=Nat suggested to be refered.</p>
+</li>
+<li><p class="first">It should better to be included in Acceptance.</p>
+<blockquote>
 <ul class="simple">
-<li>&quot;3.2.1.  Non-Normative Examples&quot; MUST be rewritten.</li>
-<li>Signature is going to be based on &quot;JSON Simple Sign 1.0&lt;<a class="reference external" href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-sign-1_0.html">json-simple-sign-1_0</a>&gt;&quot;</li>
-<li>Encryption is going to be based on &quot;JSON Simple Encryption 1.0&lt;<a class="reference external" href="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html">json-simple-enc-1_0</a>&gt;&quot;.</li>
+<li>Point is &quot;refering parameters in Request if those are not described in Acceptance&quot;.</li>
+<li>If Proposer MUST provide the original Proposal endpoint, any party can download. Proposal contains Requests.</li>
+<li>In such a case, a smart client can't be a Proposer.</li>
 </ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>Client can be notified by Proposer. How about Servers ?</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>Currently a Server gets to know when it firstly is requested Personal Information.</li>
+<li>But someone may think it is too late.</li>
+<li>At the time when Client's Request is bound to a Server's service ?</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>Service binding</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>What Personal Information is hosted by which Server.</li>
+<li>Currently no discovery mechanizm is provied in CX.</li>
+<li>At least, Signatory(OP) must catalog the list of Personal Information Server, endopint and X.509 certificate. The list must be indexed or selected by the type of Personal Information.</li>
+<li>XRD,XRDS,..... some descripter should be defined?</li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="file-structure">
 <h2>File Structure</h2>
@@ -324,12 +360,15 @@ rfc.tmpl
  +--  middle.tmpl
  |     |
  |     +-- requirement_notation.tmpl
- |     +--  definition_convention.tmpl
+ |     +-- definition_convention.tmpl
+ |     +-- terms.tmpl ( terms.rst )
  |     +-- overview.tmpl
+ |     |     +-- proposal.txt
+ |     |     +-- contract_part_client.txt
+ |     |     +-- contract_part_server.txt
  |     +-- files.tmpl
  |     |     +-- json.tmpl
  |     |     +-- structures.tmpl
- |     |     |     +-- non-normative_examples.tmpl
  |     |     |     +-- request.tmpl ( request.rst / request.json )
  |     |     |     +-- proposal.tmpl ( proposal.rst / proposal.json )
  |     |     |     +-- acceptance.tmpl (acceptance.rst / acceptance.json )
@@ -342,7 +381,9 @@ rfc.tmpl
  |     |           +-- accepting_proposal.tmpl
  |     |           +-- receiving_contract.tmpl
  |     |           +-- notify_contract_status.tmpl
- |     |           +-- data_request.tmpl ( data_request.rst , encrypted_response.rst    )
+ |     |           +-- data_request.tmpl ( data_request.rst  )
+ |     |                      +--- access_log.templ
+ |     |                      ( access_log.rst,access_log_file.rst, access_log_file.jsong )
  |     +-- security_considerations.tmpl
  |     +-- acknowlegements.tmpl
  +-- back.tmpl

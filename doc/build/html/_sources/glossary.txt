@@ -15,23 +15,23 @@ Terminology
         Party may be a web server or a smart device client.
 
     End User
-        Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+        Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
 
-    Privacy Data
+    Personal Information
         Data which is own by End User and can be accessed to permitted Party.
 
     Contract
-        Document to prove that Party can access Privacy Data under stated condition.
+        Document to prove that Party can access Personal Information under stated condition.
 
     Contract Identifier
         Unique URI to specify a particular contract. All :term:`Contract Part` has the same contract identfier.
         :term:`Contract` can be transmitted from this URI as data endpoint.
 
     Client
-        Privacy Data user.
+        Personal Information user.
 
     Server
-        Privacy data holder. Exposes the Privacy Data endpoint.
+        Personal Information holder. Exposes the Personal Information endpoint.
 
     Proposer
         Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. OpenID Artifact Binding 1.0 (Protivity Government Services and Nomura Research Institute, “OpenID Artifact Binding 1.0,” September 2010.) [OPENID_AB]Relying Party.
@@ -55,5 +55,26 @@ Terminology
         Signed JSON object which serialized into a formated string. Format is defined i nJSON Simple Sign 1.0 (Protivity Government Services and Nomura Research Institute, “JSON Simple Sign ver.1 draft00,” September 2010.) [JSON_SIMPLE_SIGN_1_0].
 
     Service
-        Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+        Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
 
+    OpenID AX
+        "OpenID Attribute Exchange is an OpenID service extension for exchanging identity information between endpoints. Messages for retrieval and storage of identity information are provided." - `OpenID Attribute Exchange 1.0 <http://openid.net/specs/openid-attribute-exchange-1_0.html>`_ .
+
+    typeURI
+        URI to describe data schema. Used in :term:`OpenID AX`. `AXSchema.org <http://www.axschema.org/>`_  is a community project to define attribute types for use with OpenID Attribute Exchange.
+
+    LRDD
+        LRDD (pronounced 'lard') provides a process for obtaining information  about a resource identified by a Uniform Resource Identifier (URI).
+        See http://www.delicious.com/hdknr/LRDD
+
+
+    OpenID CX
+        Contract Excchange protocol described by this document.
+
+    host-meta
+        A "well-known" URI described at a IETF `memo <http://tools.ietf.org/html/draft-hammer-hostmeta-13>`_ .
+        "well-known" is defined at "Defining Well-Known Uniform Resource Identifiers (URIs)"( `RFC 5785 <http://tools.ietf.org/html/rfc5785>`_ ).
+    
+    XRD
+        A simple generic format for describing and discovering resources. Defined by OASIS.
+        XRD 1.0 is available at `here <http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html>`_ .

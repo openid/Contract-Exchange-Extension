@@ -63,7 +63,7 @@ Process
  - :term:`Client` is notified his :term:`Contract Part` available.
  - :term:`Server` realizes that  his :term:`Contract Part` available.
 
-- Privacy Data Sharing
+- Personal Information Sharing
 
  - :term:`Client` request :term:`End User` s privacy data at :term:`Server`.
 
@@ -87,10 +87,10 @@ Client
       graph [ rankdir = LR ];
       Client [shape = box ,height=1.0 ,width=1.0];
       Server [shape = box ,height=1.0 ,width=1.0];
-      "Privacy Data" [shape = hexagon];
+      "Personal Information" [shape = hexagon];
 
       "Client" -> "Server" [label = "request(client id + contract id)"];
-      "Server" -> "Privacy Data" [arrowhead="none"];
+      "Server" -> "Personal Information" [arrowhead="none"];
    }
 
 Server
@@ -104,9 +104,9 @@ Server
       graph [ rankdir = LR ];
       Client [shape = box ,height=1.0 ,width=1.0];
       Server [shape = box ,height=1.0 ,width=1.0];
-      "Privacy Data" [shape = hexagon];
+      "Personal Information" [shape = hexagon];
 
       "Client" -> "Server" [label = "response(encypted privacy data)",arrowhead=none,arrowtail=normal];
-      "Server" -> "Privacy Data" [arrowhead="none"];
+      "Server" -> "Personal Information" [arrowhead="none"];
    }
 

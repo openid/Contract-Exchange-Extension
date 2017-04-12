@@ -1,6 +1,6 @@
 * party_id
 
-    * REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
+    * REQUIRED Value: An identfier of Party. Server MUST encrypt Personal Information with the public key of Client in the way defined in {{ xref.JSON_SIMPLE_ENC_1_0 }} .
 
 * contract_id
 

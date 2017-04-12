@@ -7,8 +7,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Privacy Data and Contract &mdash; OpenID CX v1 documentation</title>
-    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <title>Personal Information and Contract &mdash; OpenID CX v1 documentation</title>
+    <link rel="stylesheet" href="_static/openid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/print.css" type="text/css" />
     <script type="text/javascript">
@@ -26,17 +26,18 @@
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
     <link rel="next" title="Contract Exchange" href="contract_exchange.html" />
-    <link rel="prev" title="Welcome to OpenID CX’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Draft-3" href="spec.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>OpenID CX v1 documentation</span></a></h1>
-        <h2 class="heading"><span>Privacy Data and Contract</span></h2>
+        <h2 class="heading"><span>Personal Information and Contract</span></h2>
       </div>
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="spec.html">Draft-3</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -47,10 +48,10 @@
       <div class="content">
         
         
-  <div class="section" id="privacy-data-and-contract">
-<span id="id1"></span><h1>Privacy Data and Contract<a class="headerlink" href="#privacy-data-and-contract" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="privacy-data-sharing">
-<h2>Privacy Data Sharing<a class="headerlink" href="#privacy-data-sharing" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="personal-information-and-contract">
+<span id="privacy-data-and-contract"></span><h1>Personal Information and Contract<a class="headerlink" href="#personal-information-and-contract" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="personal-information-sharing">
+<h2>Personal Information Sharing<a class="headerlink" href="#personal-information-sharing" title="Permalink to this headline">¶</a></h2>
 <p>When sharing your privacy data, the following items must be considered.</p>
 <ul class="simple">
 <li>Meaning : What is your privacy data? How should your privacy data structured for sharing?</li>
@@ -60,12 +61,12 @@
 <li>Utilizing : Is he keeping the privacy policy which you have enforced?</li>
 </ul>
 </div>
-<div class="section" id="openid-cx-for-privacy-data-sharing">
-<h2>OpenID CX for Privacy Data Sharing<a class="headerlink" href="#openid-cx-for-privacy-data-sharing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="openid-cx-for-personal-information-sharing">
+<h2>OpenID CX for Personal Information Sharing<a class="headerlink" href="#openid-cx-for-personal-information-sharing" title="Permalink to this headline">¶</a></h2>
 <p>OpenID CX protocol resolve like this.</p>
 <ul class="simple">
 <li>Meaning : Out of scope. OpenID AX with typeURI or other starndard can be used to negotiate.</li>
-<li>Discovering : Out of scope. <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> can be found by OpenID Authentication protocol. Privacy data source is to be bound at <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> in some way.</li>
+<li>Discovering : Out of scope. <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> can be found by OpenID Authentication protocol. Personal Information source is to be bound at <a class="reference internal" href="glossary.html#term-signatory"><em class="xref std std-term">Signatory</em></a> in some way.</li>
 <li>Granting : <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> is access token.</li>
 <li>Accessing : <a class="reference internal" href="glossary.html#term-client"><em class="xref std std-term">Client</em></a> who has his/her <a class="reference internal" href="glossary.html#term-contract-part"><em class="xref std std-term">Contract Part</em></a> can request privacy data with <a class="reference internal" href="glossary.html#term-contract-identifier"><em class="xref std std-term">Contract Identifier</em></a> in REST call specifeid by CX. Responded privacy data is encrypted with Client&#8217;s public key stated in Contract Part.</li>
 <li>Utilizing :  <a class="reference internal" href="glossary.html#term-proposal"><em class="xref std std-term">Proposal</em></a> can describe or refer conditions under which privacy data is used. CX also provide access log rule.</li>
@@ -86,7 +87,8 @@
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="index.html">Welcome to OpenID CX&#8217;s documentation!</a>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="spec.html">Draft-3</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;

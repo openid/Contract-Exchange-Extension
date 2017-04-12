@@ -1,7 +1,7 @@
 * type
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#contract_part
+    * {{ cxurl }}#contract_part
 
 * id 
 
@@ -26,10 +26,9 @@
 * acceptances
 
     * array of object(Acceptance)
-    * JSON array of Acceptance  
+    * JSON array of Acceptance JSON object. 
 
 * signatory_certs
 
     * string(base64url)
-    * The PEM formatted string version of Signatory's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.
-
+    * Base64URL formatted string of Signatory's DER( defined in {{ xref.X_690 }} ) encoded X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} JSON.

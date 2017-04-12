@@ -70,11 +70,11 @@
       </address>
     </author>
 
-    <date day="10" month="November" year="2010" />
+    <date day="01" month="December" year="2010" />
 
     <abstract>
-    <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share privacy data based on the Contract and 4)protocol to provide access log.
-The Proposer creates a signed Proposal which describes  what privacy data is wanted and send it to the Signatory specified the End User.
+    <t> This extension defines 1) an extensible Contract format, 2) protocol to exchange the Contract, 3)protocol to share personal information based on the Contract and 4)protocol to provide access log.
+The Proposer creates a signed Proposal which describes  what personal information is wanted and send it to the Signatory specified the End User.
 The Signatory, upon agreeing to it, signs agreements and provides the Contract.
 The combination of the Proposal and Contract is the mutually signed and is potentially legally binding.
 This Contract needs to be stored by all bound parties for a given length of time, usually spanning over many years depending on jurisdictions.
@@ -96,7 +96,7 @@ This Contract needs to be stored by all bound parties for a given length of time
         <t> All OpenID 2.0 Artifact Binding messages that contain OpenID Contract Exchange (CX) JSON node MUST contain "type" member starts with the following URI.</t>
 <figure>
     <artwork><![CDATA[
-            http://specs.openid.net/extensions/cx/1.0/
+http://openid.net/specs/cx/1.0/ 
     ]]></artwork>
 </figure>
 <t/>
@@ -122,16 +122,16 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> End User
                 <list style="symbols">
                     
-                        <t>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
+                        <t>Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.
 </t>
                     
                 </list>
             </t>
         
-            <t> Privacy Data
+            <t> Personal Information
                 <list style="symbols">
                     
-                        <t>Data  which is own by End User and  can be accessed to permitted Party.
+                        <t>Data which is own by End User and  can be accessed to permitted Party.
 </t>
                     
                 </list>
@@ -140,7 +140,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Contract
                 <list style="symbols">
                     
-                        <t>Document to prove that Party can access Privacy Data under stated condition.
+                        <t>Document to prove that Party can access Personal Information under stated condition.
 </t>
                     
                 </list>
@@ -149,7 +149,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Client
                 <list style="symbols">
                     
-                        <t>Privacy Data user.
+                        <t>Personal Information user. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -158,7 +158,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Server
                 <list style="symbols">
                     
-                        <t>Privacy data holder.  Exposes the Privacy Data endpoint.
+                        <t>Personal Information keeper.  Exposes the Personal Information endpoint. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -167,7 +167,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Proposer
                 <list style="symbols">
                     
-                        <t>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref>Relying Party.
+                        <t>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Relying Party.
 </t>
                     
                 </list>
@@ -203,7 +203,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Acceptance
                 <list style="symbols">
                     
-                        <t>Document to describe how the privacy data can be accessed.
+                        <t>Document to describe how the personal information can be accessed.
 </t>
                     
                 </list>
@@ -221,7 +221,7 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Token
                 <list style="symbols">
                     
-                        <t>Signed JSON object which serialized into a formated string. Format is defined i n<xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+                        <t>Signed JSON object which serialized into a formated string. Format is defined in <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
 </t>
                     
                 </list>
@@ -230,7 +230,16 @@ This Contract needs to be stored by all bound parties for a given length of time
             <t> Service
                 <list style="symbols">
                     
-                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</t>
+                        <t>Data or experience provided by Proposer to End User. Some Services consist of couple of End User's Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.
+</t>
+                    
+                </list>
+            </t>
+        
+            <t> PPID
+                <list style="symbols">
+                    
+                        <t>Stands for "Pairwise Pseudonymous Identifier" or "Private Personal Identifier". It is End User's identifier asserted by Signatory to each specific OpenID Relying party including Client, Server or Proposer.</t>
                     
                 </list>
             </t>
@@ -248,6 +257,171 @@ This Contract needs to be stored by all bound parties for a given length of time
 <t>CX protocol is based on  <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> and some <xref target="JSON">JSON(Javascript Object Notation)</xref> messages structure used in CX are defined to exchange non-repudiate message. When an End User starts consuming a CX-based service at a RP(Proposer), the RP compose a Proposal JSON which is compiled with OpenID Artifact Binding Request files defined by parties to be bound to the CX service and contract. The RP starts OpenID Artifact Binding session with the Proposal to the OP(Signatory) specified by the End User, the End User is authenticated at the OP and agrees to compose the CX Contract, and finally the OP provides the CX Contract in OpenID Artifact Binding assertion to the RP.</t>
 <t/>
 <t>With sharing Contract in advance and presenting Contract identfier at specified endpoints, the RP and other Parties bound to the Contract can be authenticated and request data services.</t>
+
+
+<t>
+The following is a squence of main flow of OpenID Contract Exchange.
+</t>
+
+<section title="Propser and Clients">
+
+<t>
+Proposer, as a OpenID Relying Party, provides service experience to End User who is asserted by OpenID OP and has a principal at the Proposer.
+Other OpenID Relying Parties, Clients, MAY teams with Proposer to provide those services.
+Proposer and Client MAY use Personal Information which End User manages at the other OpenID Relying Parties, Servers.
+</t>
+<t>
+To use Personal Information, Proposer and Clients MUST provide  Request file which describes what kind of Personal Information they want to use.
+</t>
+
+<figure>
+    <artwork><![CDATA[
++-------------------------------+
+| <Proposal>                    |
+|                               |
+|  reqs:                        |
+|  +-------------------------+  |
+|  | +---------------------+ |  |
+|  | | <Request>(Client 1) | |  | 
+|  | +---------------------+ |  |
+|  | | <Request>(Client 2) | |  | 
+|  | +---------------------+ |  |
+|  | | <Request>(........) | |  | 
+|  | +---------------------+ |  |
+|  | | <Request>(Client N) | |  | 
+|  | +---------------------+ |  |
+|  | | <Request>(Proposer) | |  | 
+|  | +---------------------+ |  |
+|  +-------------------------+  |
+|                               |
++-------------------------------+
+    ]]></artwork>
+</figure>
+
+<t>
+Because Proposer is just another Client when it want to use Personal Information, there is no difference in architecuture between Reqeust of Clients and Request of Proposer.
+</t>
+
+</section>
+
+<section title="OpenID Artifaict Binding">
+<t>
+If End User want to use the service provided by Proposer,  Proposer initiates an OpenID Artifact Binding session.
+Proposer compiles all Request from Clients and Proposer itself to Proposal and add it OpenID request as CX extension.
+OpenID Artifact Binding request is sent to Signatory which is an OpenID OP in CX term because it signs contract in charge of End User.
+</t>
+</section>
+
+<section title="Signatory and Contract Parts">
+<t>
+If the End User agree to create Contract,  Signatory provides Contract Part for each Proposer and Client. 
+Contract Part includes Acceptance file in which End Users identifier  and the endpoint of his/her Personal Information are stated.
+All Contract Parts share a single identifier, Contract Identifier, which ensure all parties are bound to a single Contract.
+</t>
+
+<t>
+Here is a sample Contract Part to be provieded to Server N which is going to be requested Personal Information by several Clients.
+</t>
+
+<figure>
+    <artwork><![CDATA[
++------------------------------------+
+| <Contract Part>                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Server N"               |
+|                                    |
+|  contract_id :                     |
+|    http://op.net/contract/4321435  |
+|                                    |
+|  acceptances:                      |
+|  +----------------------------+    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client a - Server N)) | |    | 
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client b - Server N)) | |    | 
+|  | +------------------------+ |    |
+|  | | ............           | |    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client z - Server N)) | |    | 
+|  | +------------------------+ |    |
+|  +----------------------------+    |
+|                                    |
++------------------------------------+
+    ]]></artwork>
+</figure>
+
+<t>
+Also here is a sample Contract Part to be provieded to Client A which is going to request Personal Information to several Servers.
+</t>
+
+<figure>
+    <artwork><![CDATA[
++------------------------------------+
+| <Contract Part>                    |
+|                                    |
+|  party_id :                        |
+|    "URL of Client A"               |
+|                                    |
+|  contract_id :                     |
+|    http://op.net/contract/4321435  |
+|                                    |
+|  acceptances:                      |
+|  +----------------------------+    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server 1)) | |    | 
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server 2)) | |    | 
+|  | +------------------------+ |    |
+|  | | ............           | |    |
+|  | +------------------------+ |    |
+|  | | <Acceptance>           | |    |
+|  | | (Client A - Server N)) | |    | 
+|  | +------------------------+ |    |
+|  +----------------------------+    |
+|                                    |
++------------------------------------+
+    ]]></artwork>
+</figure>
+
+<t>
+All Clients, Proposer, Server and Signatory will have its own Contract Part. Acceptances are included only in requester parties or responder parties.
+</t>
+</section>
+
+<section title="OpenID Assertion and Contract Parts">
+<t>
+Proposer MAY obtain its Contract Part which is included in OpenID Artifact Binding Assertion as an extension parameter.
+Proposer MAY notify Contract Identifier to Client in the other process.
+
+</t>
+</section>
+
+<section title="Contract Identifier as Endpoint">
+<t>
+Because Contract Identifier is the endpoint of Contract Parts, any bound party MAY request its Contract Part to the endpoint.
+Contract Part MUST be encrypted in JSON Simple Encryption with the party's public key.
+
+</t>
+</section>
+
+<section title="Personal Information Request">
+<t>
+Clients or Proposer MAY request Personal Information to the endpoint stated in Acceptance of its own Contract Part.
+Server MUST encrypt response  in JSON Simple Encryption with the requester's public key.
+</t>
+</section>
+
+<section title="Access Log">
+<t>
+Servers MUST provide access log bound to the Contract to at least Signatory. Signatory in turn MUST provide those log to End User in some way.
+</t>
+</section>
     </section>
 
     <section title="Files">
@@ -258,7 +432,7 @@ This Contract needs to be stored by all bound parties for a given length of time
 
 <figure>
     <artwork><![CDATA[
-http://specs.openid.net/cx/1.0/#
+http://openid.net/specs/cx/1.0/
     ]]></artwork>
 </figure>
 
@@ -269,7 +443,7 @@ http://specs.openid.net/cx/1.0/#
 <figure>
     <artwork><![CDATA[
 {
-    "type" : "http://specs.openid.net/cx/1.0/#",
+    "type" : "http://openid.net/specs/cx/1.0/",
     "id"   : "http://rp.net/432144395df"
 }
     ]]></artwork>
@@ -321,63 +495,14 @@ Beause CX JSON object on OpenID message MUST be signed, "cx" member is actually 
 </section>
 </section>
 <section title="Structures">
-    <section title="Non-Normative Examples">
-    <t>TODO: Here should be a sample use case description for a CX transaction for non-normative examples in this section and delivered to the RP from OP in an OpenID Artifact Binding assertion.</t>
-<t> An OpenID Artifact Binding assertion holding a CX Contract might be described here .</t>
-
-<t>
-Here is a  non-normative example of a CX Contract which is actually the <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>version of CX Acceptance.
-</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    "type" :  "http://specs.openid.net/cx/1.0/#contract",
-    "id" : "http://op.com/contract/f43213214",
-    "signatory_certs" : "PEM  string of OP(signer)'s X.509 certificate " , 
-     ...    (other JSON SIMPLE SIGN MEMBERS )   ...
-}
-    ]]></artwork>
-</figure>
-
-
-<t>
-Here is a non-normative example of a CX Acceptance which is composed by the OP.
-</t>
-<figure>
-    <artwork><![CDATA[
-{
-   // sample of a Acceptance
-}
-    ]]></artwork>
-</figure>
-
-<t>
-Each privacy data encrypted and held in CX Acceptance and Response is originally formed like the following JSON object
-</t>
-<figure>
-    <artwork><![CDATA[
-{
-    // sample of a Sdata
-}
-
-    ]]></artwork>
-</figure>
-
-<t>Also original request files are formed like the following JSON before they are digitally signed</t>
-
-<figure>
-    <artwork><![CDATA[
-{
-    // sample of a Sdata
-}
-    ]]></artwork>
-</figure>
-</section>
-<section title="Request">
+    <section title="Request">
     <t>
+Request is a file to declare what Personal Information a Client wants. After Request is delivered to Signatory which End User specified, the contents of Request MUST be displayed to the End User to help him to agree the request and specify the endpoint from which his Personal Infromation is accessed from Client. In special case, Client MAY specify Server and endpoint for Personal Information it wants.
+</t>
+<t>
 Request is a extended <xref target="OPENID_AB">OpenID Artifact Binding 1.0</xref> Request file enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
 Every party bound to  Contract MUST prepare  Request in signed token format.
+Request shouldfdsa be prepared in the course of the process described in "<xref target="advertising_service">Advertising Service</xref>".
 </t>
 <t>
 Following parameters are placed in a JSON object held by "payload" parameter  of <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
@@ -391,7 +516,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#request"
+                        <t>http://openid.net/specs/cx/1.0/#request"
 </t>
                     
                 </list>
@@ -426,9 +551,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>Identifier for Server.</t>
                     
-                        <t>This parameter MAY be specified only when Client wants End User to permit to use a particular service.</t>
-                    
-                        <t>In this case, Client has already known the service endpoint.
+                        <t>This parameter MAY be specified only when Client wants End User to permit to use a particular service.  In this case, Client has already known the service endpoint.
 </t>
                     
                 </list>
@@ -461,7 +584,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(any)</t>
                     
-                        <t>End User MAY read "template" text to agree to create  Contract.
+                        <t>This describes what Client wants as Presonal Information. Also conditions or jurisdic statement SHOULD be stated or refered for utilizing End User's Personal Information.  End User MAY read this text to agree to create  Contract.
 </t>
                     
                 </list>
@@ -483,7 +606,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>URI from which data is provieded at Server.
+                        <t>URI from which data is provieded at Server. Specified only when Client want Personal Information from a specific Server.
 </t>
                     
                 </list>
@@ -494,7 +617,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Notifiation endpoint directely called by Party like Propose if Contract is provieded.
+                        <t>Notifiation endpoint directely called by Party like Propose if Contract is provieded. Notification protocol described in "<xref target="notify_contract_status">Notify Contract Status</xref>" section later.
 </t>
                     
                 </list>
@@ -505,7 +628,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string</t>
                     
-                        <t>End user's OpenID identfier at Server
+                        <t>End user's OpenID identfier at Server.  Mostly is not specified.
 </t>
                     
                 </list>
@@ -516,7 +639,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of client_id's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
+                        <t>Base64URL formatted string version of client_id's DER( defined in <xref target="X_690">X.690</xref> )  encoded  X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
 </t>
                     
                 </list>
@@ -527,7 +650,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(base64url)</t>
                     
-                        <t>The PEM formatted string version of server_id's X.509 certificate used when "server_id" specified in Request.</t>
+                        <t>Base64URL formatted string version of server_id's DER( defined in <xref target="X_690">X.690</xref> )  encoded X.509 certificate used when "server_id" specified in Request.</t>
                     
                 </list>
             </t>
@@ -543,15 +666,15 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-        "type" : "http://specs.openid.net/cx/1.0/#request",   
+        "type" : "http://openid.net/specs/cx/1.0/#request",   
         "client_id" : "http://rp.net",
         "server_id": "http://op.com",
         "payment_from" : "500JPY",
         "payment_to"     :  "5PT",
         "template" : 
             "...(base64 encoded text for End User to grant the CX contract)..."
-        "client_certs" : "...( PEM STRING OF client_id's X.509 CERTIFICATE)...",
-        "server_certs" : "...( PEM STRING OF server_id's X.509 CERTIFICATE )...",
+        "client_certs" : "...( Base64URL STRING OF client_id's DER ENCODED X.509 CERTIFICATE)...",
+        "server_certs" : "...( Base64URL STRING OF server_id's DER ENCODED X.509 CERTIFICATE )...",
         ... ( OTHER OPENID REQUEST PARAMTERS ) ...,
         ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
     }
@@ -561,7 +684,8 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Proposal">
     <t>
-Proposal is a contrainer JSON to hold Request token of parties and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>.
+Proposal is a contrainer JSON to hold Request Token of parties from all Client.  
+Proposal itself MUST be a Token to be conveyed in OpenID Artifact Binding request file to Signatory.
 </t>
 
 <t>
@@ -576,7 +700,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#proposal
+                        <t>http://openid.net/specs/cx/1.0/#proposal
 </t>
                     
                 </list>
@@ -609,7 +733,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object( <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> )</t>
                     
-                        <t>JSON array of Requests in token string format.
+                        <t>JSON array of Requests Token.
 </t>
                     
                 </list>
@@ -620,7 +744,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>optional,string(URI)</t>
                     
-                        <t>Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
+                        <t>Signatory MAY directly send message to this URI.  As described later in "<xref target="notify_contract_status">Notify Contract Status</xref>" section later, Signatory MAY notify the status of  Contract to Proposer.
 </t>
                     
                 </list>
@@ -631,7 +755,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of Proposer's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
+                        <t>Base64URL formatted string version of Proposer's DER (defined in <xref target="X_690">X.690</xref> ) encoded X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> envelope.</t>
                     
                 </list>
             </t>
@@ -647,14 +771,14 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-      "type": "http://specs.openid.net/cx/1.0/#proposal",
+      "type": "http://openid.net/specs/cx/1.0/#proposal",
       "id" : "http://rp.net/432143214321",
       "proposer_id" : "http://rp.net/",
       "reqs": [ 
         "6a82841eea9c17677083b2965bc4e51e0e8e22e208121ab69711b3e5918c6677.eyAndGVzdCc6J2RhdGEnfQ==",
         "1cf28c36f7fbb9e97828a687706cd14458d4b81713264d12852a0c8a669bee78.eyAnc2FtcGxlJzondGhlIG90aGVyJ30=",
       ] 
-      "proposer_certs": "...( PEM STRING OF PROPOSER's X.509 CERTIFICATE )...",
+      "proposer_certs": "...( BASE64URL STRING OF PROPOSER's DER ENCODED X.509 CERTIFICATE )...",
       .... ( OTHER EXTENDED PROPOSAL JSON MEMBERS )...
 
     }
@@ -665,9 +789,10 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
 </section>
 <section title="Acceptance">
     <t>
-Acceptance is a copy form original Request "payload"  with extra parameters including End User's privacy data added by Signagory and End User.
-Signatory MUST produce two CX Acceptances for a single CX Request, one is for Client's Contract Part and the other is for Server's Contract Part.
-Privacy data like canonical identifier SHOULD be different from each other.
+Acceptance is a response file of original Request "payload" and describes what is End User's PPID, where End User's Personal Information comes from and any other data required to response End User's Personal Information by Server.
+
+Signatory MUST produce two Acceptances for a single Request, one is for Client's Contract Part and the other is for Server's Contract Part.
+Personal information like canonical identifier SHOULD be different from each other.
 </t>
 
 <t>
@@ -681,7 +806,7 @@ Other paramters  than the following have same meaning as ones defined in Request
                     
                         <t>string(URI)</t>
                     
-                        <t>"http://specs.openid.net/cx/1.0/#acceptance"
+                        <t>"http://openid.net/specs/cx/1.0/#acceptance"
 </t>
                     
                 </list>
@@ -703,7 +828,7 @@ Other paramters  than the following have same meaning as ones defined in Request
                     
                         <t>string(URI)</t>
                     
-                        <t>Identifier to original Request</t>
+                        <t>Identifier to refer to original Request.</t>
                     
                 </list>
             </t>
@@ -716,7 +841,7 @@ Other paramters  than the following have same meaning as ones defined in Request
 <figure>
     <artwork><![CDATA[
 {
-    "type"              : "http://specs.openid.net/cx/1.0/#acceptance",   
+    "type"              : "http://openid.net/specs/cx/1.0/#acceptance",   
     "client_id"         : "http://rp.net",
     "server_id"         : "http://op.com",
     "payment_from"      : "500JPY",
@@ -734,7 +859,8 @@ Other paramters  than the following have same meaning as ones defined in Request
 </section>
 <section title="Contract Part">
     <t>
-Contract Part is container JSON object of Acceptances and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
+Contract Part is container JSON object of Acceptances and enveloped by <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref>. 
+Contract Part is a part of Contract  and provided for each Party by Signatory. All Contract Part shares a Contract Indenfier.
 </t>
 
 <t>
@@ -749,7 +875,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#contract_part
+                        <t>http://openid.net/specs/cx/1.0/#contract_part
 </t>
                     
                 </list>
@@ -804,7 +930,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>array of object(Acceptance)</t>
                     
-                        <t>JSON array of Acceptance
+                        <t>JSON array of Acceptance JSON object.
 </t>
                     
                 </list>
@@ -815,8 +941,7 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
                     
                         <t>string(base64url)</t>
                     
-                        <t>The PEM formatted string version of Signatory's X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.
-</t>
+                        <t>Base64URL formatted string of Signatory's DER( defined in <xref target="X_690">X.690</xref> ) encoded X.509 certificate used for this <xref target="JSON_SIMPLE_SIGN_1_0">JSON Simple Sign 1.0</xref> JSON.</t>
                     
                 </list>
             </t>
@@ -832,33 +957,33 @@ Following parameters are placed in a JSON object held by "payload" parameter  of
     "type": "http://jsonenc.info/jss/",
      ....
     "payload": {
-        "type"        : "http://specs.openid.net/cx/1.0/#contract",
+        "type"        : "http://openid.net/specs/cx/1.0/#contract",
         "id"          : "http://op.com/id/f43213214",
         "contract_id" : "http://op.com/id/contract/x43513514",
         "party_id"    : "http://res.net/",
         "acceptances" : [
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213215",
                     "client_id" : "http://rp1.net/",
                     "server_id" : "http://res.net/",
                     "endpoint"  : "http://res.net/endpoint/",
-                    "identifier": "http://op.com/user/x43432",
+                    "identity"  : "http://op.com/user/x43432",
                         .....
                     
                 },
                 {
-                    "type"      : "http://specs.openid.net/cx/1.0/#acceptance",
+                    "type"      : "http://openid.net/specs/cx/1.0/#acceptance",
                     "id"        : "http://op.com/id/f43213216",
                     "client_id" : "http://rp2.net/",
                     "server_id" : "http://res.net/",
                     "endpoint"  : "http://res.net/endpoint/",
-                    "identifier": "http://op.com/user/y43432",
+                    "identity"  : "http://op.com/user/y43432",
                         .....
                 }
             ],
             "signatory_certs" 
-                : ".... ( PEM STRING OF SIGNATORY's X.509 CERTIFICATE) ...",
+                : ".... ( BASE64URL STRING OF SIGNATORY's DER ENCODED X.509 CERTIFICATE ) ...",
     
             ... ( OTHER JSON SIMPLE SIGN PARAMTERS ) ...
         }
@@ -880,7 +1005,7 @@ Status  is a simple JSON object to describe the status of Contract.
                     
                         <t>string(URI)</t>
                     
-                        <t>http://specs.openid.net/cx/1.0/#status
+                        <t>http://openid.net/specs/cx/1.0/#status
 </t>
                     
                 </list>
@@ -915,7 +1040,7 @@ Status  is a simple JSON object to describe the status of Contract.
                     
                         <t>status description about proposal or contract.</t>
                     
-                        <t>[[TODO]] created,canceled,pending,..... MUST be specified.</t>
+                        <t>One of the following : "contract_created","contract_discarded","contract_pending","contract_inquiring".</t>
                     
                 </list>
             </t>
@@ -928,7 +1053,7 @@ Status  is a simple JSON object to describe the status of Contract.
 <figure>
     <artwork><![CDATA[
 {
-    "type" :  "http://specs.openid.net/cx/1.0/#status",
+    "type" :  "http://openid.net/specs/cx/1.0/#status",
     "proposal_id" :  "http://rp.net/cx/54643",
     "contract_id" : "http://op.com/contract/f43213214",
     "status" : "pending" , 
@@ -952,7 +1077,7 @@ such as Algorithm Compromise. Thus, care should be taken to appropriately proces
 
     <section title="Protocal">
         <section title="Sending Proposal">
-    <section title="Advertising Service">
+    <section title="Advertising Service" anchor="advertising_service">
 
 <t>Before advertising CX Service, Proposer  MUST collect all Request token related to that Service. 
 Some Request token MAY be provided by any party other than the Proposeritself.</t>
@@ -961,6 +1086,9 @@ Some Request token MAY be provided by any party other than the Proposeritself.</
 Proposer SHOULD provide an user interface like image button for End Users to click to go to the Service and Proposer starts providing Proposal and CX process.
 </t>
 
+<t>
+Also Signatory party MUST advertise it can be a OpenID CX Signatory OP. In the case of using XRDS, Type element MUST be http://openid.net/specs/cx/1.0/.
+</t>
 </section>
 
 <section title="Providing CX Proposal">
@@ -1031,7 +1159,7 @@ If Proposal and all Requests in it are valid, End User MUST be authenticated. Si
 
 <t>
 If End User agrees, Signatory creates two Acceptance JSON objects for each Request, one for Client and the other for Server.
-Privacy parameter MAY be different from each other.
+Personal information parameter MAY be different from each other.
 </t>
 
 </section>
@@ -1081,7 +1209,7 @@ But if no Contract Part is available at the time when RP requests the assertion,
 {
     ...( OPENID ARTIFACT BINDING  ASSERTION JSON MEMBERS ) ...,
     "cx" : {
-                "type" :   "http://specs.openid.net/cx/1.0/#status",
+                "type" :   "http://openid.net/specs/cx/1.0/#status",
                  ... ( OTHER CX STATUS JSON MEMBERS ) ...
              } 
 }
@@ -1109,7 +1237,7 @@ If the "cx" member is a Status JSON object, Proposer SHOULD explain to the End U
 
 </section>
 
-<section title="Notify Contract Status">
+<section title="Notify Contract Status" anchor="notify_contract_status"  >
     <t>
 Signatory and other Party MAY send the status of Contract to the endpoint specified by "notify" member of Proposal or Request. 
 "status" query parameter MUST be a Status JSON object.
@@ -1126,7 +1254,7 @@ Signatory and Party MAY request their Contract Party Token using Data Request me
 <section title="Endpoint">
 <t>
 Client MAY request data from a endpoint exposed by Server bound to the same Contract.  
-The endpoint of End User's Privacy Data is specified "endpoint" parameter of Request and Acceptance JSON. 
+The endpoint of End User's Personal Information is specified "endpoint" parameter of Request and Acceptance JSON. 
 </t>
 <t>
 Access log records MAY be requested in the same endpoint when "log" parameter is set to "true".
@@ -1144,7 +1272,7 @@ Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpo
             <t> party_id
                 <list style="symbols">
                     
-                        <t>REQUIRED Value: An identfier of Party. Server MUST encrypt Privacy Data with the public key of Client in the way defined in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> .
+                        <t>REQUIRED Value: An identfier of Party. Server MUST encrypt Personal Information with the public key of Client in the way defined in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> .
 </t>
                     
                 </list>
@@ -1191,7 +1319,7 @@ Also Party MAY request its Contract Part Token dicrectly to Signagory. The endpo
 
 <section title="Encrypted Response">
 <t>
-Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> and encrypted for "party" in the request. Privacy data, Contract Part  Token and access log MUST be returned in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> with using valid public key of specified party.
+Data response MUST be formed in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> and encrypted for "party" in the request. Personal Information, Contract Part Token and access log MUST be returned in <xref target="JSON_SIMPLE_ENC_1_0">JSON Simple Encryption 1.0</xref> with using valid public key of specified party.
 </t>
 </section>
 
@@ -1212,7 +1340,7 @@ Access log is JSON structured with followng parameters.
                     
                         <t>OPTIONAL,string(URI)</t>
                     
-                        <t>This can be negotiable with this parameter between Parities, but default is  http://specs.openid.net/cx/1.0/#access_log
+                        <t>This can be negotiable with this parameter between Parities, but default is http://openid.net/specs/cx/1.0/
 </t>
                     
                 </list>
@@ -1247,7 +1375,7 @@ Default "log" parameter is an array of arrays in which following data are contai
             <t> request_id
                 <list style="symbols">
                     
-                        <t>Privacy data reqquet msg_id specified by requesting party.
+                        <t>Personal information request msg_id specified by requesting party.
 </t>
                     
                 </list>
@@ -1301,13 +1429,13 @@ Default "log" parameter is an array of arrays in which following data are contai
 </t>
 
 <t>
-The following is a non-normative sample of acesss log.
+The following is a non-normative sample of access log.
 </t>
 <figure>
     <artwork><![CDATA[
 {
-     "type" : "http://specs.openid.net/cx/1.0/#acess_log",   
-     "log"  : [
+     "type" : "http://openid.net/specs/cx/1.0/#access_log",   
+     "logs"  : [
         [ "http://sp.com/res/4321","http://rp.com/req/343","http://op.com/contract/93",
             "http://rp.com/",'2010-10-13T05:10:38+09:00',"200 OK",""],
         [ "http://sp.com/res/4322","http://rp.com/req/344","http://op.com/contract/93",
@@ -1532,6 +1660,18 @@ In the unlikely event of private key compromise, the party should immediately no
           <date month="September" year="2010" />
         </front>
         <format target="http://bitbucket.org/openid/ab/raw/4325e6a219dd/json-simple-enc-1_0.html" type="HTML" />
+      </reference>
+
+    
+      <reference anchor="X_690">
+        <front>
+          <title> X.690 : Information technology - ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)</title>
+            <author fullname="ITU">
+                <organization>INTERNATIONAL TELECOMMUNICATION UNION</organization>
+            </author>
+          <date month="July" year="2002" />
+        </front>
+        <format target="http://www.itu.int/rec/T-REC-X.690-200207-S/en" type="PDF" />
       </reference>
 
       <reference anchor="OAEP">

@@ -1,7 +1,7 @@
 * type 
 
     * string(URI)
-    * http://specs.openid.net/cx/1.0/#proposal
+    * {{cxurl}}#proposal
 
 * id  
 
@@ -16,14 +16,14 @@
 * reqs
 
     * array of object( {{ xref.JSON_SIMPLE_SIGN_1_0 }} )
-    * JSON array of Requests in token string format.
+    * JSON array of Requests Token.
 
 * notify
 
     * optional,string(URI)
-    * Signatory MAY directly send message to this URI.  As described later in Notification, Signatory MAY notify the status of  Contract to Proposer.
+    * Signatory MAY directly send message to this URI.  As described later in "{{ xref.notify_contract_status }}" section later, Signatory MAY notify the status of  Contract to Proposer.
 
 * proposer_certs
 
     * string(base64url)
-    * The PEM formatted string version of Proposer's X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} envelope.
+    * Base64URL formatted string version of Proposer's DER (defined in {{ xref.X_690 }} ) encoded X.509 certificate used for this {{ xref.JSON_SIMPLE_SIGN_1_0 }} envelope.

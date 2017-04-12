@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Glossary &mdash; OpenID CX v1 documentation</title>
-    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/openid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/print.css" type="text/css" />
     <script type="text/javascript">
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="OpenID CX v1 documentation" href="index.html" />
-    <link rel="prev" title="Contract Exchange" href="contract_exchange.html" /> 
+    <link rel="prev" title="Senario" href="sample_printing/senario.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
@@ -35,7 +35,8 @@
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="contract_exchange.html">Contract Exchange</a>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="sample_printing/senario.html">Senario</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         </p>
@@ -53,18 +54,18 @@
 <dd>Entity which is bound to a contract and one of Client , Server , Proposer and Signatory.
 Party may be a web server or a smart device client.</dd>
 <dt id="term-end-user">End User</dt>
-<dd>Person who has privillege of controlling Privacy Data. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.</dd>
-<dt id="term-privacy-data">Privacy Data</dt>
+<dd>Person who has privillege of controlling Personal Information. End User MUST be identified at OpenID Provider and MAY authorize Contract to be signed and valid.</dd>
+<dt id="term-personal-information">Personal Information</dt>
 <dd>Data which is own by End User and can be accessed to permitted Party.</dd>
 <dt id="term-contract">Contract</dt>
-<dd>Document to prove that Party can access Privacy Data under stated condition.</dd>
+<dd>Document to prove that Party can access Personal Information under stated condition.</dd>
 <dt id="term-contract-identifier">Contract Identifier</dt>
 <dd>Unique URI to specify a particular contract. All <a class="reference internal" href="#term-contract-part"><em class="xref std std-term">Contract Part</em></a> has the same contract identfier.
 <a class="reference internal" href="#term-contract"><em class="xref std std-term">Contract</em></a> can be transmitted from this URI as data endpoint.</dd>
 <dt id="term-client">Client</dt>
-<dd>Privacy Data user.</dd>
+<dd>Personal Information user.</dd>
 <dt id="term-server">Server</dt>
-<dd>Privacy data holder. Exposes the Privacy Data endpoint.</dd>
+<dd>Personal Information holder. Exposes the Personal Information endpoint.</dd>
 <dt id="term-proposer">Proposer</dt>
 <dd>Contract process initiator. Orchestrates the process of data access authorization between Clients and Server with the help of Signatory. OpenID Artifact Binding 1.0 (Protivity Government Services and Nomura Research Institute, “OpenID Artifact Binding 1.0,” September 2010.) [OPENID_AB]Relying Party.</dd>
 <dt id="term-signatory">Signatory</dt>
@@ -80,7 +81,22 @@ Party may be a web server or a smart device client.</dd>
 <dt id="term-token">Token</dt>
 <dd>Signed JSON object which serialized into a formated string. Format is defined i nJSON Simple Sign 1.0 (Protivity Government Services and Nomura Research Institute, “JSON Simple Sign ver.1 draft00,” September 2010.) [JSON_SIMPLE_SIGN_1_0].</dd>
 <dt id="term-service">Service</dt>
-<dd>Data or experience provided by Proposer to End User. Some Services consist of couple of End User&#8217;s Privacy Data which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</dd>
+<dd>Data or experience provided by Proposer to End User. Some Services consist of couple of End User&#8217;s Personal Information which are provided by Server and used by Client. Parties MUST fulfill Contract to collaborate to provide Service.</dd>
+<dt id="term-openid-ax">OpenID AX</dt>
+<dd>&#8220;OpenID Attribute Exchange is an OpenID service extension for exchanging identity information between endpoints. Messages for retrieval and storage of identity information are provided.&#8221; - <a class="reference external" href="http://openid.net/specs/openid-attribute-exchange-1_0.html">OpenID Attribute Exchange 1.0</a> .</dd>
+<dt id="term-typeuri">typeURI</dt>
+<dd>URI to describe data schema. Used in <a class="reference internal" href="#term-openid-ax"><em class="xref std std-term">OpenID AX</em></a>. <a class="reference external" href="http://www.axschema.org/">AXSchema.org</a>  is a community project to define attribute types for use with OpenID Attribute Exchange.</dd>
+<dt id="term-lrdd">LRDD</dt>
+<dd>LRDD (pronounced &#8216;lard&#8217;) provides a process for obtaining information  about a resource identified by a Uniform Resource Identifier (URI).
+See <a class="reference external" href="http://www.delicious.com/hdknr/LRDD">http://www.delicious.com/hdknr/LRDD</a></dd>
+<dt id="term-openid-cx">OpenID CX</dt>
+<dd>Contract Excchange protocol described by this document.</dd>
+<dt id="term-host-meta">host-meta</dt>
+<dd>A &#8220;well-known&#8221; URI described at a IETF <a class="reference external" href="http://tools.ietf.org/html/draft-hammer-hostmeta-13">memo</a> .
+&#8220;well-known&#8221; is defined at &#8220;Defining Well-Known Uniform Resource Identifiers (URIs)&#8221;( <a class="reference external" href="http://tools.ietf.org/html/rfc5785">RFC 5785</a> ).</dd>
+<dt id="term-xrd">XRD</dt>
+<dd>A simple generic format for describing and discovering resources. Defined by OASIS.
+XRD 1.0 is available at <a class="reference external" href="http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html">here</a> .</dd>
 </dl>
 </div>
 </div>
@@ -90,7 +106,8 @@ Party may be a web server or a smart device client.</dd>
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="contract_exchange.html">Contract Exchange</a>
+        <a href="_static/spec.html">Specification</a> |
+        «&#160;&#160;<a href="sample_printing/senario.html">Senario</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         </p>
